@@ -4,6 +4,7 @@ type BookInfo = {
   isAvailable: boolean;
 };
 
+// 140 * 234
 const BookCard = ({ coverImage, isAvailable, title }: BookInfo) => {
   return (
     <div
@@ -13,7 +14,7 @@ const BookCard = ({ coverImage, isAvailable, title }: BookInfo) => {
     >
       <img src={coverImage} alt={title} className="rounded-2xl" />
       {/* {isAvailable ? <p>موجود</p> : <p>ناموجود</p>} */}
-      <p className="mx-auto pt-4 pb-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-full text-[14px] sm:text-[18px]">
+      <p className="mx-auto pt-4 pb-2 whitespace-nowrap overflow-hidden text-ellipsis max-w-full text-[14px] sm:text-[16px]">
         {title}
       </p>
     </div>
