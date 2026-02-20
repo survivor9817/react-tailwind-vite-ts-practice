@@ -1,31 +1,39 @@
-import { useState } from "react";
-import { BOOKS, FIELDS, GRADES } from "../data/data";
+import { useEffect, useState } from "react";
+import { FIELDS, filterBooks, GRADES } from "../data/data";
+import type { Book, FieldType, GradeType } from "../data/data";
 import Select from "react-select";
 import BookCardList from "./BookCardList";
+import IconBtn from "./IconBtn";
 
 const LandingPage = () => {
-  const [activeGrade, setActiveGrade] = useState("هفتم");
-  const [selectedField, setSelectedField] = useState(null);
+  const [selectedGrade, setSelectedGrade] = useState(GRADES[0]);
+  const [selectedField, setSelectedField] = useState<FieldType | null>(null);
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>(filterBooks(7, null));
 
-  console.log(selectedField);
-
-  function handleGradeClick(gradeId: string) {
-    setActiveGrade(gradeId);
-    // setSelectedField(selectedField);
+  function handleGradeClick(grade: GradeType) {
+    setSelectedGrade(grade);
+    if (grade.dore === "متوسطه دوم") return;
+    setSelectedField(null);
   }
+
+  useEffect(() => {
+    setFilteredBooks(filterBooks(selectedGrade.id, selectedField?.id));
+  }, [selectedGrade, selectedField]);
 
   const selectCustomStyles = {
     control: (provider) => ({
       ...provider,
-      width: "150px",
-      borderRadius: "12px",
+      direction: "ltr",
+      flexDirection: "row-reverse",
       textAlign: "center",
-      // borderRadius: "120px",
-      // fontSize: "16px",
-      // textAlign: "right",
-      // paddingRight: "12px",
+      width: "110px",
+      borderRadius: "12px",
+      height: "40px",
     }),
-    options: (provider) => ({ ...provider }),
+    indicatorsContainer: (provider) => ({
+      ...provider,
+      direction: "rtl",
+    }),
   };
 
   return (
@@ -33,27 +41,26 @@ const LandingPage = () => {
       <div className="min-w-75 max-w-4xl w-200">
         <nav className="flex w-full justify-between gap-4 border-2">
           <div className="flex gap-4">
-            <div className="">logo</div>
-            <div className="">brand name</div>
+            <div className="">لوگو</div>
+            <div className="">نام برند</div>
           </div>
           <div className="flex gap-4">
-            <div className="">login</div>
-            <div className="">signup</div>
+            <div className="">ورود</div>
+            <div className="">ثبت‌نام</div>
           </div>
         </nav>
-
         <div>.با درس‌یاور، همین الان درس‌خواندن را شروع کن</div>
-
-        <div className="grid grid-cols-3 flex-wrap justify-center gap-2 w-fit my-4 ">
+        <div>کتابخانه مدرسه</div>
+        <div className="grid grid-cols-3 flex-wrap justify-center gap-2 w-75 my-4 ">
           {GRADES.map((grade) => (
             <button
               key={grade.id}
-              onClick={() => handleGradeClick(grade.label)}
+              onClick={() => handleGradeClick(grade)}
               className={`
                   rounded-full px-4 py-2 transition-transform duration-200
-                  w-24 h-10 cursor-pointer font-medium text-sm
+                  h-10 cursor-pointer font-medium text-sm
                   ${
-                    activeGrade === grade.label
+                    selectedGrade.label === grade.label
                       ? "bg-gray-950 text-white shadow-lg transform scale-105"
                       : "bg-gray-200 text-black hover:bg-gray-300"
                   }
@@ -64,29 +71,29 @@ const LandingPage = () => {
             </button>
           ))}
         </div>
-        <div className="flex gap-2 py-4">
-          <span className="text-xl">کتاب‌های پایه {activeGrade}</span>
-          {activeGrade === "دهم" || activeGrade === "یازدهم" || activeGrade === "دوازدهم" ? (
+        <div className="flex justify-between w-75 gap-2 py-4">
+          <span className="text-xl py-1">کتابخانه پایه {selectedGrade.label}</span>
+          {selectedGrade.dore === "متوسطه دوم" ? (
             <Select
               styles={selectCustomStyles}
               className="basic-single "
               classNamePrefix="select"
               defaultValue={FIELDS[0]}
-              isRtl={true}
+              // isRtl={false}
               // isDisabled={false}
               // isLoading={false}
               // isClearable={true}
-              isSearchable={true}
-              name="color"
+              isSearchable={false}
               options={FIELDS}
               onChange={(field) => setSelectedField(field)}
             />
           ) : null}
         </div>
-
+        <IconBtn className={""} icon={"arrow_circle_right"} onClick={() => {}} />
+        <IconBtn className={""} icon={"arrow_circle_left"} onClick={() => {}} />
         {/* render books */}
-        <div className="flex gap-4 p-4 border-2 w-full overflow-hidden overflow-x-scroll">
-          <BookCardList books={BOOKS} />
+        <div className="flex gap-4 p-4 border-y-2 w-full overflow-hidden overflow-x-auto no-scrollbar">
+          <BookCardList books={filteredBooks} />
         </div>
       </div>
     </div>

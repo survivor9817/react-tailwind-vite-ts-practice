@@ -1,4 +1,13 @@
-export const GRADES = [
+export const BRAND_NAME = "درس‌یاور";
+export const BRAND_LOGO = "🎓";
+
+export type GradeType = {
+  id: number;
+  dore: string;
+  label: string;
+};
+
+export const GRADES: GradeType[] = [
   { id: 7, dore: "متوسطه اول", label: "هفتم" },
   { id: 8, dore: "متوسطه اول", label: "هشتم" },
   { id: 9, dore: "متوسطه اول", label: "نهم" },
@@ -7,63 +16,527 @@ export const GRADES = [
   { id: 12, dore: "متوسطه دوم", label: "دوازدهم" },
 ];
 
-export const FIELDS = [
+export type FieldType = {
+  id: number;
+  value: number;
+  label: string;
+};
+
+export const FIELDS: FieldType[] = [
   { id: 1, value: 1, label: "تجربی" },
   { id: 2, value: 2, label: "انسانی" },
   { id: 3, value: 3, label: "ریاضی" },
 ];
 
-export const BOOKS = [
+export type Book = {
+  id: number;
+  title: string;
+  gradeId: number;
+  fieldId: number | null;
+  coverImage: string;
+  isAvailable: boolean;
+  lastPage: number;
+};
+
+export const BOOKS: Book[] = [
   {
     id: 706,
     title: "علوم تجربی ۷",
     gradeId: 7,
     fieldId: null,
-    coverImage: "/images/jeld-oloom-7.jpg",
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C706.jpg?itok=QlyLSsuL",
     isAvailable: true,
+    lastPage: 138,
   },
   {
     id: 806,
     title: "علوم تجربی ۸",
     gradeId: 8,
     fieldId: null,
-    coverImage: "/images/jeld-oloom-7.jpg",
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C806.jpg?itok=r0wHPCCG",
     isAvailable: true,
+    lastPage: 146,
   },
   {
     id: 906,
     title: "علوم تجربی ۹",
     gradeId: 9,
     fieldId: null,
-    coverImage: "/images/jeld-oloom-7.jpg",
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C906.jpg?itok=ee4ehM8M",
     isAvailable: true,
+    lastPage: 176,
   },
   {
     id: 110216,
     title: "زیست شناسی ۱",
     gradeId: 10,
     fieldId: 1,
-    coverImage: "/images/jeld-oloom-8.jpg",
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110216.jpg?itok=vw4npsKH",
     isAvailable: true,
+    lastPage: 112,
   },
   {
     id: 111216,
     title: "زیست شناسی ۲",
     gradeId: 11,
     fieldId: 1,
-    coverImage: "/images/jeld-oloom-9.jpg",
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111216.jpg?itok=zk-9Sg3i",
     isAvailable: true,
+    lastPage: 154,
   },
   {
     id: 112216,
     title: "زیست شناسی ۳",
     gradeId: 12,
     fieldId: 1,
-    coverImage: "/images/jeld-oloom-7.jpg",
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112216.jpg?itok=5puczYEK",
     isAvailable: true,
+    lastPage: 125,
   },
   // va baghie ketaab haa
 ];
 
-export const BRAND_NAME = "درس‌یاور";
-export const BRAND_LOGO = "🎓";
+export const BOOKS_TOC = [
+  {
+    bookId: 706,
+    title: "علوم تجربی ۷",
+    sections: [
+      {
+        id: 1,
+        page: 1,
+        title: "بخش ۱: علوم و ابزارهای آن",
+        sections: [
+          { id: 1, page: 2, title: "تفکر و تجربه" },
+          { id: 2, page: 6, title: "اندازه‌گیری در علوم و ابزارهای آن" },
+        ],
+      },
+      {
+        id: 2,
+        page: 12,
+        title: "بخش ۲: مواد در زندگی ما",
+        sections: [
+          { id: 1, page: 13, title: "اتم‌ها؛ الفبای مواد" },
+          { id: 2, page: 25, title: "مواد پیرامون ما" },
+        ],
+      },
+      {
+        id: 3,
+        page: 35,
+        title: "بخش ۳: منابع خدادادی در خدمت ما",
+        sections: [
+          { id: 1, page: 36, title: "از معدن تا خانه" },
+          { id: 2, page: 48, title: "سفر آب روی زمین" },
+          { id: 3, page: 56, title: "سفر آب درون زمین" },
+        ],
+      },
+      {
+        id: 4,
+        page: 65,
+        title: "بخش ۴: انرژی؛ نیاز همیشگی",
+        sections: [
+          { id: 1, page: 66, title: "انرژی و تبدیل‌های آن" },
+          { id: 2, page: 77, title: "منابع انرژی" },
+          { id: 3, page: 86, title: "گرما و بهینه‌سازی مصرف انرژی" },
+        ],
+      },
+      {
+        id: 5,
+        page: 98,
+        title: "بخش ۵: دنیای درون من",
+        sections: [
+          { id: 1, page: 99, title: "یاخته و سازمان‌بندی آن" },
+          { id: 2, page: 107, title: "سفره سلامت" },
+          { id: 3, page: 116, title: "سفر غذا" },
+          { id: 4, page: 124, title: "گردش مواد" },
+          { id: 5, page: 132, title: "تبادل با محیط" },
+        ],
+      },
+    ],
+  },
+  {
+    bookId: 806,
+    title: "علوم تجربی ۸",
+    sections: [
+      { id: 1, page: 1, title: "مخلوط و جداسازی مواد" },
+      { id: 2, page: 9, title: "تغییرهای شیمیایی در خدمت زندگی" },
+      { id: 3, page: 21, title: "از درون اتم چه‌خبر" },
+      { id: 4, page: 28, title: "تنظیم عصبی" },
+      { id: 5, page: 35, title: "حس و حرکت" },
+      { id: 6, page: 47, title: "تنطیم هورمونی" },
+      { id: 7, page: 55, title: "الفبای زیست‌فناوری" },
+      { id: 8, page: 65, title: "تولیدمثل در جانداران" },
+      { id: 9, page: 76, title: "الکتریسیته" },
+      { id: 10, page: 89, title: "مغناطیس" },
+      { id: 11, page: 97, title: "کانی‌ها" },
+      { id: 12, page: 104, title: "سنگ‌ها" },
+      { id: 13, page: 114, title: "هوازدگی" },
+      { id: 14, page: 122, title: "نور و ویژگی‌های آن" },
+      { id: 15, page: 136, title: "شکست نور" },
+    ],
+  },
+  {
+    bookId: 906,
+    title: "علوم تجربی ۹",
+    sections: [
+      {
+        id: 1,
+        page: 1,
+        title: "مواد و نقش آنها در زندگی",
+      },
+      {
+        id: 2,
+        page: 13,
+        title: "رفتار اتمها با یکدیگر",
+      },
+      {
+        id: 3,
+        page: 25,
+        title: "به‌دنبال محیطی بهتر برای زندگی",
+      },
+      {
+        id: 4,
+        page: 39,
+        title: "حركت چيست",
+      },
+      {
+        id: 5,
+        page: 51,
+        title: "نيرو",
+      },
+      {
+        id: 6,
+        page: 63,
+        title: "زمین‌ساخت ورقه‌ای",
+      },
+      {
+        id: 7,
+        page: 73,
+        title: "آثاری از گذشته زمین",
+      },
+      {
+        id: 8,
+        page: 83,
+        title: "فشار وآثار آن",
+      },
+      {
+        id: 9,
+        page: 95,
+        title: "ماشین‌ها",
+      },
+      {
+        id: 10,
+        page: 107,
+        title: "نگاهی به فضا",
+      },
+      {
+        id: 11,
+        page: 121,
+        title: "گوناگونی جانداران",
+      },
+      {
+        id: 12,
+        page: 131,
+        title: "دنیای گیاهان",
+      },
+      {
+        id: 13,
+        page: 141,
+        title: "جانوران بى مهره",
+      },
+      {
+        id: 14,
+        page: 151,
+        title: "جانوران مهرەدار",
+      },
+      {
+        id: 15,
+        page: 163,
+        title: "باهم زيستن",
+      },
+    ],
+  },
+  {
+    bookId: 110216,
+    title: "زیست شناسی ۱",
+    sections: [
+      {
+        id: 1,
+        page: 1,
+        title: "فصل ۱. دنیای زنده",
+        sections: [
+          { id: 1, page: 2, title: "گفتار ۱. زیست شناسی چیست؟" },
+          { id: 2, page: 7, title: "گفتار ۲. گستره حیات" },
+          { id: 3, page: 11, title: "گفتار ۳. یاخته و بافت در بدن انسان" },
+        ],
+      },
+      {
+        id: 2,
+        page: 17,
+        title: "فصل ۲. گوارش و جذب مواد",
+        sections: [
+          { id: 1, page: 18, title: "گفتار ۱. ساختار و عملکرد لوله گوارش" },
+          { id: 2, page: 25, title: "گفتار ۲. جذب مواد و تنظیم فعالیت دستگاه گوارش" },
+          { id: 3, page: 30, title: "گفتار ۳. تنوع گوارش در جانداران" },
+        ],
+      },
+      {
+        id: 3,
+        page: 33,
+        title: "فصل ۳. تبادلات گازی",
+        sections: [
+          { id: 1, page: 34, title: "گفتار ۱. ساز و کار دستگاه تنفس در انسان" },
+          { id: 2, page: 40, title: "گفتار ۲. تهویه ششی" },
+          { id: 3, page: 45, title: "گفتار ۳. تنوع در تبادلات گازی" },
+        ],
+      },
+      {
+        id: 4,
+        page: 47,
+        title: "فصل ۴. گردش مواد در بدن",
+        sections: [
+          { id: 1, page: 48, title: "گفتار ۱. قلب" },
+          { id: 2, page: 55, title: "گفتار ۲. رگ ها" },
+          { id: 3, page: 61, title: "گفتار ۳. خون" },
+          { id: 4, page: 65, title: "گفتار ۴. تنوع گردش مواد در جانداران" },
+        ],
+      },
+      {
+        id: 5,
+        page: 69,
+        title: "فصل ۵. تنظیم اسمزی و دفع مواد زائد",
+        sections: [
+          { id: 1, page: 70, title: "گفتار ۱. هم ایستایی و کلیه ها" },
+          { id: 2, page: 73, title: "گفتار ۲. تشکیل ادرار و تخلیه آن" },
+          { id: 3, page: 76, title: "گفتار ۳. تنوع دفع و تنظیم اسمزی در جانداران" },
+        ],
+      },
+      {
+        id: 6,
+        page: 79,
+        title: "فصل ۶. از یاخته تا گیاه",
+        sections: [
+          { id: 1, page: 80, title: "گفتار ۱. ویژگی های یاخته های گیاهی" },
+          { id: 2, page: 86, title: "گفتار ۲. سامانه بافتی" },
+          { id: 3, page: 90, title: "گفتار ۳. ساختار گیاهان" },
+        ],
+      },
+      {
+        id: 7,
+        page: 97,
+        title: "فصل ۷. جذب و انتقال مواد در گیاهان",
+        sections: [
+          { id: 1, page: 98, title: "گفتار ۱. تغذیه گیاهی" },
+          { id: 2, page: 102, title: "گفتار ۲. جانداران موثر در تغذیه گیاهی" },
+          { id: 3, page: 105, title: "گفتار ۳. انتقال مواد در گیاهان" },
+        ],
+      },
+    ],
+  },
+  {
+    bookId: 111216,
+    title: "زیست شناسی ۲",
+    sections: [
+      {
+        id: 1,
+        page: 1,
+        title: "فصل ۱. تنظیم عصبی",
+        sections: [
+          { id: 1, page: 2, title: "گفتار ۱ - یافته‌های بافت عصبی" },
+          { id: 2, page: 9, title: "گفتار ۲ - ساختار دستگاه عصبی" },
+        ],
+      },
+      {
+        id: 2,
+        page: 19,
+        title: "فصل ۲. حواس",
+        sections: [
+          { id: 1, page: 20, title: "گفتار ۱ - گیرنده‌های حسی" },
+          { id: 2, page: 23, title: "گفتار ۲ - حواس ویژه" },
+          { id: 3, page: 33, title: "گفتار ۳ - گیرنده‌های حسی جانوران" },
+        ],
+      },
+      {
+        id: 3,
+        page: 37,
+        title: "فصل ۳. دستگاه حرکتی",
+        sections: [
+          { id: 1, page: 38, title: "گفتار ۱ - استخوان‌ها و اسکلت" },
+          { id: 2, page: 45, title: "گفتار ۲ - ماهیچه و حرکت" },
+        ],
+      },
+      {
+        id: 4,
+        page: 53,
+        title: "فصل ۴. تنظیم شیمیایی",
+        sections: [
+          { id: 1, page: 54, title: "گفتار ۱ - ارتباط شیمیایی" },
+          { id: 2, page: 56, title: "گفتار ۲ - غده‌های درون‌ریز" },
+        ],
+      },
+      {
+        id: 5,
+        page: 63,
+        title: "فصل ۵. ایمنی",
+        sections: [
+          { id: 1, page: 64, title: "گفتار ۱ - نخستین خط دفاعی: ورود ممنوع" },
+          { id: 2, page: 66, title: "گفتار ۲ - دومین خط دفاعی: واکنش‌های عمومی اما سریع" },
+          { id: 3, page: 72, title: "گفتار ۳ - سومین خط دفاعی: دفاع اختصاصی" },
+        ],
+      },
+      {
+        id: 6,
+        page: 79,
+        title: "فصل ۶. تقسیم یافته",
+        sections: [
+          { id: 1, page: 80, title: "گفتار ۱ - قافتن (کروموزوم)" },
+          { id: 2, page: 84, title: "گفتار ۲ - رشتمان (میتوز)" },
+          { id: 3, page: 92, title: "گفتار ۳ - گامتمان (میوز) و تولیدمثل جنسی" },
+        ],
+      },
+      {
+        id: 7,
+        page: 97,
+        title: "فصل ۷. تولیدمثل",
+        sections: [
+          { id: 1, page: 98, title: "گفتار ۱ - دستگاه تولیدمثل در مرد" },
+          { id: 2, page: 102, title: "گفتار ۲ - دستگاه تولیدمثل در زن" },
+          { id: 3, page: 108, title: "گفتار ۳ - رشد و نمو جنین" },
+          { id: 4, page: 115, title: "گفتار ۴ - تولیدمثل در جانوران" },
+        ],
+      },
+      {
+        id: 8,
+        page: 119,
+        title: "فصل ۸. تولیدمثل نهان‌دانگان",
+        sections: [
+          { id: 1, page: 120, title: "گفتار ۱ - تولیدمثل غیر جنسی" },
+          { id: 2, page: 124, title: "گفتار ۲ - تولیدمثل جنسی" },
+          { id: 3, page: 130, title: "گفتار ۳ - از یاخته تخم تا گیاه" },
+        ],
+      },
+      {
+        id: 9,
+        page: 137,
+        title: "فصل ۹. پاسخ گیاهان به محرک‌ها",
+        sections: [
+          { id: 1, page: 138, title: "گفتار ۱ - تنظیم کننده‌های رشد در گیاهان" },
+          { id: 2, page: 146, title: "گفتار ۲ - پاسخ به محیط" },
+        ],
+      },
+    ],
+  },
+  {
+    bookId: 112216,
+    title: "زیست شناسی ۳",
+    sections: [
+      {
+        id: 1,
+        page: 1,
+        title: "فصل ۱. مولکول‌های اطلاعاتی",
+        sections: [
+          { id: 1, page: 2, title: "نوکلئیک اسیدها" },
+          { id: 2, page: 10, title: "همانندسازی DNA" },
+          { id: 3, page: 17, title: "پروتئین‌ها" },
+        ],
+      },
+      {
+        id: 2,
+        page: 21,
+        title: "فصل ۲. جریان اطلاعات در یاخته",
+        sections: [
+          { id: 1, page: 23, title: "رونویسی" },
+          { id: 2, page: 29, title: "به سوی پروتئین" },
+          { id: 3, page: 30, title: "تنظیم بیان ژن" },
+        ],
+      },
+      {
+        id: 3,
+        page: 37,
+        title: "فصل ۳. انتقال اطلاعات در نسل‌ها",
+        sections: [
+          { id: 1, page: 35, title: "مفاهیم پایه" },
+          { id: 2, page: 41, title: "انواع صفات" },
+        ],
+      },
+      {
+        id: 4,
+        page: 47,
+        title: "فصل ۴. تغییر در اطلاعات وراثتی",
+        sections: [
+          { id: 1, page: 45, title: "تغییر در ماده وراثتی جانداران" },
+          { id: 2, page: 46, title: "تغییر در جمعیت‌ها" },
+          { id: 3, page: 50, title: "تغییر در گونه‌ها" },
+        ],
+      },
+      {
+        id: 5,
+        page: 63,
+        title: "فصل ۵. آماده به آزوی",
+        sections: [
+          { id: 1, page: 55, title: "تأمین انرژی" },
+          { id: 2, page: 56, title: "آکسایش بیشتر" },
+          { id: 3, page: 61, title: "زمین مستقل از اکسیژن" },
+        ],
+      },
+      {
+        id: 6,
+        page: 77,
+        title: "فصل ۶. از انرژی به ماده",
+        sections: [
+          { id: 1, page: 65, title: "فتوسنتز: تبدیل انرژی نوری به انرژی شیمیایی" },
+          { id: 2, page: 71, title: "واکنش‌های فتوسنتزی" },
+          { id: 3, page: 72, title: "فتوسنتز در شرایط دشوار" },
+        ],
+      },
+      {
+        id: 7,
+        page: 91,
+        title: "فصل ۷. فناوری‌های نوین زیستی",
+        sections: [
+          { id: 1, page: 77, title: "زیست فناوری و مهندسی ژنتیک" },
+          { id: 2, page: 81, title: "فناوری مهندسی پروتئین و بافت" },
+          { id: 3, page: 85, title: "کاربردهای زیست فناوری" },
+        ],
+      },
+      {
+        id: 8,
+        page: 107,
+        title: "فصل ۸. رفتارهای جانوران",
+        sections: [
+          { id: 1, page: 86, title: "اساس رفتار" },
+          { id: 2, page: 90, title: "انتخاب طبیعی و رفتار" },
+          { id: 3, page: 94, title: "ارتباط و زندگی گروهی" },
+        ],
+      },
+    ],
+  },
+];
+
+export const filterBooksByProperty = <K extends keyof Book>(
+  propertyName: K,
+  value: Book[K],
+): Book[] => {
+  return BOOKS.filter((book) => book[propertyName] === value);
+};
+
+export const allBooks = BOOKS;
+export const filterBooks = (gradeId: number, fieldId: number | null = null) => {
+  return allBooks.filter((book) => {
+    if (book.gradeId !== gradeId) return false;
+    if (gradeId < 10) return true;
+    return fieldId === null || book.fieldId === fieldId;
+  });
+};
+
+// export const purchasedBooksId: number[] = [806, 706];
+export const purchasedBooksId: number[] = BOOKS.map((book) => book.id);
+export const purchasedBooks = purchasedBooksId.map((id) => filterBooksByProperty("id", id)[0]);
+export const optionsOfBookSelector = purchasedBooks.map((book) => {
+  return { value: book.id, label: book.title };
+});

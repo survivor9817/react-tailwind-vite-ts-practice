@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@layer utilities {
+  /* مخفی کردن اسکرول بار برای کروم، سافاری و اپرا */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* مخفی کردن اسکرول بار برای IE و Edge */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none; /* برای فایرفاکس */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.scrolling-wrapper {
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+  display: none;
+}

@@ -1,16 +1,31 @@
-.container {
-  display: grid;
-  grid-template-columns: 200px auto 230px 300px;
-  grid-template-rows: 200px auto 230px 300px;
-  gap: 5px;
-  padding: 10px;
-  background: #eee;
+.icon-btn {
+  /* display: inline-flex;
+    justify-content: center;
+    align-items: center; */
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 600,
+    "GRAD" 0,
+    "opsz" 80;
+  font-size: 48px;
+  background-color: transparent;
+  transition: transform 0.1s ease;
+  border-radius: 50%;
+  /* color: black; */
+
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  user-select: none;
+
+  -webkit-tap-highlight-color: transparent; /* حذف هایلایت تاچ در موبایل */
+  outline: none; /* حذف outline (می‌توانید استایل بهتری جایگزین کنید) */
 }
 
-.item {
-  background: steelblue;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 5px;
+.icon-btn:hover {
+  transform: scale(1.07);
+}
+
+.icon-btn:active {
+  transform: scale(0.95); /* حس کلیک شدن */
 }
