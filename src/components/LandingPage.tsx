@@ -2,18 +2,12 @@ import { useEffect, useState } from "react";
 import { FIELDS, filterBooks, GRADES } from "../data/data";
 import type { Book, FieldType, GradeType } from "../data/data";
 import Select from "react-select";
-import BookCardList from "./BookCardList";
-import IconBtn from "./IconBtn";
 import BookSlider from "./BookSlider";
 
 const LandingPage = () => {
   const [selectedGrade, setSelectedGrade] = useState(GRADES[0]);
   const [selectedField, setSelectedField] = useState<FieldType | null>(null);
   const [filteredBooks, setFilteredBooks] = useState<Book[]>(filterBooks(7, null));
-
-  // const [xScrollValue, setIsThereLeft] = useState();
-  // const [canScrollLeft, setCanScrollLeft] = useState();
-  // const [canScrollRight, setCanScrollRight] = useState();
 
   function handleGradeClick(grade: GradeType) {
     setSelectedGrade(grade);
@@ -96,12 +90,6 @@ const LandingPage = () => {
               onChange={(field) => setSelectedField(field)}
             />
           ) : null}
-        </div>
-        <IconBtn className={""} icon={"arrow_circle_right"} onClick={() => {}} />
-        <IconBtn className={""} icon={"arrow_circle_left"} onClick={() => {}} />
-        {/* render books */}
-        <div className="flex gap-4 p-4 border-y-2 w-full overflow-hidden overflow-x-auto no-scrollbar">
-          <BookCardList books={filteredBooks} />
         </div>
 
         <BookSlider books={filteredBooks} />
