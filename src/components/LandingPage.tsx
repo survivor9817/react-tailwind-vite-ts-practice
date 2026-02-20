@@ -17,7 +17,10 @@ const LandingPage = () => {
   }
 
   useEffect(() => {
-    setFilteredBooks(filterBooks(selectedGrade.id, selectedField?.id));
+    const allBooks = filterBooks(selectedGrade.id, selectedField?.id);
+    const availableBooks = allBooks.filter((book) => book.isAvailable);
+    const unavailableBooks = allBooks.filter((book) => !book.isAvailable);
+    setFilteredBooks([...availableBooks, ...unavailableBooks]);
   }, [selectedGrade, selectedField]);
 
   const selectCustomStyles = {
