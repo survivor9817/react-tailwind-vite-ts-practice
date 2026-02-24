@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { FIELDS, filterBooks, GRADES } from "../data/data";
 import type { Book, FieldType, GradeType } from "../data/data";
-import Select from "react-select";
+import Select, { type SingleValue, type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
+import BookCard from "./BookCard";
 
 const LandingPage = () => {
   const [selectedGrade, setSelectedGrade] = useState(GRADES[0]);
@@ -22,7 +23,7 @@ const LandingPage = () => {
     setFilteredBooks([...availableBooks, ...unavailableBooks]);
   }, [selectedGrade, selectedField]);
 
-  const selectCustomStyles = {
+  const selectCustomStyles: StylesConfig = {
     control: (provider) => ({
       ...provider,
       direction: "ltr",
@@ -51,8 +52,10 @@ const LandingPage = () => {
             <div className="">ثبت‌نام</div>
           </div>
         </nav>
+
         <div>.با درس‌یاور، همین الان درس‌خواندن را شروع کن</div>
         <div>کتابخانه مدرسه</div>
+
         <div className="grid grid-cols-3 flex-wrap justify-center gap-2 w-75 my-4 ">
           {GRADES.map((grade) => (
             <button
@@ -73,7 +76,7 @@ const LandingPage = () => {
             </button>
           ))}
         </div>
-        <div className="flex justify-between w-75 gap-2 py-4">
+        <div className="flex justify-between w-75 gap-2 pt-4">
           <span className="text-xl py-1">کتابخانه پایه {selectedGrade.label}</span>
           {selectedGrade.dore === "متوسطه دوم" ? (
             <Select
@@ -81,18 +84,23 @@ const LandingPage = () => {
               className="basic-single "
               classNamePrefix="select"
               defaultValue={FIELDS[0]}
-              // isRtl={false}
-              // isDisabled={false}
-              // isLoading={false}
-              // isClearable={true}
               isSearchable={false}
               options={FIELDS}
-              onChange={(field) => setSelectedField(field)}
+              onChange={(field) => setSelectedField(field as SingleValue<FieldType>)}
             />
           ) : null}
         </div>
 
-        <BookSlider books={filteredBooks} />
+        <BookSlider>
+          {filteredBooks.map((book) => (
+            <BookCard
+              key={book.id}
+              title={book.title}
+              coverImage={book.coverImage}
+              isAvailable={book.isAvailable}
+            />
+          ))}
+        </BookSlider>
       </div>
     </div>
   );
