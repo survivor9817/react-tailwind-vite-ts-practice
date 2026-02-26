@@ -21,3 +21,7 @@
 .scrolling-wrapper::-webkit-scrollbar {
   display: none;
 }
+
+button {
+  touch-action: manipulation;
+}

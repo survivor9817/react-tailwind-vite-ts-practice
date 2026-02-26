@@ -1958,18 +1958,25 @@ export const filterBooksByProperty = <K extends keyof Book>(
 };
 
 export const allBooks = BOOKS;
+
 export const filterBooks = (gradeId: number, fieldId: number | null = null) => {
-  return allBooks.filter((book) => {
-    if (!book.isAvailable) return;
+  const filteredByGradeAndField = allBooks.filter((book) => {
+    // if (!book.isAvailable) return;
     if (book.gradeId !== gradeId) return false;
     if (gradeId < 10) return true;
     return book.fieldId === null || book.fieldId === fieldId;
   });
+
+  const availableBooks = filteredByGradeAndField.filter((book) => book.isAvailable);
+  const unavailableBooks = filteredByGradeAndField.filter((book) => !book.isAvailable);
+  return [...availableBooks, ...unavailableBooks];
 };
 
 // export const purchasedBooksId: number[] = [806, 706];
 export const purchasedBooksId: number[] = allBooks.map((book) => book.id);
+
 export const purchasedBooks = purchasedBooksId.map((id) => filterBooksByProperty("id", id)[0]);
+
 export const optionsOfBookSelector = purchasedBooks.map((book) => {
   return { value: book.id, label: book.title };
 });
