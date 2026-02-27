@@ -3,7 +3,7 @@ import { TypeAnimation } from "react-type-animation";
 
 const HeroTypeWriter = () => {
   return (
-    <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-center">
+    <div className="pt-14 pb-8 text-2xl md:text-3xl lg:text-4xl font-bold text-center">
       <div className="mb-4 text-gray-800 ">با درس‌یاور،</div>
 
       <div className="">

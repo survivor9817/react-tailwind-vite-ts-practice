@@ -3,17 +3,18 @@ export const BRAND_LOGO = "🎓";
 
 export type GradeType = {
   id: number;
+  value: number;
   dore: string;
   label: string;
 };
 
 export const GRADES: GradeType[] = [
-  { id: 7, dore: "متوسطه اول", label: "هفتم" },
-  { id: 8, dore: "متوسطه اول", label: "هشتم" },
-  { id: 9, dore: "متوسطه اول", label: "نهم" },
-  { id: 10, dore: "متوسطه دوم", label: "دهم" },
-  { id: 11, dore: "متوسطه دوم", label: "یازدهم" },
-  { id: 12, dore: "متوسطه دوم", label: "دوازدهم" },
+  { id: 7, value: 7, dore: "متوسطه اول", label: "هفتم" },
+  { id: 8, value: 8, dore: "متوسطه اول", label: "هشتم" },
+  { id: 9, value: 9, dore: "متوسطه اول", label: "نهم" },
+  { id: 10, value: 10, dore: "متوسطه دوم", label: "دهم" },
+  { id: 11, value: 11, dore: "متوسطه دوم", label: "یازدهم" },
+  { id: 12, value: 12, dore: "متوسطه دوم", label: "دوازدهم" },
 ];
 
 export type FieldType = {

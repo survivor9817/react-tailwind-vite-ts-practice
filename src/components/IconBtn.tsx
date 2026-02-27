@@ -20,8 +20,7 @@ const IconBtn = ({
             rounded-full select-none tap-highlight-transparent outline-none hover:scale-[1.07] 
             active:scale-[0.95] focus:outline-none cursor-pointer ${iconClassName}`}
       >
-        {" "}
-        {icon}{" "}
+        {icon}
       </i>
     </button>
   );
