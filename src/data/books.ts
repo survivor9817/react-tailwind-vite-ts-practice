@@ -1,11 +1,7 @@
 export const BRAND_NAME = "درس‌یاور";
 export const BRAND_LOGO = "🎓";
 
-// type PeriodIdType = 1 | 2;
-type PeriodOneGrades = 7 | 8 | 9;
-type PeriodTwoGrade = 10 | 11 | 12;
-type GradeIdType = PeriodOneGrades | PeriodTwoGrade;
-// type FieldIdType = "تجربی" | "انسانی" | "ریاضی" | null;
+type GradeIdType = 7 | 8 | 9 | 10 | 11 | 12;
 type FieldIdType = 1 | 2 | 3 | null;
 
 export type GradeType = {
@@ -47,661 +43,75 @@ export type Book = {
 };
 
 export const BOOKS: Book[] = [
-  // ================= پایه هفتم =================
-  {
-    id: 701,
-    title: "آموزش قرآن",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C701.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 702,
-    title: "پیام های آسمان",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C702.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 703,
-    title: "فارسی",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C703.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 704,
-    title: "نگارش",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C704.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 705,
-    title: "ریاضی",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C705.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 706,
-    title: "علوم تجربی",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C706.jpg",
-    isAvailable: true,
-    lastPage: 138,
-  },
-  {
-    id: 707,
-    title: "مطالعات اجتماعی",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C707.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 708,
-    title: "فرهنگ و هنر",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C708.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 709,
-    title: "عربی",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C709.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 710,
-    title: "انگلیسی ۱",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C710.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 711,
-    title: "کتاب کار انگلیسی ۱",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C711.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 712,
-    title: "تفکر و سبک زندگی (پسران)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C712.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 713,
-    title: "تفکر و سبک زندگی (دختران)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C713.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 717,
-    title: "کار و فناوری",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C717.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 7171,
-    title: "کار و فناوری (اجرای آزمایشی)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C7171.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 719,
-    title: "ضمیمه پیام های آسمان (اهل سنت)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C719.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 720,
-    title: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C720.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 722,
-    title: "فارسی و نگارش (استعدادهای درخشان)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C722.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 723,
-    title: "ریاضیات (استعدادهای درخشان)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C723.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 724,
-    title: "علوم تجربی (استعدادهای درخشان)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C724.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 741,
-    title: "تربیت دینی (از من تا خدا)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C741.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 742,
-    title: "تربیت دینی (اهل سنت)",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C742.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 765,
-    title: "از ایرانمان دفاع می کنیم",
-    gradeId: 7,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C765.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-
-  // ================= پایه هشتم =================
-  {
-    id: 801,
-    title: "آموزش قرآن",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C801.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 802,
-    title: "پیام های آسمان",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C802.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 803,
-    title: "فارسی",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C803.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 804,
-    title: "نگارش",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C804.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 805,
-    title: "ریاضی",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C805.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 806,
-    title: "علوم تجربی",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C806.jpg",
-    isAvailable: true,
-    lastPage: 146,
-  },
-  {
-    id: 807,
-    title: "مطالعات اجتماعی",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C807.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 808,
-    title: "فرهنگ و هنر",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C808.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 809,
-    title: "عربی",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C809.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 810,
-    title: "انگلیسی ۲",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C810.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 811,
-    title: "کتاب کار انگلیسی ۲",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C811.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 812,
-    title: "تفکر و سبک زندگی",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C812.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 814,
-    title: "تفکر و سبک زندگی (پسران)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C814.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 817,
-    title: "کار و فناوری",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C817.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 8171,
-    title: "کار و فناوری (اجرای آزمایشی)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C8171.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 819,
-    title: "ضمیمه پیام های آسمان (اهل سنت)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C819.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 820,
-    title: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C820.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 822,
-    title: "فارسی و نگارش (استعدادهای درخشان)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C822.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 823,
-    title: "ریاضیات (استعدادهای درخشان)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C823.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 824,
-    title: "علوم تجربی (استعدادهای درخشان)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C824.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 841,
-    title: "تربیت دینی (از من تا خدا)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C841.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 842,
-    title: "تربیت دینی (اهل سنت)",
-    gradeId: 8,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C842.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-
-  // ================= پایه نهم =================
-  {
-    id: 901,
-    title: "آموزش قرآن",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C901.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 902,
-    title: "پیام های آسمان",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C902.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 903,
-    title: "فارسی",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C903.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 904,
-    title: "نگارش",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C904.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 905,
-    title: "ریاضی",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C905.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 906,
-    title: "علوم تجربی",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C906.jpg",
-    isAvailable: true,
-    lastPage: 176,
-  },
-  {
-    id: 907,
-    title: "مطالعات اجتماعی",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C907.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 908,
-    title: "فرهنگ و هنر",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C908.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 909,
-    title: "عربی",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C909.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 910,
-    title: "انگلیسی ۳",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C910.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 911,
-    title: "کتاب کار انگلیسی ۳",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C911.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 915,
-    title: "آمادگی دفاعی",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C915.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 917,
-    title: "کار و فناوری",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C917.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 9171,
-    title: "کار و فناوری (اجرای آزمایشی)",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C9171.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 919,
-    title: "ضمیمه پیام های آسمان (اهل سنت)",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C919.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 920,
-    title: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C920.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 922,
-    title: "فارسی و نگارش (استعدادهای درخشان)",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C922.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 923,
-    title: "ریاضیات (استعدادهای درخشان)",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C923.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-  {
-    id: 924,
-    title: "علوم تجربی (استعدادهای درخشان)",
-    gradeId: 9,
-    fieldId: null,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C924.jpg",
-    isAvailable: true,
-    lastPage: 100,
-  },
-
   // ================= پایه دهم =================
   // مشترک (fieldId: null)
   {
     id: 110201,
     title: "فارسی ۱",
     gradeId: 10,
-    fieldId: null,
+    fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
+    isAvailable: true,
+    lastPage: 100,
+  },
+  {
+    id: 110201,
+    title: "فارسی ۱",
+    gradeId: 10,
+    fieldId: 2,
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
+    isAvailable: true,
+    lastPage: 100,
+  },
+  {
+    id: 110201,
+    title: "فارسی ۱",
+    gradeId: 10,
+    fieldId: 3,
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
+    isAvailable: true,
+    lastPage: 100,
+  },
+  {
+    id: 110201,
+    title: "فارسی ۱",
+    gradeId: 10,
+    fieldId: 4,
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
+    isAvailable: true,
+    lastPage: 100,
+  },
+  {
+    id: 110202,
+    title: "نگارش ۱",
+    gradeId: 10,
+    fieldId: 1,
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
+    isAvailable: true,
+    lastPage: 100,
+  },
+  {
+    id: 110202,
+    title: "نگارش ۱",
+    gradeId: 10,
+    fieldId: 2,
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
+    isAvailable: true,
+    lastPage: 100,
+  },
+  {
+    id: 110202,
+    title: "نگارش ۱",
+    gradeId: 10,
+    fieldId: 3,
+    coverImage:
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
     isAvailable: true,
     lastPage: 100,
   },

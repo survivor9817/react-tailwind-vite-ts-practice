@@ -1,4 +1,8 @@
+import { useState } from "react";
+import Modal from "./Modal";
+
 const LandingNavbar = () => {
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   return (
     <>
       <nav
@@ -14,11 +18,19 @@ const LandingNavbar = () => {
         </div>
         <div className="flex gap-4 mx-1">
           <button
+            onClick={() => setLoginModalOpen(true)}
             className="border-2 my-1 px-4 rounded-3xl border-[#bcbcbc] hover:bg-[#ddd] 
               transition-colors duration-100 ease-in-out active:scale-[0.95] cursor-pointer text-sm"
           >
             ورود / ثبت‌نام
           </button>
+          {isLoginModalOpen ? (
+            <Modal onClose={() => setLoginModalOpen(false)}>
+              <div className="flex justify-center">
+                <span>login form</span>
+              </div>
+            </Modal>
+          ) : null}
         </div>
       </nav>
     </>

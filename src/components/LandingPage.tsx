@@ -2,6 +2,7 @@ import HeroTypeWriter from "./HeroTypeWriter";
 import ArrowGif from "../../public/imgs/Arrow down icon animation.gif";
 import LandingNavbar from "./LandingNavbar";
 import ChooseBook from "./ChooseBook";
+
 // import ChooseBook2 from "./ChooseBook2";
 
 const LandingPage = () => {

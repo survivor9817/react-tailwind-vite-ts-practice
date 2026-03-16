@@ -66,15 +66,15 @@ const BookSlider = ({ children, scrollAmount = 400 }: BookSliderProps) => {
           onClick={() => scroll("right")}
           isDisabled={!canScrollRight}
           icon={"arrow_circle_right"}
-          className="rounded-full transition-colors cursor-pointer
-                     disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-gray-100"
+          // iconSize={"48px"}
+          // className="text-[48px]"
         />
         <IconBtn
           onClick={() => scroll("left")}
           isDisabled={!canScrollLeft}
           icon={"arrow_circle_left"}
-          className="rounded-full transition-colors cursor-pointer
-                     disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-gray-100"
+          // iconSize={"48px"}
+          // className="text-[48px]"
         />
       </div>
     </div>

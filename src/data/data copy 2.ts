@@ -7,8 +7,8 @@ type FieldIdType = 1 | 2 | 3 | 4 | 5 | null;
 export type GradeType = {
   id: GradeIdType;
   value: GradeIdType;
-  label: string;
   dore: string;
+  label: string;
 };
 
 export const GRADES: GradeType[] = [
@@ -30,21 +30,19 @@ export const FIELDS: FieldType[] = [
   { id: 1, value: 1, label: "تجربی" },
   { id: 2, value: 2, label: "انسانی" },
   { id: 3, value: 3, label: "ریاضی" },
-  // { id: 4, value: 4, label: "معارف" },
-  // { id: 5, value: 5, label: "هنر" },
+  { id: 4, value: 4, label: "معارف" },
+  { id: 5, value: 5, label: "هنر" },
 ];
 
 export type Book = {
-  id: number; // is not uid
+  id: number;
   title: string;
   gradeId: GradeIdType;
   fieldId: FieldIdType;
   coverImage: string;
   isAvailable: boolean;
   lastPage: number;
-  publishedYear: number;
-  hasFinalExam: boolean;
-  isInKonkour: boolean;
+  publishedYear: 1404;
 };
 
 export const BOOKS: Book[] = [
@@ -56,11 +54,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C701.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 702,
@@ -69,11 +65,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C702.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 703,
@@ -82,11 +76,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C703.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 704,
@@ -95,11 +87,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C704.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 705,
@@ -108,11 +98,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C705.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 706,
@@ -124,8 +112,6 @@ export const BOOKS: Book[] = [
     isAvailable: true,
     lastPage: 138,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 707,
@@ -134,11 +120,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C707.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 708,
@@ -147,11 +131,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C708.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 709,
@@ -160,11 +142,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C709.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 710,
@@ -173,11 +153,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C710.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 711,
@@ -186,11 +164,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C711.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 712,
@@ -199,11 +175,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C712.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 713,
@@ -212,11 +186,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C713.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 717,
@@ -225,11 +197,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C717.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 7171,
@@ -238,11 +208,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C7171.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 719,
@@ -251,11 +219,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C719.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 720,
@@ -264,11 +230,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C720.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 722,
@@ -277,11 +241,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C722.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 723,
@@ -290,11 +252,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C723.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 724,
@@ -303,11 +263,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C724.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 741,
@@ -316,11 +274,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C741.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 742,
@@ -329,11 +285,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C742.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 765,
@@ -342,11 +296,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C765.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
 
   // ================= پایه هشتم =================
@@ -357,11 +309,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C801.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 802,
@@ -370,11 +320,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C802.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 803,
@@ -383,11 +331,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C803.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 804,
@@ -396,11 +342,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C804.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 805,
@@ -409,11 +353,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C805.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 806,
@@ -425,8 +367,6 @@ export const BOOKS: Book[] = [
     isAvailable: true,
     lastPage: 146,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 807,
@@ -435,11 +375,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C807.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 808,
@@ -448,11 +386,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C808.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 809,
@@ -461,11 +397,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C809.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 810,
@@ -474,11 +408,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C810.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 811,
@@ -487,11 +419,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C811.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 812,
@@ -500,11 +430,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C812.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 814,
@@ -513,11 +441,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C814.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 817,
@@ -526,11 +452,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C817.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 8171,
@@ -539,11 +463,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C8171.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 819,
@@ -552,11 +474,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C819.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 820,
@@ -565,11 +485,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C820.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 822,
@@ -578,11 +496,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C822.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 823,
@@ -591,11 +507,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C823.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 824,
@@ -604,11 +518,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C824.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 841,
@@ -617,11 +529,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C841.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 842,
@@ -630,11 +540,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C842.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
 
   // ================= پایه نهم =================
@@ -645,11 +553,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C901.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 902,
@@ -658,11 +564,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C902.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 903,
@@ -671,11 +575,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C903.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 904,
@@ -684,11 +586,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C904.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 905,
@@ -697,11 +597,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C905.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 906,
@@ -713,8 +611,6 @@ export const BOOKS: Book[] = [
     isAvailable: true,
     lastPage: 176,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 907,
@@ -723,11 +619,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C907.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 908,
@@ -736,11 +630,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C908.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 909,
@@ -749,11 +641,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C909.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 910,
@@ -762,11 +652,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C910.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 911,
@@ -775,11 +663,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C911.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 915,
@@ -788,11 +674,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C915.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 917,
@@ -801,11 +685,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C917.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 9171,
@@ -814,11 +696,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C9171.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 919,
@@ -827,11 +707,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C919.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 920,
@@ -840,11 +718,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C920.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 922,
@@ -853,11 +729,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C922.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 923,
@@ -866,11 +740,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C923.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 924,
@@ -879,11 +751,9 @@ export const BOOKS: Book[] = [
     fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C924.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
 
   // ================= پایه دهم =================
@@ -895,11 +765,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110201,
@@ -908,11 +776,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110201,
@@ -921,11 +787,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110201,
@@ -934,11 +798,9 @@ export const BOOKS: Book[] = [
     fieldId: 4,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110201.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110202,
@@ -947,11 +809,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110202,
@@ -960,11 +820,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110202,
@@ -973,11 +831,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110202,
@@ -986,11 +842,9 @@ export const BOOKS: Book[] = [
     fieldId: 4,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110202.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110204,
@@ -999,11 +853,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110204.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110204,
@@ -1012,11 +864,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110204.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110206,
@@ -1025,11 +875,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110206.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110206,
@@ -1038,11 +886,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110206.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110210,
@@ -1051,11 +897,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110210.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110210,
@@ -1064,11 +908,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110210.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110211,
@@ -1077,11 +919,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110211.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110211,
@@ -1090,388 +930,108 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110211.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110215,
     title: "آمادگی دفاعی",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110215.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110215,
-    title: "آمادگی دفاعی",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110215.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110215,
-    title: "آمادگی دفاعی",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110215.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110217,
     title: "آزمایشگاه علوم تجربی ۱",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110217.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110217,
-    title: "آزمایشگاه علوم تجربی ۱",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110217.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110218,
     title: "جغرافیای ایران",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110218.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110218,
-    title: "جغرافیای ایران",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110218.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110218,
-    title: "جغرافیای ایران",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110218.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110222,
     title: "هنر",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110222.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110222,
-    title: "هنر",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110222.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110222,
-    title: "هنر",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110222.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110224,
     title: "کارگاه کارآفرینی و تولید",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110224.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110224,
-    title: "کارگاه کارآفرینی و تولید",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110224.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110224,
-    title: "کارگاه کارآفرینی و تولید",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110224.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110225,
     title: "تفکر و سواد رسانه ای",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110225.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110225,
-    title: "تفکر و سواد رسانه ای",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110225.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110225,
-    title: "تفکر و سواد رسانه ای",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110225.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110228,
     title: "تعلیمات ادیان الهی و اخلاق ۱",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110228.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110228,
-    title: "تعلیمات ادیان الهی و اخلاق ۱",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110228.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110228,
-    title: "تعلیمات ادیان الهی و اخلاق ۱",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110228.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110230,
     title: "انگلیسی ۱",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110230.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110231,
     title: "کتاب کار انگلیسی ۱",
     gradeId: 10,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110231.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110230,
-    title: "انگلیسی ۱",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110230.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110231,
-    title: "کتاب کار انگلیسی ۱",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110231.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110230,
-    title: "انگلیسی ۱",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110230.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110231,
-    title: "کتاب کار انگلیسی ۱",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110231.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110345,
-    title: "از ایرانمان دفاع می کنیم",
-    gradeId: 10,
-    fieldId: 1,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110345.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110345,
-    title: "از ایرانمان دفاع می کنیم",
-    gradeId: 10,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110345.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 110345,
-    title: "از ایرانمان دفاع می کنیم",
-    gradeId: 10,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110345.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی تجربی
   {
@@ -1481,11 +1041,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110214.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110216,
@@ -1494,11 +1052,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110216.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 112,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی انسانی
   {
@@ -1508,11 +1064,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110203.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110205,
@@ -1521,11 +1075,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110205.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110207,
@@ -1534,11 +1086,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110207.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110212,
@@ -1547,11 +1097,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110212.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110219,
@@ -1560,11 +1108,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110219.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110220,
@@ -1573,11 +1119,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110220.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110221,
@@ -1586,11 +1130,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110221.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110223,
@@ -1599,11 +1141,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110223.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی ریاضی
   {
@@ -1613,11 +1153,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110209.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 110213,
@@ -1626,11 +1164,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110213.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
 
   // ================= پایه یازدهم =================
@@ -1639,430 +1175,144 @@ export const BOOKS: Book[] = [
     id: 111201,
     title: "فارسی ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111201.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111201,
-    title: "فارسی ۲",
-    gradeId: 11,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111201.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111201,
-    title: "فارسی ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111201.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111202,
     title: "نگارش ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111202.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111202,
-    title: "نگارش ۲",
-    gradeId: 11,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111202.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111202,
-    title: "نگارش ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111202.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111204,
     title: "دین و زندگی ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111204.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111204,
-    title: "دین و زندگی ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111204.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111206,
     title: "عربی، زبان قرآن ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111206.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111206,
-    title: "عربی، زبان قرآن ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111206.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111210,
     title: "شیمی ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111210.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111210,
-    title: "شیمی ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111210.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111217,
     title: "آزمایشگاه علوم تجربی ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111217.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111217,
-    title: "آزمایشگاه علوم تجربی ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111217.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111220,
     title: "تاریخ معاصر ایران",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111220.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111220,
-    title: "تاریخ معاصر ایران",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111220.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111228,
     title: "تعلیمات ادیان الهی و اخلاق ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
-    isAvailable: false,
+      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111228.jpg",
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111228,
-    title: "تعلیمات ادیان الهی و اخلاق ۲",
-    gradeId: 11,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111228,
-    title: "تعلیمات ادیان الهی و اخلاق ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111230,
     title: "انگلیسی ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111230.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111231,
     title: "کتاب کار انگلیسی ۲",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111231.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111230,
-    title: "انگلیسی ۲",
-    gradeId: 11,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111230.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111231,
-    title: "کتاب کار انگلیسی ۲",
-    gradeId: 11,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111231.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111230,
-    title: "انگلیسی ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111230.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111231,
-    title: "کتاب کار انگلیسی ۲",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111231.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111237,
     title: "زمین شناسی",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111237.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111237,
-    title: "زمین شناسی",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111237.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111238,
     title: "ضمیمه دین و زندگی ۲ (اهل سنت)",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111238.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111238,
-    title: "ضمیمه دین و زندگی ۲ (اهل سنت)",
-    gradeId: 11,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111238.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111238,
-    title: "ضمیمه دین و زندگی ۲ (اهل سنت)",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111238.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111268,
     title: "انسان و محیط زیست",
     gradeId: 11,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111268.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111268,
-    title: "انسان و محیط زیست",
-    gradeId: 11,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111268.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 111268,
-    title: "انسان و محیط زیست",
-    gradeId: 11,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111268.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی تجربی
   {
@@ -2072,11 +1322,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111211.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111216,
@@ -2085,11 +1333,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111216.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 154,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111244,
@@ -2098,11 +1344,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111244.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی انسانی
   {
@@ -2112,11 +1356,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111203.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111205,
@@ -2125,11 +1367,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111205.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111207,
@@ -2138,11 +1378,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111207.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111212,
@@ -2151,11 +1389,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111212.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111218,
@@ -2164,11 +1400,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111218.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111219,
@@ -2177,11 +1411,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111219.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111222,
@@ -2190,11 +1422,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111222.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111224,
@@ -2203,11 +1433,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111224.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111226,
@@ -2216,11 +1444,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111226.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی ریاضی
   {
@@ -2230,11 +1456,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111209.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111213,
@@ -2243,11 +1467,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111213.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111214,
@@ -2256,11 +1478,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111214.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 111215,
@@ -2269,11 +1489,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111215.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
 
   // ================= پایه دوازدهم =================
@@ -2282,417 +1500,133 @@ export const BOOKS: Book[] = [
     id: 112201,
     title: "فارسی ۳",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112201.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112201,
-    title: "فارسی ۳",
-    gradeId: 12,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112201.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112201,
-    title: "فارسی ۳",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112201.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112202,
     title: "نگارش ۳",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112202.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112202,
-    title: "نگارش ۳",
-    gradeId: 12,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112202.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112202,
-    title: "نگارش ۳",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112202.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112204,
     title: "دین و زندگی ۳",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112204.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112204,
-    title: "دین و زندگی ۳",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112204.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112206,
     title: "عربی، زبان قرآن ۳",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112206.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112206,
-    title: "عربی، زبان قرآن ۳",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112206.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112210,
     title: "شیمی ۳",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112210.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112210,
-    title: "شیمی ۳",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112210.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112220,
     title: "هویت اجتماعی",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112220.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112220,
-    title: "هویت اجتماعی",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112220.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112228,
     title: "تعلیمات ادیان الهی و اخلاق ۳",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112228,
-    title: "تعلیمات ادیان الهی و اخلاق ۳",
-    gradeId: 12,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112228,
-    title: "تعلیمات ادیان الهی و اخلاق ۳",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112228.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112230,
     title: "انگلیسی ۳",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112230.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112231,
     title: "کتاب کار انگلیسی ۳",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112231.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112230,
-    title: "انگلیسی ۳",
-    gradeId: 12,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112230.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112231,
-    title: "کتاب کار انگلیسی ۳",
-    gradeId: 12,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112231.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112230,
-    title: "انگلیسی ۳",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112230.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112231,
-    title: "کتاب کار انگلیسی ۳",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112231.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112240,
     title: "مدیریت خانواده و سبک زندگی (دختران)",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112240.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112240,
-    title: "مدیریت خانواده و سبک زندگی (دختران)",
-    gradeId: 12,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112240.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112240,
-    title: "مدیریت خانواده و سبک زندگی (دختران)",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112240.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112245,
     title: "مدیریت خانواده و سبک زندگی (پسران)",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112245.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112245,
-    title: "مدیریت خانواده و سبک زندگی (پسران)",
-    gradeId: 12,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112245.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112245,
-    title: "مدیریت خانواده و سبک زندگی (پسران)",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112245.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112268,
     title: "سلامت و بهداشت",
     gradeId: 12,
-    fieldId: 1,
+    fieldId: null,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112268.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112268,
-    title: "سلامت و بهداشت",
-    gradeId: 12,
-    fieldId: 2,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112268.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
-  },
-  {
-    id: 112268,
-    title: "سلامت و بهداشت",
-    gradeId: 12,
-    fieldId: 3,
-    coverImage:
-      "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112268.jpg",
-    isAvailable: false,
-    lastPage: 100,
-    publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی تجربی
   {
@@ -2702,11 +1636,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112211.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112216,
@@ -2715,11 +1647,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112216.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 125,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112244,
@@ -2728,11 +1658,9 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112244.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی انسانی
   {
@@ -2742,11 +1670,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112205.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112207,
@@ -2755,11 +1681,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112207.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112212,
@@ -2768,11 +1692,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112212.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112218,
@@ -2781,11 +1703,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112218.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112219,
@@ -2794,11 +1714,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112219.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112222,
@@ -2807,11 +1725,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112222.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112223,
@@ -2820,11 +1736,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112223.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112226,
@@ -2833,11 +1747,9 @@ export const BOOKS: Book[] = [
     fieldId: 2,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112226.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   // اختصاصی ریاضی
   {
@@ -2847,11 +1759,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112209.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112213,
@@ -2860,11 +1770,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112213.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112214,
@@ -2873,11 +1781,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112214.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
   {
     id: 112215,
@@ -2886,11 +1792,9 @@ export const BOOKS: Book[] = [
     fieldId: 3,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112215.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 100,
     publishedYear: 1404,
-    hasFinalExam: false,
-    isInKonkour: false,
   },
 ];
 
@@ -3310,16 +2214,21 @@ export const BOOKS_TOC = [
   },
 ];
 
-export function filterBooksByProp<K extends keyof Book>(
-  books: Book[],
-  key: K,
-  value: Book[K] | undefined,
-): Book[] {
-  if (value === undefined) return books;
-  return books.filter((book) => book[key] === value);
-}
+export const filterBooksByProperty = <K extends keyof Book>(
+  propertyName: K,
+  value: Book[K],
+): Book[] => {
+  return BOOKS.filter((book) => book[propertyName] === value);
+};
 
 export const allBooks = BOOKS;
+
+// api call function
+// type BooksFilter = {
+//   gradeId?: 7 | 8 | 9 | 10 | 11 | 12;
+//   fieldId?: 1 | 2 | 3;
+//   isAvailable?: boolean;
+// };
 
 export type BooksFilter = {
   gradeId?: GradeIdType;
@@ -3327,18 +2236,28 @@ export type BooksFilter = {
   isAvailable?: boolean;
 };
 
+/** فیلتر عمومی براساس یک کلید */
+function filterByProp<K extends keyof Book>(
+  books: Book[],
+  key: K,
+  value: Book[K] | undefined,
+): Book[] {
+  if (value === undefined) return books; // آرگومان پاس نشده → بدون فیلتر
+  return books.filter((book) => book[key] === value);
+}
+
 export function getBooks(filter: BooksFilter = {}): Book[] {
   const { gradeId, fieldId, isAvailable } = filter;
 
   if (!gradeId && !fieldId && isAvailable === undefined) {
-    // fekr konam inja bayad data error ro neshoon bedim :)
+    // fekr konam inja bayad data error ro neshoon bedim
     return allBooks;
   }
 
-  let result = filterBooksByProp(allBooks, "gradeId", gradeId);
+  let result = filterByProp(allBooks, "gradeId", gradeId);
 
   if (gradeId !== undefined && gradeId >= 10) {
-    result = filterBooksByProp(result, "fieldId", fieldId);
+    result = filterByProp(result, "fieldId", fieldId);
   }
 
   if (isAvailable !== undefined) {
@@ -3351,9 +2270,7 @@ export function getBooks(filter: BooksFilter = {}): Book[] {
 // export const purchasedBooksId: number[] = [806, 706];
 export const purchasedBooksId: number[] = allBooks.map((book) => book.id);
 
-export const purchasedBooks = purchasedBooksId.map(
-  (id) => filterBooksByProp(allBooks, "id", id)[0],
-);
+export const purchasedBooks = purchasedBooksId.map((id) => filterByProp(allBooks, "id", id)[0]);
 
 export const optionsOfBookSelector = purchasedBooks.map((book) => {
   return { value: book.id, label: book.title };

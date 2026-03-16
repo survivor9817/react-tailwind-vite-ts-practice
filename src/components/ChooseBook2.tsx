@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
-import { FIELDS, filterBooks, GRADES } from "../data/data";
+import { FIELDS, getBooks, GRADES } from "../data/data";
 import type { Book, FieldType, GradeType } from "../data/data";
-import Select, { type SingleValue, type StylesConfig } from "react-select";
+import Select, { type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
 import BookCard from "./BookCard";
 
 const ChooseBook2 = () => {
-  const [selectedGrade, setSelectedGrade] = useState(GRADES[0]);
-  const [selectedField, setSelectedField] = useState<FieldType | null>(FIELDS[0]);
-  const [filteredBooks, setFilteredBooks] = useState<Book[]>(filterBooks(7, null));
-
-  const handleGradeClick = (grade: GradeType) => {
-    setSelectedGrade(grade);
-    if (grade.dore === "متوسطه دوم") return;
-    setSelectedField(null);
-  };
+  const [selectedGrade, setSelectedGrade] = useState<GradeType>(GRADES[0]);
+  const [selectedField, setSelectedField] = useState<FieldType>(FIELDS[0]);
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>(getBooks({ gradeId: 7 }));
 
   useEffect(() => {
-    setFilteredBooks(filterBooks(selectedGrade.id, selectedField?.id));
+    const filters = {
+      gradeId: selectedGrade.id,
+      fieldId: selectedField.id,
+      // isAvailable: true
+    };
+
+    const availables = getBooks({ ...filters, isAvailable: true });
+    const unavailables = getBooks({ ...filters, isAvailable: false });
+    const filteredBooks = [...availables, ...unavailables];
+
+    setFilteredBooks(filteredBooks);
   }, [selectedGrade, selectedField]);
 
   const selectCustomStyles: StylesConfig = {
@@ -26,16 +30,16 @@ const ChooseBook2 = () => {
       direction: "ltr",
       flexDirection: "row-reverse",
       textAlign: "center",
-      width: "120px",
+      width: "115px",
       borderRadius: "12px",
       height: "40px",
-      // cursor: "pointer",
     }),
     indicatorsContainer: (provider) => ({
       ...provider,
       direction: "rtl",
     }),
   };
+
   return (
     <>
       <div className="flex gap-2 mt-6 mx-4">
@@ -47,7 +51,7 @@ const ChooseBook2 = () => {
           defaultValue={GRADES[0]}
           isSearchable={false}
           options={GRADES}
-          onChange={(grade) => handleGradeClick(grade as GradeType)}
+          onChange={(grade) => setSelectedGrade(grade as GradeType)}
         />
         {selectedGrade.dore === "متوسطه دوم" ? (
           <Select
@@ -57,7 +61,7 @@ const ChooseBook2 = () => {
             defaultValue={FIELDS[0]}
             isSearchable={false}
             options={FIELDS}
-            onChange={(field) => setSelectedField(field as SingleValue<FieldType>)}
+            onChange={(field) => setSelectedField(field as FieldType)}
           />
         ) : null}
       </div>
