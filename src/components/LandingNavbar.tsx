@@ -5,7 +5,7 @@ const LandingNavbar = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   return (
     <>
-      <nav
+      <div
         className="flex mx-2 justify-between gap-4 border-2 border-t-0 
                     rounded-b-3xl bg-[#eee] border-[#bcbcbc] h-14"
       >
@@ -32,7 +32,7 @@ const LandingNavbar = () => {
             </Modal>
           ) : null}
         </div>
-      </nav>
+      </div>
     </>
   );
 };

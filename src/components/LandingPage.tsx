@@ -18,7 +18,6 @@ const LandingPage = () => {
           <img src={ArrowGif} alt="" className="size-20 sm:size-26" />
           <img src={ArrowGif} alt="" className="size-20 sm:size-26" />
         </div>
-
         <ChooseBook />
         {/* <ChooseBook2 /> */}
       </div>

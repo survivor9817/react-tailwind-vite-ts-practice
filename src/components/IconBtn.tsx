@@ -2,7 +2,7 @@ import Spinner from "./Spinner";
 
 type Props = {
   className?: string;
-  icon: string;
+  iconName: string;
   isDisabled?: boolean;
   iconClassName?: string;
   onClick?: () => void;
@@ -12,7 +12,7 @@ type Props = {
 
 const IconBtn = ({
   className,
-  icon,
+  iconName,
   iconClassName = ``,
   isDisabled = false,
   isLoading = false,
@@ -37,7 +37,7 @@ const IconBtn = ({
             rounded-full select-none tap-highlight-transparent outline-none hover:scale-[1.07] 
             active:scale-[0.95] focus:outline-none ${iconClassName}`}
           >
-            {icon}
+            {iconName}
           </i>
         </button>
       )}

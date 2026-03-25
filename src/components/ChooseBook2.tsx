@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FIELDS, getBooks, GRADES } from "../data/data";
-import type { Book, FieldType, GradeType } from "../data/data";
+import type { BookType, FieldType, GradeType } from "../data/data";
 import Select, { type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
 import BookCard from "./BookCard";
@@ -8,7 +8,7 @@ import BookCard from "./BookCard";
 const ChooseBook2 = () => {
   const [selectedGrade, setSelectedGrade] = useState<GradeType>(GRADES[0]);
   const [selectedField, setSelectedField] = useState<FieldType>(FIELDS[0]);
-  const [filteredBooks, setFilteredBooks] = useState<Book[]>(getBooks({ gradeId: 7 }));
+  const [filteredBooks, setFilteredBooks] = useState<BookType[]>(getBooks({ gradeId: 7 }));
 
   useEffect(() => {
     const filters = {

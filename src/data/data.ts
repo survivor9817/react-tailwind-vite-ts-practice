@@ -34,7 +34,7 @@ export const FIELDS: FieldType[] = [
   // { id: 5, value: 5, label: "هنر" },
 ];
 
-export type Book = {
+export type BookType = {
   id: number; // is not uid
   title: string;
   gradeId: GradeIdType;
@@ -47,7 +47,7 @@ export type Book = {
   isInKonkour: boolean;
 };
 
-export const BOOKS: Book[] = [
+export const BOOKS: BookType[] = [
   // ================= پایه هفتم =================
   {
     id: 701,
@@ -1494,7 +1494,7 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C110216.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 112,
     publishedYear: 1404,
     hasFinalExam: false,
@@ -2085,7 +2085,7 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C111216.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 154,
     publishedYear: 1404,
     hasFinalExam: false,
@@ -2715,7 +2715,7 @@ export const BOOKS: Book[] = [
     fieldId: 1,
     coverImage:
       "http://www.chap.sch.ir/sites/default/files/styles/image_node_book/public/book_image/1404-1405/C112216.jpg",
-    isAvailable: false,
+    isAvailable: true,
     lastPage: 125,
     publishedYear: 1404,
     hasFinalExam: false,
@@ -2894,7 +2894,90 @@ export const BOOKS: Book[] = [
   },
 ];
 
-export const BOOKS_TOC = [
+export function filterBooksByProp<K extends keyof BookType>(
+  books: BookType[],
+  key: K,
+  value: BookType[K] | undefined,
+): BookType[] {
+  if (value === undefined) return books;
+  return books.filter((book) => book[key] === value);
+}
+
+export const allBooks = BOOKS;
+export const getAllBooks = () => {
+  return allBooks;
+};
+
+export type BooksFilter = {
+  gradeId?: GradeIdType;
+  fieldId?: FieldIdType;
+  isAvailable?: boolean;
+};
+
+export const getBooks = (filter: BooksFilter = {}): BookType[] => {
+  const { gradeId, fieldId, isAvailable } = filter;
+
+  if (!gradeId && !fieldId && isAvailable === undefined) {
+    // fekr konam inja bayad data error ro neshoon bedim :)
+    return getAllBooks();
+  }
+
+  let result = filterBooksByProp(getAllBooks(), "gradeId", gradeId);
+
+  if (gradeId !== undefined && gradeId >= 10) {
+    result = filterBooksByProp(result, "fieldId", fieldId);
+  }
+
+  if (isAvailable !== undefined) {
+    result = result.filter((b) => b.isAvailable === isAvailable);
+  }
+
+  return result;
+};
+
+export const getBookById = (id: number) => {
+  return filterBooksByProp(getAllBooks(), "id", id)[0];
+};
+
+export const purchasedBooksIds: number[] = [706, 806, 906];
+// esmo id ketaab haaye moshtarak vaase list option ketaab haa to book selector
+// bayad eslaah beshe.
+// export const purchasedBooksIds: number[] = getAllBooks().map((book) => book.id);
+export const getPurchasedBooksIds = () => {
+  return purchasedBooksIds;
+};
+
+export const getPurchasedBooks = () => {
+  const purchasedBooks = getPurchasedBooksIds().map((id) => getBookById(id));
+  return purchasedBooks;
+};
+
+export type BookOptionType = {
+  value: number;
+  label: string;
+};
+export const getOptionsOfBookSelector = (): BookOptionType[] => {
+  const optionsOfBookSelector = getPurchasedBooks().map((book) => {
+    return { value: book.id, label: book.title };
+  });
+  return optionsOfBookSelector;
+};
+
+// FEHREST
+export type FehrestSectionType = {
+  id: number;
+  page: number;
+  title: string;
+  sections?: FehrestSectionType[];
+};
+
+type FehrestType = {
+  bookId: number;
+  title: string;
+  sections: FehrestSectionType[];
+};
+
+export const BOOKS_TOC: FehrestType[] = [
   {
     bookId: 706,
     title: "علوم تجربی ۷",
@@ -3310,51 +3393,31 @@ export const BOOKS_TOC = [
   },
 ];
 
-export function filterBooksByProp<K extends keyof Book>(
-  books: Book[],
-  key: K,
-  value: Book[K] | undefined,
-): Book[] {
-  if (value === undefined) return books;
-  return books.filter((book) => book[key] === value);
-}
-
-export const allBooks = BOOKS;
-
-export type BooksFilter = {
-  gradeId?: GradeIdType;
-  fieldId?: FieldIdType;
-  isAvailable?: boolean;
+export const allFehrests = BOOKS_TOC;
+export const getAllFehrests = () => {
+  return allFehrests;
 };
 
-export function getBooks(filter: BooksFilter = {}): Book[] {
-  const { gradeId, fieldId, isAvailable } = filter;
+export const getFehrestById = (bookId: number) => {
+  return getAllFehrests().filter((fehrest) => fehrest.bookId === bookId)[0].sections;
+};
 
-  if (!gradeId && !fieldId && isAvailable === undefined) {
-    // fekr konam inja bayad data error ro neshoon bedim :)
-    return allBooks;
+// BookData
+export const lorem = `
+  متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی.
+  متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی.
+  متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی.
+  متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی.
+  متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی.
+  `;
+
+export function createFakeBookPagesContent(bookId: number) {
+  const lastPage = getBookById(bookId).lastPage;
+  const loremArray = [];
+  for (let i = 1; i <= lastPage; i++) {
+    const page = { id: i, content: `صفحه ${i} ${lorem}` };
+    loremArray.push(page);
   }
 
-  let result = filterBooksByProp(allBooks, "gradeId", gradeId);
-
-  if (gradeId !== undefined && gradeId >= 10) {
-    result = filterBooksByProp(result, "fieldId", fieldId);
-  }
-
-  if (isAvailable !== undefined) {
-    result = result.filter((b) => b.isAvailable === isAvailable);
-  }
-
-  return result;
+  return loremArray;
 }
-
-// export const purchasedBooksId: number[] = [806, 706];
-export const purchasedBooksId: number[] = allBooks.map((book) => book.id);
-
-export const purchasedBooks = purchasedBooksId.map(
-  (id) => filterBooksByProp(allBooks, "id", id)[0],
-);
-
-export const optionsOfBookSelector = purchasedBooks.map((book) => {
-  return { value: book.id, label: book.title };
-});

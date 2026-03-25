@@ -1,12 +1,8 @@
 import "./App.css";
-import LandingPage from "./components/LandingPage";
+import Darsyavar from "./Darsyavar";
 
 function App() {
-  return (
-    // <div dir="rtl" className="">
-    <LandingPage />
-    // </div>
-  );
+  return <Darsyavar />;
 }
 
 export default App;

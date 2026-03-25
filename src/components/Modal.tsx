@@ -35,7 +35,7 @@ const Modal = ({ children, className = "w-77.5", onClose }: ModalProps) => {
     <>
       {/* Backdrop ساده و تیره */}
       <div
-        className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+        className="fixed inset-0 bg-black/60 flex items-center justify-center z-80"
         onClick={onClose}
       >
         {/* Modal */}
@@ -45,7 +45,7 @@ const Modal = ({ children, className = "w-77.5", onClose }: ModalProps) => {
         >
           {/* Close Button */}
           <div className="absolute top-2 left-2">
-            <IconBtn icon="cancel" iconSize="36px" onClick={onClose} />
+            <IconBtn iconName="cancel" iconSize="36px" onClick={onClose} />
           </div>
 
           {/* Content */}

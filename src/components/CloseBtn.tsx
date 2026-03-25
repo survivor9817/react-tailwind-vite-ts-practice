@@ -7,7 +7,7 @@ interface Props {
 const CloseBtn = ({ onClick }: Props) => {
   return (
     <>
-      <IconBtn icon="cancel" iconSize="36px" onClick={onClick} />
+      <IconBtn iconName="cancel" iconSize="36px" onClick={onClick} />
     </>
   );
 };
