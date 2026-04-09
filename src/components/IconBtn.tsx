@@ -2,7 +2,7 @@ import Spinner from "./Spinner";
 
 type Props = {
   className?: string;
-  iconName: string;
+  i: string;
   isDisabled?: boolean;
   iconClassName?: string;
   onClick?: () => void;
@@ -12,7 +12,7 @@ type Props = {
 
 const IconBtn = ({
   className,
-  iconName,
+  i,
   iconClassName = ``,
   isDisabled = false,
   isLoading = false,
@@ -22,12 +22,13 @@ const IconBtn = ({
   return (
     <>
       {isLoading ? (
-        <Spinner />
+        <div className="flex items-center justify-center size-12 rounded-full bg-gray-100">
+          <Spinner />
+        </div>
       ) : (
         <button
           className={`flex justify-center items-center disabled:opacity-30 disabled:cursor-not-allowed
-          disabled:hover:bg-gray-100 cursor-pointer rounded-full transition-colors ${className}
-          `}
+          disabled:hover:bg-gray-100 cursor-pointer rounded-full transition-colors ${className}`}
           disabled={isDisabled}
           onClick={onClick}
         >
@@ -37,7 +38,7 @@ const IconBtn = ({
             rounded-full select-none tap-highlight-transparent outline-none hover:scale-[1.07] 
             active:scale-[0.95] focus:outline-none ${iconClassName}`}
           >
-            {iconName}
+            {i}
           </i>
         </button>
       )}

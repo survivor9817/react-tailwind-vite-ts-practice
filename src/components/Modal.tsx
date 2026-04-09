@@ -45,7 +45,7 @@ const Modal = ({ children, className = "w-77.5", onClose }: ModalProps) => {
         >
           {/* Close Button */}
           <div className="absolute top-2 left-2">
-            <IconBtn iconName="cancel" iconSize="36px" onClick={onClose} />
+            <IconBtn i="cancel" iconSize="36px" onClick={onClose} />
           </div>
 
           {/* Content */}

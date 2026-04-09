@@ -19,7 +19,7 @@ const Menu = ({ isMenuOpen, onClose }: Props) => {
           z-90 overflow-x-hidden overflow-y-auto"
         style={{ transform: `translateX(${isMenuOpen ? 0 : -105}%)` }}
       >
-        <IconBtn iconName="cancel" iconSize="36px" onClick={onClose} />
+        <IconBtn i="cancel" iconSize="36px" onClick={onClose} />
 
         <div className="menu-section">
           <img src="./imgs/reza.jpg" alt="user-img" className="user-img" />

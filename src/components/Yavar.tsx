@@ -1,34 +1,35 @@
+import IconBtn from "./IconBtn";
+// hmin ke user nevesht toye input payam inke hanooz aamaade nist bere vaasash
+
 const Yavar = () => {
   return (
     <>
-      <div id="YavarTabContainer" className="tab-container">
-        <div className="yavar-container">
-          <div className="chat-container">
-            <div className="messages-container">
-              <div className="welcome-massage">
-                <img
-                  className="yavar-character float-animation"
-                  src="/react-practice/imgs/darsyavar0-nobg.png"
-                  alt=""
-                />
-                <div className="greeting-message">
-                  در خدمتم رضا جان <br />
-                  هر سوال درسی یا مشاوره‌ای داشتی <br />
-                  می‌تونی از من بپرسی 🤗
-                </div>
+      <div className="w-full h-full">
+        <div className="p-2 flex flex-col items-center gap-2.5 pt-12 bg-white rounded-[10px] overflow-hidden relative w-full h-full">
+          <div className="p-2">
+            <div className="flex flex-col items-center mt-0 text-center leading-8 text-[20px] w-full">
+              <img
+                className="w-37.5 animate-float "
+                src="/public/imgs/darsyavar0-nobg.png"
+                alt=""
+              />
+              <div className="pt-6">
+                در خدمتم رضا جان <br />
+                هر سوال درسی یا مشاوره‌ای داشتی <br />
+                می‌تونی از من بپرسی 🤗
               </div>
             </div>
-            <div className="chat-input-container">
-              <textarea
-                className="chat-input"
-                name="input-message"
-                id="chatInput"
-                placeholder="سؤالت رو اینجا بنویس..."
-              ></textarea>
-              <button className="send-btn" id="sendButton">
-                <i className="msr"> arrow_circle_up </i>
-              </button>
-            </div>
+          </div>
+          <div className="w-[96%] border-2 border-black m-2 rounded-4xl flex justify-center items-center absolute bottom-0">
+            <textarea
+              className="resize-none outline-none h-12 w-full rounded-4xl px-4 py-3.5 border-0 overflow-auto 
+                [scrollbar-width:none] [-ms-overflow-style:none]"
+              name="input-message"
+              id="chatInput"
+              placeholder="سؤالت رو اینجا بنویس..."
+            ></textarea>
+
+            <IconBtn i="arrow_circle_up" />
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ export type FeedbackBtnType = {
   id: FeedbackKey;
   isOn: boolean;
   icon: string;
-  className: string;
+  color: string;
 };
 
 export const feedbackBtnData: FeedbackBtnType[] = [
@@ -12,31 +12,31 @@ export const feedbackBtnData: FeedbackBtnType[] = [
     id: "isCorrect",
     isOn: false,
     icon: "check_circle",
-    className: "correct",
+    color: "text-[#4caf50]",
   },
   {
     id: "isIncorrect",
     isOn: false,
     icon: "cancel",
-    className: "incorrect",
+    color: "text-[#f44336]",
   },
   {
     id: "isLike",
     isOn: false,
     icon: "favorite",
-    className: "like",
+    color: "text-[#ff69b4]",
   },
   {
     id: "isStar",
     isOn: false,
     icon: "stars",
-    className: "star",
+    color: "text-[#ffd700]",
   },
   {
     id: "isReport",
     isOn: false,
     icon: "error",
-    className: "report",
+    color: "text-[#ff8c00]",
   },
 ];
 
@@ -46,35 +46,35 @@ export const feedbackMsgData = [
     isOn: false,
     label: "درست گفتم!",
     icon: "check_circle",
-    className: "correct",
+    color: "bg-[#4caf50] text-white",
   },
   {
     id: "isIncorrect",
     isOn: false,
     label: "اشتباه گفتم!",
     icon: "cancel",
-    className: "incorrect",
+    color: "bg-[#f44336] text-white",
   },
   {
     id: "isLike",
     isOn: false,
     label: "سؤال قشنگیه!",
     icon: "favorite",
-    className: "like",
+    color: "bg-[#ff69b4] text-white",
   },
   {
     id: "isStar",
     isOn: false,
     label: "سؤال مهمیه!",
     icon: "stars",
-    className: "star",
+    color: "bg-[#ffd700] text-black",
   },
   {
     id: "isReport",
     isOn: false,
     label: "ایراد داره!",
     icon: "error",
-    className: "report",
+    color: "bg-[#ff8c00] text-white",
   },
 ];
 

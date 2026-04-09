@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* @layer components {
+  .tabs-container {
+    @apply flex items-center w-full sm:w-85 h-16 border-2 rounded-full overflow-hidden transition-[border-radius] duration-400;
+  }
+} */
+
 @layer utilities {
   /* مخفی کردن اسکرول بار برای کروم، سافاری و اپرا */
   .no-scrollbar::-webkit-scrollbar {
@@ -24,4 +30,19 @@
 
 button {
   touch-action: manipulation;
+}
+
+@theme {
+  /* نام متغیر = نام انیمیشن + پارامترهای پیش‌فرض */
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
 }

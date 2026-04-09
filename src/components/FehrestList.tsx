@@ -1,28 +1,38 @@
 import { useContext } from "react";
-import { getFehrestById } from "../data/data";
 import FehrestItem from "./FehrestItem";
+import { getFehrestById } from "../data/data";
+import { collectTitlePages, findTitlePage } from "../hooks/useFehrestItem";
 import { BookContext } from "../Darsyavar";
-import { findSectionStartPage } from "../hooks/useFehrestItem";
+import { useFakeFetch } from "../hooks/useFakeFetch";
+
+// type Props = {};
 
 const FehrestList = () => {
   const { currentPage, currentBook } = useContext(BookContext);
+  if (!currentBook) return <p className="text-center">کتابی را انتخاب کنید.</p>;
+  if (!currentPage) return <p className="text-center">هنوز صفحه ای انتخاب نشده است.</p>;
 
-  const currentFehrest = getFehrestById(currentBook?.id as number);
+  const {
+    data: currentFehrest,
+    error,
+    loading,
+    // refetch,
+  } = useFakeFetch(getFehrestById(currentBook?.id));
 
-  const currentSectionStartPage = findSectionStartPage(currentPage, currentFehrest);
+  if (loading) return <p className="text-center">در حال بارگذاری...</p>;
+  if (error) return <p className="text-center">درخواست خطا شد.</p>;
+
+  if (!currentFehrest) return <p>درخواست خطا شد.</p>;
+  const titlePages = collectTitlePages(currentFehrest);
+  const currentTitlePage = findTitlePage(currentPage, titlePages);
 
   return (
-    <ol id="fehrestList" className="fehrest-list mt-4">
-      {currentFehrest.map((section) => {
-        return (
-          <FehrestItem
-            key={section.page}
-            section={section}
-            currentSectionStartPage={currentSectionStartPage}
-          />
-        );
-      })}
-    </ol>
+    <>
+      {currentFehrest &&
+        currentFehrest.map((section) => (
+          <FehrestItem key={section.page} section={section} currentTitlePage={currentTitlePage} />
+        ))}
+    </>
   );
 };
 

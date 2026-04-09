@@ -1,34 +1,44 @@
 import { createContext } from "react";
 import "./App.css";
-import LandingPage from "./components/LandingPage";
+// import LandingPage from "./components/LandingPage";
 import StudyPage from "./components/StudyPage";
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import { getPurchasedBooks, type BookType } from "./data/data";
+import { type Book, type BookOption } from "./data/data";
 
 type BookContextType = {
-  currentBook: BookType | null;
-  setCurrentBook: (value: BookType | null) => void;
-  currentPage: number;
+  selectedBookOption: BookOption | null;
+  setSelectedBookOption: (value: BookOption | null) => void;
+  currentBook: Book | null;
+  setCurrentBook: (value: Book | null) => void;
+  currentPage: number | null;
   setCurrentPage: (value: number) => void;
 };
 
 export const BookContext = createContext<BookContextType>({
+  selectedBookOption: null,
+  setSelectedBookOption: () => {},
   currentBook: null,
   setCurrentBook: () => {},
-  currentPage: 1,
+  currentPage: null,
   setCurrentPage: () => {},
 });
 
 function Darsyavar() {
-  const [currentBook, setCurrentBook] = useLocalStorage<BookType | null>(
-    "lastBookRead",
-    getPurchasedBooks()[0],
+  const [selectedBookOption, setSelectedBookOption] = useLocalStorage<BookOption | null>(
+    "lastBookSelectOption",
+    null,
   );
-  const [currentPage, setCurrentPage] = useLocalStorage<number>(JSON.stringify(currentBook?.id), 1);
+  const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null);
+  const [currentPage, setCurrentPage] = useLocalStorage<number | null>(
+    JSON.stringify(currentBook?.id),
+    null,
+  );
   // in current page tooye context hastesh. baa tavajoh be taghiraatesh
   // mitoonim vaase lazy load shodane content haa barnaame berizim.
 
   const bookContextValue: BookContextType = {
+    selectedBookOption,
+    setSelectedBookOption,
     currentBook,
     setCurrentBook,
     currentPage,
@@ -37,7 +47,7 @@ function Darsyavar() {
 
   return (
     <BookContext.Provider value={bookContextValue}>
-      <LandingPage />
+      {/* <LandingPage /> */}
       <StudyPage />
     </BookContext.Provider>
   );

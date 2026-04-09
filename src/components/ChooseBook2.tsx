@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { FIELDS, getBooks, GRADES } from "../data/data";
-import type { BookType, FieldType, GradeType } from "../data/data";
+import type { Book, Field, Grade } from "../data/data";
 import Select, { type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
 import BookCard from "./BookCard";
 
 const ChooseBook2 = () => {
-  const [selectedGrade, setSelectedGrade] = useState<GradeType>(GRADES[0]);
-  const [selectedField, setSelectedField] = useState<FieldType>(FIELDS[0]);
-  const [filteredBooks, setFilteredBooks] = useState<BookType[]>(getBooks({ gradeId: 7 }));
+  const [selectedGrade, setSelectedGrade] = useState<Grade>(GRADES[0]);
+  const [selectedField, setSelectedField] = useState<Field>(FIELDS[0]);
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>(getBooks({ gradeId: 7 }));
 
   useEffect(() => {
     const filters = {
@@ -51,7 +51,7 @@ const ChooseBook2 = () => {
           defaultValue={GRADES[0]}
           isSearchable={false}
           options={GRADES}
-          onChange={(grade) => setSelectedGrade(grade as GradeType)}
+          onChange={(grade) => setSelectedGrade(grade as Grade)}
         />
         {selectedGrade.dore === "متوسطه دوم" ? (
           <Select
@@ -61,7 +61,7 @@ const ChooseBook2 = () => {
             defaultValue={FIELDS[0]}
             isSearchable={false}
             options={FIELDS}
-            onChange={(field) => setSelectedField(field as FieldType)}
+            onChange={(field) => setSelectedField(field as Field)}
           />
         ) : null}
       </div>

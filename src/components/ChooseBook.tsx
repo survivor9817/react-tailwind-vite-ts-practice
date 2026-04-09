@@ -1,29 +1,20 @@
-import { useEffect, useState } from "react";
-import { FIELDS, getBooks, GRADES } from "../data/data";
-import type { BookType, FieldType, GradeType } from "../data/data";
+import type { Field } from "../data/data";
 import Select, { type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
 import BookCard from "./BookCard";
 import Button from "./Button";
+import { useChooseBook } from "../hooks/useChooseBook";
 
 const ChooseBook = () => {
-  const [selectedGrade, setSelectedGrade] = useState<GradeType>(GRADES[0]);
-  const [selectedField, setSelectedField] = useState<FieldType>(FIELDS[0]);
-  const [filteredBooks, setFilteredBooks] = useState<BookType[]>(getBooks({ gradeId: 7 }));
-
-  useEffect(() => {
-    const filters = {
-      gradeId: selectedGrade.id,
-      fieldId: selectedField.id,
-      // isAvailable: true
-    };
-
-    const availables = getBooks({ ...filters, isAvailable: true });
-    const unavailables = getBooks({ ...filters, isAvailable: false });
-    const filteredBooks = [...availables, ...unavailables];
-
-    setFilteredBooks(filteredBooks);
-  }, [selectedGrade, selectedField]);
+  const {
+    grades,
+    fields,
+    selectedGrade,
+    setSelectedGrade,
+    selectedField,
+    setSelectedField,
+    filteredBooks,
+  } = useChooseBook();
 
   const selectCustomStyles: StylesConfig = {
     control: (provider) => ({
@@ -47,7 +38,7 @@ const ChooseBook = () => {
         <p className="text-lg md:text-xl lg:text-2xl">کتابت رو بردار و خواندن رو شروع کن</p>
 
         <div className="grid grid-cols-3 flex-wrap justify-center gap-2 w-75 sm:w-90 md:w-110 my-4 ">
-          {GRADES.map((grade) => (
+          {grades.map((grade) => (
             <Button
               key={grade.id}
               isActive={selectedGrade.label === grade.label}
@@ -66,15 +57,15 @@ const ChooseBook = () => {
             styles={selectCustomStyles}
             className="basic-single "
             classNamePrefix="select"
-            defaultValue={FIELDS[0]}
+            defaultValue={fields[0]}
+            value={selectedField}
             isSearchable={false}
-            options={FIELDS}
-            onChange={(field) => setSelectedField(field as FieldType)}
+            options={fields}
+            onChange={(field) => setSelectedField(field as Field)}
           />
         ) : null}
       </div>
 
-      {/* radife ketaabhaa */}
       <BookSlider>
         {filteredBooks.map((book) => (
           <BookCard

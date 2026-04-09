@@ -4,7 +4,7 @@ import { toFaNums } from "../utils/toFaNums";
 import { convertToEnglishDigits } from "../utils/convertToEnglishDigits";
 import { BookContext } from "../Darsyavar";
 
-export const useBook = () => {
+export const useBookPagination = () => {
   const { currentBook, currentPage, setCurrentPage } = useContext(BookContext);
 
   const goToPage = (pageNumber: number) => {
@@ -19,12 +19,14 @@ export const useBook = () => {
   }, [currentBook]);
 
   const goToPrevPage = () => {
+    if (!currentPage) return;
     const newPage = Math.max(1, +currentPage - 1);
     goToPage(newPage);
   };
 
   const goToNextPage = () => {
     if (!currentBook?.lastPage) return;
+    if (!currentPage) return;
     const newPage = Math.min(+currentBook?.lastPage, +currentPage + 1);
     goToPage(newPage);
   };
@@ -34,22 +36,15 @@ export const useBook = () => {
     goToPage(inputPage);
   };
 
-  const getInputRangeValue = () => {
-    if (currentPage === 0) {
-      return onFocusPageNumber.current;
-    } else {
-      return currentPage;
-    }
-  };
-
   const inputPageNumberRefEl = useRef<HTMLInputElement>(null);
-  const lastValidFa = useRef<string>(toFaNums(currentPage as number));
+  const getCurrentPageFa = () => (currentPage ? toFaNums(currentPage) : "");
+  const lastValidFa = useRef<string>(getCurrentPageFa());
   useEffect(() => {
-    const fa = toFaNums(currentPage as number);
+    const fa = getCurrentPageFa();
+    lastValidFa.current = fa;
     if (inputPageNumberRefEl.current) {
       inputPageNumberRefEl.current.value = fa;
     }
-    lastValidFa.current = fa;
   }, [currentPage]);
 
   const handleInputNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,10 +58,10 @@ export const useBook = () => {
     const outOfRange = num <= 0 || num > currentBook?.lastPage;
 
     if (isNumeric && !outOfRange) {
-      const fa = toFaNums(num);
-      lastValidFa.current = fa;
+      const currentPageFa = toFaNums(num);
+      lastValidFa.current = currentPageFa;
       if (inputPageNumberRefEl.current) {
-        inputPageNumberRefEl.current.value = fa;
+        inputPageNumberRefEl.current.value = currentPageFa;
       }
     } else {
       // inja yekam ui daariaa kalak. state error besaaz vase input va
@@ -84,10 +79,13 @@ export const useBook = () => {
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (!currentPage) return;
+    if (!onFocusPageNumber.current) return;
+
     const value = convertToEnglishDigits(e.target.value.trim());
     value === "" ? goToPage(+onFocusPageNumber.current) : goToPage(+value);
     if (inputPageNumberRefEl.current) {
-      inputPageNumberRefEl.current.value = toFaNums(currentPage as number);
+      inputPageNumberRefEl.current.value = toFaNums(currentPage);
     }
   };
 
@@ -112,6 +110,5 @@ export const useBook = () => {
     handleFocus,
     handleBlur,
     handleKeyDown,
-    getInputRangeValue,
   };
 };

@@ -1,17 +1,17 @@
 export const BRAND_NAME = "درس‌یاور";
 export const BRAND_LOGO = "🎓";
 
-type GradeIdType = 7 | 8 | 9 | 10 | 11 | 12;
-type FieldIdType = 1 | 2 | 3 | 4 | 5 | null;
+type GradeId = 7 | 8 | 9 | 10 | 11 | 12;
+type FieldId = 1 | 2 | 3 | 4 | 5 | null;
 
-export type GradeType = {
-  id: GradeIdType;
-  value: GradeIdType;
+export type Grade = {
+  id: GradeId;
+  value: GradeId;
   label: string;
   dore: string;
 };
 
-export const GRADES: GradeType[] = [
+export const GRADES: Grade[] = [
   { id: 7, value: 7, dore: "متوسطه اول", label: "هفتم" },
   { id: 8, value: 8, dore: "متوسطه اول", label: "هشتم" },
   { id: 9, value: 9, dore: "متوسطه اول", label: "نهم" },
@@ -20,13 +20,13 @@ export const GRADES: GradeType[] = [
   { id: 12, value: 12, dore: "متوسطه دوم", label: "دوازدهم" },
 ];
 
-export type FieldType = {
-  id: FieldIdType;
-  value: FieldIdType;
+export type Field = {
+  id: FieldId;
+  value: FieldId;
   label: string;
 };
 
-export const FIELDS: FieldType[] = [
+export const FIELDS: Field[] = [
   { id: 1, value: 1, label: "تجربی" },
   { id: 2, value: 2, label: "انسانی" },
   { id: 3, value: 3, label: "ریاضی" },
@@ -34,11 +34,11 @@ export const FIELDS: FieldType[] = [
   // { id: 5, value: 5, label: "هنر" },
 ];
 
-export type BookType = {
+export type Book = {
   id: number; // is not uid
   title: string;
-  gradeId: GradeIdType;
-  fieldId: FieldIdType;
+  gradeId: GradeId;
+  fieldId: FieldId;
   coverImage: string;
   isAvailable: boolean;
   lastPage: number;
@@ -47,7 +47,7 @@ export type BookType = {
   isInKonkour: boolean;
 };
 
-export const BOOKS: BookType[] = [
+export const BOOKS: Book[] = [
   // ================= پایه هفتم =================
   {
     id: 701,
@@ -116,7 +116,7 @@ export const BOOKS: BookType[] = [
   },
   {
     id: 706,
-    title: "علوم تجربی",
+    title: "علوم تجربی ۷",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -417,7 +417,7 @@ export const BOOKS: BookType[] = [
   },
   {
     id: 806,
-    title: "علوم تجربی",
+    title: "علوم تجربی ۸",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -705,7 +705,7 @@ export const BOOKS: BookType[] = [
   },
   {
     id: 906,
-    title: "علوم تجربی",
+    title: "علوم تجربی ۹",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -2894,27 +2894,25 @@ export const BOOKS: BookType[] = [
   },
 ];
 
-export function filterBooksByProp<K extends keyof BookType>(
-  books: BookType[],
+export function filterBooksByProp<K extends keyof Book>(
+  books: Book[],
   key: K,
-  value: BookType[K] | undefined,
-): BookType[] {
+  value: Book[K] | undefined,
+): Book[] {
   if (value === undefined) return books;
   return books.filter((book) => book[key] === value);
 }
 
 export const allBooks = BOOKS;
-export const getAllBooks = () => {
-  return allBooks;
-};
+export const getAllBooks = () => allBooks;
 
 export type BooksFilter = {
-  gradeId?: GradeIdType;
-  fieldId?: FieldIdType;
+  gradeId?: GradeId;
+  fieldId?: FieldId;
   isAvailable?: boolean;
 };
 
-export const getBooks = (filter: BooksFilter = {}): BookType[] => {
+export const getBooks = (filter: BooksFilter = {}): Book[] => {
   const { gradeId, fieldId, isAvailable } = filter;
 
   if (!gradeId && !fieldId && isAvailable === undefined) {
@@ -2935,28 +2933,22 @@ export const getBooks = (filter: BooksFilter = {}): BookType[] => {
   return result;
 };
 
-export const getBookById = (id: number) => {
-  return filterBooksByProp(getAllBooks(), "id", id)[0];
-};
+export const getBookById = (id: number) => filterBooksByProp(getAllBooks(), "id", id)[0];
 
 export const purchasedBooksIds: number[] = [706, 806, 906];
 // esmo id ketaab haaye moshtarak vaase list option ketaab haa to book selector
 // bayad eslaah beshe.
 // export const purchasedBooksIds: number[] = getAllBooks().map((book) => book.id);
-export const getPurchasedBooksIds = () => {
-  return purchasedBooksIds;
-};
+export const getPurchasedBooksIds = () => purchasedBooksIds;
 
-export const getPurchasedBooks = () => {
-  const purchasedBooks = getPurchasedBooksIds().map((id) => getBookById(id));
-  return purchasedBooks;
-};
+const purchasedBooks = getPurchasedBooksIds().map((id) => getBookById(id));
+export const getPurchasedBooks = () => purchasedBooks;
 
-export type BookOptionType = {
+export type BookOption = {
   value: number;
   label: string;
 };
-export const getOptionsOfBookSelector = (): BookOptionType[] => {
+export const getOptionsOfBookSelector = (): BookOption[] => {
   const optionsOfBookSelector = getPurchasedBooks().map((book) => {
     return { value: book.id, label: book.title };
   });
@@ -2964,17 +2956,18 @@ export const getOptionsOfBookSelector = (): BookOptionType[] => {
 };
 
 // FEHREST
-export type FehrestSectionType = {
+export type FehrestSection = {
   id: number;
   page: number;
   title: string;
-  sections?: FehrestSectionType[];
+  sections?: FehrestSection[];
 };
 
+// moshaabeh konam fehrest ro ba sectionhaash?
 type FehrestType = {
   bookId: number;
   title: string;
-  sections: FehrestSectionType[];
+  sections: FehrestSection[];
 };
 
 export const BOOKS_TOC: FehrestType[] = [
@@ -3394,12 +3387,18 @@ export const BOOKS_TOC: FehrestType[] = [
 ];
 
 export const allFehrests = BOOKS_TOC;
-export const getAllFehrests = () => {
-  return allFehrests;
-};
+export const getAllFehrests = () => allFehrests;
 
 export const getFehrestById = (bookId: number) => {
   return getAllFehrests().filter((fehrest) => fehrest.bookId === bookId)[0].sections;
+};
+
+type Option = { value: string; label: string };
+export const getTocOptions = (fehrest: FehrestSection[]): Option[] => {
+  return fehrest.flatMap((s) => [
+    { value: `${s.page}`, label: s.title },
+    ...(s.sections ? getTocOptions(s.sections) : []),
+  ]);
 };
 
 // BookData
@@ -3421,3 +3420,38 @@ export function createFakeBookPagesContent(bookId: number) {
 
   return loremArray;
 }
+
+// FILTERS AND QUIZ
+export type FilterOption = { value: string; label: string };
+
+export const createFehrestOption = (fehrest: FehrestSection[]): FilterOption[] => {
+  return fehrest.flatMap((s) => [
+    { value: s.title, label: s.title },
+    ...(s.sections ? createFehrestOption(s.sections) : []),
+  ]);
+};
+
+export const getFlatFehrestSectionsById = (bookId: number): FilterOption[] => {
+  return createFehrestOption(getFehrestById(bookId));
+};
+
+const levelOptions = [
+  { id: 1, value: "0", label: "همه سطح‌ها" },
+  { id: 2, value: "1", label: "ساده" },
+  { id: 3, value: "2", label: "متوسط" },
+  { id: 4, value: "3", label: "سخت" },
+];
+export const getLevelOptions = () => levelOptions;
+
+const referenceOptions = [
+  { id: 1, value: "0", label: "همه منابع" },
+  { id: 2, value: "امتحان نهایی", label: "امتحان نهایی" },
+  { id: 3, value: "شبه نهایی", label: "شبه نهایی" },
+  { id: 4, value: "کنکور سراسری", label: "کنکور سراسری" },
+  { id: 5, value: "تیزهوشان", label: "تیزهوشان" },
+  { id: 6, value: "نمونه دولتی", label: "نمونه دولتی" },
+  { id: 7, value: "تألیفی", label: "تألیفی" },
+];
+export const getReferenceOptions = () => referenceOptions;
+
+// questions data
