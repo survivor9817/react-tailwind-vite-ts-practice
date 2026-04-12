@@ -1,0 +1,75 @@
+// useQuizData.ts
+import { useState } from "react";
+import { getQuestionFromDB, getQuestionIds, type QuestionType } from "../data/questionsData";
+import { fakeFetch } from "./fakeFetch";
+
+// voroodi filterhaaye user ro ke bayad begire dg...
+export const useQuizData = () => {
+  const [questionIds, setQuestionIds] = useState<string[] | null>(null);
+  const [idsLoading, setIdsLoading] = useState(false);
+  const [idsError, setIdsError] = useState<Error | null>(null);
+
+  const [question, setQuestion] = useState<QuestionType | null>(null);
+  const [questionLoading, setQuestionLoading] = useState(false);
+  const [questionError, setQuestionError] = useState<Error | null>(null);
+
+  const loadIds = async () => {
+    setIdsLoading(true);
+    setIdsError(null);
+
+    try {
+      const ids = await fakeFetch(() => getQuestionIds());
+      setQuestionIds(ids);
+      return ids;
+    } catch (error) {
+      setIdsError(error instanceof Error ? error : new Error(String(error)));
+      return [];
+    } finally {
+      setIdsLoading(false);
+    }
+  };
+
+  // بارگذاری آیدی‌ها در صورت عدم وجود
+  // useEffect(() => {
+  //   if (!questionIds) {
+  //     loadIds();
+  //   }
+  // }, []);
+
+  const loadQuestion = async (currentId: string) => {
+    // ابتدا مطمئن شویم که questionIds لود شده
+    if (!questionIds) {
+      await loadIds();
+    }
+
+    if (!currentId) {
+      setQuestionLoading(false);
+      return;
+    }
+
+    setQuestionLoading(true);
+    setQuestionError(null);
+
+    try {
+      const q = await fakeFetch(() => getQuestionFromDB(currentId));
+      if (q) setQuestion(q);
+    } catch (error) {
+      setQuestionError(error instanceof Error ? error : new Error(String(error)));
+    } finally {
+      setQuestionLoading(false);
+    }
+  };
+
+  return {
+    questionIds,
+    question,
+    idsLoading,
+    questionLoading,
+    loading: idsLoading || questionLoading,
+    idsError,
+    questionError,
+    error: idsError || questionError,
+    loadIds,
+    loadQuestion,
+  };
+};

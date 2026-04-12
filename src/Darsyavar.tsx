@@ -3,7 +3,7 @@ import "./App.css";
 // import LandingPage from "./components/LandingPage";
 import StudyPage from "./components/StudyPage";
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import { type Book, type BookOption } from "./data/data";
+import type { Book, BookOption } from "./data/booksData";
 
 type BookContextType = {
   selectedBookOption: BookOption | null;

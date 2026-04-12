@@ -11,6 +11,9 @@ const QuizProgressBar = ({ current, max }: Props) => {
 
   useEffect(() => {
     const progressBarLength = ((current + 1) / (max + 1)) * 100;
+    // send progress percent to server
+    // state baraye progress besaaz va agar az ghablish bishtar shod save kon toye server.
+    // saveProgressPercent(progressBarLength)
     requestAnimationFrame(() => {
       setProgressPercent(progressBarLength);
     });

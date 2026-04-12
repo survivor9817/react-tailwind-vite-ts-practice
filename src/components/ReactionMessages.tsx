@@ -1,4 +1,4 @@
-import FeedbackMsg from "./FeedbackMsg";
+import ReactionMsg from "./ReactionMsg";
 
 type Props = {
   msgs: {
@@ -10,12 +10,12 @@ type Props = {
   }[];
 };
 
-const FeedbackMessages = ({ msgs }: Props) => {
+const ReactionMessages = ({ msgs }: Props) => {
   return (
     <div className="absolute left-0 bottom-0 pointer-events-none">
       <ul className="relative overflow-hidden w-62.5 h-30 z-2">
         {msgs.map((item) => (
-          <FeedbackMsg
+          <ReactionMsg
             key={item.id}
             label={item.label}
             icon={item.icon}
@@ -28,4 +28,4 @@ const FeedbackMessages = ({ msgs }: Props) => {
   );
 };
 
-export default FeedbackMessages;
+export default ReactionMessages;

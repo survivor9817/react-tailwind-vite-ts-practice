@@ -1,54 +1,28 @@
-import type { FeedbackObjectType } from "../data/questionsData";
+import { getResultsFromDB } from "../data/questionsData";
 import { toFaNums } from "../utils/toFaNums";
 
 type Props = {
   onClose: () => void;
   onAction: () => void;
-  feedbacksData: FeedbackObjectType[];
+  questionIds: string[];
   totalQuestionsNumber: number;
 };
 
 const QuizResultsModalContent = ({
   onClose,
   onAction,
-  feedbacksData,
+  questionIds,
   totalQuestionsNumber,
 }: Props) => {
-  function getResults(feedbacks: FeedbackObjectType[]) {
-    const result = {
-      corrects: 0,
-      incorrects: 0,
-      unAnswered: 0,
-
-      // isLike: { true: 0, false: 0 },
-      // isStar: { true: 0, false: 0 },
-      // isReport: { true: 0, false: 0 },
-    };
-
-    feedbacks.forEach((obj) => {
-      if (obj.answer === true) result.corrects++;
-      else if (obj.answer === false) result.incorrects++;
-      else if (obj.answer === null) result.unAnswered++;
-
-      //  obj.isLike ? result.isLike.true++ : result.isLike.false++;
-
-      //  obj.isStar ? result.isStar.true++ : result.isStar.false++;
-
-      //  obj.isReport ? result.isReport.true++ : result.isReport.false++;
-    });
-
-    result.unAnswered = totalQuestionsNumber - result.corrects - result.incorrects;
-    return result;
-  }
+  const { correctsCount, incorrectsCount, nullsCount } = getResultsFromDB("123", questionIds);
 
   const cutTwoDecimals = (num: number) => parseFloat(num.toFixed(1));
 
-  const { corrects, incorrects, unAnswered } = getResults(feedbacksData);
-  const truePercent = toFaNums(cutTwoDecimals((corrects / totalQuestionsNumber) * 100));
-  const falsePercent = toFaNums(cutTwoDecimals((incorrects / totalQuestionsNumber) * 100));
-  const nullPercent = toFaNums(cutTwoDecimals((unAnswered / totalQuestionsNumber) * 100));
+  const truePercent = toFaNums(cutTwoDecimals((correctsCount / totalQuestionsNumber) * 100));
+  const falsePercent = toFaNums(cutTwoDecimals((incorrectsCount / totalQuestionsNumber) * 100));
+  const nullPercent = toFaNums(cutTwoDecimals((nullsCount / totalQuestionsNumber) * 100));
   const percentWithNegativeInfluence = toFaNums(
-    cutTwoDecimals(((corrects - incorrects / 3) / totalQuestionsNumber) * 100),
+    cutTwoDecimals(((correctsCount - incorrectsCount / 3) / totalQuestionsNumber) * 100),
   );
 
   return (
@@ -86,7 +60,7 @@ const QuizResultsModalContent = ({
                 درست
               </th>
               <td className="border-t border-gray-300 bg-green-50 px-4 py-2 text-center font-semibold text-green-600">
-                {toFaNums(corrects)}
+                {toFaNums(correctsCount)}
               </td>
               <td className="border-t border-gray-300 bg-green-50 px-4 py-2 text-center font-semibold text-green-600">
                 {truePercent}
@@ -101,7 +75,7 @@ const QuizResultsModalContent = ({
                 نادرست
               </th>
               <td className="border-t border-gray-300 bg-red-50 px-4 py-2 text-center font-semibold text-red-600">
-                {toFaNums(incorrects)}
+                {toFaNums(incorrectsCount)}
               </td>
               <td className="border-t border-gray-300 bg-red-50 px-4 py-2 text-center font-semibold text-red-600">
                 {falsePercent}
@@ -116,7 +90,7 @@ const QuizResultsModalContent = ({
                 نزده
               </th>
               <td className="border-t border-gray-300 bg-gray-50 px-4 py-2 text-center font-semibold text-gray-600">
-                {toFaNums(unAnswered)}
+                {toFaNums(nullsCount)}
               </td>
               <td className="border-t border-gray-300 bg-gray-50 px-4 py-2 text-center font-semibold text-gray-600">
                 {nullPercent}

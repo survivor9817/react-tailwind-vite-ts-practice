@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { FIELDS, GRADES, type Book, type Field, type Grade } from "../data/data";
-import { getBooks } from "../data/data";
+import { FIELDS, getBooks, GRADES, type Book, type Field, type Grade } from "../data/booksData";
 
 export const useChooseBook = () => {
   // no fetch

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { FIELDS, getBooks, GRADES } from "../data/data";
-import type { Book, Field, Grade } from "../data/data";
 import Select, { type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
 import BookCard from "./BookCard";
+import { FIELDS, getBooks, GRADES, type Book, type Field, type Grade } from "../data/booksData";
 
 const ChooseBook2 = () => {
   const [selectedGrade, setSelectedGrade] = useState<Grade>(GRADES[0]);

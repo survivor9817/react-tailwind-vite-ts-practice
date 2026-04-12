@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
-import { createFakeBookPagesContent } from "../data/data";
 import { toFaNums } from "../utils/toFaNums";
 import { BookContext } from "../Darsyavar";
+import { createFakeBookPagesContent } from "../data/fehrestsData";
 
 const BookPage = () => {
   const { currentBook, currentPage } = useContext(BookContext);

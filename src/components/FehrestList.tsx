@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import FehrestItem from "./FehrestItem";
-import { getFehrestById } from "../data/data";
 import { collectTitlePages, findTitlePage } from "../hooks/useFehrestItem";
 import { BookContext } from "../Darsyavar";
 import { useFakeFetch } from "../hooks/useFakeFetch";
+import { getFehrestById } from "../data/fehrestsData";
 
 // type Props = {};
 

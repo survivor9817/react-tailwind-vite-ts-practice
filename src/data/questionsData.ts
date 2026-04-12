@@ -1,44 +1,361 @@
-export const requestedQuestionsIDs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export type ReactionId = "isCorrect" | "isIncorrect" | "isNull" | "isLike" | "isStar" | "isReport";
 
-export type FeedbackObjectType = {
-  questionId: number;
+export type ReactionType = "answer" | "feedback";
+
+export type DbReaction = {
   userId: string;
-  answer: boolean | null;
+  questionId: string;
+  reactionId: ReactionId;
+  reactionType: ReactionType;
+  createdAt: string;
+};
+
+export type UiReaction = {
+  isCorrect: boolean;
+  isIncorrect: boolean;
   isLike: boolean;
   isStar: boolean;
   isReport: boolean;
 };
 
-export const serverSavedFeedback: FeedbackObjectType[] = [
+const now = new Date().toISOString();
+
+export const REACTIONS: DbReaction[] = [
   {
-    questionId: 1,
     userId: "123",
-    answer: null,
-    isLike: false,
-    isStar: false,
-    isReport: false,
+    questionId: "1",
+    reactionId: "isCorrect",
+    reactionType: "answer",
+    createdAt: now,
   },
   {
-    questionId: 2,
     userId: "123",
-    answer: null,
-    isLike: false,
-    isStar: false,
-    isReport: false,
+    questionId: "1",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
   },
   {
-    questionId: 3,
     userId: "123",
-    answer: null,
-    isLike: false,
-    isStar: false,
-    isReport: false,
+    questionId: "2",
+    reactionId: "isIncorrect",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "2",
+    reactionId: "isStar",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "3",
+    reactionId: "isNull",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "3",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "3",
+    reactionId: "isReport",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "4",
+    reactionId: "isCorrect",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "4",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "4",
+    reactionId: "isStar",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "5",
+    reactionId: "isCorrect",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "5",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "6",
+    reactionId: "isIncorrect",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "6",
+    reactionId: "isStar",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "7",
+    reactionId: "isNull",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "7",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "7",
+    reactionId: "isReport",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "8",
+    reactionId: "isCorrect",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "8",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "8",
+    reactionId: "isStar",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "9",
+    reactionId: "isCorrect",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "9",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "10",
+    reactionId: "isIncorrect",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "10",
+    reactionId: "isStar",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "11",
+    reactionId: "isNull",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "11",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "11",
+    reactionId: "isReport",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "12",
+    reactionId: "isCorrect",
+    reactionType: "answer",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "12",
+    reactionId: "isLike",
+    reactionType: "feedback",
+    createdAt: now,
+  },
+  {
+    userId: "123",
+    questionId: "12",
+    reactionId: "isStar",
+    reactionType: "feedback",
+    createdAt: now,
   },
 ];
 
-export const questionsData = [
+export const addReactionToDB = (newReaction: DbReaction) => REACTIONS.push(newReaction);
+export const removeReactionFromDB = (existingReaction: DbReaction) => {
+  const index = REACTIONS.indexOf(existingReaction);
+  index !== -1 && REACTIONS.splice(index, 1);
+};
+
+// from db
+export const getReactions = (userId?: string, questionId?: string): DbReaction[] | undefined => {
+  const filtered = REACTIONS.filter((r) => {
+    const matchUser = userId ? r.userId === userId : true;
+    const matchQuestion = questionId ? r.questionId === questionId : true;
+    return matchUser && matchQuestion;
+  });
+
+  const isSpecificQuery = Boolean(userId) || Boolean(questionId);
+  if (isSpecificQuery && filtered.length === 0) {
+    return undefined;
+  }
+
+  return filtered;
+};
+
+export const createUiReactionsObject = (dbReactions: DbReaction[] | undefined): UiReaction => {
+  const empty: UiReaction = {
+    isCorrect: false,
+    isIncorrect: false,
+    isLike: false,
+    isStar: false,
+    isReport: false,
+  };
+
+  if (!dbReactions?.length) return empty;
+
+  const present = new Set<ReactionId>(dbReactions.map((r) => r.reactionId));
+
+  const result: UiReaction = {
+    isCorrect: present.has("isCorrect"),
+    isIncorrect: present.has("isIncorrect"),
+    isLike: present.has("isLike"),
+    isStar: present.has("isStar"),
+    isReport: present.has("isReport"),
+  };
+
+  // در صورتی که هم isCorrect و هم isIncorrect وجود داشته باشند
+  // (خطای ورودی) اولویت به isCorrect می‌دهیم و isIncorrect را false می‌کنیم
+  if (result.isCorrect) result.isIncorrect = false;
+
+  return result;
+};
+
+// masalan api get req
+export const getUiReactionObjectFromDB = (userId?: string, questionId?: string): UiReaction => {
+  return createUiReactionsObject(getReactions(userId, questionId));
+};
+
+// masalan api post req
+export const saveReactionToDB = (newReaction: DbReaction) => {
+  const { userId, questionId } = newReaction;
+  const saved = getReactions(userId, questionId);
+
+  if (newReaction.reactionType === "answer") {
+    const existing = saved?.find((r) => r.reactionType === "answer");
+
+    if (!existing) return addReactionToDB(newReaction);
+
+    const isTurningOff = newReaction.reactionId === existing.reactionId;
+    if (isTurningOff) {
+      removeReactionFromDB(existing);
+      addReactionToDB({
+        userId: userId,
+        questionId: questionId,
+        reactionId: "isNull",
+        reactionType: "answer",
+        createdAt: new Date().toISOString(),
+      });
+    } else if (!isTurningOff) {
+      removeReactionFromDB(existing);
+      addReactionToDB(newReaction);
+    }
+
+    return;
+  }
+
+  const existing = saved?.find((r) => r.reactionId === newReaction.reactionId);
+  existing ? removeReactionFromDB(existing) : addReactionToDB(newReaction);
+};
+
+// masalan api get result
+export const getResultsFromDB = (userId: string, questionIds: string[]) => {
+  const answers = questionIds.map((questionId) => {
+    const reactions = getReactions(userId, questionId);
+    return reactions?.find((reaction) => reaction.reactionType === "answer");
+  });
+
+  const correctsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isCorrect"), 0);
+  const incorrectsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isIncorrect"), 0);
+  const nullsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isNull"), 0);
+
+  return { correctsCount, incorrectsCount, nullsCount };
+};
+
+// oldies
+export const requestedQuestionsIDs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+export const getQuestionIds = () => requestedQuestionsIDs;
+
+export type QuestionType = {
+  id: string;
+  bookName: string;
+  where: string;
+  level: string;
+  source: string;
+  hasImg: boolean;
+  question: string;
+  descriptiveAnswer: string;
+  author: string;
+  date: string;
+  score: number;
+  tags: string[];
+  reactions?: UiReaction;
+};
+export const questionsData: QuestionType[] = [
   {
-    id: 1,
+    id: "1",
     bookName: "زیست‌شناسی ۱",
     where: "۶. گوارش و جذب مواد",
     level: "2",
@@ -78,7 +395,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
   },
   {
-    id: 2,
+    id: "2",
     bookName: "زیست‌شناسی ۱",
     where: "۶. گوارش و جذب مواد",
     level: "2",
@@ -119,7 +436,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "جای خالی", "صورت مبهم", "مقایسه ای", "مفهومی", "متوسط"],
   },
   {
-    id: 3,
+    id: "3",
     bookName: "زیست‌شناسی ۱",
     where: "۶. گوارش و جذب مواد",
     level: "3",
@@ -160,7 +477,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "جای خالی", "مقایسه ای", "سخت"],
   },
   {
-    id: 4,
+    id: "4",
     bookName: "زیست‌شناسی ۱",
     where: "۳. ساختار گیاهان",
     level: "3",
@@ -201,7 +518,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "جای خالی", "مقایسه ای", "مفهومی", "سخت"],
   },
   {
-    id: 5,
+    id: "5",
     bookName: "زیست‌شناسی ۲",
     where: "۴. گردش مواد در بدن",
     level: "2",
@@ -241,7 +558,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "مفهومی", "متوسط"],
   },
   {
-    id: 6,
+    id: "6",
     bookName: "زیست‌شناسی ۱",
     where: "۶. گوارش و جذب مواد",
     level: "2",
@@ -282,7 +599,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
   },
   {
-    id: 7,
+    id: "7",
     bookName: "زیست‌شناسی ۱",
     where: "۶. گوارش و جذب مواد",
     level: "3",
@@ -323,7 +640,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "متوسط"],
   },
   {
-    id: 8,
+    id: "8",
     bookName: "زیست‌شناسی ۱",
     where: "۶. گوارش و جذب مواد",
     level: "2",
@@ -364,7 +681,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
   },
   {
-    id: 9,
+    id: "9",
     bookName: "زیست‌شناسی ۱",
     where: "۶. گوارش و جذب مواد",
     level: "3",
@@ -405,7 +722,7 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "متوسط"],
   },
   {
-    id: 10,
+    id: "10",
     bookName: "زیست‌شناسی ۱",
     where: "۶. گوارش و جذب مواد",
     level: "4",
@@ -445,5 +762,11 @@ export const questionsData = [
     tags: ["چهار گزینه ای", "مفهومی", "تحلیلی", "سخت"],
   },
 ];
+
+export const getQuestionFromDB = (qId: string) => {
+  const q = questionsData.find((q) => q.id === qId);
+  if (q) q.reactions = getUiReactionObjectFromDB("123", qId);
+  return q;
+};
 
 export type questionDataType = (typeof questionsData)[0];

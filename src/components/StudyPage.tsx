@@ -74,6 +74,8 @@ const StudyPage = () => {
           />
         </nav>
 
+        {/* baa zadane dokme tab va jaabejaaee e focus chidemaane tabhaa beham mirize.
+aslan nabayad ofoghi scrollpazir bashe */}
         <TabsContainer
           activeTab={activeTab}
           className="w-full h-[calc(100vh-58px)] sm:h-[calc(100dvh-58px)]"

@@ -7,9 +7,9 @@ type Props = {
   isOn: boolean;
 };
 
-const FeedbackBtn = ({ color, i, onClick, isOn }: Props) => {
+const ReactionBtn = ({ color, i, onClick, isOn }: Props) => {
   const cls = isOn ? `${color} filled` : ``;
   return <IconBtn i={i} className={cls} onClick={onClick} />;
 };
 
-export default FeedbackBtn;
+export default ReactionBtn;

@@ -1,13 +1,21 @@
-export type FeedbackKey = "isCorrect" | "isIncorrect" | "isLike" | "isStar" | "isReport";
+export type UiReactionId = "isCorrect" | "isIncorrect" | "isLike" | "isStar" | "isReport";
 
-export type FeedbackBtnType = {
-  id: FeedbackKey;
+export type UiReaction = {
+  isCorrect: boolean;
+  isIncorrect: boolean;
+  isLike: boolean;
+  isStar: boolean;
+  isReport: boolean;
+};
+
+export type ReactionBtnType = {
+  id: UiReactionId;
   isOn: boolean;
   icon: string;
   color: string;
 };
 
-export const feedbackBtnData: FeedbackBtnType[] = [
+export const reactionBtnData: ReactionBtnType[] = [
   {
     id: "isCorrect",
     isOn: false,
@@ -40,7 +48,16 @@ export const feedbackBtnData: FeedbackBtnType[] = [
   },
 ];
 
-export const feedbackMsgData = [
+// reactions meta
+export type ReactionMsgType = {
+  id: UiReactionId;
+  isOn: boolean;
+  label: string;
+  icon: string;
+  color: string;
+};
+
+export const reactionMsgData: ReactionMsgType[] = [
   {
     id: "isCorrect",
     isOn: false,
@@ -78,5 +95,5 @@ export const feedbackMsgData = [
   },
 ];
 
-export type feedbackBtnsType = typeof feedbackBtnData;
-export type feedbackMsgsType = typeof feedbackMsgData;
+export type reactionBtnsType = typeof reactionBtnData;
+export type reactionMsgsType = typeof reactionMsgData;

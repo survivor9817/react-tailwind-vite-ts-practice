@@ -1,9 +1,9 @@
-import type { Field } from "../data/data";
 import Select, { type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
 import BookCard from "./BookCard";
 import Button from "./Button";
 import { useChooseBook } from "../hooks/useChooseBook";
+import type { Field } from "../data/booksData";
 
 const ChooseBook = () => {
   const {

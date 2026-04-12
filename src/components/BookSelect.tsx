@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { BookContext } from "../Darsyavar.tsx";
-import { getBookById, getOptionsOfBookSelector, type BookOption } from "../data/data.ts";
 import Select, { type ActionMeta, type SingleValue, type StylesConfig } from "react-select";
+import { getBookById, getOptionsOfBookSelector, type BookOption } from "../data/booksData.ts";
 
 // type Props = {};
 

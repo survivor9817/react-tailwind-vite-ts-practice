@@ -4,8 +4,8 @@ import Select, {
   type SingleValue,
   type StylesConfig,
 } from "react-select";
-import type { FilterOption } from "../data/data";
 import { useEffect, useRef } from "react";
+import type { FilterOption } from "../data/fehrestsData";
 
 type Props = {
   id: string;

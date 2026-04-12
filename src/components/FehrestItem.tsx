@@ -1,6 +1,6 @@
 import { toFaNums } from "../utils/toFaNums";
-import type { FehrestSection } from "../data/data";
 import { useFehrestItem } from "../hooks/useFehrestItem";
+import type { FehrestSection } from "../data/fehrestsData";
 
 type Props = {
   section: FehrestSection;
