@@ -7,7 +7,6 @@ const BookPagination = () => {
   const {
     currentBook,
     currentPage,
-    // goToPage,
     goToPrevPage,
     goToNextPage,
     inputPageNumberRefEl,

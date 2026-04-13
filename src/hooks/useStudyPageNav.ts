@@ -6,7 +6,7 @@ export const useStudyPageNav = () => {
   const [activeTab, setActiveTab] = useLocalStorage("activeTab", 0);
   const [isFehrestOpen, setIsFehrestOpen] = useLocalStorage("isFehrestOpen", false);
   const [isMenuOpen, setIsMenuOpen] = useLocalStorage("isMenuOpen", false);
-  const [wasFehrestOpen, setWasFehrestState] = useLocalStorage("wasFehrestOpened", false);
+  const [wasFehrestOpen, setWasFehrestOpen] = useLocalStorage("wasFehrestOpened", false);
 
   const closeFehrest = () => {
     setIsFehrestOpen(false);
@@ -30,17 +30,17 @@ export const useStudyPageNav = () => {
   const goToBook = () => {
     setActiveTab(0);
     wasFehrestOpen && setIsFehrestOpen(true);
-    setWasFehrestState(false);
+    setWasFehrestOpen(false);
   };
 
   const goToQuiz = () => {
-    isFehrestOpen && setWasFehrestState(isFehrestOpen);
+    isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
     closeFehrest();
     setActiveTab(1);
   };
 
   const goToYavar = () => {
-    isFehrestOpen && setWasFehrestState(isFehrestOpen);
+    isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
     closeFehrest();
     setActiveTab(2);
   };

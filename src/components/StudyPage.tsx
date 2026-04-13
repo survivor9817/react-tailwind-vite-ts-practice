@@ -16,12 +16,6 @@ import Tab from "./Tab";
 //   Menu as MenuIcon,
 // } from "@nine-thirty-five/material-symbols-react/rounded";
 
-// import Fehrest from "./Fehrest";
-// import Menu from "./Menu";
-// import Book from "./Book";
-// import Quiz from "./Quiz";
-// import Yavar from "./Yavar";
-
 const StudyPage = () => {
   const {
     isFehrestOpen,
@@ -75,7 +69,7 @@ const StudyPage = () => {
         </nav>
 
         {/* baa zadane dokme tab va jaabejaaee e focus chidemaane tabhaa beham mirize.
-aslan nabayad ofoghi scrollpazir bashe */}
+            aslan nabayad ofoghi scrollpazir bashe */}
         <TabsContainer
           activeTab={activeTab}
           className="w-full h-[calc(100vh-58px)] sm:h-[calc(100dvh-58px)]"

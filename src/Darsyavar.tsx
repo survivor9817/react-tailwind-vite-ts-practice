@@ -4,6 +4,7 @@ import "./App.css";
 import StudyPage from "./components/StudyPage";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import type { Book, BookOption } from "./data/booksData";
+import { ToastProvider } from "./components/ToastProvider";
 
 type BookContextType = {
   selectedBookOption: BookOption | null;
@@ -46,10 +47,12 @@ const Darsyavar = () => {
   };
 
   return (
-    <BookContext.Provider value={bookContextValue}>
-      {/* <LandingPage /> */}
-      <StudyPage />
-    </BookContext.Provider>
+    <ToastProvider>
+      <BookContext.Provider value={bookContextValue}>
+        {/* <LandingPage /> */}
+        <StudyPage />
+      </BookContext.Provider>
+    </ToastProvider>
   );
 };
 

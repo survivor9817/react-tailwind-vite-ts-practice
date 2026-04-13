@@ -14,8 +14,8 @@ const Quiz = () => {
     question,
     loading,
     // idsError,
-    questionError,
-    error,
+    // questionError,
+    // error,
     loadIds,
     loadQuestion,
     clearQuiz,
@@ -64,10 +64,6 @@ const Quiz = () => {
           onClose={closeResultsModal}
         />
       )}
-
-      {/* creating session and fetch ids error toast */}
-
-      {/* loading error toast */}
     </>
   );
 };

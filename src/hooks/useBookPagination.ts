@@ -101,7 +101,7 @@ export const useBookPagination = () => {
   return {
     currentBook,
     currentPage,
-    goToPage,
+    // goToPage,
     goToPrevPage,
     goToNextPage,
     inputPageNumberRefEl,

@@ -5,9 +5,9 @@ import Select, {
   type StylesConfig,
 } from "react-select";
 import { useEffect, useRef, useState } from "react";
-import { getOptionsFromDB, type FilterOption } from "../data/fehrestsData";
 import type { QuizFiltersType } from "../hooks/useQuizFilters";
 import { fakeFetch } from "../hooks/fakeFetch";
+import { getOptionsFromDB, type FilterOption } from "../data/quizFilterOptionsData";
 
 type Props = {
   id: "Where" | "Level" | "Source";

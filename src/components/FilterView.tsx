@@ -1,9 +1,9 @@
-import type { ActionMeta, SingleValue } from "react-select";
 import { useQuizFiltersProgressiveDisclosure } from "../hooks/useQuizFiltersProgressiveDisclosure";
 import FilterSelector from "./FilterSelector";
 import StartQuizBtn from "./StartQuizBtn";
-import { type FilterOption } from "../data/fehrestsData";
 import type { QuizFiltersType } from "../hooks/useQuizFilters";
+import type { ActionMeta, SingleValue } from "react-select";
+import type { FilterOption } from "../data/quizFilterOptionsData";
 
 type Props = {
   quizFilters: QuizFiltersType;

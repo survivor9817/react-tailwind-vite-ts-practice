@@ -31,15 +31,21 @@ const BookPage = () => {
     );
   }
 
+  // make it async with fakeFetch and render a skeleton when component is loading
   const pageContent = createFakeBookPagesContent(currentBook?.id)[currentPage - 1].content;
   const pageNum = toFaNums(currentPage);
 
   return (
     <>
       {currentBook && currentPage && (
-        <section ref={pageRef} key={currentPage} id={`page${currentPage}`} className="page">
-          <div>{`صفحه ${pageNum}`}</div>
-          <div>
+        <section
+          ref={pageRef}
+          // key={currentPage}
+          id={`page${currentPage}`}
+          className="page relative"
+        >
+          <div className="absolute top-0 left-0 bg-pink-400">{`صفحه ${pageNum}`}</div>
+          <div className="p-2 pt-8">
             <p>{pageContent}</p>
             <img src="./s.img" alt="" width={"700px"} height={"600px"} />
           </div>
