@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { toFaNums } from "../utils/toFaNums";
 import { BookContext } from "../Darsyavar";
 import { createFakeBookPagesContent } from "../data/fehrestsData";
+import IconBtn from "./IconBtn";
 
 const BookPage = () => {
   const { currentBook, currentPage } = useContext(BookContext);
@@ -18,7 +19,17 @@ const BookPage = () => {
     }
   }, [currentBook, currentPage]);
 
-  if (!currentBook || !currentPage) return <p>کتاب و یا صفحه نامعین است.</p>;
+  if (!currentBook || !currentPage) {
+    return (
+      <div className="flex flex-col justify-center items-center w-full h-125 p-2">
+        <div className="text-red-500 text-center">
+          لطفاً کتاب را از فهرست سمت راست
+          <IconBtn i={"list"} className="text-5xl scale-x-[-1] inline-flex translate-y-4 m-2" />
+          انتخاب کنید.
+        </div>
+      </div>
+    );
+  }
 
   const pageContent = createFakeBookPagesContent(currentBook?.id)[currentPage - 1].content;
   const pageNum = toFaNums(currentPage);

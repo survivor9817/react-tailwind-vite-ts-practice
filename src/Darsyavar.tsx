@@ -23,7 +23,7 @@ export const BookContext = createContext<BookContextType>({
   setCurrentPage: () => {},
 });
 
-function Darsyavar() {
+const Darsyavar = () => {
   const [selectedBookOption, setSelectedBookOption] = useLocalStorage<BookOption | null>(
     "lastBookSelectOption",
     null,
@@ -51,6 +51,6 @@ function Darsyavar() {
       <StudyPage />
     </BookContext.Provider>
   );
-}
+};
 
 export default Darsyavar;

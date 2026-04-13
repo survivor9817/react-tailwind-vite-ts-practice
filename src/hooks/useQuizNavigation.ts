@@ -25,10 +25,9 @@ export const useQuizNavigation = (
     }
   };
 
-  // in dota mitoonan export beshan taa state dokme haaye ghabli va badi taeen beshe
-  // vali khob niazi ham nist, oudake!
   const isFirstQuestion = currentQuestionIndex === 0;
-  const isLastQuestion = questionIds ? currentQuestionIndex === questionIds.length - 1 : false;
+  const lastQuestionIndex = questionIds.length - 1;
+  const isLastQuestion = currentQuestionIndex === lastQuestionIndex;
 
   const goToPrevQuestion = async () => {
     if (isFirstQuestion) {
@@ -63,6 +62,7 @@ export const useQuizNavigation = (
 
   return {
     currentQuestionIndex,
+    lastQuestionIndex,
     prevLoading,
     goToPrevQuestion,
     nextLoading,

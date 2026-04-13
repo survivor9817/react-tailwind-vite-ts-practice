@@ -1,27 +1,43 @@
 import { useContext, useEffect, useState } from "react";
 import { BookContext } from "../Darsyavar";
 import type { ActionMeta, SingleValue } from "react-select";
-import type { FilterOption } from "../data/data";
+import type { FilterOption } from "../data/fehrestsData";
+
+export type QuizFiltersType = {
+  BookId: number | undefined;
+  Where: {
+    value: string;
+    label: string;
+  };
+  Level: {
+    value: string;
+    label: string;
+  };
+  Source: {
+    value: string;
+    label: string;
+  };
+};
 
 export const useQuizFilters = () => {
   const { currentBook } = useContext(BookContext);
-
-  const [quizFilters, setQuizFilters] = useState({
-    Book: currentBook?.id,
+  const [quizFilters, setQuizFilters] = useState<QuizFiltersType>({
+    BookId: currentBook?.id,
     Where: { value: "", label: "" },
     Level: { value: "", label: "" },
     Source: { value: "", label: "" },
   });
 
-  const resetFilters = () => {
+  const clearFilters = () => {
     setQuizFilters({
-      Book: currentBook?.id,
+      BookId: currentBook?.id,
       Where: { value: "", label: "" },
       Level: { value: "", label: "" },
       Source: { value: "", label: "" },
     });
   };
-  useEffect(() => resetFilters(), [currentBook]);
+
+  useEffect(() => clearFilters(), [currentBook]);
 
   const onFilterChange = (
     selected: SingleValue<FilterOption>,
@@ -37,8 +53,8 @@ export const useQuizFilters = () => {
 
   return {
     quizFilters,
-    setQuizFilters,
-    resetFilters,
+    // setQuizFilters,
+    clearFilters,
     onFilterChange,
   };
 };

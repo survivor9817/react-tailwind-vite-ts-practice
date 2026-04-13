@@ -94,6 +94,3 @@ export const reactionMsgData: ReactionMsgType[] = [
     color: "bg-[#ff8c00] text-white",
   },
 ];
-
-export type reactionBtnsType = typeof reactionBtnData;
-export type reactionMsgsType = typeof reactionMsgData;

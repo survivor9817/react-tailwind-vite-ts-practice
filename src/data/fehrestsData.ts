@@ -1,3 +1,4 @@
+import type { QuizFiltersType } from "../hooks/useQuizFilters";
 import { getBookById } from "./booksData";
 
 // FEHREST
@@ -455,7 +456,7 @@ export const lorem = `
   متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی. متن اصلی کتاب درسی آزمایشی.
   `;
 
-export function createFakeBookPagesContent(bookId: number) {
+export const createFakeBookPagesContent = (bookId: number) => {
   const lastPage = getBookById(bookId).lastPage;
   const loremArray = [];
   for (let i = 1; i <= lastPage; i++) {
@@ -464,7 +465,7 @@ export function createFakeBookPagesContent(bookId: number) {
   }
 
   return loremArray;
-}
+};
 
 // FILTERS AND QUIZ
 export type FilterOption = { value: string; label: string };
@@ -498,3 +499,12 @@ const referenceOptions = [
   { id: 7, value: "تألیفی", label: "تألیفی" },
 ];
 export const getReferenceOptions = () => referenceOptions;
+
+export const getOptionsFromDB = (id: string, quizFilters: QuizFiltersType) => {
+  // baayad dependant dropdown list baashe. yani agar level ya source bood,
+  // baa darnazar gereftane quiz filters gozine haa bargardande beshan.
+  if (!quizFilters.BookId) return;
+  if (id === "Where") return getFlatFehrestSectionsById(quizFilters.BookId);
+  if (id === "Level") return getLevelOptions();
+  if (id === "Source") return getReferenceOptions();
+};

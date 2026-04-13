@@ -1,11 +1,17 @@
-export type ReactionId = "isCorrect" | "isIncorrect" | "isNull" | "isLike" | "isStar" | "isReport";
+export type DbReactionId =
+  | "isCorrect"
+  | "isIncorrect"
+  | "isNull"
+  | "isLike"
+  | "isStar"
+  | "isReport";
 
 export type ReactionType = "answer" | "feedback";
 
 export type DbReaction = {
   userId: string;
   questionId: string;
-  reactionId: ReactionId;
+  reactionId: DbReactionId;
   reactionType: ReactionType;
   createdAt: string;
 };
@@ -91,146 +97,6 @@ export const REACTIONS: DbReaction[] = [
     reactionType: "feedback",
     createdAt: now,
   },
-  {
-    userId: "123",
-    questionId: "5",
-    reactionId: "isCorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "5",
-    reactionId: "isLike",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "6",
-    reactionId: "isIncorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "6",
-    reactionId: "isStar",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "7",
-    reactionId: "isNull",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "7",
-    reactionId: "isLike",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "7",
-    reactionId: "isReport",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "8",
-    reactionId: "isCorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "8",
-    reactionId: "isLike",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "8",
-    reactionId: "isStar",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "9",
-    reactionId: "isCorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "9",
-    reactionId: "isLike",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "10",
-    reactionId: "isIncorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "10",
-    reactionId: "isStar",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "11",
-    reactionId: "isNull",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "11",
-    reactionId: "isLike",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "11",
-    reactionId: "isReport",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "12",
-    reactionId: "isCorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "12",
-    reactionId: "isLike",
-    reactionType: "feedback",
-    createdAt: now,
-  },
-  {
-    userId: "123",
-    questionId: "12",
-    reactionId: "isStar",
-    reactionType: "feedback",
-    createdAt: now,
-  },
 ];
 
 export const addReactionToDB = (newReaction: DbReaction) => REACTIONS.push(newReaction);
@@ -266,7 +132,7 @@ export const createUiReactionsObject = (dbReactions: DbReaction[] | undefined): 
 
   if (!dbReactions?.length) return empty;
 
-  const present = new Set<ReactionId>(dbReactions.map((r) => r.reactionId));
+  const present = new Set<DbReactionId>(dbReactions.map((r) => r.reactionId));
 
   const result: UiReaction = {
     isCorrect: present.has("isCorrect"),
@@ -320,7 +186,7 @@ export const saveReactionToDB = (newReaction: DbReaction) => {
   existing ? removeReactionFromDB(existing) : addReactionToDB(newReaction);
 };
 
-// masalan api get result
+// masalan api get result, aakhare quiz in taabe ro map mikonim roye array array mifrestim map mikone ba in.
 export const getResultsFromDB = (userId: string, questionIds: string[]) => {
   const answers = questionIds.map((questionId) => {
     const reactions = getReactions(userId, questionId);
@@ -334,32 +200,39 @@ export const getResultsFromDB = (userId: string, questionIds: string[]) => {
   return { correctsCount, incorrectsCount, nullsCount };
 };
 
-// oldies
+// injaa array soalaati ke user filter zade saakhte mishe.
 export const requestedQuestionsIDs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-export const getQuestionIds = () => requestedQuestionsIDs;
+
+// masalan api getQuestionIdsByUserFilter.
+export const getQuestionIds = (/** quizFilters sent from front. */) => requestedQuestionsIDs;
+
+// jadvale taghaaye har soal.
 
 export type QuestionType = {
   id: string;
-  bookName: string;
-  where: string;
-  level: string;
-  source: string;
+  bookId: string; // momkene soal mota allegh be yek yaa chand ketaab baashe.
+  fehrestSectionId: string; // soal mota'allegh be kodaam bakhsh az ketaabe darsie. marboot be kodam titr az fehreste ketaabe. mitoone marboot be bish az yek bakhsh baashe.
+  levelId: string; // sathe sakhtie soal. faghat yek sath.
+  sourceId: string; // soal mota'allegh be kodam manba e tarrahie soale. (kodaam aazmon or ketab komak darsi). momkene dar bish az yek manba baashe.
   hasImg: boolean;
-  question: string;
-  descriptiveAnswer: string;
-  author: string;
-  date: string;
-  score: number;
-  tags: string[];
+  question: string; // har style ya saakhtaare htmli mitone daashte baashe. ghaabele taeen nist.
+  descriptiveAnswer: string; // har style ya saakhtaare htmli mitone daashte baashe. ghaabele taeen nist.
+  authorId: string; // esm famile nevisande soal ya pasokhe tashrihi ya hardosh. har soal faghat yek esm nevisande dare.
+  date: string; // maah va saal tarrahie soal gharare zakhire beshe. tooye ui maah irani be horoof va saal be adade.
+  score: number; // number. testi haa hame yek nomre baashan ta bebinim che mi shavad dar aayande.
+  tags: string[]; // tag haaye type soaalaat. har soal mitoone type haaye mokhtalefi daashte baashe.
   reactions?: UiReaction;
+  refPages?: number[]; // tooye descriptive answereshaan be che safhe haayee az ketaab ref zade shode.
+  // mikhaam dar aayande alaave bar adade safhe javaabhaa, jomle i ke toye oon safhe marboot be javaabe in soal hastesh ro ham highlight konam toye ui. nemidoonam chetor in kaar ro anjaam bedam.
 };
+
 export const questionsData: QuestionType[] = [
   {
     id: "1",
-    bookName: "زیست‌شناسی ۱",
-    where: "۶. گوارش و جذب مواد",
-    level: "2",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۶. گوارش و جذب مواد",
+    levelId: "2",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -389,17 +262,17 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> نادرست. گلوکز به داخل یاخته وارد می‌شود، نه خارج.
     </div>
     `,
-    author: "سامان رضایی",
+    authorId: "سامان رضایی",
     date: "اردیبهشت ۱۴۰۱",
     score: 1,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
   },
   {
     id: "2",
-    bookName: "زیست‌شناسی ۱",
-    where: "۶. گوارش و جذب مواد",
-    level: "2",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۶. گوارش و جذب مواد",
+    levelId: "2",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -430,17 +303,17 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۳:</strong> نادرست. چینه‌دان کرم خاکی فاقد دندانه است.
     </div>
     `,
-    author: "رضا قزلسفلو",
+    authorId: "رضا قزلسفلو",
     date: "اردیبهشت ۱۳۹۸",
     score: 2,
     tags: ["چهار گزینه ای", "جای خالی", "صورت مبهم", "مقایسه ای", "مفهومی", "متوسط"],
   },
   {
     id: "3",
-    bookName: "زیست‌شناسی ۱",
-    where: "۶. گوارش و جذب مواد",
-    level: "3",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۶. گوارش و جذب مواد",
+    levelId: "3",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -471,17 +344,17 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۳:</strong> نادرست. در ملخ، چینه‌دان خودش بخش حجیم انتهای مری است.
     </div>
     `,
-    author: "محمد حسنی",
+    authorId: "محمد حسنی",
     date: "اسفند ۱۴۰۰",
     score: 2,
     tags: ["چهار گزینه ای", "جای خالی", "مقایسه ای", "سخت"],
   },
   {
     id: "4",
-    bookName: "زیست‌شناسی ۱",
-    where: "۳. ساختار گیاهان",
-    level: "3",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۳. ساختار گیاهان",
+    levelId: "3",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
   <div class="question">
@@ -512,17 +385,17 @@ export const questionsData: QuestionType[] = [
     <strong>گزینه ۳:</strong> نادرست. قرارگیری دسته های آوندی روی دایره‌های هم‌مرکز مربوط به ساختار ریشه است نه ساقه.
   </div>
   `,
-    author: "سید حسین قاضوی",
+    authorId: "سید حسین قاضوی",
     date: "خرداد ۱۴۰۲",
     score: 3,
     tags: ["چهار گزینه ای", "جای خالی", "مقایسه ای", "مفهومی", "سخت"],
   },
   {
     id: "5",
-    bookName: "زیست‌شناسی ۲",
-    where: "۴. گردش مواد در بدن",
-    level: "2",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۲",
+    fehrestSectionId: "۴. گردش مواد در بدن",
+    levelId: "2",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -552,17 +425,17 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> درست. مویرگ‌های سینوزوئیدی کبد دارای فاصله بین یاخته‌ای زیاد هستند.
     </div>
     `,
-    author: "حمید رضایی",
+    authorId: "حمید رضایی",
     date: "دی ۱۴۰۱",
     score: 2,
     tags: ["چهار گزینه ای", "مفهومی", "متوسط"],
   },
   {
     id: "6",
-    bookName: "زیست‌شناسی ۱",
-    where: "۶. گوارش و جذب مواد",
-    level: "2",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۶. گوارش و جذب مواد",
+    levelId: "2",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -593,17 +466,17 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> مناسب. بعضی اسفنکترها در استفراغ نقش دارند.
     </div>
     `,
-    author: "سعید کریمی",
+    authorId: "سعید کریمی",
     date: "بهمن ۱۳۹۹",
     score: 1,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
   },
   {
     id: "7",
-    bookName: "زیست‌شناسی ۱",
-    where: "۶. گوارش و جذب مواد",
-    level: "3",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۶. گوارش و جذب مواد",
+    levelId: "3",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -634,17 +507,17 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> نادرست. باز شدن اسفنکترها در استفراغ اتفاق می‌افتد.
     </div>
     `,
-    author: "مهدی احمدی",
+    authorId: "مهدی احمدی",
     date: "فروردین ۱۴۰۲",
     score: 2,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "متوسط"],
   },
   {
     id: "8",
-    bookName: "زیست‌شناسی ۱",
-    where: "۶. گوارش و جذب مواد",
-    level: "2",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۶. گوارش و جذب مواد",
+    levelId: "2",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -675,17 +548,17 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۳:</strong> نادرست. لیپیدها به طور کامل در روده گوارش می‌یابند.
     </div>
     `,
-    author: "حسین میرزایی",
+    authorId: "حسین میرزایی",
     date: "آبان ۱۴۰۱",
     score: 1,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "آسان"],
   },
   {
     id: "9",
-    bookName: "زیست‌شناسی ۱",
-    where: "۶. گوارش و جذب مواد",
-    level: "3",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۶. گوارش و جذب مواد",
+    levelId: "3",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -716,17 +589,17 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۴:</strong> نادرست. گوارش چربی‌ها نیاز به آنزیم دارد.
     </div>
     `,
-    author: "امیرحسین نجفی",
+    authorId: "امیرحسین نجفی",
     date: "مهر ۱۴۰۲",
     score: 2,
     tags: ["چهار گزینه ای", "جای خالی", "مفهومی", "متوسط"],
   },
   {
     id: "10",
-    bookName: "زیست‌شناسی ۱",
-    where: "۶. گوارش و جذب مواد",
-    level: "4",
-    source: "کنکور سراسری",
+    bookId: "زیست‌شناسی ۱",
+    fehrestSectionId: "۶. گوارش و جذب مواد",
+    levelId: "4",
+    sourceId: "کنکور سراسری",
     hasImg: false,
     question: `
     <div class="question">
@@ -756,17 +629,16 @@ export const questionsData: QuestionType[] = [
       <strong>گزینه ۳:</strong> ممکن است. HCl در جذب ویتامین B12 نقش دارد که برای سیستم عصبی ضروری است.
     </div>
     `,
-    author: "محمد جوادی",
+    authorId: "محمد جوادی",
     date: "تیر ۱۴۰۲",
     score: 3,
     tags: ["چهار گزینه ای", "مفهومی", "تحلیلی", "سخت"],
   },
 ];
 
+// masalan api daryaft soal az server baa id.
 export const getQuestionFromDB = (qId: string) => {
   const q = questionsData.find((q) => q.id === qId);
   if (q) q.reactions = getUiReactionObjectFromDB("123", qId);
   return q;
 };
-
-export type questionDataType = (typeof questionsData)[0];

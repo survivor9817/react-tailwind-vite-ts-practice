@@ -13,12 +13,12 @@ export const useQuizData = () => {
   const [questionLoading, setQuestionLoading] = useState(false);
   const [questionError, setQuestionError] = useState<Error | null>(null);
 
-  const loadIds = async () => {
+  const loadIds = async (/** user quiz filters???? */) => {
     setIdsLoading(true);
     setIdsError(null);
 
     try {
-      const ids = await fakeFetch(() => getQuestionIds());
+      const ids = await fakeFetch(() => getQuestionIds(/** user quiz filters???? */));
       setQuestionIds(ids);
       return ids;
     } catch (error) {
@@ -28,13 +28,6 @@ export const useQuizData = () => {
       setIdsLoading(false);
     }
   };
-
-  // بارگذاری آیدی‌ها در صورت عدم وجود
-  // useEffect(() => {
-  //   if (!questionIds) {
-  //     loadIds();
-  //   }
-  // }, []);
 
   const loadQuestion = async (currentId: string) => {
     // ابتدا مطمئن شویم که questionIds لود شده
@@ -60,6 +53,11 @@ export const useQuizData = () => {
     }
   };
 
+  const clearQuiz = () => {
+    setQuestionIds(null);
+    setQuestion(null);
+  };
+
   return {
     questionIds,
     question,
@@ -71,5 +69,6 @@ export const useQuizData = () => {
     error: idsError || questionError,
     loadIds,
     loadQuestion,
+    clearQuiz,
   };
 };

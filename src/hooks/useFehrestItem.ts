@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { type FehrestSection } from "../data/data";
 import { BookContext } from "../Darsyavar";
+import type { FehrestSection } from "../data/fehrestsData";
 
 // [1, 2, 6, 12, 13, 25, 35, 36, 48, 56, 65, 66, 77, 86, 98, 99, 107, 116, 124, 132]
 // 27

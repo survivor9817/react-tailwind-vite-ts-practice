@@ -31,6 +31,7 @@ export const useBookPagination = () => {
     goToPage(newPage);
   };
 
+  // use book pagination inputs
   const handleInputRange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputPage = +e.target.value;
     goToPage(inputPage);

@@ -6,7 +6,7 @@ import type {
   UiReactionId,
 } from "../data/reactionData";
 import { saveReactionToDB } from "../data/questionsData";
-import type { DbReaction, ReactionId } from "../data/questionsData";
+import type { DbReaction, DbReactionId } from "../data/questionsData";
 import { reactionBtnData, reactionMsgData } from "../data/reactionData";
 
 export const useReactionBtns = (
@@ -66,7 +66,7 @@ export const useReactionBtns = (
   const createDbReactionOnClickOnBtn = (
     userId: string,
     currentQuestionID: string,
-    reactionId: ReactionId,
+    reactionId: DbReactionId,
   ) => {
     const isAnswer = reactionId === "isCorrect" || reactionId === "isIncorrect";
 

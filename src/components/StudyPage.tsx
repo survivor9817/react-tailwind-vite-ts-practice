@@ -1,7 +1,7 @@
+import { useStudyPageNav } from "../hooks/useStudyPageNav";
 import Fehrest from "./Fehrest";
 import Menu from "./Menu";
 import TabBtn from "./TabBtn";
-import { useStudyPageNav } from "../hooks/useStudyPageNav";
 import Book from "./Book";
 import Quiz from "./Quiz";
 import Yavar from "./Yavar";

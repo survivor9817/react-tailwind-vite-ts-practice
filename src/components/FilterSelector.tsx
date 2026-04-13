@@ -4,31 +4,57 @@ import Select, {
   type SingleValue,
   type StylesConfig,
 } from "react-select";
-import { useEffect, useRef } from "react";
-import type { FilterOption } from "../data/fehrestsData";
+import { useEffect, useRef, useState } from "react";
+import { getOptionsFromDB, type FilterOption } from "../data/fehrestsData";
+import type { QuizFiltersType } from "../hooks/useQuizFilters";
+import { fakeFetch } from "../hooks/fakeFetch";
 
 type Props = {
-  id: string;
+  id: "Where" | "Level" | "Source";
   label: string;
-  selectedOption: FilterOption;
-  options: FilterOption[];
+  options?: FilterOption[];
   onChange: (selected: SingleValue<FilterOption>, _action: ActionMeta<FilterOption>) => void;
-  // ref: Ref<Select<unknown, boolean, GroupBase<unknown>>> | undefined;
+  loadingMessage?: string;
+  quizFilters: QuizFiltersType;
 };
 
-const FilterSelector = ({ id, label, selectedOption, options, onChange }: Props) => {
+const FilterSelector = ({
+  id,
+  label,
+  quizFilters,
+  options: initialOptions = [{ value: "", label: "ابتدا باید یک کتاب را انتخاب کنید." }],
+  onChange,
+  loadingMessage = "در حال بارگذاری...",
+}: Props) => {
   const selectRef = useRef<SelectInstance<FilterOption, false>>(null);
 
+  const [options, setOptions] = useState<FilterOption[]>(initialOptions);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
   useEffect(() => {
-    if (id !== "Where") {
+    const loadData = async () => {
+      setIsLoading(true);
+      try {
+        const data = await fakeFetch(() => getOptionsFromDB(id, quizFilters));
+        if (!data) return; // ye iteme pishfarz mizaari. ke dobare talash kone. ye hamchin chizi.
+        setOptions(data);
+      } catch (error) {
+        console.error(`Error loading options for ${id}:`, error);
+        setHasError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, [quizFilters.BookId]);
+
+  useEffect(() => {
+    if (id !== "Where" && !isLoading) {
       setTimeout(() => selectRef.current?.focus(), 300);
     }
-  }, []);
-
-  // const { selectedBookOption, setCurrentBook, setSelectedBookOption } = useContext(BookContext);
-
-  // fetch data
-  // const options = getOptionsOfBookSelector();
+  }, [id, isLoading]);
 
   const styles: StylesConfig<FilterOption, false> = {
     control: (provider) => ({
@@ -41,49 +67,55 @@ const FilterSelector = ({ id, label, selectedOption, options, onChange }: Props)
       fontSize: "16px",
       fontWeight: "900",
       height: "52px",
-      // backgroundColor: "#ebebeb",
-      cursor: "pointer",
+      cursor: isLoading ? "wait" : "pointer",
+      backgroundColor: isLoading ? "#f5f5f5" : "white",
     }),
-    // menu: (provided) => ({
-    //   ...provided,
-    //   zIndex: 99999999, // مقدار بزرگتر از هر z‑index دیگر
-    // }),
-    // /** اگر از portal استفاده می‌کنید (در ادامه) **/
     menuPortal: (provided) => ({
       ...provided,
       zIndex: 9999,
     }),
   };
+
+  if (hasError) {
+    return (
+      <div className="relative">
+        <div className="border-2 border-red-300 rounded-lg p-3 text-red-600 text-center">
+          خطا در بارگذاری گزینه‌های {label}
+          گزینه غربال قبلی را دوباره انتخاب کنید.
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative">
       <label
-        // htmlFor={id}
         className={`absolute top-0 right-0 z-1 text-right pointer-events-none font-bold text-[#1a73e8] 
           mx-3 my-3 px-1
           transform transition-all bg-white duration-300 ease-in-out 
-          ${selectedOption.value ? "text-[16px] -translate-y-full " : "text-[18px] translate-y-[0%]"}`}
+          ${quizFilters[id].value ? "text-[16px] -translate-y-full " : "text-[18px] translate-y-[0%]"}
+          ${isLoading ? "opacity-50" : ""}`}
       >
         {label}
       </label>
 
       <Select
         ref={selectRef}
-        // id={id}
-        menuPortalTarget={document.body} // منو به body می‌رود
+        menuPortalTarget={document.body}
         name={id}
-        value={selectedOption}
+        value={quizFilters[id]}
         tabIndex={0}
         styles={styles}
-        defaultValue={undefined}
         options={options}
-        placeholder={""}
+        placeholder={isLoading ? loadingMessage : ""}
         className="basic-single"
         classNamePrefix="select"
         isRtl={true}
         isSearchable={false}
         onChange={onChange}
+        isLoading={isLoading}
+        isDisabled={isLoading} // nemikhaam disabled beshe. mikhaam dokme loading baashe va menu ham baaz beshe vali gozine aval dar haale baargozaari baashe va clickable ham nabashe.
       />
-      {/* {renderedOptions} */}
     </div>
   );
 };

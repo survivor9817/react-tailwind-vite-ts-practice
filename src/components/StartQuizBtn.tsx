@@ -34,12 +34,12 @@ export const StartQuizBtn = ({
   type = "button",
 }: StartQuizBtnProps) => {
   /* ----------  کلاس‑های wrapper  ---------- */
-  const wrapperCls = `flex items-center min-w-57.5 h-16 border-2 rounded-full z-4
-    opacity-0 transition-all duration-300 bg-white
+  const wrapperCls = `flex p-1.75 items-center min-w-57.5 h-16 border-2 rounded-full z-4
+    opacity-0 transition-[opacity,transform] duration-300 bg-white
     ${show ? "visible opacity-100 -translate-y-6.75" : "invisible"}`;
 
   /* ----------  کلاس‑های دکمه  ---------- */
-  const btnCls = `w-[95.6%] h-12 mx-[2.2%] rounded-full bg-black text-white
+  const btnCls = `w-full h-full rounded-full bg-black text-white
     cursor-pointer transition-colors hover:bg-gray-800
     disabled:opacity-70 disabled:cursor-not-allowed
     flex items-center justify-center gap-2`;

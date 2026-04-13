@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import type { QuestionType } from "../data/questionsData";
 import { useQuizNavigation } from "../hooks/useQuizNavigation";
 import Answer from "./Answer";
@@ -13,8 +12,8 @@ import QuizTagBar from "./QuizTagBar";
 import ReactionButtons from "./ReactionButtons";
 import ReactionMessages from "./ReactionMessages";
 import ShowAnswerBtn from "./ShowAnswerBtn";
-import useToggle from "../hooks/useToggle";
 import { useReactionBtns } from "../hooks/useReactionBtns";
+import { useQuizAnswer } from "../hooks/useQuizAnswer";
 
 type Props = {
   questionIds: string[];
@@ -24,23 +23,38 @@ type Props = {
 };
 
 const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: Props) => {
-  const { id, reactions, tags, question, author, source, date, score, descriptiveAnswer } =
-    questionData;
-  // QuizView>>>
-  const lastQuestionIndex = questionIds.length - 1;
-  const { currentQuestionIndex, prevLoading, goToPrevQuestion, nextLoading, goToNextQuestion } =
-    useQuizNavigation(questionIds, loadQuestion, openEndConfirm);
+  const {
+    id,
+    reactions,
+    tags,
+    question,
+    authorId: author,
+    sourceId: source,
+    date,
+    score,
+    descriptiveAnswer,
+  } = questionData;
 
-  const [isAnswerVisible, toggleAnswer, , hideAnswer] = useToggle();
-  useEffect(() => {
-    hideAnswer();
-  }, [currentQuestionIndex, hideAnswer]);
+  const {
+    currentQuestionIndex,
+    lastQuestionIndex,
+    prevLoading,
+    goToPrevQuestion,
+    nextLoading,
+    goToNextQuestion,
+  } = useQuizNavigation(questionIds, loadQuestion, openEndConfirm);
 
   const { btnsMeta, msgsMeta, updateReactionOnClick } = useReactionBtns(id, "123", reactions);
+
+  const { answerContent, isAnswerVisible, toggleAnswer } = useQuizAnswer(
+    descriptiveAnswer,
+    currentQuestionIndex,
+  );
 
   return (
     <div className={`quiz-box flex flex-col p-2 overflow-hidden ${isAnswerVisible ? "open" : ""}`}>
       {/* Quiz card */}
+
       {/* <!-- Row 1 : Navigation Buttons of Exercise Section --> */}
       <div className="flex justify-between items-center h-12 mb-1">
         <div className="flex">
@@ -105,7 +119,7 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
 
       {/* <!-- Row 6 : Answer Box --> */}
       <AnswerCollapsibleContainer isExpanded={isAnswerVisible}>
-        <Answer answer={descriptiveAnswer} />
+        <Answer answer={answerContent} />
       </AnswerCollapsibleContainer>
     </div>
   );

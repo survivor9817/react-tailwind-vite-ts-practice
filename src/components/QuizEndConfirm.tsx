@@ -1,3 +1,5 @@
+import Modal from "./Modal";
+
 type Props = {
   onClose: () => void;
   onAction: () => void;
@@ -5,7 +7,7 @@ type Props = {
 
 const QuizEndConfirm = ({ onClose, onAction }: Props) => {
   return (
-    <>
+    <Modal onClose={onClose} className="w-77.5">
       {/* Message */}
       <p className="text-center text-lg leading-6 mt-6 mb-6 p-4">
         می‌خوای این جلسه تمرین رو تموم کنی؟
@@ -27,7 +29,7 @@ const QuizEndConfirm = ({ onClose, onAction }: Props) => {
           خیر
         </button>
       </div>
-    </>
+    </Modal>
   );
 };
 
