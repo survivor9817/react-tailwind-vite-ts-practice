@@ -62,9 +62,9 @@ const ToastItem = ({ toast, onClose }: { toast: Toast; onClose: () => void }) =>
 type ToastContextProps = {
   toasts: Toast[];
   /** Show a toast */
-  show: (msg: string, opts?: Partial<Omit<Toast, "id" | "message">>) => void;
+  showToast: (msg: string, opts?: Partial<Omit<Toast, "id" | "message">>) => void;
   /** Hide a toast (usually called internally) */
-  hide: (id: string) => void;
+  hideToast: (id: string) => void;
 };
 
 const ToastContext = createContext<ToastContextProps | undefined>(undefined);
@@ -100,7 +100,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <ToastContext.Provider value={{ toasts, show, hide }}>
+    <ToastContext.Provider value={{ toasts, showToast: show, hideToast: hide }}>
       {children}
 
       <div className="fixed inset-0 flex flex-col items-center p-4 pointer-events-none  z-9999">

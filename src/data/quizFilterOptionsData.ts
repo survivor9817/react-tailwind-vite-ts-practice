@@ -2,7 +2,11 @@ import type { QuizFiltersType } from "../hooks/useQuizFilters";
 import { getFehrestById, type FehrestSection } from "./fehrestsData";
 
 // FILTERS AND QUIZ
-export type FilterOption = { value: string; label: string };
+export type FilterOption = {
+  value: string;
+  label: string;
+  isDisabled?: boolean;
+};
 
 const createFehrestOption = (fehrest: FehrestSection[]): FilterOption[] => {
   return fehrest.flatMap((s) => [

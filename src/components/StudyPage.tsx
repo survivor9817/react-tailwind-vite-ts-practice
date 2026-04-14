@@ -74,6 +74,8 @@ const StudyPage = () => {
           activeTab={activeTab}
           className="w-full h-[calc(100vh-58px)] sm:h-[calc(100dvh-58px)]"
         >
+          {/* age ketaab mojood nabood, tooye har seta error neshon bede ke az fehrest ketab ro 
+          entekhaab konan fehrest ro ham baz kon */}
           <Tab>
             <Book />
           </Tab>

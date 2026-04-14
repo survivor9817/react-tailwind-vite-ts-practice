@@ -1,7 +1,7 @@
 // useQuizData.ts
 import { useState } from "react";
 import { getQuestionFromDB, getQuestionIds, type QuestionType } from "../data/questionsData";
-import { fakeFetch } from "./fakeFetch";
+import { fakeFetch } from "../utils/fakeFetch";
 import { useToast } from "../components/ToastProvider";
 
 // voroodi filterhaaye user ro ke bayad begire dg...
@@ -14,7 +14,7 @@ export const useQuizData = () => {
   const [questionLoading, setQuestionLoading] = useState(false);
   const [questionError, setQuestionError] = useState<Error | null>(null);
 
-  const { show } = useToast();
+  const { showToast } = useToast();
 
   const loadIds = async (/** user quiz filters???? */) => {
     setIdsLoading(true);
@@ -29,7 +29,7 @@ export const useQuizData = () => {
       setQuestionIds(ids);
       return ids;
     } catch (error) {
-      show("❌ خطایی رخ داد", { type: "error" });
+      showToast("❌ خطایی رخ داد", { type: "error" });
       setIdsError(error instanceof Error ? error : new Error(String(error)));
 
       return [];
@@ -53,7 +53,11 @@ export const useQuizData = () => {
     setQuestionError(null);
 
     try {
-      const q = await fakeFetch(() => getQuestionFromDB(currentId));
+      const q = await fakeFetch(
+        () => getQuestionFromDB(currentId),
+        // { errorChance: 1 },
+        // { errorChance: 1 },
+      );
       if (q) setQuestion(q);
     } catch (error) {
       setQuestionError(error instanceof Error ? error : new Error(String(error)));

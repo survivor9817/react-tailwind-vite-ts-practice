@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { getLocalData } from "./getLocalData";
+import { getLocalData } from "../utils/getLocalData";
 import { toFaNums } from "../utils/toFaNums";
 import { convertToEnglishDigits } from "../utils/convertToEnglishDigits";
 import { BookContext } from "../Darsyavar";
