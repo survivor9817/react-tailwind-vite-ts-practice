@@ -50,7 +50,7 @@ const FilterSelector = ({
       fontSize: "16px",
       fontWeight: "900",
       height: "52px",
-      cursor: isLoading ? "wait" : "pointer",
+      cursor: /** isLoading ? "wait" : */ "pointer",
       backgroundColor: isLoading ? "#f5f5f5" : "white",
     }),
     menuPortal: (provided) => ({

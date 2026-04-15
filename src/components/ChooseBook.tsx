@@ -1,7 +1,7 @@
 import Select, { type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
 import BookCard from "./BookCard";
-import Button from "./Button";
+import GradeBtn from "./GradeBtn";
 import { useChooseBook } from "../hooks/useChooseBook";
 import type { Field } from "../data/booksData";
 
@@ -39,13 +39,13 @@ const ChooseBook = () => {
 
         <div className="grid grid-cols-3 flex-wrap justify-center gap-2 w-75 sm:w-90 md:w-110 my-4 ">
           {grades.map((grade) => (
-            <Button
+            <GradeBtn
               key={grade.id}
               isActive={selectedGrade.label === grade.label}
               onClick={() => setSelectedGrade(grade)}
             >
               {grade.label}
-            </Button>
+            </GradeBtn>
           ))}
         </div>
       </div>

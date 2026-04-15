@@ -20,10 +20,11 @@ export const useQuestionIdsData = () => {
       const ids = await fakeFetch(() => getQuestionIds(/** user quiz filters???? */));
       setQuestionIds(ids);
       return ids;
-    } catch (error) {
+    } catch (rawError) {
       showToast("❌ خطا در بارگذاری آیدی سؤالات", { type: "error" });
-      setIdsError(error instanceof Error ? error : new Error(String(error)));
-      return [];
+      const err = rawError instanceof Error ? rawError : new Error(String(rawError));
+      setIdsError(err);
+      throw err;
     } finally {
       setIdsLoading(false);
     }

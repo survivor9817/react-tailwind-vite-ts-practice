@@ -5,7 +5,7 @@ type Props = {
   onClose: () => void;
 };
 
-const Menu = ({ isMenuOpen, onClose }: Props) => {
+const MenuSidebar = ({ isMenuOpen, onClose }: Props) => {
   return (
     <>
       <div
@@ -64,4 +64,4 @@ const Menu = ({ isMenuOpen, onClose }: Props) => {
   );
 };
 
-export default Menu;
+export default MenuSidebar;

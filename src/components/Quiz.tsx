@@ -1,4 +1,4 @@
-import { useQuizActions } from "../hooks/useQuizActions";
+import { useQuiz } from "../hooks/useQuiz";
 import FilterView from "./FilterView";
 import QuizView from "./QuizView";
 import QuizResultsModal from "./QuizResultsModal";
@@ -24,7 +24,7 @@ const Quiz = () => {
 
     // questionIdsError,
     // questionError,
-  } = useQuizActions();
+  } = useQuiz();
 
   return (
     <>

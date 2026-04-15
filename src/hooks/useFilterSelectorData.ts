@@ -16,6 +16,7 @@ export const useFilterSelectorData = (
   const { showToast } = useToast();
 
   const loadOptions = async () => {
+    // abort signal yaadet nare besaazi
     setIsLoading(true);
     setHasError(false);
 
@@ -23,7 +24,7 @@ export const useFilterSelectorData = (
       const data = await fakeFetch(
         () => getOptionsFromDB(filterId, quizFilters),
         // { errorChance: 0.5 },
-        { delay: 3000 },
+        { delay: 1000 },
       );
       if (data) setOptions(data);
     } catch (error) {

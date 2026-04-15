@@ -14,8 +14,7 @@ export const useBookSelectData = () => {
       const data = await fakeFetch(
         () => getOptionsOfBookSelector(),
         // { errorChance: 0.5 },
-        { delay: 3000 },
-        // { errorChance: 1 },
+        { delay: 1000 },
       );
       if (data) setOptions(data);
     } catch (e) {

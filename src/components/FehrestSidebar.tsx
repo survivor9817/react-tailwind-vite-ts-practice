@@ -8,7 +8,7 @@ type Props = {
   isFehrestOpen: boolean;
 };
 
-const Fehrest = ({ onClose, isFehrestOpen }: Props) => {
+const FehrestSidebar = ({ onClose, isFehrestOpen }: Props) => {
   const isSmallScreen = useMediaQuery("(max-width: 1440px)");
   const isBackdropOn = isFehrestOpen && isSmallScreen;
 
@@ -25,4 +25,4 @@ const Fehrest = ({ onClose, isFehrestOpen }: Props) => {
   );
 };
 
-export default Fehrest;
+export default FehrestSidebar;

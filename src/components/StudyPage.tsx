@@ -1,6 +1,6 @@
 import { useStudyPageNav } from "../hooks/useStudyPageNav";
-import Fehrest from "./Fehrest";
-import Menu from "./Menu";
+import FehrestSidebar from "./FehrestSidebar";
+import MenuSidebar from "./MenuSidebar";
 import TabBtn from "./TabBtn";
 import Book from "./Book";
 import Quiz from "./Quiz";
@@ -32,9 +32,9 @@ const StudyPage = () => {
 
   return (
     <>
-      <Fehrest isFehrestOpen={isFehrestOpen} onClose={closeFehrest} />
+      <FehrestSidebar isFehrestOpen={isFehrestOpen} onClose={closeFehrest} />
 
-      <Menu isMenuOpen={isMenuOpen} onClose={closeMenu} />
+      <MenuSidebar isMenuOpen={isMenuOpen} onClose={closeMenu} />
 
       <div className="max-w-210 min-w-80 mx-auto overflow-hidden flex flex-col-reverse sm:flex-col">
         <nav

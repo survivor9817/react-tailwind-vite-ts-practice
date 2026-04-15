@@ -23,15 +23,15 @@ const FehrestList = () => {
 
   if (isError)
     return (
-      <div className="flex justify-center items-center gap-2">
-        <span className="text-red-500 text-sm">خطا در بارگذاری گزینه ها</span>
+      <div className="flex justify-center items-center gap-2 text-sm">
+        <span className="text-red-500">خطا در بارگذاری گزینه ها</span>
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             refetch();
           }}
-          className="px-4 py-1.5 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-full transition-colors cursor-pointer"
+          className="px-4 py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-colors cursor-pointer"
         >
           تلاش مجدد ↻
         </button>

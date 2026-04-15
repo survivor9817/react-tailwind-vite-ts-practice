@@ -13,20 +13,22 @@ export const useQuestionData = () => {
   const { showToast } = useToast();
 
   const loadQuestion = async (questionId: string) => {
-    if (!questionId) {
-      setQuestionLoading(false);
-      return;
-    }
-
+    if (!questionId) return;
     setQuestionLoading(true);
     setQuestionError(null);
 
     try {
-      const q = await fakeFetch(() => getQuestionFromDB(questionId));
+      const q = await fakeFetch(
+        () => getQuestionFromDB(questionId),
+        { errorChance: 0.5 },
+        // { errorChance: 1 },
+      );
       if (q) setQuestion(q);
-    } catch (error) {
-      showToast("❌ خطا در بارگذاری آیدی سؤالات", { type: "error" });
-      setQuestionError(error instanceof Error ? error : new Error(String(error)));
+    } catch (rawError) {
+      showToast("❌ خطا در بارگذاری تمرین! دوباره تلاش کنید.", { type: "error" });
+      const err = rawError instanceof Error ? rawError : new Error(String(rawError));
+      setQuestionError(err);
+      throw err;
     } finally {
       setQuestionLoading(false);
     }

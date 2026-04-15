@@ -3,7 +3,7 @@ type ButtonProps = {
   isActive: boolean;
   onClick: () => void;
 };
-const Button = ({ children, isActive, onClick }: ButtonProps) => {
+const GradeBtn = ({ children, isActive, onClick }: ButtonProps) => {
   return (
     <>
       <button
@@ -25,4 +25,4 @@ const Button = ({ children, isActive, onClick }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default GradeBtn;

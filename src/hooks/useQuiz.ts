@@ -3,7 +3,7 @@ import { useQuestionIdsData } from "./useQuestionIdsData";
 import { useQuizFilters } from "./useQuizFilters";
 import useToggle from "./useToggle";
 
-export const useQuizActions = () => {
+export const useQuiz = () => {
   const { quizFilters, clearFilters, onFilterChange } = useQuizFilters();
 
   const { questionIds, questionIdsLoading, questionIdsError, loadQuestionIds, setQuestionIds } =
