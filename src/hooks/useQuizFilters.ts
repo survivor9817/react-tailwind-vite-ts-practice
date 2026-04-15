@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { BookContext } from "../Darsyavar";
 import type { ActionMeta, SingleValue } from "react-select";
 import type { FilterOption } from "../data/quizFilterOptionsData";
+import { BookContext } from "../components/BookProvider";
 
 export type QuizFiltersType = {
   BookId: number | undefined;

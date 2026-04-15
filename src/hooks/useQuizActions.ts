@@ -1,11 +1,24 @@
+import { useQuestionData } from "./useQuestionData";
+import { useQuestionIdsData } from "./useQuestionIdsData";
+import { useQuizFilters } from "./useQuizFilters";
 import useToggle from "./useToggle";
 
-export const useQuizActions = (
-  clearFilters: () => void,
-  clearQuiz: () => void,
-  loadIds: () => Promise<string[]>,
-  loadQuestion: (currentId: string) => Promise<void>,
-) => {
+export const useQuizActions = () => {
+  const { quizFilters, clearFilters, onFilterChange } = useQuizFilters();
+
+  const { questionIds, questionIdsLoading, questionIdsError, loadQuestionIds, setQuestionIds } =
+    useQuestionIdsData();
+
+  const { question, questionLoading, questionError, loadQuestion, setQuestion } = useQuestionData();
+
+  const startQuizLoading = questionLoading || questionIdsLoading;
+
+  const clearQuiz = () => {
+    setQuestionIds(null);
+    setQuestion(null);
+  };
+
+  // useQuizActions
   const [isQuizStarted, , showQuizView, showFilterView] = useToggle();
   const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
   const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
@@ -18,7 +31,7 @@ export const useQuizActions = (
 
   const startQuiz = async () => {
     try {
-      const ids = await loadIds(/** user quiz filters???? */);
+      const ids = await loadQuestionIds(/** user quiz filters???? */);
       if (!ids?.length) return;
       await loadQuestion(ids[0]);
       showQuizView();
@@ -38,14 +51,23 @@ export const useQuizActions = (
   };
 
   return {
+    quizFilters,
+    onFilterChange,
     isQuizStarted,
-    endConfirmModal,
-    resultsModal,
     startQuiz,
+    startQuizLoading,
+    questionIds,
+    loadQuestion,
+    question,
+    endConfirmModal,
     openEndConfirm,
     submitQuiz,
     closeEndConfirm,
+    resultsModal,
     terminateQuiz,
     closeResultsModal,
+
+    questionIdsError,
+    questionError,
   };
 };

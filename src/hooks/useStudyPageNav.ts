@@ -8,13 +8,9 @@ export const useStudyPageNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useLocalStorage("isMenuOpen", false);
   const [wasFehrestOpen, setWasFehrestOpen] = useLocalStorage("wasFehrestOpened", false);
 
-  const closeFehrest = () => {
-    setIsFehrestOpen(false);
-  };
+  const closeFehrest = () => setIsFehrestOpen(false);
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const closeMenu = () => setIsMenuOpen(false);
 
   const toggleFehrest = () => {
     setActiveTab(0);

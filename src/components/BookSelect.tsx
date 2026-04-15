@@ -1,12 +1,13 @@
 import { useContext } from "react";
-import { BookContext } from "../Darsyavar.tsx";
+import { BookContext } from "./BookProvider";
 import Select, { type ActionMeta, type SingleValue, type StylesConfig } from "react-select";
-import { getBookById, getOptionsOfBookSelector, type BookOption } from "../data/booksData.ts";
-
-// type Props = {};
+import { getBookById, type BookOption } from "../data/booksData.ts";
+import { useBookSelectData } from "../hooks/useBookSelectData.ts";
 
 const BookSelect = () => {
   const { selectedBookOption, setCurrentBook, setSelectedBookOption } = useContext(BookContext);
+
+  const { options, isLoading, isError, loadOptions } = useBookSelectData();
 
   const handleBookChange = (selected: SingleValue<BookOption>, _action: ActionMeta<BookOption>) => {
     if (selected) {
@@ -15,13 +16,10 @@ const BookSelect = () => {
     }
   };
 
-  // fetch data
-  const options = getOptionsOfBookSelector();
-
   const styles: StylesConfig<BookOption, false> = {
     control: (provider) => ({
       ...provider,
-      border: "2px solid rgb(200, 200, 200)",
+      border: "2px solid rgb(200,200,200)",
       textAlign: "center",
       width: "100%",
       borderRadius: "8px",
@@ -29,29 +27,50 @@ const BookSelect = () => {
       fontWeight: "900",
       height: "46px",
       backgroundColor: "#ebebeb",
-      cursor: "pointer",
+      cursor: isLoading ? "wait" : "pointer",
     }),
   };
 
+  const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
+    if (isError) {
+      return (
+        <div className="flex justify-center items-center gap-2">
+          <span className="text-red-500 text-xs">خطا در بارگذاری گزینه ها</span>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              loadOptions();
+            }}
+            className="px-4 py-1.5 bg-blue-500 hover:bg-blue-600 text-white text-xs rounded-full transition-colors cursor-pointer"
+          >
+            تلاش مجدد ↻
+          </button>
+        </div>
+      );
+    }
+    return inputValue ? `هیچ کتابی با "${inputValue}" پیدا نشد` : "کتابی موجود نیست";
+  };
+
   return (
-    <>
-      <div className="relative mt-10 w-73">
-        <label className="absolute text-sm z-10 mx-4 -translate-y-3 bg-[#ebebeb] px-2">
-          فهرست کتاب
-        </label>
-        <Select<BookOption, false>
-          styles={styles}
-          options={options}
-          value={selectedBookOption}
-          placeholder={"یک کتاب انتخاب کنید"}
-          className="basic-single"
-          classNamePrefix="select"
-          isRtl={true}
-          isSearchable={true}
-          onChange={handleBookChange}
-        />
-      </div>
-    </>
+    <div className="relative mt-10 w-73">
+      <label className="absolute top-0 right-0 text-sm z-10 mx-4 -translate-y-3 bg-[#ebebeb] px-2">
+        فهرست کتاب
+      </label>
+
+      <Select<BookOption, false>
+        options={options}
+        value={selectedBookOption}
+        placeholder={isLoading ? "در حال بارگذاری کتاب‌ها ..." : "یک کتاب انتخاب کنید"}
+        styles={styles}
+        isRtl={true}
+        isSearchable={true}
+        isLoading={isLoading}
+        loadingMessage={() => "در حال بارگذاری کتاب‌ها..."}
+        noOptionsMessage={renderNoOptionsMessage}
+        onChange={handleBookChange}
+      />
+    </div>
   );
 };
 

@@ -5,6 +5,7 @@ import { getFehrestById, type FehrestSection } from "./fehrestsData";
 export type FilterOption = {
   value: string;
   label: string;
+  // className?: string;
   isDisabled?: boolean;
 };
 
@@ -38,6 +39,7 @@ const referenceOptions = [
 ];
 const getReferenceOptions = () => referenceOptions;
 
+// masalan api gereftane filter option haa.
 export const getOptionsFromDB = (id: string, quizFilters: QuizFiltersType) => {
   // baayad dependant dropdown list baashe. yani agar level ya source bood,
   // baa darnazar gereftane quiz filters gozine haa bargardande beshan.

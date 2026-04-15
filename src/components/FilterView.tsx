@@ -8,11 +8,11 @@ import type { FilterOption } from "../data/quizFilterOptionsData";
 type Props = {
   quizFilters: QuizFiltersType;
   onFilterChange: (selected: SingleValue<FilterOption>, action: ActionMeta<FilterOption>) => void;
-  loading: boolean;
+  startQuizLoading: boolean;
   startQuiz: () => Promise<void>;
 };
 
-const FilterView = ({ quizFilters, onFilterChange, loading, startQuiz }: Props) => {
+const FilterView = ({ quizFilters, onFilterChange, startQuizLoading, startQuiz }: Props) => {
   const { quizFilterBoxRef, quizFilterBoxHeight, showLevel, showSource, showBtn } =
     useQuizFiltersProgressiveDisclosure(quizFilters);
 
@@ -24,8 +24,9 @@ const FilterView = ({ quizFilters, onFilterChange, loading, startQuiz }: Props) 
         className="flex flex-col gap-8 py-8 px-6 border-2 rounded-4xl overflow-hidden w-full max-w-115 max-h-76
                transition-[height] ease-in-out duration-300"
       >
+        {/* mishe begim baad az avalin baste shodane menu yek filter badi render beshe */}
         <FilterSelector
-          id="Where"
+          filterId="Where"
           label="از کجای کتاب تمرین می‌خوای؟"
           quizFilters={quizFilters}
           onChange={onFilterChange}
@@ -34,7 +35,7 @@ const FilterView = ({ quizFilters, onFilterChange, loading, startQuiz }: Props) 
 
         {showLevel && (
           <FilterSelector
-            id="Level"
+            filterId="Level"
             label="در چه سطحی باشند؟"
             quizFilters={quizFilters}
             onChange={onFilterChange}
@@ -44,7 +45,7 @@ const FilterView = ({ quizFilters, onFilterChange, loading, startQuiz }: Props) 
 
         {showSource && (
           <FilterSelector
-            id="Source"
+            filterId="Source"
             label="از چه منبعی باشند؟"
             quizFilters={quizFilters}
             onChange={onFilterChange}
@@ -54,7 +55,7 @@ const FilterView = ({ quizFilters, onFilterChange, loading, startQuiz }: Props) 
         )}
       </div>
 
-      <StartQuizBtn show={showBtn} loading={loading} type="button" onClick={startQuiz} />
+      <StartQuizBtn show={showBtn} loading={startQuizLoading} type="button" onClick={startQuiz} />
     </form>
   );
 };

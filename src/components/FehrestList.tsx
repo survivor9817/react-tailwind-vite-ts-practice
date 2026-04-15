@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import FehrestItem from "./FehrestItem";
 import { collectTitlePages, findTitlePage } from "../hooks/useFehrestItem";
-import { BookContext } from "../Darsyavar";
 import { useFakeFetch } from "../hooks/useFakeFetch";
 import { getFehrestById } from "../data/fehrestsData";
+import { BookContext } from "./BookProvider";
 
 // type Props = {};
 
@@ -14,15 +14,31 @@ const FehrestList = () => {
 
   const {
     data: currentFehrest,
-    error,
-    loading,
-    // refetch,
+    isError,
+    isLoading,
+    refetch,
   } = useFakeFetch(getFehrestById(currentBook?.id));
 
-  if (loading) return <p className="text-center">در حال بارگذاری...</p>;
-  if (error) return <p className="text-center">درخواست خطا شد.</p>;
+  if (isLoading) return <p className="text-center">در حال بارگذاری...</p>;
 
-  if (!currentFehrest) return <p>درخواست خطا شد.</p>;
+  if (isError)
+    return (
+      <div className="flex justify-center items-center gap-2">
+        <span className="text-red-500 text-sm">خطا در بارگذاری گزینه ها</span>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            refetch();
+          }}
+          className="px-4 py-1.5 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-full transition-colors cursor-pointer"
+        >
+          تلاش مجدد ↻
+        </button>
+      </div>
+    );
+
+  if (!currentFehrest) return <p>فهرست موجود نیست.</p>;
   const titlePages = collectTitlePages(currentFehrest);
   const currentTitlePage = findTitlePage(currentPage, titlePages);
 

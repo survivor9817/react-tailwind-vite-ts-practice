@@ -1,5 +1,3 @@
-import { useQuizFilters } from "../hooks/useQuizFilters";
-import { useQuizData } from "../hooks/useQuizData";
 import { useQuizActions } from "../hooks/useQuizActions";
 import FilterView from "./FilterView";
 import QuizView from "./QuizView";
@@ -7,31 +5,26 @@ import QuizResultsModal from "./QuizResultsModal";
 import QuizEndConfirm from "./QuizEndConfirm";
 
 const Quiz = () => {
-  const { quizFilters, clearFilters, onFilterChange } = useQuizFilters();
-
   const {
-    questionIds,
-    question,
-    loading,
-    // idsError,
-    // questionError,
-    // error,
-    loadIds,
-    loadQuestion,
-    clearQuiz,
-  } = useQuizData();
-
-  const {
+    quizFilters,
+    onFilterChange,
     isQuizStarted,
-    endConfirmModal,
-    resultsModal,
     startQuiz,
+    startQuizLoading,
+    questionIds,
+    loadQuestion,
+    question,
+    endConfirmModal,
     openEndConfirm,
     submitQuiz,
     closeEndConfirm,
+    resultsModal,
     terminateQuiz,
     closeResultsModal,
-  } = useQuizActions(clearFilters, clearQuiz, loadIds, loadQuestion);
+
+    // questionIdsError,
+    // questionError,
+  } = useQuizActions();
 
   return (
     <>
@@ -39,7 +32,7 @@ const Quiz = () => {
         <FilterView
           quizFilters={quizFilters}
           onFilterChange={onFilterChange}
-          loading={loading}
+          startQuizLoading={startQuizLoading}
           startQuiz={startQuiz}
         />
       ) : (
@@ -64,6 +57,9 @@ const Quiz = () => {
           onClose={closeResultsModal}
         />
       )}
+
+      {/* saakhte bakhshe moroor tamrin haaye ghabli */}
+      {/* moddat, rooze hafte, tarikh, saat shoro, */}
     </>
   );
 };

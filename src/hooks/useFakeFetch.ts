@@ -14,8 +14,8 @@ export function useFakeFetch<T>(
   const { delay = 500, shouldError = false, resolver } = opts;
 
   const [data, setData] = useState<T | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const attemptRef = useRef(0);
   const abortCtrl = useRef({ aborted: false });
 
@@ -26,8 +26,8 @@ export function useFakeFetch<T>(
   }, [source, resolver]);
 
   const runFetch = useCallback(() => {
-    setLoading(true);
-    setError(null);
+    setIsLoading(true);
+    setIsError(null);
     setData(null);
     abortCtrl.current.aborted = false;
     attemptRef.current += 1;
@@ -39,8 +39,8 @@ export function useFakeFetch<T>(
       if (abortCtrl.current.aborted) return;
 
       if (errorNow) {
-        setError(new Error("Fake fetch error (simulated)"));
-        setLoading(false);
+        setIsError(new Error("Fake fetch error (simulated)"));
+        setIsLoading(false);
         return;
       }
 
@@ -49,10 +49,10 @@ export function useFakeFetch<T>(
           if (!abortCtrl.current.aborted) setData(res);
         })
         .catch((e) => {
-          if (!abortCtrl.current.aborted) setError(e instanceof Error ? e : new Error(String(e)));
+          if (!abortCtrl.current.aborted) setIsError(e instanceof Error ? e : new Error(String(e)));
         })
         .finally(() => {
-          if (!abortCtrl.current.aborted) setLoading(false);
+          if (!abortCtrl.current.aborted) setIsLoading(false);
         });
     }, delay);
 
@@ -69,5 +69,5 @@ export function useFakeFetch<T>(
 
   const refetch = useCallback(() => runFetch(), [runFetch]);
 
-  return { data, error, loading, refetch };
+  return { data, isError, isLoading, refetch };
 }
