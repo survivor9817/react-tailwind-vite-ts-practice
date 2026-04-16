@@ -18,18 +18,21 @@ import Tab from "./Tab";
 
 const StudyPage = () => {
   const {
-    isFehrestOpen,
-    isMenuOpen,
     activeTab,
-    closeFehrest,
-    toggleFehrest,
-    closeMenu,
-    toggleMenu,
+    // goToTab,
     goToBook,
     goToQuiz,
     goToYavar,
-  } = useStudyPageNav();
 
+    isFehrestOpen,
+    closeFehrest,
+    toggleFehrest,
+
+    isMenuOpen,
+    closeMenu,
+    toggleMenu,
+  } = useStudyPageNav();
+  // layout context
   return (
     <>
       <FehrestSidebar isFehrestOpen={isFehrestOpen} onClose={closeFehrest} />

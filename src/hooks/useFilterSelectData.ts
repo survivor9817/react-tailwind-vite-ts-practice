@@ -4,7 +4,7 @@ import { getOptionsFromDB, type FilterOption } from "../data/quizFilterOptionsDa
 import { useToast } from "../components/ToastProvider";
 import type { QuizFiltersType } from "./useQuizFilters";
 
-export const useFilterSelectorData = (
+export const useFilterSelectData = (
   initialOptions: FilterOption[] | undefined,
   filterId: string,
   quizFilters: QuizFiltersType,
@@ -24,7 +24,7 @@ export const useFilterSelectorData = (
       const data = await fakeFetch(
         () => getOptionsFromDB(filterId, quizFilters),
         // { errorChance: 0.5 },
-        { delay: 1000 },
+        // { delay: 1000 },
       );
       if (data) setOptions(data);
     } catch (error) {

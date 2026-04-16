@@ -12,6 +12,8 @@ export const useQuizNavigation = (
   const [nextLoading, setNextLoading] = useState(false);
   const [prevLoading, setPrevLoading] = useState(false);
 
+  // mitoonim loading har kodaam ro be onvaane disable digari paas bedim.
+  // yaa shayd behtar baashe loading har kodaam disable hame baashe
   const goToQuestion = async (number: number) => {
     if (number < 0 || isNaN(number) || !questionIds || number >= questionIds.length) {
       return;
@@ -67,5 +69,8 @@ export const useQuizNavigation = (
     goToPrevQuestion,
     nextLoading,
     goToNextQuestion,
+
+    isFirstQuestion,
+    isLastQuestion,
   };
 };

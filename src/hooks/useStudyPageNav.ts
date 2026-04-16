@@ -23,23 +23,39 @@ export const useStudyPageNav = () => {
     !isMenuOpen && history.pushState({ isMenuVisible: true }, "");
   };
 
-  const goToBook = () => {
-    setActiveTab(0);
-    wasFehrestOpen && setIsFehrestOpen(true);
-    setWasFehrestOpen(false);
+  // const goToBook = () => {
+  //   setActiveTab(0);
+  //   wasFehrestOpen && setIsFehrestOpen(true);
+  //   setWasFehrestOpen(false);
+  // };
+
+  // const goToQuiz = () => {
+  //   isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
+  //   closeFehrest();
+  //   setActiveTab(1);
+  // };
+
+  // const goToYavar = () => {
+  //   isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
+  //   closeFehrest();
+  //   setActiveTab(2);
+  // };
+
+  const goToTab = (tabIndex: number) => {
+    if (tabIndex === 0) {
+      wasFehrestOpen && setIsFehrestOpen(true);
+      setWasFehrestOpen(false);
+    } else {
+      isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
+      closeFehrest();
+    }
+
+    setActiveTab(tabIndex);
   };
 
-  const goToQuiz = () => {
-    isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
-    closeFehrest();
-    setActiveTab(1);
-  };
-
-  const goToYavar = () => {
-    isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
-    closeFehrest();
-    setActiveTab(2);
-  };
+  const goToBook = () => goToTab(0);
+  const goToQuiz = () => goToTab(1);
+  const goToYavar = () => goToTab(2);
 
   useEffect(() => {
     const onPopstate = () => {
@@ -57,6 +73,10 @@ export const useStudyPageNav = () => {
 
   return {
     activeTab,
+    // goToTab,
+    goToBook,
+    goToQuiz,
+    goToYavar,
 
     isFehrestOpen,
     closeFehrest,
@@ -65,9 +85,5 @@ export const useStudyPageNav = () => {
     isMenuOpen,
     closeMenu,
     toggleMenu,
-
-    goToBook,
-    goToQuiz,
-    goToYavar,
   };
 };

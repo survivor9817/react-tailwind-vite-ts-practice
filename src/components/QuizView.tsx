@@ -38,10 +38,15 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
   const {
     currentQuestionIndex,
     lastQuestionIndex,
+    // vaghti dokme ghabli yaa badi zade shode agar rooye har dokme dg zade shod
+    // che tasmimi begirim. masalan rooye ghabli zade yeho zad roye badi chi beshe.
     prevLoading,
     goToPrevQuestion,
     nextLoading,
     goToNextQuestion,
+
+    isFirstQuestion,
+    isLastQuestion,
   } = useQuizNavigation(questionIds, loadQuestion, openEndConfirm);
 
   const { btnsMeta, msgsMeta, updateReactionOnClick } = useReactionBtns(id, "123", reactions);
@@ -58,7 +63,12 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
       {/* <!-- Row 1 : Navigation Buttons of Exercise Section --> */}
       <div className="flex justify-between items-center h-12 mb-1">
         <div className="flex">
-          <IconBtn i={"arrow_circle_right"} isLoading={prevLoading} onClick={goToPrevQuestion} />
+          <IconBtn
+            i={"arrow_circle_right"}
+            isLoading={prevLoading}
+            isDisabled={nextLoading || isFirstQuestion}
+            onClick={goToPrevQuestion}
+          />
         </div>
 
         <div className="flex">
@@ -68,7 +78,12 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
             onClick={openEndConfirm}
           />
 
-          <IconBtn i={"arrow_circle_left"} isLoading={nextLoading} onClick={goToNextQuestion} />
+          <IconBtn
+            i={"arrow_circle_left"}
+            isLoading={nextLoading}
+            isDisabled={prevLoading || isLastQuestion}
+            onClick={goToNextQuestion}
+          />
         </div>
       </div>
 

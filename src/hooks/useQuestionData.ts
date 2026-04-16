@@ -20,7 +20,7 @@ export const useQuestionData = () => {
     try {
       const q = await fakeFetch(
         () => getQuestionFromDB(questionId),
-        { errorChance: 0.5 },
+        // { errorChance: 0.5 },
         // { errorChance: 1 },
       );
       if (q) setQuestion(q);

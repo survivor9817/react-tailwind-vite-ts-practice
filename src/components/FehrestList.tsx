@@ -4,6 +4,7 @@ import { collectTitlePages, findTitlePage } from "../hooks/useFehrestItem";
 import { useFakeFetch } from "../hooks/useFakeFetch";
 import { getFehrestById } from "../data/fehrestsData";
 import { BookContext } from "./BookProvider";
+import ErrorFallback from "./ErrorFallback";
 
 // type Props = {};
 
@@ -19,24 +20,9 @@ const FehrestList = () => {
     refetch,
   } = useFakeFetch(getFehrestById(currentBook?.id));
 
-  if (isLoading) return <p className="text-center">در حال بارگذاری...</p>;
+  if (isError) return <ErrorFallback onRefetch={refetch} ErrorMsg="خطا در بارگذاری فهرست" />;
 
-  if (isError)
-    return (
-      <div className="flex justify-center items-center gap-2 text-sm">
-        <span className="text-red-500">خطا در بارگذاری گزینه ها</span>
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            refetch();
-          }}
-          className="px-4 py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-colors cursor-pointer"
-        >
-          تلاش مجدد ↻
-        </button>
-      </div>
-    );
+  if (isLoading) return <p className="text-center">در حال بارگذاری...</p>;
 
   if (!currentFehrest) return <p>فهرست موجود نیست.</p>;
   const titlePages = collectTitlePages(currentFehrest);

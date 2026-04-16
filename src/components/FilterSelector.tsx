@@ -1,13 +1,10 @@
-import Select, {
-  type ActionMeta,
-  type SelectInstance,
-  type SingleValue,
-  type StylesConfig,
-} from "react-select";
 import { useEffect, useRef } from "react";
+import { useFilterSelectData } from "../hooks/useFilterSelectData";
 import type { QuizFiltersType } from "../hooks/useQuizFilters";
-import { type FilterOption } from "../data/quizFilterOptionsData";
-import { useFilterSelectorData } from "../hooks/useFilterSelectorData";
+import type { FilterOption } from "../data/quizFilterOptionsData";
+import type { ActionMeta, SelectInstance, SingleValue, StylesConfig } from "react-select";
+import ErrorFallback from "./ErrorFallback";
+import Select from "react-select";
 
 type Props = {
   filterId: "Where" | "Level" | "Source";
@@ -26,15 +23,17 @@ const FilterSelector = ({
   onChange,
   loadingMessage = "در حال بارگذاری گزینه‌ها...",
 }: Props) => {
-  const { options, isLoading, isError, loadOptions } = useFilterSelectorData(
+  const { options, isLoading, isError, loadOptions } = useFilterSelectData(
     initialOptions,
     filterId,
     quizFilters,
   );
 
+  // activeTab roo age daashte baashim mitoonim age begim age user rooye tamrin
+  // hastesh filtere wheresh ham focus beshe
   const selectRef = useRef<SelectInstance<FilterOption, false>>(null);
   useEffect(() => {
-    if (filterId !== "Where" && !isLoading) {
+    if (filterId !== "Where") {
       setTimeout(() => selectRef.current?.focus(), 300);
     }
   }, [filterId, isLoading]);
@@ -60,23 +59,8 @@ const FilterSelector = ({
   };
 
   const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
-    if (isError) {
-      return (
-        <div className="flex justify-center items-center gap-2">
-          <span className="text-red-500 text-sm">خطا در بارگذاری گزینه ها</span>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              loadOptions();
-            }}
-            className="px-4 py-1.5 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-full transition-colors cursor-pointer"
-          >
-            تلاش مجدد ↻
-          </button>
-        </div>
-      );
-    }
+    if (isError)
+      return <ErrorFallback onRefetch={loadOptions} ErrorMsg="خطا در بارگذاری گزینه‌ها" />;
     return inputValue ? `هیچ نتیجه‌ای برای "${inputValue}" پیدا نشد` : "گزینه‌ای موجود نیست";
   };
 

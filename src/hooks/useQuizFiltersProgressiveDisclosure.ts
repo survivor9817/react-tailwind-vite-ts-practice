@@ -18,6 +18,22 @@ export const useQuizFiltersProgressiveDisclosure = (quizFilters: QuizFiltersType
     if (el) setFiltersHeight(el.scrollHeight + (showBtn ? 24 : 0));
   }, [showLevel, showSource, showBtn]);
 
+  // // ✅ جایگزین useLayoutEffect
+  // useEffect(() => {
+  //   const el = quizFilterBoxRef.current;
+  //   if (!el) return;
+
+  //   const measureHeight = () => {
+  //     setFiltersHeight(el.scrollHeight + (showBtn ? 24 : 0));
+  //   };
+
+  //   // اول بارگذاری
+  //   // measureHeight();
+
+  //   // برای مطمئن شدن از رندر کامل
+  //   requestAnimationFrame(measureHeight);
+  // }, [showLevel, showSource, showBtn]);
+
   return {
     showLevel,
     showSource,

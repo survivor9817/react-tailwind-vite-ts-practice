@@ -17,7 +17,11 @@ export const useQuestionIdsData = () => {
     setIdsError(null);
 
     try {
-      const ids = await fakeFetch(() => getQuestionIds(/** user quiz filters???? */));
+      const ids = await fakeFetch(
+        () => getQuestionIds(/** user quiz filters???? */),
+        // { errorChance: 0.5 },
+        // { errorChance: 0.5 },
+      );
       setQuestionIds(ids);
       return ids;
     } catch (rawError) {
