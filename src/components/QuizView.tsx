@@ -1,19 +1,19 @@
-import type { QuestionType } from "../data/questionsData";
 import { useQuizNavigation } from "../hooks/useQuizNavigation";
-import Answer from "./Answer";
-import AnswerCollapsibleContainer from "./AnswerCollapsibleContainer";
-import Author from "./Author";
+import { useQuizAnswer } from "../hooks/useQuizAnswer";
+import { useReactionBtns } from "../hooks/useReactionBtns";
+import type { QuestionType } from "../data/questionsData";
 import IconBtn from "./IconBtn";
-import Question from "./Question";
-import QuestionDetails from "./QuestionDetails";
-import QuizProgressBar from "./QuizProgressBar";
 import QuizProgressLabel from "./QuizProgressLabel";
 import QuizTagBar from "./QuizTagBar";
+import QuizProgressBar from "./QuizProgressBar";
+import Question from "./Question";
+import QuestionDetails from "./QuestionDetails";
+import Author from "./Author";
+import Answer from "./Answer";
 import ReactionButtons from "./ReactionButtons";
 import ReactionMessages from "./ReactionMessages";
 import ShowAnswerBtn from "./ShowAnswerBtn";
-import { useReactionBtns } from "../hooks/useReactionBtns";
-import { useQuizAnswer } from "../hooks/useQuizAnswer";
+import Collapsible from "./Collapsible";
 
 type Props = {
   questionIds: string[];
@@ -38,8 +38,7 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
   const {
     currentQuestionIndex,
     lastQuestionIndex,
-    // vaghti dokme ghabli yaa badi zade shode agar rooye har dokme dg zade shod
-    // che tasmimi begirim. masalan rooye ghabli zade yeho zad roye badi chi beshe.
+
     prevLoading,
     goToPrevQuestion,
     nextLoading,
@@ -57,7 +56,7 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
   );
 
   return (
-    <div className={`quiz-box flex flex-col p-2 overflow-hidden ${isAnswerVisible ? "open" : ""}`}>
+    <div className="quiz-box flex flex-col p-2 overflow-hidden">
       {/* Quiz card */}
 
       {/* <!-- Row 1 : Navigation Buttons of Exercise Section --> */}
@@ -133,9 +132,9 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
       </div>
 
       {/* <!-- Row 6 : Answer Box --> */}
-      <AnswerCollapsibleContainer isExpanded={isAnswerVisible}>
+      <Collapsible isExpanded={isAnswerVisible}>
         <Answer answer={answerContent} />
-      </AnswerCollapsibleContainer>
+      </Collapsible>
     </div>
   );
 };

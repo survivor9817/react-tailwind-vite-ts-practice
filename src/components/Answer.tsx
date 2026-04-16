@@ -1,27 +1,33 @@
 import { useContext, useEffect, useRef } from "react";
 import { BookContext } from "./BookProvider";
+import { StudyPageLayoutContext } from "./StudyPageLayoutProvider";
 
 type Props = { answer: string | TrustedHTML };
 
 const Answer = ({ answer }: Props) => {
+  // const { answerContainerRef } = useAnswer();
   const answerContainerRef = useRef<HTMLDivElement>(null);
-  const { setCurrentPage } = useContext(BookContext);
+  const { currentBook, setCurrentPage } = useContext(BookContext);
+  const { goToBook } = useContext(StudyPageLayoutContext);
 
   useEffect(() => {
     const container = answerContainerRef.current;
     if (!container) return;
 
-    const clickHandler = (e: MouseEvent) => {
+    const goToQuestionRef = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest(".ref-page") as HTMLElement | null;
       if (target) {
-        const page = target.dataset.refPage;
-        if (page) setCurrentPage(+page);
+        if (!currentBook?.lastPage) return;
+        const refPageNumber = Number(target.dataset.refPage);
+        if (!refPageNumber || isNaN(refPageNumber) || refPageNumber > currentBook?.lastPage) return;
+        setCurrentPage(refPageNumber);
+        goToBook();
       }
     };
 
-    container.addEventListener("click", clickHandler);
+    container.addEventListener("click", goToQuestionRef);
 
-    return () => container.removeEventListener("click", clickHandler);
+    return () => container.removeEventListener("click", goToQuestionRef);
   }, [answer]);
 
   return (

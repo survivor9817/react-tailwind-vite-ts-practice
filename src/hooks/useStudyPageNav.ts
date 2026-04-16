@@ -23,30 +23,13 @@ export const useStudyPageNav = () => {
     !isMenuOpen && history.pushState({ isMenuVisible: true }, "");
   };
 
-  // const goToBook = () => {
-  //   setActiveTab(0);
-  //   wasFehrestOpen && setIsFehrestOpen(true);
-  //   setWasFehrestOpen(false);
-  // };
-
-  // const goToQuiz = () => {
-  //   isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
-  //   closeFehrest();
-  //   setActiveTab(1);
-  // };
-
-  // const goToYavar = () => {
-  //   isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
-  //   closeFehrest();
-  //   setActiveTab(2);
-  // };
-
   const goToTab = (tabIndex: number) => {
-    if (tabIndex === 0) {
-      wasFehrestOpen && setIsFehrestOpen(true);
+    const isBookTab = tabIndex === 0;
+    if (isBookTab) {
+      if (wasFehrestOpen) setIsFehrestOpen(true);
       setWasFehrestOpen(false);
     } else {
-      isFehrestOpen && setWasFehrestOpen(isFehrestOpen);
+      if (isFehrestOpen) setWasFehrestOpen(isFehrestOpen);
       closeFehrest();
     }
 
@@ -54,7 +37,9 @@ export const useStudyPageNav = () => {
   };
 
   const goToBook = () => goToTab(0);
+
   const goToQuiz = () => goToTab(1);
+
   const goToYavar = () => goToTab(2);
 
   useEffect(() => {

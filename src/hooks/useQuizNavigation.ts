@@ -1,7 +1,4 @@
-// useQuizNavigation.ts
 import { useState } from "react";
-
-// import { useQuizData } from "./useQuizData";
 
 export const useQuizNavigation = (
   questionIds: string[],
@@ -14,10 +11,15 @@ export const useQuizNavigation = (
 
   // mitoonim loading har kodaam ro be onvaane disable digari paas bedim.
   // yaa shayd behtar baashe loading har kodaam disable hame baashe
+
   const goToQuestion = async (number: number) => {
     if (number < 0 || isNaN(number) || !questionIds || number >= questionIds.length) {
       return;
     }
+
+    // loadQuestion(questionIds[number])
+    //   .then(() => setCurrentQuestionIndex(number))
+    //   .catch((err) => console.log(err));
 
     try {
       await loadQuestion(questionIds[number]);
@@ -32,12 +34,15 @@ export const useQuizNavigation = (
   const isLastQuestion = currentQuestionIndex === lastQuestionIndex;
 
   const goToPrevQuestion = async () => {
-    if (isFirstQuestion) {
-      return;
-    }
+    if (isFirstQuestion) return;
+
+    setPrevLoading(true);
+
+    // goToQuestion(currentQuestionIndex - 1)
+    //   .catch((err) => console.log(err))
+    //   .finally(() => setPrevLoading(false));
 
     try {
-      setPrevLoading(true);
       await goToQuestion(currentQuestionIndex - 1);
     } catch (error) {
       console.log(error);
@@ -52,8 +57,13 @@ export const useQuizNavigation = (
       return;
     }
 
+    setNextLoading(true);
+
+    // goToQuestion(currentQuestionIndex - 1)
+    //   .catch((err) => console.log(err))
+    //   .finally(() => setNextLoading(false));
+
     try {
-      setNextLoading(true);
       await goToQuestion(currentQuestionIndex + 1);
     } catch (error) {
       console.log(error);
@@ -65,6 +75,7 @@ export const useQuizNavigation = (
   return {
     currentQuestionIndex,
     lastQuestionIndex,
+
     prevLoading,
     goToPrevQuestion,
     nextLoading,

@@ -8,22 +8,11 @@ import Yavar from "./Yavar";
 import TabIndicator from "./TabIndicator";
 import TabsContainer from "./TabsContainer";
 import Tab from "./Tab";
-// import {
-//   Exercise,
-//   List,
-//   MenuBook,
-//   School,
-//   Menu as MenuIcon,
-// } from "@nine-thirty-five/material-symbols-react/rounded";
+import { StudyPageLayoutProvider } from "./StudyPageLayoutProvider";
 
 const StudyPage = () => {
+  const navTools = useStudyPageNav();
   const {
-    activeTab,
-    // goToTab,
-    goToBook,
-    goToQuiz,
-    goToYavar,
-
     isFehrestOpen,
     closeFehrest,
     toggleFehrest,
@@ -31,17 +20,26 @@ const StudyPage = () => {
     isMenuOpen,
     closeMenu,
     toggleMenu,
-  } = useStudyPageNav();
-  // layout context
+
+    activeTab,
+    goToBook,
+    goToQuiz,
+    goToYavar,
+  } = navTools;
+
+  // navTools study provider toye laye haye paeen tar felan faghat
+  // vaase refPage answer bekaar bordim.
+
   return (
-    <>
+    <StudyPageLayoutProvider value={navTools}>
       <FehrestSidebar isFehrestOpen={isFehrestOpen} onClose={closeFehrest} />
 
       <MenuSidebar isMenuOpen={isMenuOpen} onClose={closeMenu} />
 
       <div className="max-w-210 min-w-80 mx-auto overflow-hidden flex flex-col-reverse sm:flex-col">
         <nav
-          className="flex justify-between items-center border-2 border-b-0 rounded-t-3xl bg-[#eee] border-[#bcbcbc] h-14
+          className="flex justify-between items-center border-2 border-b-0
+           rounded-t-3xl bg-[#eee] border-[#bcbcbc] h-14
            sm:rounded-b-3xl sm:border-b-2 sm:border-t-0 sm:rounded-t-none"
         >
           <TabBtn
@@ -77,8 +75,6 @@ const StudyPage = () => {
           activeTab={activeTab}
           className="w-full h-[calc(100vh-58px)] sm:h-[calc(100dvh-58px)]"
         >
-          {/* age ketaab mojood nabood, tooye har seta error neshon bede ke az fehrest ketab ro 
-          entekhaab konan fehrest ro ham baz kon */}
           <Tab>
             <Book />
           </Tab>
@@ -90,7 +86,7 @@ const StudyPage = () => {
           </Tab>
         </TabsContainer>
       </div>
-    </>
+    </StudyPageLayoutProvider>
   );
 };
 

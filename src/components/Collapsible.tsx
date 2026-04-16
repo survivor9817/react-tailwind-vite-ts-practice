@@ -3,7 +3,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const AnswerCollapsibleContainer = ({ isExpanded, children }: Props) => {
+const Collapsible = ({ isExpanded, children }: Props) => {
   return (
     <div
       className="border-2 rounded-[16px_6px_28px_28px] mb-4 leading-[1.6] text-justify overflow-hidden 
@@ -18,4 +18,4 @@ const AnswerCollapsibleContainer = ({ isExpanded, children }: Props) => {
   );
 };
 
-export default AnswerCollapsibleContainer;
+export default Collapsible;
