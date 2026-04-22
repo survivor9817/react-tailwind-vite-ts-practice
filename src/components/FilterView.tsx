@@ -7,12 +7,15 @@ import type { FilterOption } from "../data/quizFilterOptionsData";
 
 type Props = {
   quizFilters: QuizFiltersType;
-  onFilterChange: (selected: SingleValue<FilterOption>, action: ActionMeta<FilterOption>) => void;
+  onChangeFilterSelect: (
+    selected: SingleValue<FilterOption>,
+    action: ActionMeta<FilterOption>,
+  ) => void;
   startQuizLoading: boolean;
   startQuiz: () => Promise<void>;
 };
 
-const FilterView = ({ quizFilters, onFilterChange, startQuizLoading, startQuiz }: Props) => {
+const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, startQuiz }: Props) => {
   const { quizFilterBoxRef, quizFilterBoxHeight, showLevel, showSource, showBtn } =
     useQuizFiltersProgressiveDisclosure(quizFilters);
 
@@ -29,7 +32,7 @@ const FilterView = ({ quizFilters, onFilterChange, startQuizLoading, startQuiz }
           filterId="Where"
           label="از کجای کتاب تمرین می‌خوای؟"
           quizFilters={quizFilters}
-          onChange={onFilterChange}
+          onChange={onChangeFilterSelect}
           loadingMessage="در حال بارگذاری بخش‌های کتاب..."
         />
 
@@ -38,7 +41,7 @@ const FilterView = ({ quizFilters, onFilterChange, startQuizLoading, startQuiz }
             filterId="Level"
             label="در چه سطحی باشند؟"
             quizFilters={quizFilters}
-            onChange={onFilterChange}
+            onChange={onChangeFilterSelect}
             loadingMessage="در حال بارگذاری سطوح..."
           />
         )}
@@ -48,7 +51,7 @@ const FilterView = ({ quizFilters, onFilterChange, startQuizLoading, startQuiz }
             filterId="Source"
             label="از چه منبعی باشند؟"
             quizFilters={quizFilters}
-            onChange={onFilterChange}
+            onChange={onChangeFilterSelect}
             // avalin gozine haa: soalate ghalat, soalate nazade.
             loadingMessage="در حال بارگذاری منابع..."
           />

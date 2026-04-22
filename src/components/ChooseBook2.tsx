@@ -9,13 +9,13 @@ const ChooseBook2 = () => {
   const [selectedField, setSelectedField] = useState<Field>(FIELDS[0]);
   const [filteredBooks, setFilteredBooks] = useState<Book[]>(getBooks({ gradeId: 7 }));
 
-  useEffect(() => {
-    const filters = {
-      gradeId: selectedGrade.id,
-      fieldId: selectedField.id,
-      // isAvailable: true
-    };
+  const filters = {
+    gradeId: selectedGrade.id,
+    fieldId: selectedField.id,
+    // isAvailable: true
+  };
 
+  useEffect(() => {
     const availables = getBooks({ ...filters, isAvailable: true });
     const unavailables = getBooks({ ...filters, isAvailable: false });
     const filteredBooks = [...availables, ...unavailables];

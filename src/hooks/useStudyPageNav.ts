@@ -24,8 +24,8 @@ export const useStudyPageNav = () => {
   };
 
   const goToTab = (tabIndex: number) => {
-    const isBookTab = tabIndex === 0;
-    if (isBookTab) {
+    const isOnBookTab = tabIndex === 0;
+    if (isOnBookTab) {
       if (wasFehrestOpen) setIsFehrestOpen(true);
       setWasFehrestOpen(false);
     } else {

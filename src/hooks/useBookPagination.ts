@@ -1,11 +1,11 @@
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { getLocalData } from "../utils/getLocalData";
 import { toFaNums } from "../utils/toFaNums";
 import { convertToEnglishDigits } from "../utils/convertToEnglishDigits";
-import { BookContext } from "../components/BookProvider";
+import { useBookContext } from "../components/BookProvider";
 
 export const useBookPagination = () => {
-  const { currentBook, currentPage, setCurrentPage } = useContext(BookContext);
+  const { currentBook, currentPage, setCurrentPage } = useBookContext();
 
   const goToPage = (pageNumber: number) => {
     if (!currentBook?.lastPage) return;

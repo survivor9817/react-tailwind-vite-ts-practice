@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import type { FehrestSection } from "../data/fehrestsData";
-import { BookContext } from "../components/BookProvider";
+import { useBookContext } from "../components/BookProvider";
 
 // [1, 2, 6, 12, 13, 25, 35, 36, 48, 56, 65, 66, 77, 86, 98, 99, 107, 116, 124, 132]
 // 27
@@ -22,7 +21,7 @@ export const checkActive = (currentTitlePage: number, section: FehrestSection): 
 
 // THE HOOK
 export const useFehrestItem = (currentTitlePage: number, section: FehrestSection) => {
-  const { setCurrentPage } = useContext(BookContext);
+  const { setCurrentPage } = useBookContext();
 
   const handleClick = () => setCurrentPage(section.page);
 

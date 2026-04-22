@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { BookContext } from "./BookProvider";
+import { useBookContext } from "./BookProvider";
 import Select, { type ActionMeta, type SingleValue, type StylesConfig } from "react-select";
 import { getBookById, type BookOption } from "../data/booksData.ts";
 import { useBookSelectData } from "../hooks/useBookSelectData.ts";
 
 const BookSelect = () => {
-  const { selectedBookOption, setCurrentBook, setSelectedBookOption } = useContext(BookContext);
+  const { selectedBookOption, setCurrentBook, setSelectedBookOption } = useBookContext();
 
   const { options, isLoading, isError, loadOptions } = useBookSelectData();
 

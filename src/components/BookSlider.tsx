@@ -1,51 +1,17 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import IconBtn from "./IconBtn";
+import { useShelfBtns } from "../hooks/useShelfBtns";
 
 type BookSliderProps = {
   children: React.ReactNode;
-  scrollAmount?: number;
 };
 
-const BookSlider = ({ children, scrollAmount = 400 }: BookSliderProps) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-  const [canScrollLeft, setCanScrollLeft] = useState(true);
-
-  const updateScrollBtnsState = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    // در RTL مقدار scrollLeft منفی یا برعکس است — Math.abs مشکل را حل می‌کند
-    const scrolled = Math.abs(el.scrollLeft);
-    const maxScroll = el.scrollWidth - el.clientWidth;
-
-    setCanScrollRight(scrolled > 1);
-    setCanScrollLeft(scrolled < maxScroll - 1);
-  }, []);
+const BookSlider = ({ children }: BookSliderProps) => {
+  const { scrollRef, canScrollLeft, canScrollRight, scroll } = useShelfBtns();
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (!el) return;
-    updateScrollBtnsState();
-    el.addEventListener("scroll", updateScrollBtnsState);
-    return () => el.removeEventListener("scroll", updateScrollBtnsState);
-  }, [updateScrollBtnsState]);
-
-  const scroll = (direction: "left" | "right") => {
-    scrollRef.current?.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    el.scrollTo({
-      left: 0,
-      behavior: "auto",
-    });
+    if (el) el.scrollTo({ left: 0 });
   }, [children]);
 
   return (

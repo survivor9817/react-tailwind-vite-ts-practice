@@ -1,4 +1,3 @@
-import { useStudyPageNav } from "../hooks/useStudyPageNav";
 import FehrestSidebar from "./FehrestSidebar";
 import MenuSidebar from "./MenuSidebar";
 import TabBtn from "./TabBtn";
@@ -8,10 +7,9 @@ import Yavar from "./Yavar";
 import TabIndicator from "./TabIndicator";
 import TabsContainer from "./TabsContainer";
 import Tab from "./Tab";
-import { StudyPageLayoutProvider } from "./StudyPageLayoutProvider";
+import { useStudyPageLayoutContext } from "./StudyPageLayoutProvider";
 
 const StudyPage = () => {
-  const navTools = useStudyPageNav();
   const {
     isFehrestOpen,
     closeFehrest,
@@ -25,13 +23,13 @@ const StudyPage = () => {
     goToBook,
     goToQuiz,
     goToYavar,
-  } = navTools;
+  } = useStudyPageLayoutContext();
 
   // navTools study provider toye laye haye paeen tar felan faghat
   // vaase refPage answer bekaar bordim.
 
   return (
-    <StudyPageLayoutProvider value={navTools}>
+    <>
       <FehrestSidebar isFehrestOpen={isFehrestOpen} onClose={closeFehrest} />
 
       <MenuSidebar isMenuOpen={isMenuOpen} onClose={closeMenu} />
@@ -86,7 +84,7 @@ const StudyPage = () => {
           </Tab>
         </TabsContainer>
       </div>
-    </StudyPageLayoutProvider>
+    </>
   );
 };
 

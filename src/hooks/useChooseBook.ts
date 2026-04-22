@@ -9,17 +9,16 @@ export const useChooseBook = () => {
   // no fetch
   const [selectedGrade, setSelectedGrade] = useState<Grade>(grades[0]);
   const [selectedField, setSelectedField] = useState<Field>(fields[0]);
+  const filters = {
+    gradeId: selectedGrade.id,
+    fieldId: selectedField.id,
+    //   isAvailable: true
+  };
 
   // fetch
   const [filteredBooks, setFilteredBooks] = useState<Book[]>(getBooks({ gradeId: 7 }));
 
   useEffect(() => {
-    const filters = {
-      gradeId: selectedGrade.id,
-      fieldId: selectedField.id,
-      //   isAvailable: true
-    };
-
     // fetch
     const availables = getBooks({ ...filters, isAvailable: true });
     const unavailables = getBooks({ ...filters, isAvailable: false });

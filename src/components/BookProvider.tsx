@@ -1,6 +1,5 @@
 // src/context/BookContext.tsx
-import { createContext } from "react";
-import type { ReactNode } from "react";
+import { createContext, useContext, type ReactNode } from "react";
 import type { Book, BookOption } from "../data/booksData";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
@@ -21,6 +20,12 @@ export const BookContext = createContext<BookContextType>({
   currentPage: null,
   setCurrentPage: () => {},
 });
+
+export const useBookContext = (): BookContextType => {
+  const ctx = useContext(BookContext);
+  if (!ctx) throw new Error("useStudyPageLayout must be used within StudyPageLayoutProvider");
+  return ctx;
+};
 
 type Props = {
   children: ReactNode;

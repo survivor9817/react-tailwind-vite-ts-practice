@@ -1,13 +1,11 @@
 import React, { createContext } from "react";
 
-// 1. ایجاد Context
 interface TabsContextType {
   totalTabs: number;
 }
 
 export const TabsContext = createContext<TabsContextType>({ totalTabs: 0 });
 
-// 2. کامپوننت والد
 type TabsContentProps = {
   activeTab: number;
   className?: string;

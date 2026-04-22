@@ -1,6 +1,6 @@
 import IconBtn from "./IconBtn";
 
-const UnavailableBook = () => {
+const UnavailableBookError = () => {
   return (
     <div className="flex flex-col justify-center items-center w-full h-125 p-2">
       <div className="text-red-500 text-center">
@@ -12,4 +12,4 @@ const UnavailableBook = () => {
   );
 };
 
-export default UnavailableBook;
+export default UnavailableBookError;

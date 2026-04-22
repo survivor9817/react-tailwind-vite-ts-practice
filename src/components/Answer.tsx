@@ -1,14 +1,14 @@
-import { useContext, useEffect, useRef } from "react";
-import { BookContext } from "./BookProvider";
-import { StudyPageLayoutContext } from "./StudyPageLayoutProvider";
+import { useEffect, useRef } from "react";
+import { useBookContext } from "./BookProvider";
+import { useStudyPageLayoutContext } from "./StudyPageLayoutProvider";
 
 type Props = { answer: string | TrustedHTML };
 
 const Answer = ({ answer }: Props) => {
   // const { answerContainerRef } = useAnswer();
   const answerContainerRef = useRef<HTMLDivElement>(null);
-  const { currentBook, setCurrentPage } = useContext(BookContext);
-  const { goToBook } = useContext(StudyPageLayoutContext);
+  const { currentBook, setCurrentPage } = useBookContext();
+  const { goToBook } = useStudyPageLayoutContext();
 
   useEffect(() => {
     const container = answerContainerRef.current;

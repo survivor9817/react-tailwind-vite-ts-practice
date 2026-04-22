@@ -1,6 +1,7 @@
 // src/context/BookContext.tsx
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import type { ReactNode } from "react";
+import { useStudyPageNav } from "../hooks/useStudyPageNav";
 
 export type StudyPageLayoutContextType = {
   activeTab: number;
@@ -28,13 +29,19 @@ export const StudyPageLayoutContext = createContext<StudyPageLayoutContextType>(
   toggleMenu: () => {},
 });
 
+export const useStudyPageLayoutContext = (): StudyPageLayoutContextType => {
+  const ctx = useContext(StudyPageLayoutContext);
+  if (!ctx) throw new Error("useStudyPageLayout must be used within StudyPageLayoutProvider");
+  return ctx;
+};
+
 type Props = {
-  value: StudyPageLayoutContextType;
   children: ReactNode;
 };
 
-export const StudyPageLayoutProvider = ({ value, children }: Props) => {
+export const StudyPageLayoutProvider = ({ children }: Props) => {
+  const navTools = useStudyPageNav();
   return (
-    <StudyPageLayoutContext.Provider value={value}>{children}</StudyPageLayoutContext.Provider>
+    <StudyPageLayoutContext.Provider value={navTools}>{children}</StudyPageLayoutContext.Provider>
   );
 };

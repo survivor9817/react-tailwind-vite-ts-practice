@@ -1,15 +1,14 @@
-import { useContext } from "react";
 import FehrestItem from "./FehrestItem";
 import { collectTitlePages, findTitlePage } from "../hooks/useFehrestItem";
 import { useFakeFetch } from "../hooks/useFakeFetch";
 import { getFehrestById } from "../data/fehrestsData";
-import { BookContext } from "./BookProvider";
+import { useBookContext } from "./BookProvider";
 import ErrorFallback from "./ErrorFallback";
 
 // type Props = {};
 
 const FehrestList = () => {
-  const { currentPage, currentBook } = useContext(BookContext);
+  const { currentPage, currentBook } = useBookContext();
   if (!currentBook) return <p className="text-center">کتابی را انتخاب کنید.</p>;
   if (!currentPage) return <p className="text-center">هنوز صفحه ای انتخاب نشده است.</p>;
 

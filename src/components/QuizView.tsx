@@ -1,4 +1,4 @@
-import { useQuizNavigation } from "../hooks/useQuizNavigation";
+// import { useQuizNavigation } from "../hooks/useQuizNavigation";
 import { useQuizAnswer } from "../hooks/useQuizAnswer";
 import { useReactionBtns } from "../hooks/useReactionBtns";
 import type { QuestionType } from "../data/questionsData";
@@ -16,13 +16,30 @@ import ShowAnswerBtn from "./ShowAnswerBtn";
 import Collapsible from "./Collapsible";
 
 type Props = {
-  questionIds: string[];
-  openEndConfirm: () => void;
   questionData: QuestionType;
-  loadQuestion: (currentId: string) => Promise<void>;
+  currentQuestionIndex: number;
+  lastQuestionIndex: number;
+  isFirstQuestion: boolean;
+  isLastQuestion: boolean;
+  prevLoading: boolean;
+  goToPrevQuestion: () => Promise<void>;
+  nextLoading: boolean;
+  goToNextQuestion: () => Promise<void>;
+  openEndConfirm: () => void;
 };
 
-const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: Props) => {
+const QuizView = ({
+  questionData,
+  currentQuestionIndex,
+  lastQuestionIndex,
+  isFirstQuestion,
+  isLastQuestion,
+  prevLoading,
+  goToPrevQuestion,
+  nextLoading,
+  goToNextQuestion,
+  openEndConfirm,
+}: Props) => {
   const {
     id,
     reactions,
@@ -35,19 +52,7 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
     descriptiveAnswer,
   } = questionData;
 
-  const {
-    currentQuestionIndex,
-    lastQuestionIndex,
-
-    prevLoading,
-    goToPrevQuestion,
-    nextLoading,
-    goToNextQuestion,
-
-    isFirstQuestion,
-    isLastQuestion,
-  } = useQuizNavigation(questionIds, loadQuestion, openEndConfirm);
-
+  // needs user id from context or somewhere
   const { btnsMeta, msgsMeta, updateReactionOnClick } = useReactionBtns(id, "123", reactions);
 
   const { answerContent, isAnswerVisible, toggleAnswer } = useQuizAnswer(
@@ -59,7 +64,7 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
     <div className="quiz-box flex flex-col p-2 overflow-hidden">
       {/* Quiz card */}
 
-      {/* <!-- Row 1 : Navigation Buttons of Exercise Section --> */}
+      {/* <!-- Row 1 : Navigation Buttons of Quiz Section --> */}
       <div className="flex justify-between items-center h-12 mb-1">
         <div className="flex">
           <IconBtn
@@ -91,13 +96,13 @@ const QuizView = ({ questionIds, questionData, loadQuestion, openEndConfirm }: P
         className="border-2 rounded-t-3xl rounded-b-2xl transition-[border-radius]"
         style={{ borderBottomLeftRadius: isAnswerVisible ? "6px" : "16px" }}
       >
-        {/* <!-- Row 2 : Exercise Number and Tags --> */}
+        {/* <!-- Row 2 : Quiz Number and Tags --> */}
         <div className="relative h-14.5">
           <QuizProgressLabel current={currentQuestionIndex} max={lastQuestionIndex} />
           <QuizTagBar tags={tags} />
         </div>
 
-        {/* <!-- Row 3 : Exercise Number and Tags --> */}
+        {/* <!-- Row 3 : Quiz Number and Tags --> */}
         <QuizProgressBar current={currentQuestionIndex} max={lastQuestionIndex} />
 
         {/* <!-- Row 4 : Question Box --> */}

@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { ActionMeta, SingleValue } from "react-select";
 import type { FilterOption } from "../data/quizFilterOptionsData";
-import { BookContext } from "../components/BookProvider";
+import { useBookContext } from "../components/BookProvider";
 
 export type QuizFiltersType = {
   BookId: number | undefined;
@@ -20,7 +20,7 @@ export type QuizFiltersType = {
 };
 
 export const useQuizFilters = () => {
-  const { currentBook } = useContext(BookContext);
+  const { currentBook } = useBookContext();
   const [quizFilters, setQuizFilters] = useState<QuizFiltersType>({
     BookId: currentBook?.id,
     Where: { value: "", label: "" },
@@ -39,7 +39,8 @@ export const useQuizFilters = () => {
 
   useEffect(() => clearFilters(), [currentBook]);
 
-  const onFilterChange = (
+  // set new user selected filter option on quizFilters
+  const onChangeFilterSelect = (
     selected: SingleValue<FilterOption>,
     action: ActionMeta<FilterOption>,
   ) => {
@@ -55,6 +56,6 @@ export const useQuizFilters = () => {
     quizFilters,
     // setQuizFilters,
     clearFilters,
-    onFilterChange,
+    onChangeFilterSelect,
   };
 };

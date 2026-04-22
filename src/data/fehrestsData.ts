@@ -465,3 +465,7 @@ export const createFakeBookPagesContent = (bookId: number) => {
 
   return loremArray;
 };
+
+export const getBookPage = (bookId: number, pageNumber: number) => {
+  return createFakeBookPagesContent(bookId)[pageNumber - 1].content;
+};

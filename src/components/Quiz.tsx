@@ -7,15 +7,23 @@ import QuizEndConfirm from "./QuizEndConfirm";
 const Quiz = () => {
   const {
     quizFilters,
-    onFilterChange,
+    onChangeFilterSelect,
     isQuizStarted,
+    currentQuestionIndex,
     startQuiz,
     startQuizLoading,
     questionIds,
-    loadQuestion,
+    lastQuestionIndex,
+    // loadQuestion,
     question,
-    endConfirmModal,
+    isFirstQuestion,
+    isLastQuestion,
+    prevLoading,
+    goToPrevQuestion,
+    nextLoading,
+    goToNextQuestion,
     openEndConfirm,
+    endConfirmModal,
     submitQuiz,
     closeEndConfirm,
     resultsModal,
@@ -31,7 +39,7 @@ const Quiz = () => {
       {!isQuizStarted ? (
         <FilterView
           quizFilters={quizFilters}
-          onFilterChange={onFilterChange}
+          onChangeFilterSelect={onChangeFilterSelect}
           startQuizLoading={startQuizLoading}
           startQuiz={startQuiz}
         />
@@ -39,11 +47,17 @@ const Quiz = () => {
         questionIds &&
         question && (
           <QuizView
-            questionIds={questionIds}
             // cache the previous questions in an array
             questionData={question}
-            loadQuestion={loadQuestion}
             openEndConfirm={openEndConfirm}
+            currentQuestionIndex={currentQuestionIndex}
+            lastQuestionIndex={lastQuestionIndex}
+            isFirstQuestion={isFirstQuestion}
+            isLastQuestion={isLastQuestion}
+            prevLoading={prevLoading}
+            goToPrevQuestion={goToPrevQuestion}
+            nextLoading={nextLoading}
+            goToNextQuestion={goToNextQuestion}
           />
         )
       )}

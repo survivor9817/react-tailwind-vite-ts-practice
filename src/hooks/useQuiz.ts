@@ -1,45 +1,89 @@
+import { useState } from "react";
 import { useQuestionData } from "./useQuestionData";
 import { useQuestionIdsData } from "./useQuestionIdsData";
 import { useQuizFilters } from "./useQuizFilters";
 import useToggle from "./useToggle";
 
 export const useQuiz = () => {
-  const { quizFilters, clearFilters, onFilterChange } = useQuizFilters();
-
-  const { questionIds, questionIdsLoading, questionIdsError, loadQuestionIds, setQuestionIds } =
-    useQuestionIdsData();
-
-  const { question, questionLoading, questionError, loadQuestion, setQuestion } = useQuestionData();
-
-  const startQuizLoading = questionLoading || questionIdsLoading;
+  const { quizFilters, clearFilters, onChangeFilterSelect } = useQuizFilters();
+  const { questionIds, questionIdsLoading, loadQuestionIds, setQuestionIds } = useQuestionIdsData();
+  const { question, questionLoading, loadQuestion, setQuestion } = useQuestionData();
 
   const clearQuiz = () => {
     setQuestionIds(null);
     setQuestion(null);
   };
 
-  // useQuizActions
-  const [isQuizStarted, , showQuizView, showFilterView] = useToggle();
-  const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
-  const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
-
+  const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
   const resetQuiz = () => {
     clearFilters();
     showFilterView();
     clearQuiz();
   };
 
+  const startQuizLoading = questionIdsLoading || questionLoading;
   const startQuiz = async () => {
     try {
-      const ids = await loadQuestionIds(/** user quiz filters???? */);
-      if (!ids?.length) return;
-      await loadQuestion(ids[0]);
+      const ids = await loadQuestionIds(/** user quiz filters or quiz id ???? */);
+      await loadQuestion(ids[0] /** zero or maybe last index? */);
       showQuizView();
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [nextLoading, setNextLoading] = useState(false);
+  const [prevLoading, setPrevLoading] = useState(false);
+
+  const goToQuestion = async (index: number) => {
+    if (!questionIds || !questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
+    if (Number.isInteger(index) && index >= 0 && index < questionIds.length) {
+      try {
+        await loadQuestion(questionIds[index]);
+        setCurrentQuestionIndex(index);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  const isFirstQuestion = currentQuestionIndex === 0;
+  const goToPrevQuestion = async () => {
+    if (isFirstQuestion) {
+      return;
+    }
+
+    setPrevLoading(true);
+    try {
+      await goToQuestion(currentQuestionIndex - 1);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setPrevLoading(false);
+    }
+  };
+
+  const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
+  const lastQuestionIndex = questionIds ? questionIds.length - 1 : 0;
+  const isLastQuestion = currentQuestionIndex === lastQuestionIndex;
+  const goToNextQuestion = async () => {
+    if (isLastQuestion) {
+      openEndConfirm();
+      return;
+    }
+
+    setNextLoading(true);
+    try {
+      await goToQuestion(currentQuestionIndex + 1);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setNextLoading(false);
+    }
+  };
+
+  const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
   const submitQuiz = () => {
     closeEndConfirm();
     openResultsModal();
@@ -52,22 +96,31 @@ export const useQuiz = () => {
 
   return {
     quizFilters,
-    onFilterChange,
+    onChangeFilterSelect,
     isQuizStarted,
+    currentQuestionIndex,
     startQuiz,
     startQuizLoading,
     questionIds,
+    lastQuestionIndex,
     loadQuestion,
     question,
-    endConfirmModal,
+    isFirstQuestion,
+    isLastQuestion,
+    prevLoading,
+    goToPrevQuestion,
+    nextLoading,
+    goToNextQuestion,
     openEndConfirm,
+    endConfirmModal,
     submitQuiz,
     closeEndConfirm,
     resultsModal,
     terminateQuiz,
     closeResultsModal,
 
-    questionIdsError,
-    questionError,
+    // fetch quiz data errors handles by toast not by ui conditional statements.
+    // questionIdsError,
+    // questionError,
   };
 };

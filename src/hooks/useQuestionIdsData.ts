@@ -22,6 +22,7 @@ export const useQuestionIdsData = () => {
         // { errorChance: 0.5 },
         // { errorChance: 0.5 },
       );
+      if (!ids || !ids.length) throw new Error("تمرینی موجود نیست!");
       setQuestionIds(ids);
       return ids;
     } catch (rawError) {

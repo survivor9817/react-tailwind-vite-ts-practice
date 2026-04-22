@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const useQuizNavigation = (
-  questionIds: string[],
+  questionIds: string[] | null,
   loadQuestion: (currentId: string) => Promise<void>,
   openEndConfirm: () => void,
 ) => {
@@ -12,36 +12,26 @@ export const useQuizNavigation = (
   // mitoonim loading har kodaam ro be onvaane disable digari paas bedim.
   // yaa shayd behtar baashe loading har kodaam disable hame baashe
 
-  const goToQuestion = async (number: number) => {
-    if (number < 0 || isNaN(number) || !questionIds || number >= questionIds.length) {
-      return;
-    }
-
-    // loadQuestion(questionIds[number])
-    //   .then(() => setCurrentQuestionIndex(number))
-    //   .catch((err) => console.log(err));
-
-    try {
-      await loadQuestion(questionIds[number]);
-      setCurrentQuestionIndex(number);
-    } catch (error) {
-      console.error("Error loading question:", error);
+  const goToQuestion = async (index: number) => {
+    if (!questionIds || !questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
+    if (Number.isInteger(index) && index >= 0 && index < questionIds.length) {
+      try {
+        await loadQuestion(questionIds[index]);
+        setCurrentQuestionIndex(index);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
   const isFirstQuestion = currentQuestionIndex === 0;
-  const lastQuestionIndex = questionIds.length - 1;
+  const lastQuestionIndex = questionIds ? questionIds.length - 1 : 0;
   const isLastQuestion = currentQuestionIndex === lastQuestionIndex;
 
   const goToPrevQuestion = async () => {
     if (isFirstQuestion) return;
 
     setPrevLoading(true);
-
-    // goToQuestion(currentQuestionIndex - 1)
-    //   .catch((err) => console.log(err))
-    //   .finally(() => setPrevLoading(false));
-
     try {
       await goToQuestion(currentQuestionIndex - 1);
     } catch (error) {
@@ -58,11 +48,6 @@ export const useQuizNavigation = (
     }
 
     setNextLoading(true);
-
-    // goToQuestion(currentQuestionIndex - 1)
-    //   .catch((err) => console.log(err))
-    //   .finally(() => setNextLoading(false));
-
     try {
       await goToQuestion(currentQuestionIndex + 1);
     } catch (error) {
