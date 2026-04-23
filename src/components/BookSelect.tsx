@@ -1,18 +1,26 @@
 import { useBookContext } from "./BookProvider";
-import Select, { type ActionMeta, type SingleValue, type StylesConfig } from "react-select";
+import Select, { type SingleValue, type StylesConfig } from "react-select";
 import { getBookById, type BookOption } from "../data/booksData.ts";
 import { useBookSelectData } from "../hooks/useBookSelectData.ts";
+import ErrorFallback from "./ErrorFallback.tsx";
+import { useEffect } from "react";
 
 const BookSelect = () => {
-  const { selectedBookOption, setCurrentBook, setSelectedBookOption } = useBookContext();
+  // useBookSelect
+  const { currentBook, setCurrentBook } = useBookContext();
 
   const { options, isLoading, isError, loadOptions } = useBookSelectData();
+  useEffect(() => {
+    loadOptions(/** user id? */);
+  }, []);
 
-  const handleBookChange = (selected: SingleValue<BookOption>, _action: ActionMeta<BookOption>) => {
-    if (selected) {
-      setSelectedBookOption(selected);
-      setCurrentBook(getBookById(selected.value));
-    }
+  const handleBookChange = (selected: SingleValue<BookOption>) => {
+    if (selected) setCurrentBook(getBookById(selected.value));
+  };
+
+  const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
+    if (isError) return <ErrorFallback onRefetch={() => loadOptions(/** user id? */)} />;
+    return inputValue ? `هیچ کتابی با "${inputValue}" پیدا نشد` : "کتابی موجود نیست";
   };
 
   const styles: StylesConfig<BookOption, false> = {
@@ -30,27 +38,6 @@ const BookSelect = () => {
     }),
   };
 
-  const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
-    if (isError) {
-      return (
-        <div className="flex justify-center items-center gap-2">
-          <span className="text-red-500 text-xs">خطا در بارگذاری گزینه ها</span>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              loadOptions();
-            }}
-            className="px-4 py-1.5 bg-blue-500 hover:bg-blue-600 text-white text-xs rounded-full transition-colors cursor-pointer"
-          >
-            تلاش مجدد ↻
-          </button>
-        </div>
-      );
-    }
-    return inputValue ? `هیچ کتابی با "${inputValue}" پیدا نشد` : "کتابی موجود نیست";
-  };
-
   return (
     <div className="relative mt-10 w-73">
       <label className="absolute top-0 right-0 text-sm z-10 mx-4 -translate-y-3 bg-[#ebebeb] px-2">
@@ -59,7 +46,7 @@ const BookSelect = () => {
 
       <Select<BookOption, false>
         options={options}
-        value={selectedBookOption}
+        value={currentBook}
         placeholder={isLoading ? "در حال بارگذاری کتاب‌ها ..." : "یک کتاب انتخاب کنید"}
         styles={styles}
         isRtl={true}

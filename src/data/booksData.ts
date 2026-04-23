@@ -33,7 +33,8 @@ export const FIELDS: Field[] = [
 
 export type Book = {
   id: number; // is not uid
-  title: string;
+  value: number;
+  label: string;
   gradeId: GradeId;
   fieldId: FieldId;
   coverImage: string;
@@ -48,7 +49,8 @@ export const BOOKS: Book[] = [
   // ================= پایه هفتم =================
   {
     id: 701,
-    title: "آموزش قرآن",
+    value: 701,
+    label: "آموزش قرآن",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -61,7 +63,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 702,
-    title: "پیام های آسمان",
+    value: 702,
+    label: "پیام های آسمان",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -74,7 +77,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 703,
-    title: "فارسی",
+    value: 703,
+    label: "فارسی",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -87,7 +91,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 704,
-    title: "نگارش",
+    value: 704,
+    label: "نگارش",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -100,7 +105,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 705,
-    title: "ریاضی",
+    value: 705,
+    label: "ریاضی",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -113,7 +119,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 706,
-    title: "علوم تجربی ۷",
+    value: 706,
+    label: "علوم تجربی ۷",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -126,7 +133,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 707,
-    title: "مطالعات اجتماعی",
+    value: 707,
+    label: "مطالعات اجتماعی",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -139,7 +147,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 708,
-    title: "فرهنگ و هنر",
+    value: 708,
+    label: "فرهنگ و هنر",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -152,7 +161,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 709,
-    title: "عربی",
+    value: 709,
+    label: "عربی",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -165,7 +175,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 710,
-    title: "انگلیسی ۱",
+    value: 710,
+    label: "انگلیسی ۱",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -178,7 +189,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 711,
-    title: "کتاب کار انگلیسی ۱",
+    value: 711,
+    label: "کتاب کار انگلیسی ۱",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -191,7 +203,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 712,
-    title: "تفکر و سبک زندگی (پسران)",
+    value: 712,
+    label: "تفکر و سبک زندگی (پسران)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -204,7 +217,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 713,
-    title: "تفکر و سبک زندگی (دختران)",
+    value: 713,
+    label: "تفکر و سبک زندگی (دختران)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -217,7 +231,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 717,
-    title: "کار و فناوری",
+    value: 717,
+    label: "کار و فناوری",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -230,7 +245,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 7171,
-    title: "کار و فناوری (اجرای آزمایشی)",
+    value: 7171,
+    label: "کار و فناوری (اجرای آزمایشی)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -243,7 +259,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 719,
-    title: "ضمیمه پیام های آسمان (اهل سنت)",
+    value: 719,
+    label: "ضمیمه پیام های آسمان (اهل سنت)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -256,7 +273,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 720,
-    title: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
+    value: 720,
+    label: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -269,7 +287,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 722,
-    title: "فارسی و نگارش (استعدادهای درخشان)",
+    value: 722,
+    label: "فارسی و نگارش (استعدادهای درخشان)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -282,7 +301,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 723,
-    title: "ریاضیات (استعدادهای درخشان)",
+    value: 723,
+    label: "ریاضیات (استعدادهای درخشان)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -295,7 +315,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 724,
-    title: "علوم تجربی (استعدادهای درخشان)",
+    value: 724,
+    label: "علوم تجربی (استعدادهای درخشان)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -308,7 +329,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 741,
-    title: "تربیت دینی (از من تا خدا)",
+    value: 741,
+    label: "تربیت دینی (از من تا خدا)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -321,7 +343,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 742,
-    title: "تربیت دینی (اهل سنت)",
+    value: 742,
+    label: "تربیت دینی (اهل سنت)",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -334,7 +357,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 765,
-    title: "از ایرانمان دفاع می کنیم",
+    value: 765,
+    label: "از ایرانمان دفاع می کنیم",
     gradeId: 7,
     fieldId: null,
     coverImage:
@@ -349,7 +373,8 @@ export const BOOKS: Book[] = [
   // ================= پایه هشتم =================
   {
     id: 801,
-    title: "آموزش قرآن",
+    value: 801,
+    label: "آموزش قرآن",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -362,7 +387,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 802,
-    title: "پیام های آسمان",
+    value: 802,
+    label: "پیام های آسمان",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -375,7 +401,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 803,
-    title: "فارسی",
+    value: 803,
+    label: "فارسی",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -388,7 +415,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 804,
-    title: "نگارش",
+    value: 804,
+    label: "نگارش",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -401,7 +429,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 805,
-    title: "ریاضی",
+    value: 805,
+    label: "ریاضی",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -414,7 +443,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 806,
-    title: "علوم تجربی ۸",
+    value: 806,
+    label: "علوم تجربی ۸",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -427,7 +457,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 807,
-    title: "مطالعات اجتماعی",
+    value: 807,
+    label: "مطالعات اجتماعی",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -440,7 +471,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 808,
-    title: "فرهنگ و هنر",
+    value: 808,
+    label: "فرهنگ و هنر",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -453,7 +485,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 809,
-    title: "عربی",
+    value: 809,
+    label: "عربی",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -466,7 +499,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 810,
-    title: "انگلیسی ۲",
+    value: 810,
+    label: "انگلیسی ۲",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -479,7 +513,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 811,
-    title: "کتاب کار انگلیسی ۲",
+    value: 811,
+    label: "کتاب کار انگلیسی ۲",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -492,7 +527,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 812,
-    title: "تفکر و سبک زندگی",
+    value: 812,
+    label: "تفکر و سبک زندگی",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -505,7 +541,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 814,
-    title: "تفکر و سبک زندگی (پسران)",
+    value: 814,
+    label: "تفکر و سبک زندگی (پسران)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -518,7 +555,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 817,
-    title: "کار و فناوری",
+    value: 817,
+    label: "کار و فناوری",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -531,7 +569,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 8171,
-    title: "کار و فناوری (اجرای آزمایشی)",
+    value: 8171,
+    label: "کار و فناوری (اجرای آزمایشی)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -544,7 +583,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 819,
-    title: "ضمیمه پیام های آسمان (اهل سنت)",
+    value: 819,
+    label: "ضمیمه پیام های آسمان (اهل سنت)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -557,7 +597,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 820,
-    title: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
+    value: 820,
+    label: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -570,7 +611,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 822,
-    title: "فارسی و نگارش (استعدادهای درخشان)",
+    value: 822,
+    label: "فارسی و نگارش (استعدادهای درخشان)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -583,7 +625,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 823,
-    title: "ریاضیات (استعدادهای درخشان)",
+    value: 823,
+    label: "ریاضیات (استعدادهای درخشان)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -596,7 +639,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 824,
-    title: "علوم تجربی (استعدادهای درخشان)",
+    value: 824,
+    label: "علوم تجربی (استعدادهای درخشان)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -609,7 +653,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 841,
-    title: "تربیت دینی (از من تا خدا)",
+    value: 841,
+    label: "تربیت دینی (از من تا خدا)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -622,7 +667,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 842,
-    title: "تربیت دینی (اهل سنت)",
+    value: 842,
+    label: "تربیت دینی (اهل سنت)",
     gradeId: 8,
     fieldId: null,
     coverImage:
@@ -637,7 +683,8 @@ export const BOOKS: Book[] = [
   // ================= پایه نهم =================
   {
     id: 901,
-    title: "آموزش قرآن",
+    value: 901,
+    label: "آموزش قرآن",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -650,7 +697,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 902,
-    title: "پیام های آسمان",
+    value: 902,
+    label: "پیام های آسمان",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -663,7 +711,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 903,
-    title: "فارسی",
+    value: 903,
+    label: "فارسی",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -676,7 +725,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 904,
-    title: "نگارش",
+    value: 904,
+    label: "نگارش",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -689,7 +739,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 905,
-    title: "ریاضی",
+    value: 905,
+    label: "ریاضی",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -702,7 +753,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 906,
-    title: "علوم تجربی ۹",
+    value: 906,
+    label: "علوم تجربی ۹",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -715,7 +767,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 907,
-    title: "مطالعات اجتماعی",
+    value: 907,
+    label: "مطالعات اجتماعی",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -728,7 +781,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 908,
-    title: "فرهنگ و هنر",
+    value: 908,
+    label: "فرهنگ و هنر",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -741,7 +795,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 909,
-    title: "عربی",
+    value: 909,
+    label: "عربی",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -754,7 +809,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 910,
-    title: "انگلیسی ۳",
+    value: 910,
+    label: "انگلیسی ۳",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -767,7 +823,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 911,
-    title: "کتاب کار انگلیسی ۳",
+    value: 911,
+    label: "کتاب کار انگلیسی ۳",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -780,7 +837,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 915,
-    title: "آمادگی دفاعی",
+    value: 915,
+    label: "آمادگی دفاعی",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -793,7 +851,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 917,
-    title: "کار و فناوری",
+    value: 917,
+    label: "کار و فناوری",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -806,7 +865,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 9171,
-    title: "کار و فناوری (اجرای آزمایشی)",
+    value: 9171,
+    label: "کار و فناوری (اجرای آزمایشی)",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -819,7 +879,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 919,
-    title: "ضمیمه پیام های آسمان (اهل سنت)",
+    value: 919,
+    label: "ضمیمه پیام های آسمان (اهل سنت)",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -832,7 +893,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 920,
-    title: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
+    value: 920,
+    label: "تعلیمات ادیان الهی و اخلاق (اقلیت ها)",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -845,7 +907,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 922,
-    title: "فارسی و نگارش (استعدادهای درخشان)",
+    value: 922,
+    label: "فارسی و نگارش (استعدادهای درخشان)",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -858,7 +921,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 923,
-    title: "ریاضیات (استعدادهای درخشان)",
+    value: 923,
+    label: "ریاضیات (استعدادهای درخشان)",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -871,7 +935,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 924,
-    title: "علوم تجربی (استعدادهای درخشان)",
+    value: 924,
+    label: "علوم تجربی (استعدادهای درخشان)",
     gradeId: 9,
     fieldId: null,
     coverImage:
@@ -887,7 +952,8 @@ export const BOOKS: Book[] = [
   // مشترک (fieldId: null)
   {
     id: 110201,
-    title: "فارسی ۱",
+    value: 110201,
+    label: "فارسی ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -900,7 +966,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110201,
-    title: "فارسی ۱",
+    value: 110201,
+    label: "فارسی ۱",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -913,7 +980,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110201,
-    title: "فارسی ۱",
+    value: 110201,
+    label: "فارسی ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -926,7 +994,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110201,
-    title: "فارسی ۱",
+    value: 110201,
+    label: "فارسی ۱",
     gradeId: 10,
     fieldId: 4,
     coverImage:
@@ -939,7 +1008,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110202,
-    title: "نگارش ۱",
+    value: 110202,
+    label: "نگارش ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -952,7 +1022,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110202,
-    title: "نگارش ۱",
+    value: 110202,
+    label: "نگارش ۱",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -965,7 +1036,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110202,
-    title: "نگارش ۱",
+    value: 110202,
+    label: "نگارش ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -978,7 +1050,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110202,
-    title: "نگارش ۱",
+    value: 110202,
+    label: "نگارش ۱",
     gradeId: 10,
     fieldId: 4,
     coverImage:
@@ -991,7 +1064,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110204,
-    title: "دین و زندگی ۱",
+    value: 110204,
+    label: "دین و زندگی ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1004,7 +1078,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110204,
-    title: "دین و زندگی ۱",
+    value: 110204,
+    label: "دین و زندگی ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1017,7 +1092,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110206,
-    title: "عربی، زبان قرآن ۱",
+    value: 110206,
+    label: "عربی، زبان قرآن ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1030,7 +1106,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110206,
-    title: "عربی، زبان قرآن ۱",
+    value: 110206,
+    label: "عربی، زبان قرآن ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1043,7 +1120,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110210,
-    title: "شیمی ۱",
+    value: 110210,
+    label: "شیمی ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1056,7 +1134,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110210,
-    title: "شیمی ۱",
+    value: 110210,
+    label: "شیمی ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1069,7 +1148,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110211,
-    title: "ریاضی ۱",
+    value: 110211,
+    label: "ریاضی ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1082,7 +1162,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110211,
-    title: "ریاضی ۱",
+    value: 110211,
+    label: "ریاضی ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1095,7 +1176,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110215,
-    title: "آمادگی دفاعی",
+    value: 110215,
+    label: "آمادگی دفاعی",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1108,7 +1190,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110215,
-    title: "آمادگی دفاعی",
+    value: 110215,
+    label: "آمادگی دفاعی",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1121,7 +1204,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110215,
-    title: "آمادگی دفاعی",
+    value: 110215,
+    label: "آمادگی دفاعی",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1134,7 +1218,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110217,
-    title: "آزمایشگاه علوم تجربی ۱",
+    value: 110217,
+    label: "آزمایشگاه علوم تجربی ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1147,7 +1232,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110217,
-    title: "آزمایشگاه علوم تجربی ۱",
+    value: 110217,
+    label: "آزمایشگاه علوم تجربی ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1160,7 +1246,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110218,
-    title: "جغرافیای ایران",
+    value: 110218,
+    label: "جغرافیای ایران",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1173,7 +1260,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110218,
-    title: "جغرافیای ایران",
+    value: 110218,
+    label: "جغرافیای ایران",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1186,7 +1274,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110218,
-    title: "جغرافیای ایران",
+    value: 110218,
+    label: "جغرافیای ایران",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1199,7 +1288,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110222,
-    title: "هنر",
+    value: 110222,
+    label: "هنر",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1212,7 +1302,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110222,
-    title: "هنر",
+    value: 110222,
+    label: "هنر",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1225,7 +1316,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110222,
-    title: "هنر",
+    value: 110222,
+    label: "هنر",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1238,7 +1330,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110224,
-    title: "کارگاه کارآفرینی و تولید",
+    value: 110224,
+    label: "کارگاه کارآفرینی و تولید",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1251,7 +1344,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110224,
-    title: "کارگاه کارآفرینی و تولید",
+    value: 110224,
+    label: "کارگاه کارآفرینی و تولید",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1264,7 +1358,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110224,
-    title: "کارگاه کارآفرینی و تولید",
+    value: 110224,
+    label: "کارگاه کارآفرینی و تولید",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1277,7 +1372,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110225,
-    title: "تفکر و سواد رسانه ای",
+    value: 110225,
+    label: "تفکر و سواد رسانه ای",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1290,7 +1386,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110225,
-    title: "تفکر و سواد رسانه ای",
+    value: 110225,
+    label: "تفکر و سواد رسانه ای",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1303,7 +1400,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110225,
-    title: "تفکر و سواد رسانه ای",
+    value: 110225,
+    label: "تفکر و سواد رسانه ای",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1316,7 +1414,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110228,
-    title: "تعلیمات ادیان الهی و اخلاق ۱",
+    value: 110228,
+    label: "تعلیمات ادیان الهی و اخلاق ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1329,7 +1428,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110228,
-    title: "تعلیمات ادیان الهی و اخلاق ۱",
+    value: 110228,
+    label: "تعلیمات ادیان الهی و اخلاق ۱",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1342,7 +1442,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110228,
-    title: "تعلیمات ادیان الهی و اخلاق ۱",
+    value: 110228,
+    label: "تعلیمات ادیان الهی و اخلاق ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1355,7 +1456,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110230,
-    title: "انگلیسی ۱",
+    value: 110230,
+    label: "انگلیسی ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1368,7 +1470,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110231,
-    title: "کتاب کار انگلیسی ۱",
+    value: 110231,
+    label: "کتاب کار انگلیسی ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1381,7 +1484,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110230,
-    title: "انگلیسی ۱",
+    value: 110230,
+    label: "انگلیسی ۱",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1394,7 +1498,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110231,
-    title: "کتاب کار انگلیسی ۱",
+    value: 110231,
+    label: "کتاب کار انگلیسی ۱",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1407,7 +1512,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110230,
-    title: "انگلیسی ۱",
+    value: 110230,
+    label: "انگلیسی ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1420,7 +1526,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110231,
-    title: "کتاب کار انگلیسی ۱",
+    value: 110231,
+    label: "کتاب کار انگلیسی ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1433,7 +1540,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110345,
-    title: "از ایرانمان دفاع می کنیم",
+    value: 110345,
+    label: "از ایرانمان دفاع می کنیم",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1446,7 +1554,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110345,
-    title: "از ایرانمان دفاع می کنیم",
+    value: 110345,
+    label: "از ایرانمان دفاع می کنیم",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1459,7 +1568,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110345,
-    title: "از ایرانمان دفاع می کنیم",
+    value: 110345,
+    label: "از ایرانمان دفاع می کنیم",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1473,7 +1583,8 @@ export const BOOKS: Book[] = [
   // اختصاصی تجربی
   {
     id: 110214,
-    title: "فیزیک ۱ (تجربی)",
+    value: 110214,
+    label: "فیزیک ۱ (تجربی)",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1486,7 +1597,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110216,
-    title: "زیست شناسی ۱",
+    value: 110216,
+    label: "زیست شناسی ۱",
     gradeId: 10,
     fieldId: 1,
     coverImage:
@@ -1500,7 +1612,8 @@ export const BOOKS: Book[] = [
   // اختصاصی انسانی
   {
     id: 110203,
-    title: "علوم و فنون ادبی ۱",
+    value: 110203,
+    label: "علوم و فنون ادبی ۱",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1513,7 +1626,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110205,
-    title: "دین و زندگی ۱ (انسانی)",
+    value: 110205,
+    label: "دین و زندگی ۱ (انسانی)",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1526,7 +1640,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110207,
-    title: "عربی، زبان قرآن ۱ (انسانی)",
+    value: 110207,
+    label: "عربی، زبان قرآن ۱ (انسانی)",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1539,7 +1654,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110212,
-    title: "ریاضی و آمار ۱",
+    value: 110212,
+    label: "ریاضی و آمار ۱",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1552,7 +1668,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110219,
-    title: "تاریخ ۱ (ایران و جهان باستان)",
+    value: 110219,
+    label: "تاریخ ۱ (ایران و جهان باستان)",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1565,7 +1682,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110220,
-    title: "جامعه شناسی ۱",
+    value: 110220,
+    label: "جامعه شناسی ۱",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1578,7 +1696,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110221,
-    title: "اقتصاد",
+    value: 110221,
+    label: "اقتصاد",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1591,7 +1710,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110223,
-    title: "منطق",
+    value: 110223,
+    label: "منطق",
     gradeId: 10,
     fieldId: 2,
     coverImage:
@@ -1605,7 +1725,8 @@ export const BOOKS: Book[] = [
   // اختصاصی ریاضی
   {
     id: 110209,
-    title: "فیزیک ۱ (ریاضی)",
+    value: 110209,
+    label: "فیزیک ۱ (ریاضی)",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1618,7 +1739,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 110213,
-    title: "هندسه ۱",
+    value: 110213,
+    label: "هندسه ۱",
     gradeId: 10,
     fieldId: 3,
     coverImage:
@@ -1634,7 +1756,8 @@ export const BOOKS: Book[] = [
   // مشترک (fieldId: null)
   {
     id: 111201,
-    title: "فارسی ۲",
+    value: 111201,
+    label: "فارسی ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1647,7 +1770,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111201,
-    title: "فارسی ۲",
+    value: 111201,
+    label: "فارسی ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -1660,7 +1784,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111201,
-    title: "فارسی ۲",
+    value: 111201,
+    label: "فارسی ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1673,7 +1798,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111202,
-    title: "نگارش ۲",
+    value: 111202,
+    label: "نگارش ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1686,7 +1812,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111202,
-    title: "نگارش ۲",
+    value: 111202,
+    label: "نگارش ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -1699,7 +1826,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111202,
-    title: "نگارش ۲",
+    value: 111202,
+    label: "نگارش ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1712,7 +1840,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111204,
-    title: "دین و زندگی ۲",
+    value: 111204,
+    label: "دین و زندگی ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1725,7 +1854,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111204,
-    title: "دین و زندگی ۲",
+    value: 111204,
+    label: "دین و زندگی ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1738,7 +1868,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111206,
-    title: "عربی، زبان قرآن ۲",
+    value: 111206,
+    label: "عربی، زبان قرآن ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1751,7 +1882,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111206,
-    title: "عربی، زبان قرآن ۲",
+    value: 111206,
+    label: "عربی، زبان قرآن ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1764,7 +1896,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111210,
-    title: "شیمی ۲",
+    value: 111210,
+    label: "شیمی ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1777,7 +1910,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111210,
-    title: "شیمی ۲",
+    value: 111210,
+    label: "شیمی ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1790,7 +1924,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111217,
-    title: "آزمایشگاه علوم تجربی ۲",
+    value: 111217,
+    label: "آزمایشگاه علوم تجربی ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1803,7 +1938,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111217,
-    title: "آزمایشگاه علوم تجربی ۲",
+    value: 111217,
+    label: "آزمایشگاه علوم تجربی ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1816,7 +1952,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111220,
-    title: "تاریخ معاصر ایران",
+    value: 111220,
+    label: "تاریخ معاصر ایران",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1829,7 +1966,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111220,
-    title: "تاریخ معاصر ایران",
+    value: 111220,
+    label: "تاریخ معاصر ایران",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1842,7 +1980,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111228,
-    title: "تعلیمات ادیان الهی و اخلاق ۲",
+    value: 111228,
+    label: "تعلیمات ادیان الهی و اخلاق ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1855,7 +1994,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111228,
-    title: "تعلیمات ادیان الهی و اخلاق ۲",
+    value: 111228,
+    label: "تعلیمات ادیان الهی و اخلاق ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -1868,7 +2008,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111228,
-    title: "تعلیمات ادیان الهی و اخلاق ۲",
+    value: 111228,
+    label: "تعلیمات ادیان الهی و اخلاق ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1881,7 +2022,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111230,
-    title: "انگلیسی ۲",
+    value: 111230,
+    label: "انگلیسی ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1894,7 +2036,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111231,
-    title: "کتاب کار انگلیسی ۲",
+    value: 111231,
+    label: "کتاب کار انگلیسی ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1907,7 +2050,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111230,
-    title: "انگلیسی ۲",
+    value: 111230,
+    label: "انگلیسی ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -1920,7 +2064,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111231,
-    title: "کتاب کار انگلیسی ۲",
+    value: 111231,
+    label: "کتاب کار انگلیسی ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -1933,7 +2078,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111230,
-    title: "انگلیسی ۲",
+    value: 111230,
+    label: "انگلیسی ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1946,7 +2092,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111231,
-    title: "کتاب کار انگلیسی ۲",
+    value: 111231,
+    label: "کتاب کار انگلیسی ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1959,7 +2106,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111237,
-    title: "زمین شناسی",
+    value: 111237,
+    label: "زمین شناسی",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1972,7 +2120,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111237,
-    title: "زمین شناسی",
+    value: 111237,
+    label: "زمین شناسی",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -1985,7 +2134,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111238,
-    title: "ضمیمه دین و زندگی ۲ (اهل سنت)",
+    value: 111238,
+    label: "ضمیمه دین و زندگی ۲ (اهل سنت)",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -1998,7 +2148,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111238,
-    title: "ضمیمه دین و زندگی ۲ (اهل سنت)",
+    value: 111238,
+    label: "ضمیمه دین و زندگی ۲ (اهل سنت)",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2011,7 +2162,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111238,
-    title: "ضمیمه دین و زندگی ۲ (اهل سنت)",
+    value: 111238,
+    label: "ضمیمه دین و زندگی ۲ (اهل سنت)",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -2024,7 +2176,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111268,
-    title: "انسان و محیط زیست",
+    value: 111268,
+    label: "انسان و محیط زیست",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -2037,7 +2190,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111268,
-    title: "انسان و محیط زیست",
+    value: 111268,
+    label: "انسان و محیط زیست",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2050,7 +2204,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111268,
-    title: "انسان و محیط زیست",
+    value: 111268,
+    label: "انسان و محیط زیست",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -2064,7 +2219,8 @@ export const BOOKS: Book[] = [
   // اختصاصی تجربی
   {
     id: 111211,
-    title: "ریاضی ۲ (تجربی)",
+    value: 111211,
+    label: "ریاضی ۲ (تجربی)",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -2077,7 +2233,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111216,
-    title: "زیست شناسی ۲",
+    value: 111216,
+    label: "زیست شناسی ۲",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -2090,7 +2247,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111244,
-    title: "فیزیک ۲ (تجربی)",
+    value: 111244,
+    label: "فیزیک ۲ (تجربی)",
     gradeId: 11,
     fieldId: 1,
     coverImage:
@@ -2104,7 +2262,8 @@ export const BOOKS: Book[] = [
   // اختصاصی انسانی
   {
     id: 111203,
-    title: "علوم و فنون ادبی ۲",
+    value: 111203,
+    label: "علوم و فنون ادبی ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2117,7 +2276,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111205,
-    title: "دین و زندگی ۲ (انسانی)",
+    value: 111205,
+    label: "دین و زندگی ۲ (انسانی)",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2130,7 +2290,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111207,
-    title: "عربی، زبان قرآن ۲ (انسانی)",
+    value: 111207,
+    label: "عربی، زبان قرآن ۲ (انسانی)",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2143,7 +2304,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111212,
-    title: "ریاضی و آمار ۲",
+    value: 111212,
+    label: "ریاضی و آمار ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2156,7 +2318,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111218,
-    title: "جغرافیای ۲ (ناحیه ای)",
+    value: 111218,
+    label: "جغرافیای ۲ (ناحیه ای)",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2169,7 +2332,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111219,
-    title: "تاریخ ۲",
+    value: 111219,
+    label: "تاریخ ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2182,7 +2346,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111222,
-    title: "جامعه شناسی ۲",
+    value: 111222,
+    label: "جامعه شناسی ۲",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2195,7 +2360,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111224,
-    title: "روان شناسی",
+    value: 111224,
+    label: "روان شناسی",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2208,7 +2374,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111226,
-    title: "فلسفه ۱",
+    value: 111226,
+    label: "فلسفه ۱",
     gradeId: 11,
     fieldId: 2,
     coverImage:
@@ -2222,7 +2389,8 @@ export const BOOKS: Book[] = [
   // اختصاصی ریاضی
   {
     id: 111209,
-    title: "فیزیک ۲ (ریاضی)",
+    value: 111209,
+    label: "فیزیک ۲ (ریاضی)",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -2235,7 +2403,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111213,
-    title: "هندسه ۲",
+    value: 111213,
+    label: "هندسه ۲",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -2248,7 +2417,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111214,
-    title: "حسابان ۱",
+    value: 111214,
+    label: "حسابان ۱",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -2261,7 +2431,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 111215,
-    title: "آمار و احتمال",
+    value: 111215,
+    label: "آمار و احتمال",
     gradeId: 11,
     fieldId: 3,
     coverImage:
@@ -2277,7 +2448,8 @@ export const BOOKS: Book[] = [
   // مشترک (fieldId: null)
   {
     id: 112201,
-    title: "فارسی ۳",
+    value: 112201,
+    label: "فارسی ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2290,7 +2462,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112201,
-    title: "فارسی ۳",
+    value: 112201,
+    label: "فارسی ۳",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2303,7 +2476,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112201,
-    title: "فارسی ۳",
+    value: 112201,
+    label: "فارسی ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2316,7 +2490,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112202,
-    title: "نگارش ۳",
+    value: 112202,
+    label: "نگارش ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2329,7 +2504,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112202,
-    title: "نگارش ۳",
+    value: 112202,
+    label: "نگارش ۳",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2342,7 +2518,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112202,
-    title: "نگارش ۳",
+    value: 112202,
+    label: "نگارش ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2355,7 +2532,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112204,
-    title: "دین و زندگی ۳",
+    value: 112204,
+    label: "دین و زندگی ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2368,7 +2546,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112204,
-    title: "دین و زندگی ۳",
+    value: 112204,
+    label: "دین و زندگی ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2381,7 +2560,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112206,
-    title: "عربی، زبان قرآن ۳",
+    value: 112206,
+    label: "عربی، زبان قرآن ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2394,7 +2574,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112206,
-    title: "عربی، زبان قرآن ۳",
+    value: 112206,
+    label: "عربی، زبان قرآن ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2407,7 +2588,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112210,
-    title: "شیمی ۳",
+    value: 112210,
+    label: "شیمی ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2420,7 +2602,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112210,
-    title: "شیمی ۳",
+    value: 112210,
+    label: "شیمی ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2433,7 +2616,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112220,
-    title: "هویت اجتماعی",
+    value: 112220,
+    label: "هویت اجتماعی",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2446,7 +2630,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112220,
-    title: "هویت اجتماعی",
+    value: 112220,
+    label: "هویت اجتماعی",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2459,7 +2644,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112228,
-    title: "تعلیمات ادیان الهی و اخلاق ۳",
+    value: 112228,
+    label: "تعلیمات ادیان الهی و اخلاق ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2472,7 +2658,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112228,
-    title: "تعلیمات ادیان الهی و اخلاق ۳",
+    value: 112228,
+    label: "تعلیمات ادیان الهی و اخلاق ۳",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2485,7 +2672,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112228,
-    title: "تعلیمات ادیان الهی و اخلاق ۳",
+    value: 112228,
+    label: "تعلیمات ادیان الهی و اخلاق ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2498,7 +2686,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112230,
-    title: "انگلیسی ۳",
+    value: 112230,
+    label: "انگلیسی ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2511,7 +2700,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112231,
-    title: "کتاب کار انگلیسی ۳",
+    value: 112231,
+    label: "کتاب کار انگلیسی ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2524,7 +2714,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112230,
-    title: "انگلیسی ۳",
+    value: 112230,
+    label: "انگلیسی ۳",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2537,7 +2728,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112231,
-    title: "کتاب کار انگلیسی ۳",
+    value: 112231,
+    label: "کتاب کار انگلیسی ۳",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2550,7 +2742,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112230,
-    title: "انگلیسی ۳",
+    value: 112230,
+    label: "انگلیسی ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2563,7 +2756,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112231,
-    title: "کتاب کار انگلیسی ۳",
+    value: 112231,
+    label: "کتاب کار انگلیسی ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2576,7 +2770,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112240,
-    title: "مدیریت خانواده و سبک زندگی (دختران)",
+    value: 112240,
+    label: "مدیریت خانواده و سبک زندگی (دختران)",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2589,7 +2784,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112240,
-    title: "مدیریت خانواده و سبک زندگی (دختران)",
+    value: 112240,
+    label: "مدیریت خانواده و سبک زندگی (دختران)",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2602,7 +2798,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112240,
-    title: "مدیریت خانواده و سبک زندگی (دختران)",
+    value: 112240,
+    label: "مدیریت خانواده و سبک زندگی (دختران)",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2615,7 +2812,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112245,
-    title: "مدیریت خانواده و سبک زندگی (پسران)",
+    value: 112245,
+    label: "مدیریت خانواده و سبک زندگی (پسران)",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2628,7 +2826,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112245,
-    title: "مدیریت خانواده و سبک زندگی (پسران)",
+    value: 112245,
+    label: "مدیریت خانواده و سبک زندگی (پسران)",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2641,7 +2840,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112245,
-    title: "مدیریت خانواده و سبک زندگی (پسران)",
+    value: 112245,
+    label: "مدیریت خانواده و سبک زندگی (پسران)",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2654,7 +2854,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112268,
-    title: "سلامت و بهداشت",
+    value: 112268,
+    label: "سلامت و بهداشت",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2667,7 +2868,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112268,
-    title: "سلامت و بهداشت",
+    value: 112268,
+    label: "سلامت و بهداشت",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2680,7 +2882,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112268,
-    title: "سلامت و بهداشت",
+    value: 112268,
+    label: "سلامت و بهداشت",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2694,7 +2897,8 @@ export const BOOKS: Book[] = [
   // اختصاصی تجربی
   {
     id: 112211,
-    title: "ریاضی ۳ (تجربی)",
+    value: 112211,
+    label: "ریاضی ۳ (تجربی)",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2707,7 +2911,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112216,
-    title: "زیست شناسی ۳",
+    value: 112216,
+    label: "زیست شناسی ۳",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2720,7 +2925,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112244,
-    title: "فیزیک ۳ (تجربی)",
+    value: 112244,
+    label: "فیزیک ۳ (تجربی)",
     gradeId: 12,
     fieldId: 1,
     coverImage:
@@ -2734,7 +2940,8 @@ export const BOOKS: Book[] = [
   // اختصاصی انسانی
   {
     id: 112205,
-    title: "دین و زندگی ۳ (انسانی)",
+    value: 112205,
+    label: "دین و زندگی ۳ (انسانی)",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2747,7 +2954,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112207,
-    title: "عربی، زبان قرآن ۳ (انسانی)",
+    value: 112207,
+    label: "عربی، زبان قرآن ۳ (انسانی)",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2760,7 +2968,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112212,
-    title: "ریاضی و آمار ۳",
+    value: 112212,
+    label: "ریاضی و آمار ۳",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2773,7 +2982,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112218,
-    title: "جغرافیا ۳ (کاربردی)",
+    value: 112218,
+    label: "جغرافیا ۳ (کاربردی)",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2786,7 +2996,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112219,
-    title: "تاریخ ۳ ایران و جهان معاصر",
+    value: 112219,
+    label: "تاریخ ۳ ایران و جهان معاصر",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2799,7 +3010,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112222,
-    title: "جامعه شناسی ۳",
+    value: 112222,
+    label: "جامعه شناسی ۳",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2812,7 +3024,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112223,
-    title: "تحلیل فرهنگی",
+    value: 112223,
+    label: "تحلیل فرهنگی",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2825,7 +3038,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112226,
-    title: "فلسفه ۲",
+    value: 112226,
+    label: "فلسفه ۲",
     gradeId: 12,
     fieldId: 2,
     coverImage:
@@ -2839,7 +3053,8 @@ export const BOOKS: Book[] = [
   // اختصاصی ریاضی
   {
     id: 112209,
-    title: "فیزیک ۳ (ریاضی)",
+    value: 112209,
+    label: "فیزیک ۳ (ریاضی)",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2852,7 +3067,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112213,
-    title: "هندسه ۳",
+    value: 112213,
+    label: "هندسه ۳",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2865,7 +3081,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112214,
-    title: "حسابان ۲",
+    value: 112214,
+    label: "حسابان ۲",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2878,7 +3095,8 @@ export const BOOKS: Book[] = [
   },
   {
     id: 112215,
-    title: "ریاضیات گسسته",
+    value: 112215,
+    label: "ریاضیات گسسته",
     gradeId: 12,
     fieldId: 3,
     coverImage:
@@ -2947,7 +3165,7 @@ export type BookOption = {
 };
 export const getOptionsOfBookSelector = (): BookOption[] => {
   const optionsOfBookSelector = getPurchasedBooks().map((book) => {
-    return { value: book.id, label: book.title };
+    return { value: book.id, label: book.label };
   });
   return optionsOfBookSelector;
 };

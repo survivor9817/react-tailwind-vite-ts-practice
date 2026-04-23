@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useFilterSelectData } from "../hooks/useFilterSelectData";
 import type { QuizFiltersType } from "../hooks/useQuizFilters";
 import type { FilterOption } from "../data/quizFilterOptionsData";
-import type { ActionMeta, SelectInstance, SingleValue, StylesConfig } from "react-select";
+import type { ActionMeta, SingleValue, StylesConfig } from "react-select";
 import ErrorFallback from "./ErrorFallback";
 import Select from "react-select";
+import { useFocusOnLastFilter } from "../hooks/useFocusOnLastFilter";
 
 type Props = {
   filterId: "Where" | "Level" | "Source";
@@ -23,20 +24,24 @@ const FilterSelector = ({
   onChange,
   loadingMessage = "در حال بارگذاری گزینه‌ها...",
 }: Props) => {
-  const { options, isLoading, isError, loadOptions } = useFilterSelectData(
-    initialOptions,
-    filterId,
-    quizFilters,
-  );
-
-  // activeTab roo age daashte baashim mitoonim age begim age user rooye tamrin
-  // hastesh filtere wheresh ham focus beshe
-  const selectRef = useRef<SelectInstance<FilterOption, false>>(null);
+  const { options, isLoading, isError, loadOptions } = useFilterSelectData(initialOptions);
   useEffect(() => {
-    if (filterId !== "Where") {
-      setTimeout(() => selectRef.current?.focus(), 300);
-    }
-  }, [filterId, isLoading]);
+    loadOptions(filterId, quizFilters);
+    // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
+  }, [quizFilters.BookId]);
+
+  const { selectRef } = useFocusOnLastFilter();
+
+  const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
+    if (isError)
+      return (
+        <ErrorFallback
+          onRefetch={() => loadOptions(filterId, quizFilters)}
+          ErrorMsg="خطا در بارگذاری گزینه‌ها"
+        />
+      );
+    return inputValue ? `هیچ نتیجه‌ای برای "${inputValue}" پیدا نشد` : "گزینه‌ای موجود نیست";
+  };
 
   const styles: StylesConfig<FilterOption, false> = {
     control: (provider) => ({
@@ -56,12 +61,6 @@ const FilterSelector = ({
       ...provided,
       zIndex: 9999,
     }),
-  };
-
-  const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
-    if (isError)
-      return <ErrorFallback onRefetch={loadOptions} ErrorMsg="خطا در بارگذاری گزینه‌ها" />;
-    return inputValue ? `هیچ نتیجه‌ای برای "${inputValue}" پیدا نشد` : "گزینه‌ای موجود نیست";
   };
 
   return (

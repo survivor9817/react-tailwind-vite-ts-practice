@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getOptionsOfBookSelector, type BookOption } from "../data/booksData";
 import { fakeFetch } from "../utils/fakeFetch";
 
@@ -7,7 +7,7 @@ export const useBookSelectData = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const loadOptions = async () => {
+  const loadOptions = async (/** user id? */) => {
     setIsLoading(true);
     setIsError(false);
     try {
@@ -24,10 +24,6 @@ export const useBookSelectData = () => {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    loadOptions();
-  }, []);
 
   return { options, isLoading, isError, loadOptions };
 };

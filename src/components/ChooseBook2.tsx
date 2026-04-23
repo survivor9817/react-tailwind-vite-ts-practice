@@ -70,7 +70,7 @@ const ChooseBook2 = () => {
         {filteredBooks.map((book) => (
           <BookCard
             key={book.id}
-            title={book.title}
+            title={book.label}
             coverImage={book.coverImage}
             isAvailable={book.isAvailable}
           />

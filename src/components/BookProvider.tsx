@@ -1,11 +1,9 @@
 // src/context/BookContext.tsx
 import { createContext, useContext, type ReactNode } from "react";
-import type { Book, BookOption } from "../data/booksData";
+import type { Book } from "../data/booksData";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export type BookContextType = {
-  selectedBookOption: BookOption | null;
-  setSelectedBookOption: (value: BookOption | null) => void;
   currentBook: Book | null; // behtare faghat current book ro negahdaarim.
   setCurrentBook: (value: Book | null) => void;
   currentPage: number | null;
@@ -13,8 +11,6 @@ export type BookContextType = {
 };
 
 export const BookContext = createContext<BookContextType>({
-  selectedBookOption: null,
-  setSelectedBookOption: () => {},
   currentBook: null,
   setCurrentBook: () => {},
   currentPage: null,
@@ -32,10 +28,6 @@ type Props = {
 };
 
 export const BookProvider = ({ children }: Props) => {
-  const [selectedBookOption, setSelectedBookOption] = useLocalStorage<BookOption | null>(
-    "lastBookSelectOption",
-    null,
-  );
   const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null);
   const [currentPage, setCurrentPage] = useLocalStorage<number | null>(
     JSON.stringify(currentBook?.id),
@@ -43,8 +35,6 @@ export const BookProvider = ({ children }: Props) => {
   );
 
   const value: BookContextType = {
-    selectedBookOption,
-    setSelectedBookOption,
     currentBook,
     setCurrentBook,
     currentPage,

@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fakeFetch } from "../utils/fakeFetch";
 import { getBookPage } from "../data/fehrestsData";
 
-export const useBookPageData = (bookId: number, pageNumber: number) => {
+export const useBookPageData = () => {
   const [pageContent, setPageContent] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setHasError] = useState(false);
 
-  const loadPageContent = async () => {
+  const loadPageContent = async (bookId: number, pageNumber: number) => {
+    if (!bookId || !pageNumber) return; // throw error maybe
     // abort signal yaadet nare besaazi
+
     setIsLoading(true);
     setHasError(false);
 
@@ -28,10 +30,10 @@ export const useBookPageData = (bookId: number, pageNumber: number) => {
     }
   };
 
-  useEffect(() => {
-    loadPageContent();
-    // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
-  }, [bookId, pageNumber]);
+  // useEffect(() => {
+  //   loadPageContent();
+  //   // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
+  // }, [bookId, pageNumber]);
 
   return { pageContent, isLoading, isError, loadPageContent };
 };

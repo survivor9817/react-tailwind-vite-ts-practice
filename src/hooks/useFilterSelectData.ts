@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fakeFetch } from "../utils/fakeFetch";
 import { getOptionsFromDB, type FilterOption } from "../data/quizFilterOptionsData";
 import { useToast } from "../components/ToastProvider";
 import type { QuizFiltersType } from "./useQuizFilters";
 
-export const useFilterSelectData = (
-  initialOptions: FilterOption[] | undefined,
-  filterId: string,
-  quizFilters: QuizFiltersType,
-) => {
+export const useFilterSelectData = (initialOptions: FilterOption[] | undefined) => {
   const [options, setOptions] = useState<FilterOption[] | undefined>(initialOptions);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setHasError] = useState(false);
 
   const { showToast } = useToast();
 
-  const loadOptions = async () => {
+  const loadOptions = async (filterId: string, quizFilters: QuizFiltersType) => {
     // abort signal yaadet nare besaazi
     setIsLoading(true);
     setHasError(false);
@@ -36,10 +32,10 @@ export const useFilterSelectData = (
     }
   };
 
-  useEffect(() => {
-    loadOptions();
-    // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
-  }, [quizFilters.BookId]);
+  // useEffect(() => {
+  //   loadOptions();
+  //   // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
+  // }, [quizFilters.BookId]);
 
   return { options, isLoading, isError, loadOptions };
 };
