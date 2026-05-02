@@ -9,17 +9,16 @@ type Props = {
 
 const ResultsTable = ({ questionIds }: Props) => {
   const { results, error, isLoading, loadQuizResults } = useResultsTableData("123", questionIds);
-  console.log("5. isLoading status:", isLoading); // این لاگ را حتما چک کنید
 
   if (isLoading) return <ResultsTableSkeleton />;
+
   if (error) return <ErrorFallback onRefetch={loadQuizResults} />;
+
   if (!results) return <p>نتیجه ای پیدا نشد.</p>;
   const { correctsCount, incorrectsCount, nullsCount } = results;
   const totalQuestionsNumber = questionIds.length;
   if (totalQuestionsNumber === 0) return <p>سوالی برای نمایش وجود ندارد.</p>;
-
   const cutTwoDecimals = (num: number) => parseFloat(num.toFixed(1));
-
   const truePercent = toFaNums(cutTwoDecimals((correctsCount / totalQuestionsNumber) * 100));
   const falsePercent = toFaNums(cutTwoDecimals((incorrectsCount / totalQuestionsNumber) * 100));
   const nullPercent = toFaNums(cutTwoDecimals((nullsCount / totalQuestionsNumber) * 100));
@@ -27,7 +26,6 @@ const ResultsTable = ({ questionIds }: Props) => {
     cutTwoDecimals(((correctsCount - incorrectsCount / 3) / totalQuestionsNumber) * 100),
   );
 
-  // <ResultsTableSkeleton />
   return (
     <>
       <div className="mt-4 mb-6 overflow-hidden rounded-xl border border-gray-300">

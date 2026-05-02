@@ -1,5 +1,4 @@
 const ResultsTableSkeleton = () => {
-  console.log("skelet");
   return (
     <section className="animate-pulse" aria-hidden="true">
       <table className="w-full border-separate border-spacing-0">
