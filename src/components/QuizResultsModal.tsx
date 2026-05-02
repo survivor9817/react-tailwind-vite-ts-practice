@@ -19,9 +19,7 @@ const QuizResultsModal = ({ onClose, onAction, questionIds }: Props) => {
         </p>
 
         {/* result table */}
-        <div className="mt-4 mb-6 overflow-hidden rounded-xl border border-gray-300">
-          <ResultsTable questionIds={questionIds} />
-        </div>
+        <ResultsTable questionIds={questionIds} />
 
         {/* Actions */}
         <div className="flex items-center justify-center gap-4">

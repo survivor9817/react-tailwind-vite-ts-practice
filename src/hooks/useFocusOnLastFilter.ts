@@ -6,7 +6,8 @@ import { useEffect, useRef } from "react";
 export const useFocusOnLastFilter = () => {
   const { activeTab } = useStudyPageLayoutContext();
   const selectRef = useRef<SelectInstance<FilterOption, false>>(null);
-  const focusOnSelector = () => setTimeout(() => selectRef.current?.focus(), 300);
+  const focusOnSelector = () => setTimeout(() => selectRef.current?.focus(), 420);
+  // const focusOnSelector = () => selectRef.current?.focus();
   useEffect(() => {
     if (activeTab === 1) focusOnSelector();
     // manteghe in effect mitoone be hooke modiriat konande vaaled

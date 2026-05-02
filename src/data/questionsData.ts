@@ -186,8 +186,14 @@ export const saveReactionToDB = (newReaction: DbReaction) => {
   existing ? removeReactionFromDB(existing) : addReactionToDB(newReaction);
 };
 
+export type QuizResults = {
+  correctsCount: number;
+  incorrectsCount: number;
+  nullsCount: number;
+};
+
 // masalan api get result, aakhare quiz in taabe ro map mikonim roye array array mifrestim map mikone ba in.
-export const getResultsFromDB = (userId: string, questionIds: string[]) => {
+export const getResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
   const answers = questionIds.map((questionId) => {
     const reactions = getReactions(userId, questionId);
     return reactions?.find((reaction) => reaction.reactionType === "answer");

@@ -5,14 +5,14 @@ import { type FehrestSection, getFehrestById } from "../data/fehrestsData";
 export const useFehrestListData = () => {
   const [currentFehrest, setCurrentFehrest] = useState<FehrestSection[]>();
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setHasError] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   //   const { showToast } = useToast();
 
   const loadFehrest = async (bookId: number) => {
     // abort signal yaadet nare besaazi
     setIsLoading(true);
-    setHasError(false);
+    setIsError(false);
 
     try {
       const data = await fakeFetch(
@@ -24,7 +24,7 @@ export const useFehrestListData = () => {
     } catch (error) {
       console.error(`Error loading fehrest:`, error);
       //   showToast("خطا در بارگذاری گزینه های غربال", { type: "error" });
-      setHasError(true);
+      setIsError(true);
     } finally {
       setIsLoading(false);
     }

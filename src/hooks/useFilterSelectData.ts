@@ -7,14 +7,14 @@ import type { QuizFiltersType } from "./useQuizFilters";
 export const useFilterSelectData = (initialOptions: FilterOption[] | undefined) => {
   const [options, setOptions] = useState<FilterOption[] | undefined>(initialOptions);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setHasError] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const { showToast } = useToast();
 
   const loadOptions = async (filterId: string, quizFilters: QuizFiltersType) => {
     // abort signal yaadet nare besaazi
     setIsLoading(true);
-    setHasError(false);
+    setIsError(false);
 
     try {
       const data = await fakeFetch(
@@ -26,7 +26,7 @@ export const useFilterSelectData = (initialOptions: FilterOption[] | undefined) 
     } catch (error) {
       console.error(`Error loading options for ${filterId}:`, error);
       showToast("خطا در بارگذاری گزینه های غربال", { type: "error" });
-      setHasError(true);
+      setIsError(true);
     } finally {
       setIsLoading(false);
     }
