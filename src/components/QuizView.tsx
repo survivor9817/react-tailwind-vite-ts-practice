@@ -1,6 +1,5 @@
 // import { useQuizNavigation } from "../hooks/useQuizNavigation";
 import { useQuizAnswer } from "../hooks/useQuizAnswer";
-import { useReactionBtns } from "../hooks/useReactionBtns";
 import type { QuestionType } from "../data/questionsData";
 import IconBtn from "./IconBtn";
 import QuizProgressLabel from "./QuizProgressLabel";
@@ -14,6 +13,7 @@ import ReactionButtons from "./ReactionButtons";
 import ReactionMessages from "./ReactionMessages";
 import ShowAnswerBtn from "./ShowAnswerBtn";
 import Collapsible from "./Collapsible";
+import { useQuizReactions } from "../hooks/useQuizReactions";
 
 type Props = {
   questionData: QuestionType;
@@ -53,7 +53,7 @@ const QuizView = ({
   } = questionData;
 
   // needs user id from context or somewhere
-  const { btnsMeta, msgsMeta, updateReactionOnClick } = useReactionBtns(id, "123", reactions);
+  const { btnsMeta, msgsMeta, onClickOnReactionBtn } = useQuizReactions(id, "123", reactions);
 
   const { answerContent, isAnswerVisible, toggleAnswer } = useQuizAnswer(
     descriptiveAnswer,
@@ -131,7 +131,7 @@ const QuizView = ({
             style={{ transform: isAnswerVisible ? "translateX(50%)" : "translateX(0%)" }}
           >
             <QuestionDetails source={source} date={date} score={score} />
-            <ReactionButtons btnsMeta={btnsMeta} onClick={updateReactionOnClick} />
+            <ReactionButtons btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
           </div>
         </div>
       </div>
