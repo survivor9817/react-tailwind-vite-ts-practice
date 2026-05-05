@@ -20,9 +20,7 @@ export const useReactionBtns = (
   const turnOffAllBtns = () => setBtnsMeta((prev) => prev.map((btn) => ({ ...btn, isOn: false })));
   const turnOffAllMsgs = () => setMsgsMeta((prev) => prev.map((msg) => ({ ...msg, isOn: false })));
 
-  useEffect(() => {
-    turnOffAllMsgs();
-  }, [currentQuestionID]);
+  useEffect(() => turnOffAllMsgs(), [currentQuestionID]);
 
   const applyReactionsOnUI = (
     state: UiReaction = {
@@ -82,18 +80,16 @@ export const useReactionBtns = (
     setMsgsMeta((prev) => setter(prev, id, newState) as ReactionMsgType[]);
 
   // timeout
-  const prevMsgTimeout = useRef<number | null>(null);
+  const prevMsgTimeoutRef = useRef<number | null>(null);
   const clearPrevMsgTimeout = () => {
-    if (prevMsgTimeout.current !== null) {
-      clearTimeout(prevMsgTimeout.current);
-      prevMsgTimeout.current = null;
+    if (prevMsgTimeoutRef.current !== null) {
+      clearTimeout(prevMsgTimeoutRef.current);
+      prevMsgTimeoutRef.current = null;
     }
   };
 
   useEffect(() => {
-    return () => {
-      clearPrevMsgTimeout();
-    };
+    return () => clearPrevMsgTimeout();
   }, []);
 
   const updateReactionOnClick = (reactionId: UiReactionId) => {
@@ -120,7 +116,7 @@ export const useReactionBtns = (
     if (!isClickedBtnOn && !isOtherMsgOn) {
       setBtn(reactionId, true);
       setMsg(reactionId, true);
-      prevMsgTimeout.current = setTimeout(() => {
+      prevMsgTimeoutRef.current = setTimeout(() => {
         setMsg(reactionId, false);
       }, 1500);
     }
@@ -131,7 +127,7 @@ export const useReactionBtns = (
       setMsg(otherOnMsgID, false);
       clearPrevMsgTimeout();
       setMsg(reactionId, true);
-      prevMsgTimeout.current = setTimeout(() => {
+      prevMsgTimeoutRef.current = setTimeout(() => {
         setMsg(reactionId, false);
       }, 1500);
     }

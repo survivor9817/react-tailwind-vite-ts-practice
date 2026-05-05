@@ -4,6 +4,7 @@
 
 import { createContext, useContext, useState, useCallback, useEffect } from "react";
 import type { ReactNode } from "react";
+import CloseBtn from "./CloseBtn";
 
 /* ---------- Types ---------- */
 export type ToastType = "info" | "success" | "warning" | "error";
@@ -30,7 +31,6 @@ const ToastItem = ({ toast, onClose }: { toast: Toast; onClose: () => void }) =>
 
   const handleClose = () => {
     setVisible(false);
-    // منتظر بمانید تا انیمیشن مخفی شدن تمام شود
     setTimeout(onClose, 200);
   };
 
@@ -38,7 +38,7 @@ const ToastItem = ({ toast, onClose }: { toast: Toast; onClose: () => void }) =>
     <div
       role="alert"
       className={`
-        max-w-xs w-full mb-3 text-white ${bgColor} rounded-md shadow-lg
+        max-w-xs w-full mb-3 text-white ${bgColor} rounded-full shadow-lg
         flex items-center px-4 py-3 pointer-events-auto
         transform transition-all duration-200 ease-out
         ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}
@@ -46,14 +46,7 @@ const ToastItem = ({ toast, onClose }: { toast: Toast; onClose: () => void }) =>
     >
       <span className="flex-1">{toast.message}</span>
 
-      {/* دکمه بستن (اختیاری) */}
-      <button
-        onClick={handleClose}
-        className="ml-2 hover:text-gray-200 focus:outline-none"
-        aria-label="Close toast"
-      >
-        ✖️
-      </button>
+      <CloseBtn onClick={handleClose} iconSize="32px" />
     </div>
   );
 };
@@ -61,9 +54,7 @@ const ToastItem = ({ toast, onClose }: { toast: Toast; onClose: () => void }) =>
 /* ---------- Context ---------- */
 type ToastContextProps = {
   toasts: Toast[];
-  /** Show a toast */
   showToast: (msg: string, opts?: Partial<Omit<Toast, "id" | "message">>) => void;
-  /** Hide a toast (usually called internally) */
   hideToast: (id: string) => void;
 };
 

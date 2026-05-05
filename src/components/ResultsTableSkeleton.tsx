@@ -1,77 +1,89 @@
 const ResultsTableSkeleton = () => {
   return (
-    <section className="animate-pulse" aria-hidden="true">
+    <div className="mt-4 mb-6 overflow-hidden rounded-xl border border-gray-300">
       <table className="w-full border-separate border-spacing-0">
-        {/* Header Skeleton */}
-        <thead className="bg-gray-200 dark:bg-gray-400 rounded-t-lg">
+        {/* هدر جدول */}
+        <thead className="bg-gray-200">
           <tr>
-            <th className="border-gray-300 px-4 py-2 text-right">
-              <div className="h-4 bg-gray-300 dark:bg-gray-500 rounded w-1/2 mx-auto" />
+            <th className="border-gray-400 px-4 py-2 text-right text-sm font-bold text-gray-900">
+              <div className="h-4 w-12 animate-pulse rounded bg-gray-400" />
             </th>
-            <th className="border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-gray-300 dark:bg-gray-500 rounded w-1/2 mx-auto" />
+            <th className="border-gray-400 px-4 py-2 text-center text-sm font-bold text-gray-900">
+              <div className="h-4 w-8 animate-pulse rounded bg-gray-400 mx-auto" />
             </th>
-            <th className="border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-gray-300 dark:bg-gray-500 rounded w-1/2 mx-auto" />
+            <th className="border-gray-400 px-4 py-2 text-center text-sm font-bold text-gray-900">
+              <div className="h-4 w-8 animate-pulse rounded bg-gray-400 mx-auto" />
             </th>
           </tr>
         </thead>
 
-        {/* Body Skeleton */}
+        {/* بدنه جدول */}
         <tbody>
-          {/* Correct Answer Row */}
-          <tr className="bg-green-50 dark:bg-green-900/20">
-            <th className="border-t border-gray-300 px-4 py-2 text-right">
-              <div className="h-4 bg-green-200 dark:bg-green-800 rounded w-1/3 ml-auto" />
+          {/* ردیف درست */}
+          <tr>
+            <th
+              scope="row"
+              className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-right font-medium"
+            >
+              <div className="h-4 w-10 animate-pulse rounded bg-gray-300" />
             </th>
-            <td className="border-t border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-green-200 dark:bg-green-800 rounded w-1/2 mx-auto" />
+            <td className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-center font-semibold">
+              <div className="mx-auto h-5 w-6 animate-pulse rounded bg-gray-300" />
             </td>
-            <td className="border-t border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-green-200 dark:bg-green-800 rounded w-1/2 mx-auto" />
+            <td className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-center font-semibold">
+              <div className="mx-auto h-5 w-8 animate-pulse rounded bg-gray-300" />
             </td>
           </tr>
 
-          {/* Incorrect Answer Row */}
-          <tr className="bg-red-50 dark:bg-red-900/20">
-            <th className="border-t border-gray-300 px-4 py-2 text-right">
-              <div className="h-4 bg-red-200 dark:bg-red-800 rounded w-1/3 ml-auto" />
+          {/* ردیف نادرست */}
+          <tr>
+            <th
+              scope="row"
+              className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-right font-medium"
+            >
+              <div className="h-4 w-12 animate-pulse rounded bg-gray-300" />
             </th>
-            <td className="border-t border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-red-200 dark:bg-red-800 rounded w-1/2 mx-auto" />
+            <td className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-center font-semibold">
+              <div className="mx-auto h-5 w-6 animate-pulse rounded bg-gray-300" />
             </td>
-            <td className="border-t border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-red-200 dark:bg-red-800 rounded w-1/2 mx-auto" />
+            <td className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-center font-semibold">
+              <div className="mx-auto h-5 w-8 animate-pulse rounded bg-gray-300" />
             </td>
           </tr>
 
-          {/* Null Answer Row */}
-          <tr className="bg-gray-50 dark:bg-gray-800/40">
-            <th className="border-t border-gray-300 px-4 py-2 text-right">
-              <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/3 ml-auto" />
+          {/* ردیف نزده */}
+          <tr>
+            <th
+              scope="row"
+              className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-right font-medium"
+            >
+              <div className="h-4 w-8 animate-pulse rounded bg-gray-300" />
             </th>
-            <td className="border-t border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2 mx-auto" />
+            <td className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-center font-semibold">
+              <div className="mx-auto h-5 w-6 animate-pulse rounded bg-gray-300" />
             </td>
-            <td className="border-t border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2 mx-auto" />
+            <td className="border-t border-gray-300 bg-gray-100 px-4 py-2 text-center font-semibold">
+              <div className="mx-auto h-5 w-8 animate-pulse rounded bg-gray-300" />
             </td>
           </tr>
         </tbody>
 
-        {/* Footer Skeleton */}
-        <tfoot className="bg-gray-200 dark:bg-gray-400 rounded-b-lg">
+        {/* فوتر جدول */}
+        <tfoot className="bg-gray-200">
           <tr>
-            <th colSpan={2} className="border-t border-gray-300 px-4 py-2 text-right">
-              <div className="h-4 bg-gray-300 dark:bg-gray-500 rounded w-3/4 ml-auto" />
+            <th
+              colSpan={2}
+              className="border-gray-400 px-4 py-2 text-right text-sm font-bold text-gray-900"
+            >
+              <div className="h-4 w-24 animate-pulse rounded bg-gray-400" />
             </th>
-            <th className="border-t border-gray-300 px-4 py-2 text-center">
-              <div className="h-4 bg-gray-300 dark:bg-gray-500 rounded w-1/2 mx-auto" />
+            <th className="border-gray-400 px-4 py-2 text-center text-sm font-bold text-gray-900">
+              <div className="mx-auto h-5 w-10 animate-pulse rounded bg-gray-400" />
             </th>
           </tr>
         </tfoot>
       </table>
-    </section>
+    </div>
   );
 };
 

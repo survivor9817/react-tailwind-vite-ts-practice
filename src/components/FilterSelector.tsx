@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFilterSelectData } from "../hooks/useFilterSelectData";
 import type { QuizFiltersType } from "../hooks/useQuizFilters";
 import type { FilterOption } from "../data/quizFilterOptionsData";
@@ -10,7 +9,6 @@ import { useFocusOnLastFilter } from "../hooks/useFocusOnLastFilter";
 type Props = {
   filterId: "Where" | "Level" | "Source";
   label: string;
-  initialOptions?: FilterOption[];
   onChange: (selected: SingleValue<FilterOption>, _action: ActionMeta<FilterOption>) => void;
   loadingMessage?: string;
   quizFilters: QuizFiltersType;
@@ -20,26 +18,14 @@ const FilterSelector = ({
   filterId,
   label,
   quizFilters,
-  initialOptions,
   onChange,
   loadingMessage = "در حال بارگذاری گزینه‌ها...",
 }: Props) => {
-  const { options, isLoading, isError, loadOptions } = useFilterSelectData(initialOptions);
-  useEffect(() => {
-    loadOptions(filterId, quizFilters);
-    // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
-  }, [quizFilters.BookId]);
-
-  const { selectRef } = useFocusOnLastFilter();
+  const { options, isLoading, error, loadOptions } = useFilterSelectData(filterId, quizFilters);
+  const { filterSelectRef } = useFocusOnLastFilter();
 
   const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
-    if (isError)
-      return (
-        <ErrorFallback
-          onRefetch={() => loadOptions(filterId, quizFilters)}
-          ErrorMsg="خطا در بارگذاری گزینه‌ها"
-        />
-      );
+    if (error) return <ErrorFallback onRefetch={loadOptions} ErrorMsg="خطا در بارگذاری گزینه‌ها" />;
     return inputValue ? `هیچ نتیجه‌ای برای "${inputValue}" پیدا نشد` : "گزینه‌ای موجود نیست";
   };
 
@@ -75,11 +61,11 @@ const FilterSelector = ({
       </label>
 
       <Select
-        ref={selectRef}
+        ref={filterSelectRef}
         name={filterId}
         placeholder={isLoading ? loadingMessage : ""}
         value={quizFilters[filterId]}
-        options={options}
+        options={options || []}
         menuPortalTarget={document.body}
         onChange={onChange}
         isRtl={true}

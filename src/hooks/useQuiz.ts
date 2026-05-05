@@ -15,10 +15,13 @@ export const useQuiz = () => {
   };
 
   const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
   const resetQuiz = () => {
     clearFilters();
     showFilterView();
     clearQuiz();
+    setCurrentQuestionIndex(0);
   };
 
   const startQuizLoading = questionIdsLoading || questionLoading;
@@ -32,7 +35,6 @@ export const useQuiz = () => {
     }
   };
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [nextLoading, setNextLoading] = useState(false);
   const [prevLoading, setPrevLoading] = useState(false);
 

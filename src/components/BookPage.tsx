@@ -5,22 +5,20 @@ import ErrorFallback from "./ErrorFallback";
 import UnavailableBookError from "./UnavailableBookError";
 import BookPageSkeleton from "./BookPageSkeleton";
 import { useBookPageData } from "../hooks/useBookPageData";
-import { useEffect } from "react";
 
 const BookPage = () => {
   const { pageRef } = useBookPageScroll();
-  const { currentBook, currentPage } = useBookContext();
-  const { pageContent, isLoading, isError, loadPageContent } = useBookPageData();
-  useEffect(() => {
-    if (!currentBook || !currentPage) return;
-    loadPageContent(currentBook.id, currentPage);
-    // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
-  }, [currentBook, currentPage]);
+  const { pageContent, isLoading, error, loadPageContent } = useBookPageData();
 
+  const { currentBook, currentPage } = useBookContext();
   if (!currentBook || !currentPage) return <UnavailableBookError />;
   if (isLoading) return <BookPageSkeleton />;
-  if (isError)
-    return <ErrorFallback onRefetch={() => loadPageContent(currentBook.id, currentPage)} />;
+  if (error)
+    return (
+      <div className="h-full grid place-items-center">
+        <ErrorFallback onRefetch={loadPageContent} />
+      </div>
+    );
 
   const pageNum = toFaNums(currentPage);
   return (

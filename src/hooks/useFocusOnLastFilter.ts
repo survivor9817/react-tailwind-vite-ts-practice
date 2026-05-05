@@ -5,15 +5,36 @@ import { useEffect, useRef } from "react";
 
 export const useFocusOnLastFilter = () => {
   const { activeTab } = useStudyPageLayoutContext();
-  const selectRef = useRef<SelectInstance<FilterOption, false>>(null);
-  const focusOnSelector = () => setTimeout(() => selectRef.current?.focus(), 420);
-  // const focusOnSelector = () => selectRef.current?.focus();
+  const filterSelectRef = useRef<SelectInstance<FilterOption, false>>(null);
+
+  // timeout
+  const timeoutRef = useRef<number | null>(null);
+  const clearPrevMsgTimeout = () => {
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      clearPrevMsgTimeout();
+    };
+  }, []);
+
+  const focusOnSelector = () => {
+    timeoutRef.current = setTimeout(() => filterSelectRef.current?.focus(), 420);
+  };
+
   useEffect(() => {
     if (activeTab === 1) focusOnSelector();
+    return () => {
+      clearPrevMsgTimeout();
+    };
     // manteghe in effect mitoone be hooke modiriat konande vaaled
     // montaghel beshe. inja baa har baar taghire activeTab hame
     // filterhaa focus mishan va focus rooye akhari baaghi mimoone. ke
     // hamoon chizie ke maa mikhaym, pas dast nemizanim behesh felan.
   }, [activeTab]);
-  return { selectRef };
+  return { filterSelectRef };
 };

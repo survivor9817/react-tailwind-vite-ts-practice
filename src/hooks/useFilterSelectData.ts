@@ -1,41 +1,26 @@
-import { useState } from "react";
-import { fakeFetch } from "../utils/fakeFetch";
+import { useCallback, useEffect } from "react";
 import { getOptionsFromDB, type FilterOption } from "../data/quizFilterOptionsData";
 import { useToast } from "../components/ToastProvider";
 import type { QuizFiltersType } from "./useQuizFilters";
+import { useFetchData } from "./useFetchData";
 
-export const useFilterSelectData = (initialOptions: FilterOption[] | undefined) => {
-  const [options, setOptions] = useState<FilterOption[] | undefined>(initialOptions);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+export const useFilterSelectData = (filterId: string, quizFilters: QuizFiltersType) => {
+  const { data, error, isLoading, fetchData } = useFetchData<FilterOption[] | undefined>();
 
+  const loadOptions = useCallback(() => {
+    fetchData(() => getOptionsFromDB(filterId, quizFilters));
+  }, []);
+
+  // onChangeCurrentBook
+  useEffect(() => {
+    loadOptions();
+  }, [quizFilters.BookId, loadOptions]);
+
+  // onError
   const { showToast } = useToast();
+  useEffect(() => {
+    if (error) showToast("خطا در بارگذاری گزینه های غربال", { type: "error" });
+  }, [error]);
 
-  const loadOptions = async (filterId: string, quizFilters: QuizFiltersType) => {
-    // abort signal yaadet nare besaazi
-    setIsLoading(true);
-    setIsError(false);
-
-    try {
-      const data = await fakeFetch(
-        () => getOptionsFromDB(filterId, quizFilters),
-        // { errorChance: 0.5 },
-        // { delay: 1000 },
-      );
-      if (data) setOptions(data);
-    } catch (error) {
-      console.error(`Error loading options for ${filterId}:`, error);
-      showToast("خطا در بارگذاری گزینه های غربال", { type: "error" });
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // useEffect(() => {
-  //   loadOptions();
-  //   // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
-  // }, [quizFilters.BookId]);
-
-  return { options, isLoading, isError, loadOptions };
+  return { options: data, isLoading, error, loadOptions };
 };

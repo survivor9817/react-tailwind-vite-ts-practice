@@ -11,6 +11,13 @@ export const useQuestionData = () => {
   const [questionError, setQuestionError] = useState<Error | null>(null);
 
   const { showToast } = useToast();
+  // // onError
+  // const { showToast } = useToast();
+  // useEffect(() => {
+  //   if (error) {
+  //     showToast("❌ خطا در بارگذاری تمرین! دوباره تلاش کنید.", { type: "error" });
+  //   }
+  // }, [error]);
 
   const loadQuestion = async (questionId: string) => {
     if (!questionId) return;
