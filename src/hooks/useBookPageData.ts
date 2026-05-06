@@ -7,9 +7,9 @@ export const useBookPageData = () => {
   const { data, isLoading, error, fetchData } = useFetchData<string>();
 
   const { currentBook, currentPage } = useBookContext();
-  const loadPageContent = useCallback(() => {
+  const loadPageContent = useCallback(async () => {
     if (!currentBook || !currentPage) return;
-    fetchData(() => getBookPage(currentBook.id, currentPage));
+    await fetchData(() => getBookPage(currentBook.id, currentPage));
   }, [currentBook, currentPage]);
 
   useEffect(() => {

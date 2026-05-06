@@ -1,39 +1,21 @@
-import { useState } from "react";
-import { fakeFetch } from "../utils/fakeFetch";
+import { useCallback, useEffect } from "react";
 import { type FehrestSection, getFehrestById } from "../data/fehrestsData";
+import { useFetchData } from "./useFetchData";
+import { useBookContext } from "../components/BookProvider";
 
 export const useFehrestListData = () => {
-  const [currentFehrest, setCurrentFehrest] = useState<FehrestSection[]>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const { currentBook } = useBookContext();
 
-  //   const { showToast } = useToast();
+  const { data, isLoading, error, fetchData } = useFetchData<FehrestSection[]>();
 
-  const loadFehrest = async (bookId: number) => {
-    // abort signal yaadet nare besaazi
-    setIsLoading(true);
-    setIsError(false);
+  const loadFehrest = useCallback(async (bookId: number) => {
+    await fetchData(() => getFehrestById(bookId));
+  }, []);
 
-    try {
-      const data = await fakeFetch(
-        () => getFehrestById(bookId),
-        // { errorChance: 0.5 },
-        // { delay: 1000 },
-      );
-      if (data) setCurrentFehrest(data);
-    } catch (error) {
-      console.error(`Error loading fehrest:`, error);
-      //   showToast("خطا در بارگذاری گزینه های غربال", { type: "error" });
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  useEffect(() => {
+    if (!currentBook?.id) return;
+    loadFehrest(currentBook?.id);
+  }, [currentBook, loadFehrest]);
 
-  //   useEffect(() => {
-  //     loadOptions();
-  //     // ye fekri be haale abort signal bokon. alan nadare bayad dashte bashe.
-  //   }, [quizFilters.BookId]);
-
-  return { currentFehrest, isLoading, isError, loadFehrest };
+  return { currentFehrest: data, isLoading, error, loadFehrest };
 };

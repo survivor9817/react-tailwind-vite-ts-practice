@@ -2,23 +2,17 @@ import FehrestItem from "./FehrestItem";
 import { collectTitlePages, findTitlePage } from "../hooks/useFehrestItem";
 import { useBookContext } from "./BookProvider";
 import ErrorFallback from "./ErrorFallback";
-import { useEffect } from "react";
 import { useFehrestListData } from "../hooks/useFehrestListData";
 
 // type Props = {};
 
 const FehrestList = () => {
   const { currentPage, currentBook } = useBookContext();
-  const { currentFehrest, isLoading, isError, loadFehrest } = useFehrestListData();
-  useEffect(() => {
-    if (!currentBook?.id) return; // in effect age bere toye hooke data mitoone error throw kone tooye isError.
-    loadFehrest(currentBook?.id);
-    // abort nashe faraamoosh
-  }, [currentBook]);
+  const { currentFehrest, isLoading, error, loadFehrest } = useFehrestListData();
 
   if (isLoading) return <p className="text-center">در حال بارگذاری...</p>; // maybe skeleton
 
-  if (isError) {
+  if (error) {
     if (!currentBook) return <p className="text-center">کتابی را انتخاب کنید.</p>;
     return (
       <ErrorFallback

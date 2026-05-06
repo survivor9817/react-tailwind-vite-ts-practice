@@ -5,9 +5,9 @@ import { useFetchData } from "./useFetchData";
 export const useResultsTableData = (userId: string, questionIds: string[]) => {
   const { data, error, isLoading, fetchData } = useFetchData<QuizResults>();
 
-  const fetchResults = useCallback(() => {
+  const fetchResults = useCallback(async () => {
     if (!userId || questionIds.length === 0) return;
-    fetchData(() => getResultsFromDB(userId, questionIds));
+    await fetchData(() => getResultsFromDB(userId, questionIds));
   }, [userId, questionIds, fetchData]);
 
   useEffect(() => {

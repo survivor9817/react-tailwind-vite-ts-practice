@@ -5,18 +5,18 @@ import { reactionBtnData } from "../data/reactionData";
 export const useReactionBtns = () => {
   const [btnsMeta, setBtnsMeta] = useState(reactionBtnData);
 
-  const turnOffAllBtns = () => setBtnsMeta((prev) => prev.map((btn) => ({ ...btn, isOn: false })));
-
-  const setBtnOnClick = (id: UiReactionId, newState: boolean) =>
+  const setBtnOnClick = (clickedBtnId: UiReactionId, newState: boolean) =>
     setBtnsMeta((prev) =>
-      prev.map((item) => {
-        if (item.id === id) return { ...item, isOn: newState };
-        const clickedOnCorrect = id === "isCorrect" && item.id === "isIncorrect";
-        const clickedOnIncorrect = id === "isIncorrect" && item.id === "isCorrect";
-        if (clickedOnCorrect || clickedOnIncorrect) return { ...item, isOn: false };
-        return item;
+      prev.map((btn) => {
+        if (btn.id === clickedBtnId) return { ...btn, isOn: newState };
+        const clickedOnCorrect = btn.id === "isIncorrect" && clickedBtnId === "isCorrect";
+        const clickedOnIncorrect = btn.id === "isCorrect" && clickedBtnId === "isIncorrect";
+        if (clickedOnCorrect || clickedOnIncorrect) return { ...btn, isOn: false };
+        return btn;
       }),
     );
+
+  const turnOffAllBtns = () => setBtnsMeta((prev) => prev.map((btn) => ({ ...btn, isOn: false })));
 
   const applyReactionsOnUI = (
     state: UiReaction = {

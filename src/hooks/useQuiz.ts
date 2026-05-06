@@ -28,6 +28,8 @@ export const useQuiz = () => {
   const startQuiz = async () => {
     try {
       const ids = await loadQuestionIds(/** user quiz filters or quiz id ???? */);
+      // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
+      // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
       await loadQuestion(ids[0] /** zero or maybe last index? */);
       showQuizView();
     } catch (err) {

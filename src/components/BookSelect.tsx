@@ -3,23 +3,19 @@ import Select, { type SingleValue, type StylesConfig } from "react-select";
 import { getBookById, type BookOption } from "../data/booksData.ts";
 import { useBookSelectData } from "../hooks/useBookSelectData.ts";
 import ErrorFallback from "./ErrorFallback.tsx";
-import { useEffect } from "react";
 
 const BookSelect = () => {
   // useBookSelect
   const { currentBook, setCurrentBook } = useBookContext();
 
-  const { options, isLoading, isError, loadOptions } = useBookSelectData();
-  useEffect(() => {
-    loadOptions(/** user id? */);
-  }, []);
+  const { options, isLoading, error, loadOptions } = useBookSelectData();
 
   const handleBookChange = (selected: SingleValue<BookOption>) => {
     if (selected) setCurrentBook(getBookById(selected.value));
   };
 
   const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
-    if (isError) return <ErrorFallback onRefetch={() => loadOptions(/** user id? */)} />;
+    if (error) return <ErrorFallback onRefetch={() => loadOptions(/** user id? */)} />;
     return inputValue ? `هیچ کتابی با "${inputValue}" پیدا نشد` : "کتابی موجود نیست";
   };
 
@@ -45,7 +41,7 @@ const BookSelect = () => {
       </label>
 
       <Select<BookOption, false>
-        options={options}
+        options={options || []}
         value={currentBook}
         placeholder={isLoading ? "در حال بارگذاری کتاب‌ها ..." : "یک کتاب انتخاب کنید"}
         styles={styles}

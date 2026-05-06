@@ -38,5 +38,5 @@ export const useFetchData = <T>() => {
     setIsLoading(false);
   };
 
-  return { data, error, isLoading, fetchData, reset };
+  return { data, setData, error, isLoading, fetchData, reset };
 };

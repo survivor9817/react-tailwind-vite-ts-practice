@@ -1,30 +1,14 @@
 import { useEffect } from "react";
-import { type DbReactionId, type DbReaction, saveReactionToDB } from "../data/questionsData";
 import type { UiReaction, UiReactionId } from "../data/reactionData";
 import { useReactionBtns } from "./useReactionBtns";
 import { useReactionMsgs } from "./useReactionMsgs";
+import { saveReaction } from "../services/saveReaction";
 
 export const useQuizReactions = (
   currentQuestionID: string,
   userId: string,
   uiReaction: UiReaction | undefined,
 ) => {
-  const createDbReactionOnClickOnBtn = (
-    userId: string,
-    currentQuestionID: string,
-    reactionId: DbReactionId,
-  ): DbReaction => {
-    const isAnswer = reactionId === "isCorrect" || reactionId === "isIncorrect";
-
-    return {
-      userId: userId,
-      questionId: currentQuestionID,
-      reactionId: reactionId,
-      reactionType: isAnswer ? "answer" : "feedback",
-      createdAt: new Date().toISOString(),
-    };
-  };
-
   const { btnsMeta, setBtnOnClick, turnOffAllBtns, applyReactionsOnUI } = useReactionBtns();
   const { msgsMeta, setMsgOnClick } = useReactionMsgs();
 
@@ -39,8 +23,7 @@ export const useQuizReactions = (
 
   const onClickOnReactionBtn = (reactionId: UiReactionId) => {
     // optimistic save
-    const submittedReaction = createDbReactionOnClickOnBtn(userId, currentQuestionID, reactionId);
-    saveReactionToDB(submittedReaction);
+    saveReaction(userId, currentQuestionID, reactionId);
 
     const isClickedBtnOn = btnsMeta.find((item) => item.id === reactionId)?.isOn;
     setBtnOnClick(reactionId, !isClickedBtnOn);

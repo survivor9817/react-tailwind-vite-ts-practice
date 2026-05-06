@@ -644,7 +644,7 @@ export const questionsData: QuestionType[] = [
 
 // masalan api daryaft soal az server baa id.
 export const getQuestionFromDB = (qId: string) => {
-  const q = questionsData.find((q) => q.id === qId);
+  const q = questionsData.find((q) => q.id === qId) || null;
   if (q) q.reactions = getUiReactionObjectFromDB("123", qId);
   return q;
 };
