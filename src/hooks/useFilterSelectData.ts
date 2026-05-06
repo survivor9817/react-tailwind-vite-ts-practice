@@ -10,13 +10,13 @@ export const useFilterSelectData = (filterId: string, quizFilters: QuizFiltersTy
     async (/** quizFilters??? */) => {
       await fetchData(() => getOptionsFromDB(filterId, quizFilters));
     },
-    [],
+    [quizFilters.BookId, getOptionsFromDB, fetchData],
   );
 
   // onChangeCurrentBook
   useEffect(() => {
     loadOptions();
-  }, [quizFilters.BookId, loadOptions]);
+  }, [quizFilters.BookId]);
 
   return { options: data, isLoading, error, loadOptions };
 };

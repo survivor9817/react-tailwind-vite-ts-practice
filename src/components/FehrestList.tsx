@@ -3,6 +3,7 @@ import { collectTitlePages, findTitlePage } from "../hooks/useFehrestItem";
 import { useBookContext } from "./BookProvider";
 import ErrorFallback from "./ErrorFallback";
 import { useFehrestListData } from "../hooks/useFehrestListData";
+import FehrestListSkeleton from "./FehrestListSkeleton";
 
 // type Props = {};
 
@@ -10,7 +11,7 @@ const FehrestList = () => {
   const { currentPage, currentBook } = useBookContext();
   const { currentFehrest, isLoading, error, loadFehrest } = useFehrestListData();
 
-  if (isLoading) return <p className="text-center">در حال بارگذاری...</p>; // maybe skeleton
+  if (isLoading) return <FehrestListSkeleton />;
 
   if (error) {
     if (!currentBook) return <p className="text-center">کتابی را انتخاب کنید.</p>;

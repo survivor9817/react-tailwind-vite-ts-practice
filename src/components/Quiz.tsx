@@ -30,6 +30,7 @@ const Quiz = () => {
     terminateQuiz,
     closeResultsModal,
 
+    // we have toast on error
     // questionIdsError,
     // questionError,
   } = useQuiz();
