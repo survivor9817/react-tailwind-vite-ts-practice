@@ -1,4 +1,3 @@
-// import { useQuizNavigation } from "../hooks/useQuizNavigation";
 import { useQuizAnswer } from "../hooks/useQuizAnswer";
 import type { QuestionType } from "../data/questionsData";
 import IconBtn from "./IconBtn";
@@ -9,8 +8,8 @@ import Question from "./Question";
 import QuestionDetails from "./QuestionDetails";
 import Author from "./Author";
 import Answer from "./Answer";
-import ReactionButtons from "./ReactionButtons";
-import ReactionMessages from "./ReactionMessages";
+import QuizReactionButtons from "./QuizReactionButtons";
+import QuizReactionMessages from "./QuizReactionMessages";
 import ShowAnswerBtn from "./ShowAnswerBtn";
 import Collapsible from "./Collapsible";
 import { useQuizReactions } from "../hooks/useQuizReactions";
@@ -108,7 +107,7 @@ const QuizView = ({
         {/* <!-- Row 4 : Question Box --> */}
         <div className="relative min-h-30">
           <Question question={question} />
-          <ReactionMessages msgs={msgsMeta} />
+          <QuizReactionMessages msgs={msgsMeta} />
         </div>
       </div>
 
@@ -131,7 +130,7 @@ const QuizView = ({
             style={{ transform: isAnswerVisible ? "translateX(50%)" : "translateX(0%)" }}
           >
             <QuestionDetails source={source} date={date} score={score} />
-            <ReactionButtons btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
+            <QuizReactionButtons btnsMeta={btnsMeta} onClick={onClickOnReactionBtn} />
           </div>
         </div>
       </div>

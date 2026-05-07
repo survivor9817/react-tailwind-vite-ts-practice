@@ -3,7 +3,7 @@ import { useStudyPageLayoutContext } from "../components/StudyPageLayoutProvider
 import type { FilterOption } from "../data/quizFilterOptionsData";
 import { useEffect, useRef } from "react";
 
-export const useFocusOnLastFilter = () => {
+export const useQuizFilterFocus = () => {
   const { activeTab } = useStudyPageLayoutContext();
   const filterSelectRef = useRef<SelectInstance<FilterOption, false>>(null);
 

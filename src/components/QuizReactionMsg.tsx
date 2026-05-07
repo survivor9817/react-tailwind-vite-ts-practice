@@ -5,7 +5,7 @@ type Props = {
   isOn: boolean;
 };
 
-const ReactionMsg = ({ icon, label, color, isOn }: Props) => {
+const QuizReactionMsg = ({ icon, label, color, isOn }: Props) => {
   const popInClass = isOn ? "translate-x-0" : "-translate-x-[105%]";
   return (
     <li
@@ -20,4 +20,4 @@ const ReactionMsg = ({ icon, label, color, isOn }: Props) => {
   );
 };
 
-export default ReactionMsg;
+export default QuizReactionMsg;

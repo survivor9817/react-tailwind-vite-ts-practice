@@ -8,14 +8,21 @@ export const useQuiz = () => {
   const { quizFilters, clearFilters, onChangeFilterSelect } = useQuizFilters();
   const { questionIds, questionIdsLoading, loadQuestionIds, setQuestionIds } = useQuestionIdsData();
   const { question, questionLoading, loadQuestion, setQuestion } = useQuestionData();
+  const startQuizLoading = questionIdsLoading || questionLoading;
+  const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const isFirstQuestion = currentQuestionIndex === 0;
+  const lastQuestionIndex = questionIds ? questionIds.length - 1 : 0;
+  const isLastQuestion = currentQuestionIndex === lastQuestionIndex;
+  const [nextLoading, setNextLoading] = useState(false);
+  const [prevLoading, setPrevLoading] = useState(false);
+  const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
+  const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
 
   const clearQuiz = () => {
     setQuestionIds(null);
     setQuestion(null);
   };
-
-  const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const resetQuiz = () => {
     clearFilters();
@@ -24,7 +31,6 @@ export const useQuiz = () => {
     setCurrentQuestionIndex(0);
   };
 
-  const startQuizLoading = questionIdsLoading || questionLoading;
   const startQuiz = async () => {
     try {
       const ids = await loadQuestionIds(/** user quiz filters or quiz id ???? */);
@@ -36,9 +42,6 @@ export const useQuiz = () => {
       console.log(err);
     }
   };
-
-  const [nextLoading, setNextLoading] = useState(false);
-  const [prevLoading, setPrevLoading] = useState(false);
 
   const goToQuestion = async (index: number) => {
     if (!questionIds || !questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
@@ -52,7 +55,6 @@ export const useQuiz = () => {
     }
   };
 
-  const isFirstQuestion = currentQuestionIndex === 0;
   const goToPrevQuestion = async () => {
     if (isFirstQuestion) {
       return;
@@ -68,9 +70,6 @@ export const useQuiz = () => {
     }
   };
 
-  const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
-  const lastQuestionIndex = questionIds ? questionIds.length - 1 : 0;
-  const isLastQuestion = currentQuestionIndex === lastQuestionIndex;
   const goToNextQuestion = async () => {
     if (isLastQuestion) {
       openEndConfirm();
@@ -87,7 +86,6 @@ export const useQuiz = () => {
     }
   };
 
-  const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
   const submitQuiz = () => {
     closeEndConfirm();
     openResultsModal();

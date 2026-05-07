@@ -9,3 +9,9 @@
 //
 
 // use filter select data ro fix kon.
+
+// accessibility , modiriate focus haa va kaarkarde dokme haa dar har ghesmat az
+// app ro ok kon. masalan toye ketaab va tamrin beshe baa dokme haate raasto chap,
+// safhe va soal avaz kard.
+
+// dar jaa haaee ke baayad, az useCallback estefade kon

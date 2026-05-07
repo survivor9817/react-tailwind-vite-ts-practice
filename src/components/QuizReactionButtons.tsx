@@ -1,4 +1,4 @@
-import ReactionBtn from "./ReactionBtn";
+import QuizReactionBtn from "./QuizReactionBtn";
 import type { ReactionBtnType, UiReactionId } from "../data/reactionData";
 
 type Props = {
@@ -6,12 +6,12 @@ type Props = {
   onClick: (reactionId: UiReactionId) => void;
 };
 
-const ReactionButtons = ({ btnsMeta, onClick }: Props) => {
+const QuizReactionButtons = ({ btnsMeta, onClick }: Props) => {
   return (
     <div className="flex justify-between items-center mx-2">
       {/* dokme haaye feedback */}
       {btnsMeta.map((item) => (
-        <ReactionBtn
+        <QuizReactionBtn
           key={item.id}
           i={item.icon}
           color={item.color}
@@ -23,4 +23,4 @@ const ReactionButtons = ({ btnsMeta, onClick }: Props) => {
   );
 };
 
-export default ReactionButtons;
+export default QuizReactionButtons;

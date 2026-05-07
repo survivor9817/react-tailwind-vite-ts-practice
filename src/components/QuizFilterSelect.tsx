@@ -1,10 +1,10 @@
-import { useFilterSelectData } from "../hooks/useFilterSelectData";
+import { useQuizFilterSelectData } from "../hooks/useQuizFilterSelectData";
 import type { QuizFiltersType } from "../hooks/useQuizFilters";
 import type { FilterOption } from "../data/quizFilterOptionsData";
 import type { ActionMeta, SingleValue, StylesConfig } from "react-select";
 import ErrorFallback from "./ErrorFallback";
 import Select from "react-select";
-import { useFocusOnLastFilter } from "../hooks/useFocusOnLastFilter";
+import { useQuizFilterFocus } from "../hooks/useQuizFilterFocus";
 
 type Props = {
   filterId: "Where" | "Level" | "Source";
@@ -14,15 +14,15 @@ type Props = {
   quizFilters: QuizFiltersType;
 };
 
-const FilterSelector = ({
+const QuizFilterSelect = ({
   filterId,
   label,
   quizFilters,
   onChange,
   loadingMessage = "در حال بارگذاری گزینه‌ها...",
 }: Props) => {
-  const { options, isLoading, error, loadOptions } = useFilterSelectData(filterId, quizFilters);
-  const { filterSelectRef } = useFocusOnLastFilter();
+  const { options, isLoading, error, loadOptions } = useQuizFilterSelectData(filterId, quizFilters);
+  const { filterSelectRef } = useQuizFilterFocus();
 
   const renderNoOptionsMessage = ({ inputValue }: { inputValue: string }) => {
     if (error) return <ErrorFallback onRefetch={loadOptions} ErrorMsg="خطا در بارگذاری گزینه‌ها" />;
@@ -79,4 +79,4 @@ const FilterSelector = ({
   );
 };
 
-export default FilterSelector;
+export default QuizFilterSelect;

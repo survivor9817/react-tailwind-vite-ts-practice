@@ -1,5 +1,5 @@
 import Modal from "./Modal";
-import ResultsTable from "./ResultsTable";
+import QuizResultsTable from "./QuizResultsTable";
 
 type Props = {
   onClose: () => void;
@@ -19,7 +19,7 @@ const QuizResultsModal = ({ onClose, onAction, questionIds }: Props) => {
         </p>
 
         {/* result table */}
-        <ResultsTable questionIds={questionIds} />
+        <QuizResultsTable questionIds={questionIds} />
 
         {/* Actions */}
         <div className="flex items-center justify-center gap-4">

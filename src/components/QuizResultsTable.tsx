@@ -1,16 +1,16 @@
 import { useResultsTableData } from "../hooks/useResultsTableData";
 import { toFaNums } from "../utils/toFaNums";
 import ErrorFallback from "./ErrorFallback";
-import ResultsTableSkeleton from "./ResultsTableSkeleton";
+import QuizResultsTableSkeleton from "./QuizResultsTableSkeleton";
 
 type Props = {
   questionIds: string[];
 };
 
-const ResultsTable = ({ questionIds }: Props) => {
+const QuizResultsTable = ({ questionIds }: Props) => {
   const { results, error, isLoading, loadQuizResults } = useResultsTableData("123", questionIds);
 
-  if (isLoading) return <ResultsTableSkeleton />;
+  if (isLoading) return <QuizResultsTableSkeleton />;
 
   if (error) return <ErrorFallback onRefetch={loadQuizResults} />;
 
@@ -104,4 +104,4 @@ const ResultsTable = ({ questionIds }: Props) => {
   );
 };
 
-export default ResultsTable;
+export default QuizResultsTable;

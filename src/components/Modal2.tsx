@@ -1,4 +1,3 @@
-// Modal.tsx
 import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import { createPortal } from "react-dom";
@@ -10,7 +9,7 @@ interface ModalProps {
   children: ReactNode;
 }
 
-export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
+export const Modal2 = ({ isOpen, onClose, title, children }: ModalProps) => {
   const modalRoot = document.getElementById("modal-root")!;
   const previousActiveEl = useRef<HTMLElement | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);

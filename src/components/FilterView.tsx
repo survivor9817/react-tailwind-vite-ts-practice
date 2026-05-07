@@ -1,5 +1,5 @@
 import { useQuizFiltersProgressiveDisclosure } from "../hooks/useQuizFiltersProgressiveDisclosure";
-import FilterSelector from "./FilterSelector";
+import QuizFilterSelect from "./QuizFilterSelect";
 import StartQuizBtn from "./StartQuizBtn";
 import type { QuizFiltersType } from "../hooks/useQuizFilters";
 import type { ActionMeta, SingleValue } from "react-select";
@@ -28,7 +28,7 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
                transition-[height] ease-in-out duration-300"
       >
         {/* mishe begim baad az avalin baste shodane menu yek filter badi render beshe */}
-        <FilterSelector
+        <QuizFilterSelect
           filterId="Where"
           label="از کجای کتاب تمرین می‌خوای؟"
           quizFilters={quizFilters}
@@ -37,7 +37,7 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
         />
 
         {showLevel && (
-          <FilterSelector
+          <QuizFilterSelect
             filterId="Level"
             label="در چه سطحی باشند؟"
             quizFilters={quizFilters}
@@ -47,7 +47,7 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
         )}
 
         {showSource && (
-          <FilterSelector
+          <QuizFilterSelect
             filterId="Source"
             label="از چه منبعی باشند؟"
             quizFilters={quizFilters}

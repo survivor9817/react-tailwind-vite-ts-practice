@@ -1,4 +1,4 @@
-const ResultsTableSkeleton = () => {
+const QuizResultsTableSkeleton = () => {
   return (
     <div className="mt-4 mb-6 overflow-hidden rounded-xl border border-gray-300">
       <table className="w-full border-separate border-spacing-0">
@@ -87,4 +87,4 @@ const ResultsTableSkeleton = () => {
   );
 };
 
-export default ResultsTableSkeleton;
+export default QuizResultsTableSkeleton;

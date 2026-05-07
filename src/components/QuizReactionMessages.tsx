@@ -1,4 +1,4 @@
-import ReactionMsg from "./ReactionMsg";
+import QuizReactionMsg from "./QuizReactionMsg";
 
 type Props = {
   msgs: {
@@ -10,12 +10,12 @@ type Props = {
   }[];
 };
 
-const ReactionMessages = ({ msgs }: Props) => {
+const QuizReactionMessages = ({ msgs }: Props) => {
   return (
     <div className="absolute left-0 bottom-0 pointer-events-none">
       <ul className="relative overflow-hidden w-62.5 h-30 z-2">
         {msgs.map((item) => (
-          <ReactionMsg
+          <QuizReactionMsg
             key={item.id}
             label={item.label}
             icon={item.icon}
@@ -28,4 +28,4 @@ const ReactionMessages = ({ msgs }: Props) => {
   );
 };
 
-export default ReactionMessages;
+export default QuizReactionMessages;

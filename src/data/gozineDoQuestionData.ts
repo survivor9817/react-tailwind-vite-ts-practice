@@ -1,4 +1,4 @@
-const s = {
+const gozineDoQuestionData = {
   contentId: 361403,
   contentData: {
     isImageFormat: false,
