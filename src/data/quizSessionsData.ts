@@ -9,6 +9,10 @@ export type QuizSession = {
   duration: number;
   score: number;
   progress: number;
+
+  correctsCount: number;
+  incorrectsCount: number;
+  nullsCount: number;
 };
 
 export const QUIZ_SESSIONS: QuizSession[] = [
@@ -18,79 +22,16 @@ export const QUIZ_SESSIONS: QuizSession[] = [
     filterLabel: "10 سؤال – سطح متوسط – موضوع: جبر",
     questionCount: 10,
     startedAt: "2024-09-11T08:15:00Z",
-    endedAt: "2024-09-11T08:45:32Z",
+    endedAt: "2024-09-11T08:45:32Z", // dar harbaar zadan rooye dokme raftan be soale badi ya ghabli
     duration: 52,
     progress: 100,
     status: "completed",
-    corrects: 8,
-    incorrects: 8,
-    score: 8,
-  },
-];
+    // tooye yek modal natije yek tamrin ro betoone neshoon bede
+    correctsCount: 8,
+    incorrectsCount: 8,
+    nullsCount: 8,
 
-// aval az bank soal filter mizane tasadofi dah ta id az bakhshe
-// morede filter barmidare, badesh baayek order tasaadofi mizaare
-// toye jadvali mesle jadvale paeen
-export const TAGS = [
-  {
-    tagId: "tag1",
-    tagName: "درست نادرست",
-    tagType: "",
-  },
-  {
-    tagId: "tag2",
-    tagName: "جای خالی",
-    tagType: "",
-  },
-  {
-    tagId: "tag3",
-    tagName: "دو گزینه‌ای",
-    tagType: "",
-  },
-  {
-    tagId: "tag4",
-    tagName: "چهار گزینه‌ای",
-    tagType: "",
-  },
-  {
-    tagId: "tag5",
-    tagName: "تشریحی",
-    tagType: "",
-  },
-  {
-    tagId: "tag6",
-    tagName: "ارتباط منطقی",
-    tagType: "",
-  },
-  {
-    tagId: "tag7",
-    tagName: "وصل کردنی",
-    tagType: "",
-  },
-  {
-    tagId: "tag8",
-    tagName: "مفهومی",
-    tagType: "",
-  },
-  {
-    tagId: "tag9",
-    tagName: "صورت مبهم",
-    tagType: "",
-  },
-  {
-    tagId: "tag10",
-    tagName: "خط به خط",
-    tagType: "",
-  },
-  {
-    tagId: "tag11",
-    tagName: "مقایسه‌ای",
-    tagType: "",
-  },
-  {
-    tagId: "tag12",
-    tagName: "تحلیلی",
-    tagType: "",
+    score: 1,
   },
 ];
 

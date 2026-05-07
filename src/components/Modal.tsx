@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import IconBtn from "./IconBtn";
 
 type ModalProps = {
@@ -9,6 +9,16 @@ type ModalProps = {
 };
 
 const Modal = ({ children, className = "w-77.5", onClose }: ModalProps) => {
+  // unable scrolling on body
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
   // close modal by escape
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -22,30 +32,22 @@ const Modal = ({ children, className = "w-77.5", onClose }: ModalProps) => {
     };
   }, [onClose]);
 
-  // unable scrolling on body
+  // focus on first focusable element inside modal
+  const previousActiveEl = useRef<HTMLElement | null>(null); // If there are multiple consecutive modals, the current behavior is not as expected.
+  const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const isInsideOfModal = (document.activeElement as HTMLElement).closest("#modal-root");
+    previousActiveEl.current = !isInsideOfModal ? (document.activeElement as HTMLElement) : null;
+
+    const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
+      "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
+    );
+    firstFocusable?.focus();
 
     return () => {
-      document.body.style.overflow = originalOverflow;
+      previousActiveEl.current?.focus();
     };
   }, []);
-
-  // // close modal by escape
-  // const previousActiveEl = useRef<HTMLElement | null>(null); // If there are multiple consecutive modals, the current behavior is not as expected.
-  // const modalRef = useRef<HTMLDivElement>(null);
-  // useEffect(() => {
-  //   previousActiveEl.current = document.activeElement as HTMLElement;
-  //   const firstFocusable = modalRef.current?.querySelector<HTMLElement>(
-  //     "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",
-  //   );
-  //   firstFocusable?.focus();
-
-  //   return () => {
-  //     previousActiveEl.current?.focus();
-  //   };
-  // }, []);
 
   const modalRoot = document.getElementById("modal-root") as HTMLElement;
   const modalElement = (
@@ -54,7 +56,7 @@ const Modal = ({ children, className = "w-77.5", onClose }: ModalProps) => {
       onClick={onClose}
     >
       <div
-        // ref={modalRef}
+        ref={modalRef}
         className={`relative rounded-4xl p-6 shadow-lg bg-white ${className}`}
         onClick={(e) => e.stopPropagation()}
       >

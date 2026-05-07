@@ -15,3 +15,8 @@
 // safhe va soal avaz kard.
 
 // dar jaa haaee ke baayad, az useCallback estefade kon
+
+// tooye yek modal natije yek tamrin ro betoone neshoon bede
+
+// shaayad khoob baashe ke progressBar be tedade soala ghesmat beshe va rang ghermez sabz ya khakestari begire
+// taa zamani ke be ye ui khoob beresim vaase quiz pagination
