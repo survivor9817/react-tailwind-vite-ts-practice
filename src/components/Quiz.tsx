@@ -75,6 +75,8 @@ const Quiz = () => {
 
       {/* saakhte bakhshe moroor tamrin haaye ghabli */}
       {/* moddat, rooze hafte, tarikh, saat shoro, */}
+
+      {/* saakhte modaale infoye yek tamrin ghabli */}
     </>
   );
 };

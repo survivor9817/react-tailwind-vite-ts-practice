@@ -17,7 +17,7 @@ export const createDbReaction = (
   };
 };
 
-export const saveReaction = (
+export const postQuizReaction = (
   userId: string,
   currentQuestionID: string,
   reactionId: UiReactionId,

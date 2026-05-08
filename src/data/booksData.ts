@@ -3163,7 +3163,7 @@ export type BookOption = {
   value: number;
   label: string;
 };
-export const getOptionsOfBookSelector = (): BookOption[] => {
+export const getBookSelectOptions = (): BookOption[] => {
   const optionsOfBookSelector = getPurchasedBooks().map((book) => {
     return { value: book.id, label: book.label };
   });

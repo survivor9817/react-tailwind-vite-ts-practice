@@ -15,16 +15,13 @@ const FehrestList = () => {
 
   if (error) {
     if (!currentBook) return <p className="text-center">کتابی را انتخاب کنید.</p>;
-    return (
-      <ErrorFallback
-        onRefetch={() => loadFehrest(currentBook?.id)}
-        ErrorMsg="خطا در بارگذاری فهرست"
-      />
-    );
+    return <ErrorFallback onRefetch={loadFehrest} ErrorMsg="خطا در بارگذاری فهرست" />;
   }
 
   if (!currentPage) return <p className="text-center">هنوز صفحه ای انتخاب نشده است.</p>;
+
   if (!currentFehrest) return <p className="text-center">فهرست موجود نیست.</p>;
+
   const titlePages = collectTitlePages(currentFehrest);
   const currentTitlePage = findTitlePage(currentPage, titlePages);
 

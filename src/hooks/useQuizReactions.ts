@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import type { UiReaction, UiReactionId } from "../data/reactionData";
 import { useReactionBtns } from "./useReactionBtns";
 import { useReactionMsgs } from "./useReactionMsgs";
-import { saveReaction } from "../services/saveReaction";
+import { postQuizReaction } from "../services/postQuizReaction";
 
 export const useQuizReactions = (
   currentQuestionID: string,
@@ -23,7 +23,7 @@ export const useQuizReactions = (
 
   const onClickOnReactionBtn = (reactionId: UiReactionId) => {
     // optimistic save
-    saveReaction(userId, currentQuestionID, reactionId);
+    postQuizReaction(userId, currentQuestionID, reactionId);
 
     const isClickedBtnOn = btnsMeta.find((item) => item.id === reactionId)?.isOn;
     setBtnOnClick(reactionId, !isClickedBtnOn);

@@ -20,3 +20,5 @@
 
 // shaayad khoob baashe ke progressBar be tedade soala ghesmat beshe va rang ghermez sabz ya khakestari begire
 // taa zamani ke be ye ui khoob beresim vaase quiz pagination
+
+// type haa ro az /data biaar tooye hookeshaan

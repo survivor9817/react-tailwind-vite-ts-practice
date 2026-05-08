@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { FIELDS, getBooks, GRADES, type Book, type Field, type Grade } from "../data/booksData";
+import { FIELDS, getBooks, GRADES, type Book, type Field } from "../data/booksData";
+import { useBookContext } from "../components/BookProvider";
 
 export const useChooseBook = () => {
   // no fetch
@@ -7,10 +8,11 @@ export const useChooseBook = () => {
   const fields = FIELDS;
 
   // no fetch
-  const [selectedGrade, setSelectedGrade] = useState<Grade>(grades[0]);
+  const { selectedGrade, setSelectedGrade } = useBookContext();
+  // const [selectedGrade, setSelectedGrade] = useState<Grade>(grades[0]);
   const [selectedField, setSelectedField] = useState<Field>(fields[0]);
   const filters = {
-    gradeId: selectedGrade.id,
+    gradeId: selectedGrade?.id,
     fieldId: selectedField.id,
     //   isAvailable: true
   };

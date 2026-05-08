@@ -1,8 +1,9 @@
 // useQuizData.ts
 import { useState } from "react";
-import { getQuestionFromDB, type QuestionType } from "../data/questionsData";
+import type { QuestionType } from "../data/questionsData";
 import { fakeFetch } from "../utils/fakeFetch";
 import { useToast } from "../components/ToastProvider";
+import { fetchQuestionById } from "../services/fetchQuestionById";
 
 // voroodi filterhaaye user ro ke bayad begire dg...
 export const useQuestionData = () => {
@@ -26,7 +27,7 @@ export const useQuestionData = () => {
 
     try {
       const q = await fakeFetch(
-        () => getQuestionFromDB(questionId),
+        () => fetchQuestionById(questionId),
         // { errorChance: 0.5 },
         // { errorChance: 1 },
       );

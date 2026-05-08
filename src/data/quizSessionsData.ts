@@ -24,8 +24,8 @@ export const QUIZ_SESSIONS: QuizSession[] = [
     startedAt: "2024-09-11T08:15:00Z",
     endedAt: "2024-09-11T08:45:32Z", // dar harbaar zadan rooye dokme raftan be soale badi ya ghabli
     duration: 52,
-    progress: 100,
     status: "completed",
+    progress: 75,
     // tooye yek modal natije yek tamrin ro betoone neshoon bede
     correctsCount: 8,
     incorrectsCount: 8,

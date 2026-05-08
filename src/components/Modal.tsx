@@ -9,7 +9,7 @@ type ModalProps = {
 };
 
 const Modal = ({ children, className = "w-77.5", onClose }: ModalProps) => {
-  // unable scrolling on body
+  // disable scrolling on body
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -33,7 +33,7 @@ const Modal = ({ children, className = "w-77.5", onClose }: ModalProps) => {
   }, [onClose]);
 
   // focus on first focusable element inside modal
-  const previousActiveEl = useRef<HTMLElement | null>(null); // If there are multiple consecutive modals, the current behavior is not as expected.
+  const previousActiveEl = useRef<HTMLElement | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const isInsideOfModal = (document.activeElement as HTMLElement).closest("#modal-root");

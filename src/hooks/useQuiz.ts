@@ -43,6 +43,8 @@ export const useQuiz = () => {
     }
   };
 
+  // const reviewQuiz = (quizId) => {}
+
   const goToQuestion = async (index: number) => {
     if (!questionIds || !questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
     if (Number.isInteger(index) && index >= 0 && index < questionIds.length) {

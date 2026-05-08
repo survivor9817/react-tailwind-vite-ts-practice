@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
-import { getBookPage } from "../data/fehrestsData";
 import { useFetchData } from "./useFetchData";
 import { useBookContext } from "../components/BookProvider";
+import { fetchBookPage } from "../services/fetchBookPage";
 
 export const useBookPageData = () => {
   const { data, isLoading, error, fetchData } = useFetchData<string>();
@@ -9,7 +9,7 @@ export const useBookPageData = () => {
   const { currentBook, currentPage } = useBookContext();
   const loadPageContent = useCallback(async () => {
     if (!currentBook || !currentPage) return;
-    await fetchData(() => getBookPage(currentBook.id, currentPage));
+    await fetchData(() => fetchBookPage(currentBook.id, currentPage));
   }, [currentBook, currentPage]);
 
   useEffect(() => {

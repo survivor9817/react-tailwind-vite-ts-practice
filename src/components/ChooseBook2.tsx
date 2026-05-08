@@ -3,9 +3,11 @@ import Select, { type StylesConfig } from "react-select";
 import BookSlider from "./BookSlider";
 import BookCard from "./BookCard";
 import { FIELDS, getBooks, GRADES, type Book, type Field, type Grade } from "../data/booksData";
+import { useBookContext } from "./BookProvider";
 
 const ChooseBook2 = () => {
-  const [selectedGrade, setSelectedGrade] = useState<Grade>(GRADES[0]);
+  const { selectedGrade, setSelectedGrade } = useBookContext();
+  // const [selectedGrade, setSelectedGrade] = useState<Grade>(GRADES[0]);
   const [selectedField, setSelectedField] = useState<Field>(FIELDS[0]);
   const [filteredBooks, setFilteredBooks] = useState<Book[]>(getBooks({ gradeId: 7 }));
 

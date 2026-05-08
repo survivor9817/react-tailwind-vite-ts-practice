@@ -12,6 +12,7 @@ export const useQuestionIdsData = () => {
 
   const { showToast } = useToast();
 
+  // dota taabe misaazim yeki by filter yeki by session id
   const loadQuestionIds = async (/** user quiz filters???? */) => {
     setIdsLoading(true);
     setIdsError(null);
@@ -22,7 +23,7 @@ export const useQuestionIdsData = () => {
         // { errorChance: 0.5 },
         // { errorChance: 0.5 },
       );
-      if (!ids || !ids.length) throw new Error("تمرینی موجود نیست!");
+      if (!ids || !ids.length) throw new Error("تمرینی موجود نیست!"); // na dige tamrin nabood error bendaze server.
       setQuestionIds(ids);
       return ids;
     } catch (rawError) {

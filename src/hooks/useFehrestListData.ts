@@ -1,20 +1,20 @@
 import { useCallback, useEffect } from "react";
-import { type FehrestSection, getFehrestById } from "../data/fehrestsData";
+import type { FehrestSection } from "../data/fehrestsData";
 import { useFetchData } from "./useFetchData";
 import { useBookContext } from "../components/BookProvider";
+import { fetchFehrestListById } from "../services/fetchFehrestListById";
 
 export const useFehrestListData = () => {
-  const { currentBook } = useBookContext();
-
   const { data, isLoading, error, fetchData } = useFetchData<FehrestSection[]>();
 
-  const loadFehrest = useCallback(async (bookId: number) => {
-    await fetchData(() => getFehrestById(bookId));
+  const { currentBook } = useBookContext();
+  const loadFehrest = useCallback(async () => {
+    if (!currentBook?.id) return;
+    await fetchData(() => fetchFehrestListById(currentBook?.id));
   }, []);
 
   useEffect(() => {
-    if (!currentBook?.id) return;
-    loadFehrest(currentBook?.id);
+    loadFehrest();
   }, [currentBook, loadFehrest]);
 
   return { currentFehrest: data, isLoading, error, loadFehrest };
