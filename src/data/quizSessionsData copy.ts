@@ -35,6 +35,76 @@ export const QUIZ_SESSIONS: QuizSession[] = [
   },
 ];
 
+export const QUESTION_TAGS = [
+  {
+    questionId: "",
+    tagId: "",
+  },
+];
+
+export const SESSIONS_QUESTIONS_ORDER = [
+  {
+    sessionId: "123456",
+    questionId: "1",
+    order: 1,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "2",
+    order: 2,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "3",
+    order: 3,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "4",
+    order: 4,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "5",
+    order: 5,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "6",
+    order: 6,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "7",
+    order: 7,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "8",
+    order: 8,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "9",
+    order: 9,
+    isViewed: false,
+  },
+  {
+    sessionId: "123456",
+    questionId: "10",
+    order: 10,
+    isViewed: false,
+  },
+];
+
 export const QUIZ_IDS = [
   {
     quizId: "15495",

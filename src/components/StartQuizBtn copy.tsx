@@ -34,9 +34,9 @@ export const StartQuizBtn = ({
   type = "button",
 }: StartQuizBtnProps) => {
   /* ----------  کلاس‑های wrapper  ---------- */
-  const wrapperCls = `absolute bottom-0 right-1/2 translate-x-1/2 flex items-center p-1.75 min-w-57.5 h-16 border-2 rounded-full z-4
-    transition-[opacity,transform] duration-300 bg-white
-    ${show ? "visible opacity-100 translate-y-9" : "opacity-0 invisible"}`;
+  const wrapperCls = `flex p-1.75 items-center min-w-57.5 h-16 border-2 rounded-full z-4
+    opacity-0 transition-[opacity,transform] duration-300 bg-white
+    ${show ? "visible opacity-100 -translate-y-6.75" : "invisible"}`;
 
   /* ----------  کلاس‑های دکمه  ---------- */
   const btnCls = `w-full h-full rounded-full bg-black text-white

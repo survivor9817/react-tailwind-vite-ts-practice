@@ -1,12 +1,4 @@
-// // onError
-// const { showToast } = useToast();
-// useEffect(() => {
-//   if (error) showToast("خطا در بارگذاری گزینه های غربال", { type: "error" });
-// }, [error]);
-
-//  fehrest list skeleton
 // quiz session
-//
 
 // use filter select data ro fix kon.
 
@@ -22,3 +14,5 @@
 // taa zamani ke be ye ui khoob beresim vaase quiz pagination
 
 // type haa ro az /data biaar tooye hookeshaan
+
+// hook haaye q va qid ro fix kon baa useFetchData()

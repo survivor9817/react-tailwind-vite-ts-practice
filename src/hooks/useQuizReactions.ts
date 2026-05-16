@@ -11,6 +11,7 @@ export const useQuizReactions = (
 ) => {
   const { btnsMeta, setBtnOnClick, turnOffAllBtns, applyReactionsOnUI } = useReactionBtns();
   const { msgsMeta, setMsgOnClick } = useReactionMsgs();
+  // const {} = usePostReactions();
 
   useEffect(() => {
     const timerId = setTimeout(() => {

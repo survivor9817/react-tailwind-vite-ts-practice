@@ -1,0 +1,84 @@
+import { useQuiz } from "../hooks/useQuiz";
+import FilterView from "./FilterView";
+import QuizView from "./QuizView";
+import QuizResultsModal from "./QuizResultsModal";
+import QuizEndConfirm from "./QuizEndConfirm";
+
+const Quiz = () => {
+  const {
+    quizFilters,
+    onChangeFilterSelect,
+    isQuizStarted,
+    currentQuestionIndex,
+    startQuiz,
+    startQuizLoading,
+    questionIds,
+    lastQuestionIndex,
+    // loadQuestion,
+    question,
+    isFirstQuestion,
+    isLastQuestion,
+    prevLoading,
+    goToPrevQuestion,
+    nextLoading,
+    goToNextQuestion,
+    openEndConfirm,
+    endConfirmModal,
+    submitQuiz,
+    closeEndConfirm,
+    resultsModal,
+    terminateQuiz,
+    closeResultsModal,
+
+    // we have toast on error
+    // questionIdsError,
+    // questionError,
+  } = useQuiz();
+
+  return (
+    <>
+      {!isQuizStarted ? (
+        <FilterView
+          quizFilters={quizFilters}
+          onChangeFilterSelect={onChangeFilterSelect}
+          startQuizLoading={startQuizLoading}
+          startQuiz={startQuiz}
+        />
+      ) : (
+        questionIds &&
+        question && (
+          <QuizView
+            // cache the previous questions in an array
+            questionData={question}
+            openEndConfirm={openEndConfirm}
+            currentQuestionIndex={currentQuestionIndex}
+            lastQuestionIndex={lastQuestionIndex}
+            isFirstQuestion={isFirstQuestion}
+            isLastQuestion={isLastQuestion}
+            prevLoading={prevLoading}
+            goToPrevQuestion={goToPrevQuestion}
+            nextLoading={nextLoading}
+            goToNextQuestion={goToNextQuestion}
+          />
+        )
+      )}
+
+      {endConfirmModal && <QuizEndConfirm onAction={submitQuiz} onClose={closeEndConfirm} />}
+
+      {resultsModal && questionIds && (
+        <QuizResultsModal
+          questionIds={questionIds}
+          onAction={terminateQuiz}
+          onClose={closeResultsModal}
+        />
+      )}
+
+      {/* saakhte bakhshe moroor tamrin haaye ghabli */}
+      {/* moddat, rooze hafte, tarikh, saat shoro, */}
+
+      {/* saakhte modaale infoye yek tamrin ghabli */}
+    </>
+  );
+};
+
+export default Quiz;

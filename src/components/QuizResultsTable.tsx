@@ -12,7 +12,12 @@ const QuizResultsTable = ({ questionIds }: Props) => {
 
   if (isLoading) return <QuizResultsTableSkeleton />;
 
-  if (error) return <ErrorFallback onRefetch={loadQuizResults} />;
+  if (error)
+    return (
+      <div className="my-4">
+        <ErrorFallback onRefetch={loadQuizResults} />
+      </div>
+    );
 
   if (!results) return <p>نتیجه ای پیدا نشد.</p>;
   const { correctsCount, incorrectsCount, nullsCount } = results;

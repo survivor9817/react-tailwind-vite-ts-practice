@@ -6,7 +6,13 @@ import useToggle from "./useToggle";
 
 export const useQuiz = () => {
   const { quizFilters, clearFilters, onChangeFilterSelect } = useQuizFilters();
-  const { questionIds, questionIdsLoading, loadQuestionIds, setQuestionIds } = useQuestionIdsData();
+  const {
+    questionIds,
+    questionIdsLoading,
+    loadQuestionIdsByFilter,
+    loadQuestionIdsByQuizId,
+    setQuestionIds,
+  } = useQuestionIdsData();
   const { question, questionLoading, loadQuestion, setQuestion } = useQuestionData();
   const startQuizLoading = questionIdsLoading || questionLoading;
   const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
@@ -33,7 +39,7 @@ export const useQuiz = () => {
 
   const startQuiz = async () => {
     try {
-      const ids = await loadQuestionIds(/** user quiz filters or quiz id ???? */);
+      const ids = await loadQuestionIdsByFilter(/** user quiz filters or quiz id ???? */);
       // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
       // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
       await loadQuestion(ids[0] /** zero or maybe last index? */);
@@ -44,6 +50,17 @@ export const useQuiz = () => {
   };
 
   // const reviewQuiz = (quizId) => {}
+  const reviewQuiz = async (/** quizId */) => {
+    try {
+      const ids = await loadQuestionIdsByQuizId(/** quiz id ???? */);
+      // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
+      // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
+      await loadQuestion(ids[0] /** zero or maybe last index? */);
+      showQuizView();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const goToQuestion = async (index: number) => {
     if (!questionIds || !questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
@@ -99,6 +116,7 @@ export const useQuiz = () => {
   };
 
   return {
+    reviewQuiz,
     quizFilters,
     onChangeFilterSelect,
     isQuizStarted,
