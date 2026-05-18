@@ -20,11 +20,11 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
     useQuizFiltersProgressiveDisclosure(quizFilters);
 
   return (
-    // <form className="flex flex-col justify-center items-center w-full h-125 p-2">
-    <form className="flex flex-col justify-center items-center w-full h-125 p-2">
+    // min-h-90
+    <form className="flex flex-col justify-center items-center w-full p-2">
       <div
         style={{ height: quizFilterBoxHeight }}
-        className="relative flex flex-col gap-8 border-2 rounded-4xl w-full max-w-115 max-h-80
+        className="relative flex flex-col gap-8 mt-18 border-2 rounded-4xl w-full max-w-115 max-h-80
                  transition-[height] ease-in-out duration-300"
       >
         <div className="absolute -top-5 right-8 text-2xl bg-white px-2">تمرین جدید</div>

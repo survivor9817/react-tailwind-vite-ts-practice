@@ -11,7 +11,7 @@ export const useFehrestListData = () => {
   const loadFehrest = useCallback(async () => {
     if (!currentBook?.id) return;
     await fetchData(() => fetchFehrestListById(currentBook?.id));
-  }, []);
+  }, [currentBook]);
 
   useEffect(() => {
     loadFehrest();
