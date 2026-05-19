@@ -21,7 +21,10 @@ const FilterView = ({ quizFilters, onChangeFilterSelect, startQuizLoading, start
 
   return (
     // min-h-90
-    <form className="flex flex-col justify-center items-center w-full p-2">
+    <form
+      className="flex flex-col justify-center items-center w-full p-2"
+      onSubmit={(e) => e.preventDefault()}
+    >
       <div
         style={{ height: quizFilterBoxHeight }}
         className="relative flex flex-col gap-8 mt-18 border-2 rounded-4xl w-full max-w-115 max-h-80

@@ -1,37 +1,41 @@
 export type QuizSession = {
-  sessionId: string;
+  quizId: string;
   userId: string;
-  filterLabel: string;
-  questionCount: number;
-  status: string;
+  bookId: string;
   startedAt: string;
   endedAt: string;
   duration: number;
-  score: number;
-  progress: number;
 
+  // where tags?
+  // level tags?
+  // source tags?
+  // question tags
+  // ref tags?
+  filterLabel: string;
+  questionIds: string[];
+  progress: number;
   correctsCount: number;
   incorrectsCount: number;
   nullsCount: number;
+
+  // score?: number;
 };
 
 export const QUIZ_SESSIONS: QuizSession[] = [
   {
-    sessionId: "123456",
+    quizId: "123456",
     userId: "123",
-    filterLabel: "10 سؤال – سطح متوسط – موضوع: جبر",
-    questionCount: 10,
+    bookId: "1102670",
     startedAt: "2024-09-11T08:15:00Z",
     endedAt: "2024-09-11T08:45:32Z", // dar harbaar zadan rooye dokme raftan be soale badi ya ghabli
     duration: 52,
-    status: "completed",
-    progress: 75,
-    // tooye yek modal natije yek tamrin ro betoone neshoon bede
-    correctsCount: 8,
-    incorrectsCount: 8,
-    nullsCount: 8,
 
-    score: 1,
+    filterLabel: "10 سؤال – سطح متوسط – موضوع: جبر",
+    questionIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    progress: 75,
+    correctsCount: 8,
+    incorrectsCount: 1,
+    nullsCount: 1,
   },
 ];
 
