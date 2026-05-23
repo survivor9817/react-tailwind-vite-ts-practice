@@ -21,14 +21,15 @@ const QuizReview = (props: Props) => {
     },
     {
       weekDay: getWeekday(new Date(2024, 5, 5).toISOString()),
-      date: toPersianDate(new Date(2026, 2, 20, 1).toISOString()),
+      date: toPersianDate(new Date(2026, 3, 20, 2).toISOString()),
       startTime: getTime(new Date().toISOString()),
       duration: getDurationInMinutes(
-        new Date(2026, 2, 20, 1, 12).toISOString(),
-        new Date(2026, 2, 20, 2, 26).toISOString(),
+        new Date(2026, 2, 20, 1, 13).toISOString(),
+        new Date(2026, 2, 20, 2, 27).toISOString(),
       ),
     },
   ];
+  // console.log(new Date("2026-03-19T22:56:00.000Z").toISOString());
 
   const tHeadCls = "border-gray-300 align-middle text-center text-sm font-bold text-gray-900 py-2";
   const tRowCls =
@@ -51,7 +52,7 @@ const QuizReview = (props: Props) => {
             </thead>
             <tbody>
               {reviewTableData.map(({ weekDay, date, startTime, duration }) => (
-                <tr>
+                <tr key={date}>
                   <th scope="row" className={`${tRowCls} border-l`}>
                     ۱
                   </th>
