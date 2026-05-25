@@ -9,9 +9,9 @@ import { toFaNums } from "../utils/toFaNums";
 import { useQuizSessionsData } from "../hooks/useQuizSessionsData";
 import ErrorFallback from "./ErrorFallback";
 
-type Props = {};
+// type Props = {};
 
-const QuizReviewTable = (props: Props) => {
+const QuizReviewTable = () => {
   const tHeadCls = "border-gray-300 align-middle text-center text-sm font-bold text-gray-900 py-2";
   const tRowCls =
     "border-t border-gray-300 bg-gray-50 align-middle py-2 px-1 text-center text-base font-semibold text-gray-600";
@@ -19,7 +19,7 @@ const QuizReviewTable = (props: Props) => {
   const { quizSessions, isLoading, error, loadQuizSessions } = useQuizSessionsData();
 
   if (isLoading) {
-    return <p className="flex justify-center p-4">در حال بارگذاری جلسات قبلی ...</p>;
+    return <p className="flex justify-center p-4">در حال بارگذاری ...</p>;
     // return (
     //   <table>
     //     <thead>
@@ -48,6 +48,10 @@ const QuizReviewTable = (props: Props) => {
     // );
   }
 
+  if (!quizSessions || !quizSessions?.length) {
+    return <p className="flex justify-center p-4">تمرینی موجود نیست.</p>;
+  }
+
   if (error) {
     return (
       <div className="p-4">
@@ -69,21 +73,20 @@ const QuizReviewTable = (props: Props) => {
         </tr>
       </thead>
       <tbody>
-        {quizSessions &&
-          quizSessions.map(({ startTime, endTime }, i) => (
-            <tr key={startTime + endTime}>
-              <th scope="row" className={`${tRowCls} border-l`}>
-                {toFaNums(i + 1)}
-              </th>
-              <td className={`${tRowCls}`}>{getWeekday(startTime)}</td>
-              <td className={`${tRowCls}`}>{toPersianDate(startTime)}</td>
-              <td className={`${tRowCls}`}>{getTime(startTime)}</td>
-              <td className={`${tRowCls}`}>{getDurationInMinutes(startTime, endTime)}</td>
-              <td className={`${tRowCls} grid place-content-center`}>
-                <IconBtn i="insert_chart" iconSize="32px" />
-              </td>
-            </tr>
-          ))}
+        {quizSessions.map(({ startTime, endTime }, i) => (
+          <tr key={startTime + endTime}>
+            <th scope="row" className={`${tRowCls} border-l`}>
+              {toFaNums(i + 1)}
+            </th>
+            <td className={`${tRowCls}`}>{getWeekday(startTime)}</td>
+            <td className={`${tRowCls}`}>{toPersianDate(startTime)}</td>
+            <td className={`${tRowCls}`}>{getTime(startTime)}</td>
+            <td className={`${tRowCls}`}>{getDurationInMinutes(startTime, endTime)}</td>
+            <td className={`${tRowCls} grid place-content-center`}>
+              <IconBtn i="insert_chart" iconSize="32px" />
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

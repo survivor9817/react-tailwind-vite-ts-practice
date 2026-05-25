@@ -57,9 +57,11 @@ export const getQuestionIdsByQuizId = (quizId: string) => {
   return questionIds;
 };
 
+let fakeId = 2;
 export const getNewQuiz = (userId: string, bookId: string, filters: string) => {
+  fakeId += 1;
   const newQuizSession = {
-    quizId: "1",
+    quizId: `${fakeId}`,
     userId,
     bookId,
     startTime: new Date().toISOString(),

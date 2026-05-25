@@ -1,8 +1,8 @@
 import QuizReviewTable from "./QuizReviewTable";
 
-type Props = {};
+// type Props = {};
 
-const QuizReview = (props: Props) => {
+const QuizReview = () => {
   return (
     <div className="p-2">
       <div className="relative flex flex-col gap-8 py-8 px-6 border-2 rounded-4xl w-full max-w-115 m-auto ">
