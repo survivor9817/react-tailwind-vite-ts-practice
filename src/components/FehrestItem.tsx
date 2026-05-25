@@ -27,10 +27,13 @@ const FehrestItem = ({ section, currentTitlePage }: Props) => {
   return (
     <li>
       <div
-        className={`font-semibold truncate py-1.25 px-2 my-1 rounded cursor-pointer transition-colors duration-300 ${isHighlighted}`}
+        className={`flex justify-between font-semibold py-1.25 px-2 pl-1 my-1 rounded cursor-pointer transition-colors duration-300 ${isHighlighted}`}
         onClick={handleClick}
       >
-        {section.title} {toFaNums(section.page)}
+        <span className="h-full w-full my-auto text-sm truncate">{section.title}</span>
+        <span className="flex justify-center w-7 h-full p-1 border-2 rounded text-xs">
+          {toFaNums(section.page)}
+        </span>
       </div>
 
       {subitems}

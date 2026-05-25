@@ -1384,12 +1384,6 @@ export const question_sections = [
   { question_id: "1", section_id: "1" },
 ];
 
-export const question_sources = [
-  { question_id: "1", source_id: "1" },
-  { question_id: "1", source_id: "1" },
-  { question_id: "1", source_id: "1" },
-];
-
 export const question_tags = [
   { question_id: "1", tag_id: "1" },
   { question_id: "1", tag_id: "2" },
