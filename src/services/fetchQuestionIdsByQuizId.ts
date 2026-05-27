@@ -1,6 +1,5 @@
-import { getQuestionIds } from "../data/questionsData";
+import { reviewExistingQuiz } from "../data/quizSessionsData";
 
-export const fetchQuestionIdsByQuizId = (/** user quiz filters???? */) => {
-  // getQuizId
-  return getQuestionIds(/** user quiz filters???? */);
+export const fetchQuestionIdsByQuizId = (quizId: string) => {
+  return reviewExistingQuiz(quizId);
 };

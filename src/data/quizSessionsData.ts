@@ -3,7 +3,7 @@ export type QuizSession = {
   userId: string;
   bookId: string;
   startTime: string;
-  endTime: string;
+  endTime: string | null;
   duration: number;
   progress: number;
   lastVisitedQuestion: string;
@@ -38,48 +38,69 @@ export const QUIZ_SESSIONS: QuizSession[] = [
   },
 ];
 
-const getAllQuizSessions = () => QUIZ_SESSIONS;
+const getAllQuizes = () => QUIZ_SESSIONS;
 
-export const getQuizSessions = (userId: string, bookId?: string) => {
-  const userPreviousQuizes = getAllQuizSessions().filter(
+export const getQuizes = (userId: string, bookId?: string) => {
+  const userPreviousQuizes = getAllQuizes().filter(
     (s) => s.bookId === bookId && s.userId === userId,
   );
   return userPreviousQuizes;
 };
 
-export const getQuizSessionByQuizId = (quizId: string) => {
-  const quizSession = getAllQuizSessions().find((s) => s.quizId === quizId);
+export const getQuizById = (quizId: string) => {
+  const quizSession = getAllQuizes().find((s) => s.quizId === quizId);
   return quizSession;
 };
 
-export const getQuestionIdsByQuizId = (quizId: string) => {
-  const questionIds = getQuizSessionByQuizId(quizId)?.questionIds;
-  return questionIds;
-};
+const randomQuestionIdsBasedOnUserFilter = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+export const getQuestionIdsFromDbByFilter = (filters?: string) =>
+  randomQuestionIdsBasedOnUserFilter;
 
 let fakeId = 2;
-export const getNewQuiz = (userId: string, bookId: string, filters: string) => {
+export const createNewQuiz = (userId: string, bookId: string, filters: string): QuizSession => {
   fakeId += 1;
-  const newQuizSession = {
+  const newQuiz = {
     quizId: `${fakeId}`,
     userId,
     bookId,
     startTime: new Date().toISOString(),
     endTime: null,
-    duration: null,
+    duration: 14,
     progress: 75,
-    lastVisitedQuestion: "4",
-
-    filterIds: filters,
-    questionIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], // getRandomQuestionIdsByFilter()
-
-    // check the random questions and bring back their results getResultsFromDB()
-    // are result ro har baar ke bekhaaym baa daadane araye id soaalaa bedast miarim.
-    // correctsCount: 8,
-    // incorrectsCount: 1,
-    // nullsCount: 1,
+    lastVisitedQuestion: "3",
+    filterTags: filters,
+    questionIds: getQuestionIdsFromDbByFilter(/** filters */), // ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], // make random ids based on filter.
   };
-  // create, then getQuizSessions() and then getQuestionIdsByQuizId() and return it.
+
+  addQuizSessionToDB(newQuiz);
+
+  return newQuiz;
+};
+
+export const addQuizSessionToDB = (newSession: QuizSession) => QUIZ_SESSIONS.push(newSession);
+
+export const getNewQuestionIdsFromNewQuizByFilter = (
+  userId: string,
+  bookId: string,
+  filters: string,
+) => {
+  const questionIds = createNewQuiz(userId, bookId, filters).questionIds;
+  return questionIds;
+};
+
+// this
+export const startNewQuiz = (userId: string, bookId: string, filters: string) => {
+  return getNewQuestionIdsFromNewQuizByFilter(userId, bookId, filters);
+};
+
+export const getQuestionIdsByQuizId = (quizId: string) => {
+  const questionIds = getQuizById(quizId)?.questionIds;
+  return questionIds;
+};
+
+// and this
+export const reviewExistingQuiz = (quizId: string) => {
+  return getQuestionIdsByQuizId(quizId);
 };
 
 // maybe

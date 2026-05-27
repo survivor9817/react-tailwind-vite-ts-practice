@@ -16,3 +16,6 @@
 // type haa ro az /data biaar tooye hookeshaan
 
 // hook haaye q va qid ro fix kon baa useFetchData()
+
+// baayad modaal haaro besaazi va inke beshe hamoon aazmoone ghabli ro moroor kone kaarbar. ***********
+// esme file haaye data ro dorost kon va inke morattabeshoon kon dg kholaase.

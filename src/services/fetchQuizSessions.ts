@@ -1,5 +1,5 @@
-import { getQuizSessions } from "../data/quizSessionsData";
+import { getQuizes } from "../data/quizSessionsData";
 
 export const fetchQuizSessions = (userId: string, bookId: string) => {
-  return getQuizSessions(userId, bookId);
+  return getQuizes(userId, bookId);
 };
