@@ -25,7 +25,9 @@ export type UiReaction = {
 };
 
 const now = new Date().toISOString();
-
+// beshee baraaye har reaction bish az yek mored ham sabt kard ammaa moghe gereftanesh az db
+// baraaye neshaan daadane feedbacke ghabli be user, AKHARIN reaction az oon noo ro begir bahaash
+// ui reaction object ro besaaz. az har reaction user mitoonim 5 saabeghe negah darim.
 export const REACTIONS: DbReaction[] = [
   {
     userId: "123",
@@ -230,6 +232,7 @@ export type QuestionType = {
   reactions?: UiReaction;
   refPages?: number[]; // tooye descriptive answereshaan be che safhe haayee az ketaab ref zade shode.
   // mikhaam dar aayande alaave bar adade safhe javaabhaa, jomle i ke toye oon safhe marboot be javaabe in soal hastesh ro ham highlight konam toye ui. nemidoonam chetor in kaar ro anjaam bedam.
+  suggestedDuratuion?: number; // milisecond. modat zamaane pishnahaadie moalem baraaye hale yek soal.
 };
 
 export const questionsData: QuestionType[] = [

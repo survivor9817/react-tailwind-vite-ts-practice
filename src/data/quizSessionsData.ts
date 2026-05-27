@@ -56,6 +56,8 @@ const randomQuestionIdsBasedOnUserFilter = ["1", "2", "3", "4", "5", "6", "7", "
 export const getQuestionIdsFromDbByFilter = (filters?: string) =>
   randomQuestionIdsBasedOnUserFilter;
 
+export const addQuizSessionToDB = (newSession: QuizSession) => QUIZ_SESSIONS.unshift(newSession);
+
 let fakeId = 2;
 export const createNewQuiz = (userId: string, bookId: string, filters: string): QuizSession => {
   fakeId += 1;
@@ -64,7 +66,7 @@ export const createNewQuiz = (userId: string, bookId: string, filters: string): 
     userId,
     bookId,
     startTime: new Date().toISOString(),
-    endTime: null,
+    endTime: new Date(Date.now() + 60000).toISOString(), // mitoone taabe e get az db sh ro seda bezanim. endesh mishe moghe i ke
     duration: 14,
     progress: 75,
     lastVisitedQuestion: "3",
@@ -76,8 +78,6 @@ export const createNewQuiz = (userId: string, bookId: string, filters: string): 
 
   return newQuiz;
 };
-
-export const addQuizSessionToDB = (newSession: QuizSession) => QUIZ_SESSIONS.push(newSession);
 
 export const getNewQuestionIdsFromNewQuizByFilter = (
   userId: string,
@@ -109,6 +109,10 @@ export const quiz_filters = [
   { quizId: "1", filterId: "nahaaee" },
 ];
 
+// ******** jadvale har soaale kaarbar ro besaaz
+// har soaal ro ke user dide zamane seen, zamaane tarke oon soal, zamaane moshaahedeye javaabe on soal,
+// zamaane edit shodanesh, va ... ro betoonim sabt konim.
+// hmmmmm chetore ke rafto bargashte be yek soaal ham yek noe az reaction baashe. haa???
 export const QUIZ_IDS = [
   {
     quizId: "15495",

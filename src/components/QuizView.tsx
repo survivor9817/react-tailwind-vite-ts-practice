@@ -72,20 +72,23 @@ const QuizView = ({
             isDisabled={nextLoading || isFirstQuestion}
             onClick={goToPrevQuestion}
           />
-        </div>
-
-        <div className="flex">
-          <IconBtn
-            className={"text-red-700"}
-            i={"power_settings_circle"}
-            onClick={openEndConfirm}
-          />
-
           <IconBtn
             i={"arrow_circle_left"}
             isLoading={nextLoading}
             isDisabled={prevLoading || isLastQuestion}
             onClick={goToNextQuestion}
+          />
+        </div>
+
+        <div className="flex">
+          <IconBtn
+            i={"timer"}
+            // onClick={goToPrevQuestion}
+          />
+          <IconBtn
+            className={"text-red-700"}
+            i={"power_settings_circle"}
+            onClick={openEndConfirm}
           />
         </div>
       </div>
