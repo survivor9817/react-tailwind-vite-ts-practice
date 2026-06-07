@@ -108,6 +108,7 @@ export const removeReactionFromDB = (existingReaction: DbReaction) => {
 };
 
 // from db
+// getLatestReactions esme behtarie.
 export const getReactions = (userId?: string, questionId?: string): DbReaction[] | undefined => {
   const filtered = REACTIONS.filter((r) => {
     const matchUser = userId ? r.userId === userId : true;
@@ -152,6 +153,7 @@ export const createUiReactionsObject = (dbReactions: DbReaction[] | undefined): 
 };
 
 // masalan api get req
+// gets latest reaction for an id
 export const getUiReactionObjectFromDB = (userId?: string, questionId?: string): UiReaction => {
   return createUiReactionsObject(getReactions(userId, questionId));
 };
@@ -195,9 +197,10 @@ export type QuizResults = {
 };
 
 // masalan api get result, aakhare quiz in taabe ro map mikonim roye array array mifrestim map mikone ba in.
-export const getResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
+export const getLatestResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
+  // ################ get latest. jadid tarin reactioni ke user be yek soal dade ro begir neshoon bedim
   const answers = questionIds.map((questionId) => {
-    const reactions = getReactions(userId, questionId);
+    const reactions = getReactions(userId, questionId); // ############ then filter by time.
     return reactions?.find((reaction) => reaction.reactionType === "answer");
   });
 
@@ -207,6 +210,10 @@ export const getResultsFromDB = (userId: string, questionIds: string[]): QuizRes
 
   return { correctsCount, incorrectsCount, nullsCount };
 };
+
+// age reactioni baraaye yek soal sabt nashode, ke hichi. agar shode, akharinesh ro begir.
+// agar user
+export const getResultsByQuizId = (quizId: string) => {};
 
 // injaa array soalaati ke user filter zade saakhte mishe.
 export const requestedQuestionsIDs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];

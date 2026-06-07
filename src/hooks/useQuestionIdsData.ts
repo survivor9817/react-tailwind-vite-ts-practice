@@ -27,7 +27,7 @@ export const useQuestionIdsData = () => {
     );
 
     if (ids) return ids;
-    throw new Error("تمرینی با این فیلترها موجود نیست.");
+    throw new Error("تمرینی با این غربال‌ها موجود نیست.");
   }, []);
 
   const loadQuestionIdsByQuizId = useCallback(async () => {
@@ -37,7 +37,7 @@ export const useQuestionIdsData = () => {
     });
 
     if (ids) return ids;
-    throw new Error("تمرینی با این فیلترها موجود نیست.");
+    throw new Error("تمرینی با این غربال‌ها موجود نیست.");
   }, []);
 
   // onError

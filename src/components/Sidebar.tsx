@@ -22,7 +22,7 @@ const Sidebar = ({ className = "", isOpen, isBackdropOn, onClose, side, children
         style={backdropDisplay}
       ></div>
       <div
-        className={`fixed top-0 w-80 h-screen p-3 rounded-tl-3xl rounded-bl-3xl bg-[#ebebeb] 
+        className={`fixed top-0 w-80 h-screen h-dvh p-3 rounded-tl-3xl rounded-bl-3xl bg-[#ebebeb] 
           transition-transform duration-300 ease-in-out shadow-[-2px_0px_5px_0px_rgba(0,0,0,0.5)]
           z-70 overflow-x-hidden overflow-y-auto translate-x-0 ${side} ${className}`}
         style={sidebarMovement}

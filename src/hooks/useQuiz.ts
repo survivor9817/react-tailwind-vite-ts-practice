@@ -50,7 +50,7 @@ export const useQuiz = () => {
   };
 
   // const reviewQuiz = (quizId) => {}
-  const reviewQuiz = async (/** quizId */) => {
+  const startReview = async (/** quizId */) => {
     try {
       const ids = await loadQuestionIdsByQuizId(/** quiz id ???? */);
       // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
@@ -116,7 +116,7 @@ export const useQuiz = () => {
   };
 
   return {
-    reviewQuiz,
+    startReview,
     quizFilters,
     onChangeFilterSelect,
     isQuizStarted,

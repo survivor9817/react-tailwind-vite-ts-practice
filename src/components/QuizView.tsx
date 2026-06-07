@@ -13,6 +13,8 @@ import QuizReactionMessages from "./QuizReactionMessages";
 import ShowAnswerBtn from "./ShowAnswerBtn";
 import Collapsible from "./Collapsible";
 import { useQuizReactions } from "../hooks/useQuizReactions";
+import useToggle from "../hooks/useToggle";
+import StopwatchModal from "./StopwatchModal";
 
 type Props = {
   questionData: QuestionType;
@@ -59,6 +61,11 @@ const QuizView = ({
     currentQuestionIndex,
   );
 
+  // create stopwatch hook
+  const [stopwatch, , openStopwatch, closeStopwatch] = useToggle();
+  // need a client-side timer here.
+  // khorooj azash stop watch ro resume kone. vorod behesh mitavaanad startash konad.
+
   return (
     <div className="quiz-box flex flex-col p-2 overflow-hidden">
       {/* Quiz card */}
@@ -72,23 +79,21 @@ const QuizView = ({
             isDisabled={nextLoading || isFirstQuestion}
             onClick={goToPrevQuestion}
           />
+          <IconBtn i={"timer"} onClick={openStopwatch} />
+          {stopwatch && <StopwatchModal onClose={closeStopwatch} />}
+        </div>
+
+        <div className="flex">
+          <IconBtn
+            className={"text-red-700"}
+            i={"power_settings_circle"}
+            onClick={openEndConfirm}
+          />
           <IconBtn
             i={"arrow_circle_left"}
             isLoading={nextLoading}
             isDisabled={prevLoading || isLastQuestion}
             onClick={goToNextQuestion}
-          />
-        </div>
-
-        <div className="flex">
-          <IconBtn
-            i={"timer"}
-            // onClick={goToPrevQuestion}
-          />
-          <IconBtn
-            className={"text-red-700"}
-            i={"power_settings_circle"}
-            onClick={openEndConfirm}
           />
         </div>
       </div>

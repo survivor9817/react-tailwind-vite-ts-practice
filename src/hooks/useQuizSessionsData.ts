@@ -8,7 +8,7 @@ export type QuizSession = {
   userId: string;
   bookId: string;
   startTime: string;
-  endTime: string;
+  endTime: string | null;
   duration: number;
   progress: number;
   lastVisitedQuestion: string;

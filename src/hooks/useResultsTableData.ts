@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { getResultsFromDB, type QuizResults } from "../data/questionsData";
+import { getLatestResultsFromDB, type QuizResults } from "../data/questionsData";
 import { useFetchData } from "./useFetchData";
 
 export const useResultsTableData = (userId: string, questionIds: string[]) => {
@@ -7,7 +7,7 @@ export const useResultsTableData = (userId: string, questionIds: string[]) => {
 
   const fetchResults = useCallback(async () => {
     if (!userId || questionIds.length === 0) return;
-    await fetchData(() => getResultsFromDB(userId, questionIds));
+    await fetchData(() => getLatestResultsFromDB(userId, questionIds)); // make a fetch function for this.
   }, [userId, questionIds, fetchData]);
 
   useEffect(() => {

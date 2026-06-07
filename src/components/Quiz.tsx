@@ -7,6 +7,7 @@ import QuizReview from "./QuizReview";
 
 const Quiz = () => {
   const {
+    // startReview,
     quizFilters,
     onChangeFilterSelect,
     isQuizStarted,
@@ -39,14 +40,16 @@ const Quiz = () => {
   return (
     <>
       {!isQuizStarted ? (
-        <div className="flex flex-col justify-center gap-18">
+        <div className="flex flex-col justify-center gap-18 p-2">
           <FilterView
             quizFilters={quizFilters}
             onChangeFilterSelect={onChangeFilterSelect}
             startQuizLoading={startQuizLoading}
             startQuiz={startQuiz}
           />
-          <QuizReview />
+          <QuizReview
+          // reviewQuiz={reviewQuiz}
+          />
         </div>
       ) : (
         questionIds &&
@@ -67,7 +70,13 @@ const Quiz = () => {
         )
       )}
 
-      {endConfirmModal && <QuizEndConfirm onAction={submitQuiz} onClose={closeEndConfirm} />}
+      {endConfirmModal && (
+        <QuizEndConfirm
+          onAction={submitQuiz}
+          // endLoading={endLoading}
+          onClose={closeEndConfirm}
+        />
+      )}
 
       {resultsModal && questionIds && (
         <QuizResultsModal
@@ -78,8 +87,6 @@ const Quiz = () => {
       )}
 
       {/* saakhte bakhshe moroor tamrin haaye ghabli */}
-      {/* moddat, rooze hafte, tarikh, saat shoro, */}
-
       {/* saakhte modaale infoye yek tamrin ghabli */}
     </>
   );

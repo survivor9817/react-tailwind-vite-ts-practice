@@ -11,7 +11,7 @@ export const useQuizFiltersProgressiveDisclosure = (quizFilters: QuizFiltersType
 
   useEffect(() => {
     setFiltersHeight(110);
-  }, [quizFilters.BookId]);
+  }, [quizFilters.BookId]); // book id ro az contextesh bardari ke behtare ke daaghaan
 
   useLayoutEffect(() => {
     const el = quizFilterBoxRef.current;
