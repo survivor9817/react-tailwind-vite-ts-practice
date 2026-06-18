@@ -14,7 +14,7 @@ export type QuizSession = {
 
 export const QUIZ_SESSIONS: QuizSession[] = [
   {
-    quizId: "2",
+    quizId: "1",
     userId: "123",
     bookId: "706",
     startTime: new Date(2026, 2, 20, 1, 12).toISOString(),
@@ -27,7 +27,7 @@ export const QUIZ_SESSIONS: QuizSession[] = [
     questionIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   },
   {
-    quizId: "3",
+    quizId: "2",
     userId: "123",
     bookId: "706",
     startTime: new Date(2026, 2, 20, 2, 12).toISOString(),
@@ -61,7 +61,7 @@ export const getQuestionIdsFromDbByFilter = (filters?: string) =>
 
 export const addQuizSessionToDB = (newSession: QuizSession) => QUIZ_SESSIONS.unshift(newSession);
 
-let fakeId = 0;
+let fakeId = 2;
 export const createNewQuiz = (userId: string, bookId: string, filters: string): QuizSession => {
   fakeId += 1;
   const newQuiz = {

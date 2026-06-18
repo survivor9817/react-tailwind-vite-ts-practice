@@ -33,15 +33,7 @@ const now = new Date().toISOString();
 // ui reaction object ro besaaz. az har reaction user mitoonim 5 saabeghe negah darim.
 export const REACTIONS: DbReaction[] = [
   {
-    quizId: "1",
-    userId: "123",
-    questionId: "1",
-    reactionId: "isCorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    quizId: "1",
+    quizId: "3",
     userId: "123",
     questionId: "1",
     reactionId: "isLike",
@@ -49,15 +41,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
-    quizId: "1",
-    userId: "123",
-    questionId: "2",
-    reactionId: "isIncorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    quizId: "1",
+    quizId: "3",
     userId: "123",
     questionId: "2",
     reactionId: "isStar",
@@ -65,15 +49,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
-    quizId: "1",
-    userId: "123",
-    questionId: "3",
-    reactionId: "isNull",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    quizId: "1",
+    quizId: "3",
     userId: "123",
     questionId: "3",
     reactionId: "isLike",
@@ -81,7 +57,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
-    quizId: "1",
+    quizId: "3",
     userId: "123",
     questionId: "3",
     reactionId: "isReport",
@@ -89,15 +65,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
-    quizId: "1",
-    userId: "123",
-    questionId: "4",
-    reactionId: "isCorrect",
-    reactionType: "answer",
-    createdAt: now,
-  },
-  {
-    quizId: "1",
+    quizId: "3",
     userId: "123",
     questionId: "4",
     reactionId: "isLike",
@@ -105,7 +73,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
-    quizId: "1",
+    quizId: "3",
     userId: "123",
     questionId: "4",
     reactionId: "isStar",
@@ -237,15 +205,17 @@ export const getLatestResultsFromDB = (userId: string, questionIds: string[]): Q
 // age reactioni baraaye yek soal sabt nashode, ke hichi. agar shode, akharinesh ro begir.
 // agar user
 export const getResultsByQuizId = (quizId: string) => {
+  const questionsCount = getQuizById(quizId)?.questionsCount || 1;
+
   const answers = getReactionsByQuizId(quizId)?.filter((r) => r.reactionType === "answer");
-  if (!answers) return { correctsCount: 0, incorrectsCount: 0, nullsCount: 0 };
+
+  if (!answers) return { correctsCount: 0, incorrectsCount: 0, nullsCount: questionsCount };
 
   const correctsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isCorrect"), 0);
   const incorrectsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isIncorrect"), 0);
   // seen but there is not any answer for them. right?
   // const nullsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isNull"), 0);
-  const quiz = getQuizById(quizId);
-  const questionsCount = quiz ? quiz.questionsCount : 1;
+
   const nullsCount = questionsCount - (correctsCount + incorrectsCount);
 
   return { correctsCount, incorrectsCount, nullsCount };
