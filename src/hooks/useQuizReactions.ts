@@ -5,6 +5,7 @@ import { useReactionMsgs } from "./useReactionMsgs";
 import { postQuizReaction } from "../services/postQuizReaction";
 
 export const useQuizReactions = (
+  quizId: string,
   currentQuestionID: string,
   userId: string,
   uiReaction: UiReaction | undefined,
@@ -24,7 +25,7 @@ export const useQuizReactions = (
 
   const onClickOnReactionBtn = (reactionId: UiReactionId) => {
     // optimistic save
-    postQuizReaction(userId, currentQuestionID, reactionId);
+    postQuizReaction(quizId, userId, currentQuestionID, reactionId);
 
     const isClickedBtnOn = btnsMeta.find((item) => item.id === reactionId)?.isOn;
     setBtnOnClick(reactionId, !isClickedBtnOn);

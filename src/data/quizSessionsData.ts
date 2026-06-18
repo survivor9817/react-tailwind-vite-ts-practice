@@ -9,23 +9,25 @@ export type QuizSession = {
   lastVisitedQuestion: string;
   filterTags: string;
   questionIds: string[];
+  questionsCount: number;
 };
 
 export const QUIZ_SESSIONS: QuizSession[] = [
   {
-    quizId: "1",
+    quizId: "2",
     userId: "123",
     bookId: "706",
     startTime: new Date(2026, 2, 20, 1, 12).toISOString(),
-    endTime: new Date(2026, 2, 20, 2, 26).toISOString(),
+    endTime: new Date(2026, 2, 20, 2, 26).toISOString(), // or null?
     duration: 74,
     progress: 75,
     lastVisitedQuestion: "3",
     filterTags: "10 سؤال – سطح متوسط – موضوع: جبر",
+    questionsCount: 10,
     questionIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   },
   {
-    quizId: "2",
+    quizId: "3",
     userId: "123",
     bookId: "706",
     startTime: new Date(2026, 2, 20, 2, 12).toISOString(),
@@ -34,6 +36,7 @@ export const QUIZ_SESSIONS: QuizSession[] = [
     progress: 75,
     lastVisitedQuestion: "3",
     filterTags: "10 سؤال – سطح متوسط – موضوع: جبر",
+    questionsCount: 10,
     questionIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   },
 ];
@@ -58,7 +61,7 @@ export const getQuestionIdsFromDbByFilter = (filters?: string) =>
 
 export const addQuizSessionToDB = (newSession: QuizSession) => QUIZ_SESSIONS.unshift(newSession);
 
-let fakeId = 2;
+let fakeId = 0;
 export const createNewQuiz = (userId: string, bookId: string, filters: string): QuizSession => {
   fakeId += 1;
   const newQuiz = {
@@ -72,6 +75,7 @@ export const createNewQuiz = (userId: string, bookId: string, filters: string): 
     lastVisitedQuestion: "3",
     filterTags: filters,
     questionIds: getQuestionIdsFromDbByFilter(/** filters */), // ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], // make random ids based on filter.
+    questionsCount: 10,
   };
 
   addQuizSessionToDB(newQuiz);
@@ -89,8 +93,16 @@ export const getNewQuestionIdsFromNewQuizByFilter = (
 };
 
 // this
+// export const startNewQuiz = (userId: string, bookId: string, filters: string) => {
+//   // generate quiz id
+//   // const newQuizId = "1"
+//   return getNewQuestionIdsFromNewQuizByFilter(userId, bookId, filters);
+// };
+
 export const startNewQuiz = (userId: string, bookId: string, filters: string) => {
-  return getNewQuestionIdsFromNewQuizByFilter(userId, bookId, filters);
+  // generate quiz id
+  // const newQuizId = "1"
+  return createNewQuiz(userId, bookId, filters);
 };
 
 export const getQuestionIdsByQuizId = (quizId: string) => {
@@ -103,6 +115,10 @@ export const reviewExistingQuiz = (quizId: string) => {
   return getQuestionIdsByQuizId(quizId);
 };
 
+// export const reviewExistingQuiz = (quizId: string) => {
+//   return getQuizById(quizId);
+// };
+
 // maybe
 export const quiz_filters = [
   { quizId: "1", filterId: "fasle2" },
@@ -113,20 +129,3 @@ export const quiz_filters = [
 // har soaal ro ke user dide zamane seen, zamaane tarke oon soal, zamaane moshaahedeye javaabe on soal,
 // zamaane edit shodanesh, va ... ro betoonim sabt konim.
 // hmmmmm chetore ke rafto bargashte be yek soaal ham yek noe az reaction baashe. haa???
-export const QUIZ_IDS = [
-  {
-    quizId: "15495",
-    userId: "123",
-    questionIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-  },
-  {
-    quizId: "15495",
-    userId: "123",
-    questionIds: ["11", "12", "13", "14", "15", "16", "17", "18", "19", "20"],
-  },
-  {
-    quizId: "15495",
-    userId: "123",
-    questionIds: ["21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
-  },
-];

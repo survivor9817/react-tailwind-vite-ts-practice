@@ -1,14 +1,14 @@
 import { useCallback, useEffect } from "react";
-import { getLatestResultsFromDB, type QuizResults } from "../data/questionsData";
+import { type QuizResults } from "../data/questionsData";
 import { useFetchData } from "./useFetchData";
+import { fetchResultsByQuizId } from "../services/fetchResultsByQuizId";
 
-export const useResultsTableData = (userId: string, questionIds: string[]) => {
+export const useResultsTableData = (quizId: string) => {
   const { data, error, isLoading, fetchData } = useFetchData<QuizResults>();
 
   const fetchResults = useCallback(async () => {
-    if (!userId || questionIds.length === 0) return;
-    await fetchData(() => getLatestResultsFromDB(userId, questionIds)); // make a fetch function for this.
-  }, [userId, questionIds, fetchData]);
+    await fetchData(() => fetchResultsByQuizId(quizId)); // make a fetch function for this.
+  }, [quizId, fetchData]);
 
   useEffect(() => {
     fetchResults();

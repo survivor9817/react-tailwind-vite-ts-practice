@@ -1,3 +1,5 @@
+import { getQuizById } from "./quizSessionsData";
+
 export type DbReactionId =
   | "isCorrect"
   | "isIncorrect"
@@ -9,6 +11,7 @@ export type DbReactionId =
 export type ReactionType = "answer" | "feedback";
 
 export type DbReaction = {
+  quizId: string;
   userId: string;
   questionId: string;
   reactionId: DbReactionId;
@@ -30,6 +33,7 @@ const now = new Date().toISOString();
 // ui reaction object ro besaaz. az har reaction user mitoonim 5 saabeghe negah darim.
 export const REACTIONS: DbReaction[] = [
   {
+    quizId: "1",
     userId: "123",
     questionId: "1",
     reactionId: "isCorrect",
@@ -37,6 +41,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "1",
     reactionId: "isLike",
@@ -44,6 +49,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "2",
     reactionId: "isIncorrect",
@@ -51,6 +57,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "2",
     reactionId: "isStar",
@@ -58,6 +65,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "3",
     reactionId: "isNull",
@@ -65,6 +73,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "3",
     reactionId: "isLike",
@@ -72,6 +81,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "3",
     reactionId: "isReport",
@@ -79,6 +89,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "4",
     reactionId: "isCorrect",
@@ -86,6 +97,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "4",
     reactionId: "isLike",
@@ -93,6 +105,7 @@ export const REACTIONS: DbReaction[] = [
     createdAt: now,
   },
   {
+    quizId: "1",
     userId: "123",
     questionId: "4",
     reactionId: "isStar",
@@ -122,6 +135,14 @@ export const getReactions = (userId?: string, questionId?: string): DbReaction[]
   }
 
   return filtered;
+};
+
+export const getReactionsByQuizId = (quizId: string): DbReaction[] | undefined => {
+  // حالا ری‌اکشن‌هایی که questionIdشون توی لیست ما هست رو فیلتر کن
+  const reactions = REACTIONS.filter((r) => r.quizId === quizId);
+
+  // اگه ری‌اکشنی پیدا نشد، undefined برگردون
+  return reactions.length > 0 ? reactions : undefined;
 };
 
 export const createUiReactionsObject = (dbReactions: DbReaction[] | undefined): UiReaction => {
@@ -160,7 +181,7 @@ export const getUiReactionObjectFromDB = (userId?: string, questionId?: string):
 
 // masalan api post req
 export const saveReactionToDB = (newReaction: DbReaction) => {
-  const { userId, questionId } = newReaction;
+  const { quizId, userId, questionId } = newReaction;
   const saved = getReactions(userId, questionId);
 
   if (newReaction.reactionType === "answer") {
@@ -172,6 +193,7 @@ export const saveReactionToDB = (newReaction: DbReaction) => {
     if (isTurningOff) {
       removeReactionFromDB(existing);
       addReactionToDB({
+        quizId: quizId,
         userId: userId,
         questionId: questionId,
         reactionId: "isNull",
@@ -197,6 +219,7 @@ export type QuizResults = {
 };
 
 // masalan api get result, aakhare quiz in taabe ro map mikonim roye array array mifrestim map mikone ba in.
+// export const getLatestResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
 export const getLatestResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
   // ################ get latest. jadid tarin reactioni ke user be yek soal dade ro begir neshoon bedim
   const answers = questionIds.map((questionId) => {
@@ -213,7 +236,20 @@ export const getLatestResultsFromDB = (userId: string, questionIds: string[]): Q
 
 // age reactioni baraaye yek soal sabt nashode, ke hichi. agar shode, akharinesh ro begir.
 // agar user
-export const getResultsByQuizId = (quizId: string) => {};
+export const getResultsByQuizId = (quizId: string) => {
+  const answers = getReactionsByQuizId(quizId)?.filter((r) => r.reactionType === "answer");
+  if (!answers) return { correctsCount: 0, incorrectsCount: 0, nullsCount: 0 };
+
+  const correctsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isCorrect"), 0);
+  const incorrectsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isIncorrect"), 0);
+  // seen but there is not any answer for them. right?
+  // const nullsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isNull"), 0);
+  const quiz = getQuizById(quizId);
+  const questionsCount = quiz ? quiz.questionsCount : 1;
+  const nullsCount = questionsCount - (correctsCount + incorrectsCount);
+
+  return { correctsCount, incorrectsCount, nullsCount };
+};
 
 // injaa array soalaati ke user filter zade saakhte mishe.
 export const requestedQuestionsIDs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];

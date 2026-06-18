@@ -1,8 +1,6 @@
 import { useQuiz } from "../hooks/useQuiz";
 import FilterView from "./FilterView";
 import QuizView from "./QuizView";
-import QuizResultsModal from "./QuizResultsModal";
-import QuizEndConfirm from "./QuizEndConfirm";
 import QuizReview from "./QuizReview";
 
 const Quiz = () => {
@@ -14,12 +12,12 @@ const Quiz = () => {
     currentQuestionIndex,
     startQuiz,
     startQuizLoading,
-    questionIds,
+    quiz,
     lastQuestionIndex,
     // loadQuestion,
     question,
-    isFirstQuestion,
-    isLastQuestion,
+    isOnFirstQuestion,
+    isOnLastQuestion,
     prevLoading,
     goToPrevQuestion,
     nextLoading,
@@ -32,7 +30,7 @@ const Quiz = () => {
     terminateQuiz,
     closeResultsModal,
 
-    // we have toast on error
+    // we have toast on errors
     // questionIdsError,
     // questionError,
   } = useQuiz();
@@ -47,47 +45,35 @@ const Quiz = () => {
             startQuizLoading={startQuizLoading}
             startQuiz={startQuiz}
           />
+
           <QuizReview
           // reviewQuiz={reviewQuiz}
           />
         </div>
       ) : (
-        questionIds &&
+        quiz &&
         question && (
           <QuizView
-            // cache the previous questions in an array
+            quiz={quiz}
             questionData={question}
-            openEndConfirm={openEndConfirm}
             currentQuestionIndex={currentQuestionIndex}
             lastQuestionIndex={lastQuestionIndex}
-            isFirstQuestion={isFirstQuestion}
-            isLastQuestion={isLastQuestion}
+            isFirstQuestion={isOnFirstQuestion}
+            isLastQuestion={isOnLastQuestion}
             prevLoading={prevLoading}
             goToPrevQuestion={goToPrevQuestion}
             nextLoading={nextLoading}
             goToNextQuestion={goToNextQuestion}
+            endConfirmModal={endConfirmModal}
+            openEndConfirm={openEndConfirm}
+            submitQuiz={submitQuiz}
+            closeEndConfirm={closeEndConfirm}
+            resultsModal={resultsModal}
+            terminateQuiz={terminateQuiz}
+            closeResultsModal={closeResultsModal}
           />
         )
       )}
-
-      {endConfirmModal && (
-        <QuizEndConfirm
-          onAction={submitQuiz}
-          // endLoading={endLoading}
-          onClose={closeEndConfirm}
-        />
-      )}
-
-      {resultsModal && questionIds && (
-        <QuizResultsModal
-          questionIds={questionIds}
-          onAction={terminateQuiz}
-          onClose={closeResultsModal}
-        />
-      )}
-
-      {/* saakhte bakhshe moroor tamrin haaye ghabli */}
-      {/* saakhte modaale infoye yek tamrin ghabli */}
     </>
   );
 };

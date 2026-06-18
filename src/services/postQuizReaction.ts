@@ -2,6 +2,7 @@ import { saveReactionToDB, type DbReaction, type DbReactionId } from "../data/qu
 import type { UiReactionId } from "../data/reactionData";
 
 export const createDbReaction = (
+  quizId: string,
   userId: string,
   currentQuestionID: string,
   reactionId: DbReactionId,
@@ -9,6 +10,7 @@ export const createDbReaction = (
   const isAnswer = reactionId === "isCorrect" || reactionId === "isIncorrect";
 
   return {
+    quizId: quizId,
     userId: userId,
     questionId: currentQuestionID,
     reactionId: reactionId,
@@ -18,11 +20,12 @@ export const createDbReaction = (
 };
 
 export const postQuizReaction = (
+  quizId: string,
   userId: string,
   currentQuestionID: string,
   reactionId: UiReactionId,
 ) => {
-  const submittedReaction = createDbReaction(userId, currentQuestionID, reactionId);
+  const submittedReaction = createDbReaction(quizId, userId, currentQuestionID, reactionId);
   // post it
   saveReactionToDB(submittedReaction);
 };

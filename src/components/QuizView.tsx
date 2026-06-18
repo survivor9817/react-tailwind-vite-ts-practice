@@ -15,8 +15,13 @@ import Collapsible from "./Collapsible";
 import { useQuizReactions } from "../hooks/useQuizReactions";
 import useToggle from "../hooks/useToggle";
 import StopwatchModal from "./StopwatchModal";
+import QuizEndConfirm from "./QuizEndConfirm";
+import QuizResultsModal from "./QuizResultsModal";
+import type { QuizSession } from "../hooks/useQuizSessionsData";
 
 type Props = {
+  quiz: QuizSession;
+
   questionData: QuestionType;
   currentQuestionIndex: number;
   lastQuestionIndex: number;
@@ -27,6 +32,13 @@ type Props = {
   nextLoading: boolean;
   goToNextQuestion: () => Promise<void>;
   openEndConfirm: () => void;
+
+  endConfirmModal: boolean;
+  submitQuiz: () => void;
+  closeEndConfirm: () => void;
+  resultsModal: boolean;
+  terminateQuiz: () => void;
+  closeResultsModal: () => void;
 };
 
 const QuizView = ({
@@ -40,6 +52,14 @@ const QuizView = ({
   nextLoading,
   goToNextQuestion,
   openEndConfirm,
+
+  quiz,
+  endConfirmModal,
+  submitQuiz,
+  closeEndConfirm,
+  resultsModal,
+  terminateQuiz,
+  closeResultsModal,
 }: Props) => {
   const {
     id,
@@ -54,7 +74,12 @@ const QuizView = ({
   } = questionData;
 
   // needs user id from context or somewhere
-  const { btnsMeta, msgsMeta, onClickOnReactionBtn } = useQuizReactions(id, "123", reactions);
+  const { btnsMeta, msgsMeta, onClickOnReactionBtn } = useQuizReactions(
+    quiz.quizId,
+    id,
+    "123",
+    reactions,
+  );
 
   const { answerContent, isAnswerVisible, toggleAnswer } = useQuizAnswer(
     descriptiveAnswer,
@@ -63,11 +88,29 @@ const QuizView = ({
 
   // create stopwatch hook
   const [stopwatch, , openStopwatch, closeStopwatch] = useToggle();
-  // need a client-side timer here.
+  // maybe need a client-side timer here.
   // khorooj azash stop watch ro resume kone. vorod behesh mitavaanad startash konad.
 
   return (
     <div className="quiz-box flex flex-col p-2 overflow-hidden">
+      {endConfirmModal && (
+        <QuizEndConfirm
+          onAction={submitQuiz}
+          // endLoading={endLoading}
+          onClose={closeEndConfirm}
+        />
+      )}
+
+      {resultsModal && quiz && (
+        <QuizResultsModal
+          // inja quiz id begir natije bede
+          quizId={quiz.quizId}
+          // yekaar kon be tedad idhaa niaazi nabashe
+          questionIds={quiz.questionIds}
+          onAction={terminateQuiz}
+          onClose={closeResultsModal}
+        />
+      )}
       {/* Quiz card */}
 
       {/* <!-- Row 1 : Navigation Buttons of Quiz Section --> */}

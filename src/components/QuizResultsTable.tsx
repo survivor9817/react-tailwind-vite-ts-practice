@@ -4,11 +4,12 @@ import ErrorFallback from "./ErrorFallback";
 import QuizResultsTableSkeleton from "./QuizResultsTableSkeleton";
 
 type Props = {
+  quizId: string;
   questionIds: string[];
 };
 
-const QuizResultsTable = ({ questionIds }: Props) => {
-  const { results, error, isLoading, loadQuizResults } = useResultsTableData("123", questionIds);
+const QuizResultsTable = ({ quizId, questionIds }: Props) => {
+  const { results, error, isLoading, loadQuizResults } = useResultsTableData(quizId);
 
   if (isLoading) return <QuizResultsTableSkeleton />;
 
@@ -21,6 +22,7 @@ const QuizResultsTable = ({ questionIds }: Props) => {
 
   if (!results) return <p>نتیجه ای پیدا نشد.</p>;
   const { correctsCount, incorrectsCount, nullsCount } = results;
+  console.log(nullsCount);
   const totalQuestionsNumber = questionIds.length;
   if (totalQuestionsNumber === 0) return <p>سوالی برای نمایش وجود ندارد.</p>;
   const cutTwoDecimals = (num: number) => parseFloat(num.toFixed(1));

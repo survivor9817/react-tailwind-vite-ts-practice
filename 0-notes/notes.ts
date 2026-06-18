@@ -5,6 +5,8 @@
 
 // bad nist reaction haa ro user moghe khorooj az soal sabt konim toye server?
 
+// cache the previous quiz questions in an array in local hah?
+
 // *********** tooye yek modal, natije yek tamrin ro betoone neshoon bede
 // *********** baayad modaal haaro besaazi va inke beshe hamoon aazmoone ghabli ro moroor kone kaarbar.
 // *********** esme file haaye data ro dorost kon va inke morattabeshoon kon dg kholaase.

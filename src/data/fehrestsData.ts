@@ -9,13 +9,13 @@ export type FehrestSection = {
 };
 
 // moshaabeh konam fehrest ro ba sectionhaash?
-type FehrestType = {
+type Fehrest = {
   bookId: string;
   title: string;
   sections: FehrestSection[];
 };
 
-export const BOOKS_TOC: FehrestType[] = [
+export const BOOKS_TOC: Fehrest[] = [
   {
     bookId: "706",
     title: "علوم تجربی ۷",
@@ -442,6 +442,7 @@ type Option = {
   value: string;
   label: string;
 };
+
 export const getTocOptions = (fehrest: FehrestSection[]): Option[] => {
   return fehrest.flatMap((s) => [
     { value: `${s.page}`, label: s.title },

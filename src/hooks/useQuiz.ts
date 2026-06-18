@@ -1,32 +1,26 @@
 import { useState } from "react";
 import { useQuestionData } from "./useQuestionData";
-import { useQuestionIdsData } from "./useQuestionIdsData";
+import { useQuizData } from "./useQuizData";
 import { useQuizFilters } from "./useQuizFilters";
 import useToggle from "./useToggle";
 
 export const useQuiz = () => {
   const { quizFilters, clearFilters, onChangeFilterSelect } = useQuizFilters();
-  const {
-    questionIds,
-    questionIdsLoading,
-    loadQuestionIdsByFilter,
-    loadQuestionIdsByQuizId,
-    setQuestionIds,
-  } = useQuestionIdsData();
+  const { quiz, quizLoading, loadNewQuiz, loadExistingQuiz, setQuiz } = useQuizData();
   const { question, questionLoading, loadQuestion, setQuestion } = useQuestionData();
-  const startQuizLoading = questionIdsLoading || questionLoading;
+  const startQuizLoading = quizLoading || questionLoading;
   const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const isFirstQuestion = currentQuestionIndex === 0;
-  const lastQuestionIndex = questionIds ? questionIds.length - 1 : 0;
-  const isLastQuestion = currentQuestionIndex === lastQuestionIndex;
+  const isOnFirstQuestion = currentQuestionIndex === 0;
+  const lastQuestionIndex = quiz ? quiz.questionIds.length - 1 : 0;
+  const isOnLastQuestion = currentQuestionIndex === lastQuestionIndex;
   const [nextLoading, setNextLoading] = useState(false);
   const [prevLoading, setPrevLoading] = useState(false);
   const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
   const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
 
   const clearQuiz = () => {
-    setQuestionIds(null);
+    setQuiz(null);
     setQuestion(null);
   };
 
@@ -39,23 +33,22 @@ export const useQuiz = () => {
 
   const startQuiz = async () => {
     try {
-      const ids = await loadQuestionIdsByFilter(/** user quiz filters or quiz id ???? */);
+      const quiz = await loadNewQuiz(quizFilters); // ino baas ye kari koni question aval ro ham befreste dg.
       // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
       // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
-      await loadQuestion(ids[0] /** zero or maybe last index? */);
+      await loadQuestion(quiz.questionIds[0]);
       showQuizView();
     } catch (err) {
       console.log(err);
     }
   };
 
-  // const reviewQuiz = (quizId) => {}
-  const startReview = async (/** quizId */) => {
+  const reviewQuiz = async (quizId: string) => {
     try {
-      const ids = await loadQuestionIdsByQuizId(/** quiz id ???? */);
+      const quiz = await loadExistingQuiz(quizId);
       // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
       // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
-      await loadQuestion(ids[0] /** zero or maybe last index? */);
+      await loadQuestion(quiz.questionIds[0] /** zero or maybe last index? */);
       showQuizView();
     } catch (err) {
       console.log(err);
@@ -63,10 +56,10 @@ export const useQuiz = () => {
   };
 
   const goToQuestion = async (index: number) => {
-    if (!questionIds || !questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
-    if (Number.isInteger(index) && index >= 0 && index < questionIds.length) {
+    if (!quiz || !quiz.questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
+    if (Number.isInteger(index) && index >= 0 && index < quiz.questionIds.length) {
       try {
-        await loadQuestion(questionIds[index]);
+        await loadQuestion(quiz.questionIds[index]);
         setCurrentQuestionIndex(index);
       } catch (err) {
         console.log(err);
@@ -75,7 +68,7 @@ export const useQuiz = () => {
   };
 
   const goToPrevQuestion = async () => {
-    if (isFirstQuestion) {
+    if (isOnFirstQuestion) {
       return;
     }
 
@@ -90,7 +83,7 @@ export const useQuiz = () => {
   };
 
   const goToNextQuestion = async () => {
-    if (isLastQuestion) {
+    if (isOnLastQuestion) {
       openEndConfirm();
       return;
     }
@@ -116,19 +109,19 @@ export const useQuiz = () => {
   };
 
   return {
-    startReview,
+    reviewQuiz,
     quizFilters,
     onChangeFilterSelect,
     isQuizStarted,
     currentQuestionIndex,
     startQuiz,
     startQuizLoading,
-    questionIds,
+    quiz,
     lastQuestionIndex,
     loadQuestion,
     question,
-    isFirstQuestion,
-    isLastQuestion,
+    isOnFirstQuestion,
+    isOnLastQuestion,
     prevLoading,
     goToPrevQuestion,
     nextLoading,

@@ -4,10 +4,11 @@ import QuizResultsTable from "./QuizResultsTable";
 type Props = {
   onClose: () => void;
   onAction: () => void;
+  quizId: string;
   questionIds: string[];
 };
 
-const QuizResultsModal = ({ onClose, onAction, questionIds }: Props) => {
+const QuizResultsModal = ({ onClose, onAction, quizId, questionIds }: Props) => {
   return (
     <>
       <Modal onClose={onClose} className="w-77.5">
@@ -19,7 +20,7 @@ const QuizResultsModal = ({ onClose, onAction, questionIds }: Props) => {
         </p>
 
         {/* result table */}
-        <QuizResultsTable questionIds={questionIds} />
+        <QuizResultsTable quizId={quizId} questionIds={questionIds} />
 
         {/* Actions */}
         <div className="flex items-center justify-center gap-4">

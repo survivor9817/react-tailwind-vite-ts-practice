@@ -21,6 +21,8 @@ const QuizReviewTable = () => {
 
   const { quizSessions, isLoading, error, loadQuizSessions } = useQuizSessionsData();
 
+  // injaa ro mitooni bebari toye useQuiz
+  // useQuizReviewModal
   const [quizReviewModal, , openQuizReviewModal, closeQuizReviewModal] = useToggle();
   const [quizIdForReview, setQuizIdForReview] = useState<string>();
   console.log(quizIdForReview);
@@ -84,7 +86,12 @@ const QuizReviewTable = () => {
           ))}
         </tbody>
       </table>
-      {quizReviewModal && <QuizReviewModal onClose={closeQuizReviewModal} quizId="1" />}
+      {quizReviewModal && (
+        <QuizReviewModal
+          onClose={closeQuizReviewModal}
+          quizId="1" // quizIdForReview
+        />
+      )}
     </div>
   );
 };
