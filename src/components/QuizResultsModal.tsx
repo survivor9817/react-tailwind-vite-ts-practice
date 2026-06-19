@@ -8,7 +8,7 @@ type Props = {
   questionIds: string[];
 };
 
-const QuizResultsModal = ({ onClose, onAction, quizId, questionIds }: Props) => {
+const QuizResultsModal = ({ onClose, onAction, quizId }: Props) => {
   return (
     <>
       <Modal onClose={onClose} className="w-77.5">
@@ -20,7 +20,7 @@ const QuizResultsModal = ({ onClose, onAction, quizId, questionIds }: Props) => 
         </p>
 
         {/* result table */}
-        <QuizResultsTable quizId={quizId} questionIds={questionIds} />
+        <QuizResultsTable quizId={quizId} />
 
         {/* Actions */}
         <div className="flex items-center justify-center gap-4">

@@ -12,7 +12,7 @@ export const useQuiz = () => {
   const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const isOnFirstQuestion = currentQuestionIndex === 0;
-  const lastQuestionIndex = quiz ? quiz.questionIds.length - 1 : 0;
+  const lastQuestionIndex = quiz ? quiz.questionIds.length - 1 : 0; // quiz.questionsCount
   const isOnLastQuestion = currentQuestionIndex === lastQuestionIndex;
   const [nextLoading, setNextLoading] = useState(false);
   const [prevLoading, setPrevLoading] = useState(false);
@@ -33,6 +33,7 @@ export const useQuiz = () => {
 
   const startQuiz = async () => {
     try {
+      // yek req bokonesh reza
       const quiz = await loadNewQuiz(quizFilters); // ino baas ye kari koni question aval ro ham befreste dg.
       // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
       // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
@@ -44,6 +45,7 @@ export const useQuiz = () => {
   };
 
   const reviewQuiz = async (quizId: string) => {
+    console.log("rev");
     try {
       const quiz = await loadExistingQuiz(quizId);
       // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
@@ -101,6 +103,7 @@ export const useQuiz = () => {
   const submitQuiz = () => {
     closeEndConfirm();
     openResultsModal();
+    // disable answer buttons. ()
   };
 
   const terminateQuiz = () => {

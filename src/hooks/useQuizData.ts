@@ -17,6 +17,7 @@ type QuizSession = {
   lastVisitedQuestion: string;
   filterTags: string;
   questionIds: string[];
+  questionsCount: number;
 };
 
 // voroodi filterhaaye user ro ke bayad begire dg...

@@ -5,7 +5,7 @@ import QuizReview from "./QuizReview";
 
 const Quiz = () => {
   const {
-    // startReview,
+    reviewQuiz,
     quizFilters,
     onChangeFilterSelect,
     isQuizStarted,
@@ -46,9 +46,7 @@ const Quiz = () => {
             startQuiz={startQuiz}
           />
 
-          <QuizReview
-          // reviewQuiz={reviewQuiz}
-          />
+          <QuizReview reviewQuiz={reviewQuiz} startQuizLoading={startQuizLoading} />
         </div>
       ) : (
         quiz &&

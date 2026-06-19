@@ -5,10 +5,9 @@ import QuizResultsTableSkeleton from "./QuizResultsTableSkeleton";
 
 type Props = {
   quizId: string;
-  questionIds: string[];
 };
 
-const QuizResultsTable = ({ quizId, questionIds }: Props) => {
+const QuizResultsTable = ({ quizId }: Props) => {
   const { results, error, isLoading, loadQuizResults } = useResultsTableData(quizId);
 
   if (isLoading) return <QuizResultsTableSkeleton />;
@@ -21,16 +20,14 @@ const QuizResultsTable = ({ quizId, questionIds }: Props) => {
     );
 
   if (!results) return <p>نتیجه ای پیدا نشد.</p>;
-  const { correctsCount, incorrectsCount, nullsCount } = results;
-  console.log(nullsCount);
-  const totalQuestionsNumber = questionIds.length;
-  if (totalQuestionsNumber === 0) return <p>سوالی برای نمایش وجود ندارد.</p>;
+  const { questionsCount, correctsCount, incorrectsCount, nullsCount } = results;
+  if (questionsCount === 0) return <p>سوالی برای نمایش وجود ندارد.</p>;
   const cutTwoDecimals = (num: number) => parseFloat(num.toFixed(1));
-  const truePercent = toFaNums(cutTwoDecimals((correctsCount / totalQuestionsNumber) * 100));
-  const falsePercent = toFaNums(cutTwoDecimals((incorrectsCount / totalQuestionsNumber) * 100));
-  const nullPercent = toFaNums(cutTwoDecimals((nullsCount / totalQuestionsNumber) * 100));
+  const truePercent = toFaNums(cutTwoDecimals((correctsCount / questionsCount) * 100));
+  const falsePercent = toFaNums(cutTwoDecimals((incorrectsCount / questionsCount) * 100));
+  const nullPercent = toFaNums(cutTwoDecimals((nullsCount / questionsCount) * 100));
   const percentWithNegativeInfluence = toFaNums(
-    cutTwoDecimals(((correctsCount - incorrectsCount / 3) / totalQuestionsNumber) * 100),
+    cutTwoDecimals(((correctsCount - incorrectsCount / 3) / questionsCount) * 100),
   );
 
   return (

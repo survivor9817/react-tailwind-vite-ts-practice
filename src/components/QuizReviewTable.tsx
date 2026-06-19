@@ -12,9 +12,12 @@ import useToggle from "../hooks/useToggle";
 import QuizReviewModal from "./QuizReviewModal";
 import { useState } from "react";
 
-// type Props = {};
+type Props = {
+  startQuizLoading: boolean;
+  reviewQuiz: (quizId: string) => Promise<void>;
+};
 
-const QuizReviewTable = () => {
+const QuizReviewTable = ({ reviewQuiz, startQuizLoading }: Props) => {
   const tHeadCls = "border-gray-300 align-middle text-center text-sm font-bold text-gray-900 py-2";
   const tRowCls =
     "border-t border-gray-300 bg-gray-50 align-middle py-2 px-1 text-center text-base font-semibold text-gray-600";
@@ -86,10 +89,12 @@ const QuizReviewTable = () => {
           ))}
         </tbody>
       </table>
-      {quizReviewModal && (
+      {quizReviewModal && quizIdForReview && (
         <QuizReviewModal
           onClose={closeQuizReviewModal}
-          quizId="1" // quizIdForReview
+          quizId={quizIdForReview} // quizIdForReview
+          reviewQuiz={reviewQuiz}
+          startQuizLoading={startQuizLoading}
         />
       )}
     </div>

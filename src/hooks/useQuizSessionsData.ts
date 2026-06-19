@@ -14,6 +14,7 @@ export type QuizSession = {
   lastVisitedQuestion: string;
   filterTags: string;
   questionIds: string[];
+  questionsCount: number;
 };
 
 export const useQuizSessionsData = () => {

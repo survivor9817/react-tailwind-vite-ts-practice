@@ -190,32 +190,39 @@ export type QuizResults = {
   correctsCount: number;
   incorrectsCount: number;
   nullsCount: number;
+  questionsCount: number;
 };
 
 // masalan api get result, aakhare quiz in taabe ro map mikonim roye array array mifrestim map mikone ba in.
 // export const getLatestResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
-export const getLatestResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
-  // ################ get latest. jadid tarin reactioni ke user be yek soal dade ro begir neshoon bedim
-  const answers = questionIds.map((questionId) => {
-    const reactions = getReactions(userId, questionId); // ############ then filter by time.
-    return reactions?.find((reaction) => reaction.reactionType === "answer");
-  });
+// export const getLatestResultsFromDB = (userId: string, questionIds: string[]): QuizResults => {
+//   // ################ get latest. jadid tarin reactioni ke user be yek soal dade ro begir neshoon bedim
+//   const answers = questionIds.map((questionId) => {
+//     const reactions = getReactions(userId, questionId); // ############ then filter by time.
+//     return reactions?.find((reaction) => reaction.reactionType === "answer");
+//   });
 
-  const correctsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isCorrect"), 0);
-  const incorrectsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isIncorrect"), 0);
-  const nullsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isNull"), 0);
+//   const correctsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isCorrect"), 0);
+//   const incorrectsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isIncorrect"), 0);
+//   const nullsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isNull"), 0);
 
-  return { correctsCount, incorrectsCount, nullsCount };
-};
+//   return { correctsCount, incorrectsCount, nullsCount };
+// };
 
 // age reactioni baraaye yek soal sabt nashode, ke hichi. agar shode, akharinesh ro begir.
 // agar user
-export const getResultsByQuizId = (quizId: string) => {
+export const getResultsByQuizId = (quizId: string): QuizResults => {
   const questionsCount = getQuizById(quizId)?.questionsCount || 1;
 
   const answers = getReactionsByQuizId(quizId)?.filter((r) => r.reactionType === "answer");
 
-  if (!answers) return { correctsCount: 0, incorrectsCount: 0, nullsCount: questionsCount };
+  if (!answers)
+    return {
+      questionsCount,
+      correctsCount: 0,
+      incorrectsCount: 0,
+      nullsCount: questionsCount,
+    };
 
   const correctsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isCorrect"), 0);
   const incorrectsCount = answers?.reduce((a, c) => a + Number(c?.reactionId === "isIncorrect"), 0);
@@ -224,7 +231,7 @@ export const getResultsByQuizId = (quizId: string) => {
 
   const nullsCount = questionsCount - (correctsCount + incorrectsCount);
 
-  return { correctsCount, incorrectsCount, nullsCount };
+  return { correctsCount, incorrectsCount, nullsCount, questionsCount };
 };
 
 // injaa array soalaati ke user filter zade saakhte mishe.
@@ -680,6 +687,8 @@ export const getQuestionFromDB = (questionId: string) => {
 
 export const getQuestionForQuiz = (questionId: string, quizId: string) => {
   const q = getQuestionById(questionId);
-  if (q) q.reactions = getUiReactionObjectForQuiz(questionId, quizId);
+  if (q) q.reactions = getUiReactionObjectForQuiz(questionId, quizId); // chera baraaye reactionhaa sabr konim taa baa soaal biaan?
   return q;
 };
+
+// fetch reactions mizanim.
