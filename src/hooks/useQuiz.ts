@@ -36,7 +36,7 @@ export const useQuiz = () => {
       const quiz = await loadNewQuiz(quizFilters); // ino baas ye kari koni question aval ro ham befreste dg.
       // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
       // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
-      await loadQuestion(quiz.questionIds[0]);
+      await loadQuestion(quiz.questionIds[0], quiz.quizId);
       showQuizView();
     } catch (err) {
       console.log(err);
@@ -48,7 +48,7 @@ export const useQuiz = () => {
       const quiz = await loadExistingQuiz(quizId);
       // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
       // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
-      await loadQuestion(quiz.questionIds[0] /** zero or maybe last index? */);
+      await loadQuestion(quiz.questionIds[0], quiz.quizId /** zero or maybe last index? */);
       showQuizView();
     } catch (err) {
       console.log(err);
@@ -59,7 +59,7 @@ export const useQuiz = () => {
     if (!quiz || !quiz.questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
     if (Number.isInteger(index) && index >= 0 && index < quiz.questionIds.length) {
       try {
-        await loadQuestion(quiz.questionIds[index]);
+        await loadQuestion(quiz.questionIds[index], quiz.quizId);
         setCurrentQuestionIndex(index);
       } catch (err) {
         console.log(err);

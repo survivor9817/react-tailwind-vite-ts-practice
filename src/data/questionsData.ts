@@ -147,6 +147,12 @@ export const getUiReactionObjectFromDB = (userId?: string, questionId?: string):
   return createUiReactionsObject(getReactions(userId, questionId));
 };
 
+export const getUiReactionObjectForQuiz = (questionId: string, quizId: string): UiReaction => {
+  return createUiReactionsObject(
+    getReactionsByQuizId(quizId)?.filter((r) => r.questionId === questionId),
+  );
+};
+
 // masalan api post req
 export const saveReactionToDB = (newReaction: DbReaction) => {
   const { quizId, userId, questionId } = newReaction;
@@ -659,8 +665,21 @@ export const questionsData: QuestionType[] = [
 ];
 
 // masalan api daryaft soal az server baa id.
-export const getQuestionFromDB = (qId: string) => {
+
+export const getQuestionById = (qId: string) => {
   const q = questionsData.find((q) => q.id === qId) || null;
-  if (q) q.reactions = getUiReactionObjectFromDB("123", qId);
+  return q;
+};
+
+export const getQuestionFromDB = (questionId: string) => {
+  const q = getQuestionById(questionId);
+  // if (q) q.reactions = getUiReactionObject("3", qId);
+  if (q) q.reactions = getUiReactionObjectFromDB("123", questionId);
+  return q;
+};
+
+export const getQuestionForQuiz = (questionId: string, quizId: string) => {
+  const q = getQuestionById(questionId);
+  if (q) q.reactions = getUiReactionObjectForQuiz(questionId, quizId);
   return q;
 };
