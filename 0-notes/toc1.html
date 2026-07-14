@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>۱۰ طراحی Tree TOC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Vazirmatn', system-ui, sans-serif;
+        }
+        
+        .tree-container {
+            max-width: 380px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            overflow: hidden;
+        }
+        
+        /* Design 1: Simple Pastel Indent */
+        .tree-1 ul {
+            list-style: none;
+            padding-right: 1.25rem;
+        }
+        .tree-1 li {
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.2s;
+        }
+        .tree-1 li:hover {
+            background-color: #f0f9ff;
+        }
+        .tree-1 .toggle {
+            cursor: pointer;
+            color: #64748b;
+        }
+        .tree-1 .node {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Design 2: Folder Style */
+        .tree-2 .folder {
+            color: #7c3aed;
+        }
+        
+        /* Design 3: Connected Lines */
+        .tree-3 ul {
+            position: relative;
+        }
+        .tree-3 ul:before {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 24px;
+            bottom: 12px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+        .tree-3 li {
+            position: relative;
+        }
+        .tree-3 li:before {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 12px;
+            width: 12px;
+            height: 2px;
+            background: #e2e8f0;
+        }
+        
+        /* Design 4: Colorful Bubbles */
+        .tree-4 .node {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tree-4 .node:hover {
+            transform: translateX(-8px);
+        }
+        
+        /* Design 5: Minimal Cards */
+        .tree-5 .node {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+        
+        /* Design 6: Numbered */
+        .tree-6 .node::before {
+            content: attr(data-level);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background: #bae6fd;
+            color: #0369a1;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Design 7: Glassmorphism */
+        .tree-7 {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        
+        /* Design 8: Icon Heavy */
+        .tree-8 i {
+            transition: transform 0.3s;
+        }
+        .tree-8 .expanded i {
+            transform: rotate(90deg);
+        }
+        
+        /* Design 9: Soft Gradient */
+        .tree-9 .node {
+            background: linear-gradient(90deg, #f0f9ff, #ecfdf5);
+        }
+        
+        /* Design 10: Compact */
+        .tree-10 li {
+            padding: 0.35rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .active {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-violet-50 via-sky-50 to-emerald-50 py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-semibold text-slate-800 mb-3">۱۰ طراحی Table of Contents</h1>
+            <p class="text-slate-600 max-w-md mx-auto">طراحی‌های ساده و پاستیلی — کلیک کنید تا شاخه‌ها باز و بسته شوند</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="designs">
+            <!-- Designs will be injected by JS -->
+        </div>
+    </div>
+
+    <script>
+        // Mock Data - تودرتوی
+        const mockTOC = [
+            {
+                id: 1,
+                title: "مقدمه",
+                children: [
+                    { id: 2, title: "تاریخچه پروژه" },
+                    { 
+                        id: 3, 
+                        title: "اهداف",
+                        children: [
+                            { id: 4, title: "هدف اصلی" },
+                            { id: 5, title: "اهداف فرعی" }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "فصل اول: مفاهیم پایه",
+                children: [
+                    { id: 7, title: "تعاریف" },
+                    { 
+                        id: 8, 
+                        title: "روش‌شناسی",
+                        children: [
+                            { id: 9, title: "رویکرد کیفی" },
+                            { id: 10, title: "رویکرد کمی" },
+                            { id: 11, title: "ترکیبی" }
+                        ]
+                    },
+                    { id: 12, title: "ابزارها" }
+                ]
+            },
+            {
+                id: 13,
+                title: "فصل دوم: نتایج",
+                children: [
+                    { id: 14, title: "داده‌های جمع‌آوری شده" },
+                    { id: 15, title: "تحلیل" }
+                ]
+            },
+            {
+                id: 16,
+                title: "نتیجه‌گیری",
+                children: [
+                    { id: 17, title: "خلاصه یافته‌ها" },
+                    { id: 18, title: "پیشنهادات" }
+                ]
+            }
+        ]
+
+        function createTreeHTML(data, level = 0, designClass = '') {
+            let html = `<ul class="${level === 0 ? 'pl-0' : 'pl-6'}">`
+            
+            data.forEach(item => {
+                const hasChildren = item.children && item.children.length > 0
+                const randomPastel = ['#bae6fd', '#a7f3d0', '#ddd6fe', '#fed7aa'][Math.floor(Math.random()*4)]
+                
+                html += `
+                    <li class="tree-item" data-id="${item.id}">
+                        <div class="node flex items-center gap-3 py-1 px-3 rounded-xl cursor-pointer hover:shadow-sm transition-all ${designClass}" style="background-color: ${randomPastel}20">
+                            ${hasChildren ? `
+                                <span class="toggle text-slate-400 hover:text-slate-600 transition-colors">
+                                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                                </span>
+                            ` : `<span class="w-5"></span>`}
+                            
+                            <span class="flex-1 text-slate-700 font-medium">${item.title}</span>
+                            
+                            ${level === 0 ? `<span class="text-xs px-2 py-0.5 bg-white/70 rounded-full text-slate-500">Ch</span>` : ''}
+                        </div>
+                        
+                        ${hasChildren ? `<div class="children hidden">${createTreeHTML(item.children, level + 1, designClass)}</div>` : ''}
+                    </li>
+                `
+            })
+            
+            html += `</ul>`
+            return html
+        }
+
+        function initializeTree(container) {
+            container.querySelectorAll('.toggle').forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation()
+                    const li = toggle.closest('li')
+                    const childrenContainer = li.querySelector('.children')
+                    const icon = toggle.querySelector('i')
+                    
+                    if (childrenContainer) {
+                        childrenContainer.classList.toggle('hidden')
+                        icon.classList.toggle('fa-chevron-left')
+                        icon.classList.toggle('fa-chevron-down')
+                        li.classList.toggle('expanded')
+                    }
+                })
+            })
+            
+            // Click on node to highlight
+            container.querySelectorAll('.node').forEach(node => {
+                node.addEventListener('click', () => {
+                    container.querySelectorAll('.node').forEach(n => n.classList.remove('active'))
+                    node.classList.add('active')
+                })
+            })
+        }
+
+        function renderDesigns() {
+            const designsContainer = document.getElementById('designs')
+            const designs = [
+                { name: "۱. ساده و تمیز", class: "tree-1", desc: "ایندنت ساده با رنگ پاستیلی" },
+                { name: "۲. استایل فولدر", class: "tree-2", desc: "شبیه فایل اکسپلورر" },
+                { name: "۳. خطوط اتصال", class: "tree-3", desc: "درخت با خطوط راهنما" },
+                { name: "۴. حباب رنگی", class: "tree-4", desc: "انیمیشن نرم و رنگارنگ" },
+                { name: "۵. کارت‌های مینیمال", class: "tree-5", desc: "کارت‌های ظریف" },
+                { name: "۶. شماره‌دار", class: "tree-6", desc: "شماره‌گذاری سطح" },
+                { name: "۷. شیشه‌ای", class: "tree-7", desc: "Glassmorphism" },
+                { name: "۸. آیکون‌محور", class: "tree-8", desc: "آیکون‌های برجسته" },
+                { name: "۹. گرادیان نرم", class: "tree-9", desc: "گرادیان پاستیلی" },
+                { name: "۱۰. فشرده", class: "tree-10", desc: "حداقل فضا" }
+            ]
+            
+            designs.forEach((design, index) => {
+                const div = document.createElement('div')
+                div.className = `bg-white rounded-3xl p-6 shadow-sm`
+                div.innerHTML = `
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="font-semibold text-lg text-slate-800">${design.name}</h3>
+                            <p class="text-slate-500 text-sm">${design.desc}</p>
+                        </div>
+                        <div class="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-2xl">Design ${index+1}</div>
+                    </div>
+                    
+                    <div class="tree-container mx-auto ${design.class}">
+                        <div class="bg-slate-50 px-5 py-4 border-b flex items-center gap-3">
+                            <i class="fa-solid fa-book text-violet-400"></i>
+                            <span class="font-medium text-slate-700">فهرست مطالب</span>
+                        </div>
+                        <div class="p-5 text-sm">
+                            ${createTreeHTML(mockTOC, 0, design.class)}
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <button onclick="this.closest('.bg-white').querySelectorAll('.children').forEach(c => c.classList.add('hidden'))" 
+                                class="text-xs text-slate-400 hover:text-slate-600 transition-colors">
+                            بستن همه
+                        </button>
+                    </div>
+                `
+                designsContainer.appendChild(div)
+                
+                // Initialize after a tiny delay
+                setTimeout(() => {
+                    initializeTree(div)
+                }, 100)
+            })
+        }
+
+        // Render everything
+        window.onload = renderDesigns
+    </script>
+</body>
+</html>

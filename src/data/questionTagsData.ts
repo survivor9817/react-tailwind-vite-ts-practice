@@ -1,4 +1,14 @@
-export const book_sections = [
+type BookSectionTitle = {
+  section_id: number;
+  book_id: number;
+  parent_id: null | number;
+  title: string;
+  page: number;
+  indent: number;
+  sort_order: number;
+};
+
+export const book_sections: BookSectionTitle[] = [
   {
     section_id: 1,
     book_id: 706,

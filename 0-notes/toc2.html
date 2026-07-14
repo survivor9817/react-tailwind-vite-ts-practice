@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>۱۰ طراحی برای درخت فهرست مطالب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --p-lavender: #c3b2ea;
+        --p-lavender-soft: #efe9fb;
+        --p-mint: #a9dcc9;
+        --p-mint-soft: #e7f6f0;
+        --p-peach: #f3c9a5;
+        --p-peach-soft: #fcf0e3;
+        --p-sky: #a9cdeb;
+        --p-sky-soft: #eaf3fc;
+        --p-rose: #f0b7c8;
+        --p-rose-soft: #fceff3;
+        --p-butter: #f1dfa0;
+        --p-butter-soft: #fbf7e6;
+        --ink: #2c2a35;
+        --ink-soft: #6b6878;
+        --ink-faint: #a5a1b0;
+        --line: #e9e7f0;
+        --card-bg: #ffffff;
+        --page-bg: #f8f7fb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--page-bg);
+        font-family: "Vazirmatn", Tahoma, sans-serif;
+        color: var(--ink);
+        line-height: 1.7;
+        padding: 32px 20px 80px;
+      }
+
+      .page-header {
+        max-width: 1200px;
+        margin: 0 auto 40px;
+        text-align: center;
+      }
+      .page-header h1 {
+        font-size: 26px;
+        font-weight: 800;
+        margin: 0 0 8px;
+      }
+      .page-header p {
+        color: var(--ink-soft);
+        font-size: 14.5px;
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      .grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+        gap: 22px;
+      }
+
+      .demo-card {
+        background: var(--card-bg);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px 22px 26px;
+        box-shadow: 0 1px 3px rgba(30, 20, 60, 0.04);
+      }
+      .demo-card .demo-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 4px;
+      }
+      .demo-card .demo-num {
+        font-size: 11.5px;
+        font-weight: 700;
+        color: var(--ink-faint);
+        letter-spacing: 0.03em;
+      }
+      .demo-card h2 {
+        font-size: 16.5px;
+        font-weight: 700;
+        margin: 2px 0 4px;
+      }
+      .demo-card .demo-desc {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        margin: 0 0 16px;
+      }
+      .demo-card.special {
+        border-color: #e3ddf5;
+        background: linear-gradient(180deg, #ffffff, #fbfaff);
+      }
+      .badge-special {
+        display: inline-block;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: #7a5fc7;
+        background: #efe9fb;
+        padding: 2px 9px;
+        border-radius: 20px;
+        margin-inline-start: 8px;
+      }
+
+      .tree-host {
+        border-radius: 12px;
+        padding: 14px 16px;
+        min-height: 80px;
+      }
+
+      /* ---------- shared base tree structure ---------- */
+      ul.tree-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul.tree-children {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: none;
+      }
+      li.tree-item.open > ul.tree-children {
+        display: block;
+      }
+      .tree-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        user-select: none;
+        padding: 6px 6px;
+        border-radius: 8px;
+      }
+      .tree-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
+        flex: none;
+        font-size: 10px;
+        color: var(--ink-faint);
+        transition: transform 0.18s ease;
+      }
+      li.tree-item.open > .tree-row > .tree-toggle {
+        transform: rotate(90deg);
+      }
+      .tree-spacer {
+        width: 16px;
+        flex: none;
+      }
+      .tree-label {
+        font-size: 13.5px;
+      }
+      .tree-leaf-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        flex: none;
+        background: var(--ink-faint);
+      }
+
+      /* =========================================================
+     DEMO 1 — Minimal pastel lines
+  ========================================================= */
+      .demo-1 .tree-host {
+        background: #fcfbff;
+      }
+      .demo-1 .tree-row:hover {
+        background: var(--p-lavender-soft);
+      }
+      .demo-1 .tree-toggle {
+        color: var(--p-lavender);
+        font-weight: 700;
+      }
+      .demo-1 ul.tree-children {
+        margin-inline-start: 9px;
+        padding-inline-start: 11px;
+        border-inline-start: 1.5px solid var(--line);
+      }
+      .demo-1 li.tree-item.open > .tree-row .tree-label {
+        color: #5b4b95;
+        font-weight: 600;
+      }
+      .demo-1 .tree-leaf-dot {
+        background: var(--p-lavender);
+      }
+
+      /* =========================================================
+     DEMO 2 — Soft nested pill / card layers
+  ========================================================= */
+      .demo-2 .tree-host {
+        background: transparent;
+        padding: 0;
+      }
+      .demo-2 ul.tree-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .demo-2 li.tree-item {
+      }
+      .demo-2 .tree-row {
+        background: var(--p-mint-soft);
+        border-radius: 10px;
+        padding: 9px 12px;
+      }
+      .demo-2 .tree-row:hover {
+        filter: brightness(0.98);
+      }
+      .demo-2 .tree-toggle {
+        color: #3f8f74;
+      }
+      .demo-2 ul.tree-children {
+        margin-top: 6px;
+        padding-inline-start: 16px;
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .demo-2 li.tree-item.open > ul.tree-children {
+        display: flex;
+      }
+      .demo-2 li.tree-item li.tree-item > .tree-row {
+        background: var(--p-peach-soft);
+      }
+      .demo-2 li.tree-item li.tree-item > .tree-row .tree-toggle {
+        color: #c07a3d;
+      }
+      .demo-2 li.tree-item li.tree-item li.tree-item > .tree-row {
+        background: var(--p-sky-soft);
+      }
+      .demo-2 li.tree-item li.tree-item li.tree-item > .tree-row .tree-toggle {
+        color: #4477a8;
+      }
+      .demo-2 .tree-leaf-dot {
+        background: #3f8f74;
+      }
+
+      /* =========================================================
+     DEMO 3 — Dotted connector explorer
+  ========================================================= */
+      .demo-3 .tree-host {
+        background: #fbfdff;
+      }
+      .demo-3 .tree-row:hover {
+        background: var(--p-sky-soft);
+      }
+      .demo-3 ul.tree-children {
+        margin-inline-start: 8px;
+        padding-inline-start: 14px;
+        border-inline-start: 1.5px dotted #b9cfe8;
+        position: relative;
+      }
+      .demo-3 li.tree-item {
+        position: relative;
+      }
+      .demo-3 .icon-box {
+        width: 9px;
+        height: 9px;
+        flex: none;
+        border-radius: 3px;
+        border: 1.5px solid var(--p-sky);
+        background: #fff;
+      }
+      .demo-3 li.tree-item.open > .tree-row .icon-box {
+        background: var(--p-sky);
+      }
+      .demo-3 .tree-toggle {
+        color: #7fa9d1;
+      }
+
+      /* =========================================================
+     DEMO 4 — Classic printed outline (numbered, dot leaders)
+  ========================================================= */
+      .demo-4 .tree-host {
+        background: #fffdfa;
+      }
+      .demo-4 ul.tree-list {
+        counter-reset: l1;
+      }
+      .demo-4 ul.tree-list > li {
+        counter-increment: l1;
+      }
+      .demo-4 ul.tree-list ul.tree-children {
+        counter-reset: l2;
+        display: block;
+      }
+      .demo-4 ul.tree-list ul.tree-children > li {
+        counter-increment: l2;
+      }
+      .demo-4 ul.tree-list ul.tree-children ul.tree-children {
+        counter-reset: l3;
+      }
+      .demo-4 ul.tree-list ul.tree-children ul.tree-children > li {
+        counter-increment: l3;
+      }
+      .demo-4 .tree-row {
+        cursor: default;
+        padding: 5px 4px;
+      }
+      .demo-4 .tree-toggle,
+      .demo-4 .tree-spacer {
+        display: none;
+      }
+      .demo-4 .num {
+        font-variant-numeric: tabular-nums;
+        color: #c76e8a;
+        font-weight: 700;
+        font-size: 12.5px;
+        min-width: 34px;
+        flex: none;
+      }
+      .demo-4 > .tree-host > ul.tree-list > li > .tree-row .num::before {
+        content: counter(l1) ".";
+      }
+      .demo-4 ul.tree-children > li > .tree-row .num::before {
+        content: counter(l1) "." counter(l2);
+      }
+      .demo-4 ul.tree-children ul.tree-children > li > .tree-row .num::before {
+        content: counter(l1) "." counter(l2) "." counter(l3);
+      }
+      .demo-4 .tree-label {
+        position: relative;
+        flex: 1;
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        overflow: hidden;
+      }
+      .demo-4 .leaders {
+        flex: 1;
+        border-bottom: 1.5px dotted #d8d3c9;
+        height: 0;
+        margin: 0 4px;
+        transform: translateY(-3px);
+      }
+      .demo-4 .page-num {
+        color: var(--ink-faint);
+        font-size: 11.5px;
+        flex: none;
+      }
+      .demo-4 ul.tree-children {
+        margin-inline-start: 20px;
+      }
+      .demo-4 li.tree-item.open > .tree-row {
+      }
+      .demo-4 li.tree-item ul.tree-children {
+        display: block !important;
+      }
+
+      /* =========================================================
+     DEMO 5 — Colour-coded chapter bars
+  ========================================================= */
+      .demo-5 .tree-host {
+        background: transparent;
+        padding: 0;
+      }
+      .demo-5 ul.tree-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .demo-5 > .tree-host > ul.tree-list > li {
+        border-inline-start: 4px solid var(--bar, var(--p-lavender));
+        background: #fbfaff;
+        border-radius: 0 10px 10px 0;
+        padding-inline-start: 2px;
+      }
+      .demo-5 > .tree-host > ul.tree-list > li:nth-child(1) {
+        --bar: var(--p-lavender);
+      }
+      .demo-5 > .tree-host > ul.tree-list > li:nth-child(2) {
+        --bar: var(--p-mint);
+      }
+      .demo-5 > .tree-host > ul.tree-list > li:nth-child(3) {
+        --bar: var(--p-peach);
+      }
+      .demo-5 > .tree-host > ul.tree-list > li:nth-child(4) {
+        --bar: var(--p-rose);
+      }
+      .demo-5 .tree-row {
+        padding: 8px 10px;
+      }
+      .demo-5 .tree-row:hover {
+        background: rgba(0, 0, 0, 0.02);
+      }
+      .demo-5 ul.tree-children {
+        padding-inline-start: 16px;
+        padding-bottom: 4px;
+      }
+      .demo-5 li.tree-item.open > .tree-row > .tree-label {
+        font-weight: 600;
+      }
+
+      /* =========================================================
+     DEMO 6 — Special: progressive column browser (Finder style)
+  ========================================================= */
+      .demo-6 .tree-host {
+        background: #fbfaff;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+      .col-browser {
+        display: flex;
+        height: 230px;
+      }
+      .col-browser .col {
+        flex: 1 1 0;
+        min-width: 0;
+        border-inline-start: 1px solid var(--line);
+        overflow-y: auto;
+        padding: 6px;
+      }
+      .col-browser .col:first-child {
+        border-inline-start: none;
+      }
+      .col-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 7px 9px;
+        border-radius: 8px;
+        font-size: 12.5px;
+        cursor: pointer;
+      }
+      .col-item:hover {
+        background: var(--p-lavender-soft);
+      }
+      .col-item.active {
+        background: var(--p-lavender);
+        color: #fff;
+      }
+      .col-item .arrow {
+        font-size: 10px;
+        opacity: 0.6;
+      }
+      .col-item.leaf .arrow {
+        visibility: hidden;
+      }
+
+      /* =========================================================
+     DEMO 7 — Special: vertical stepper / timeline tree
+  ========================================================= */
+      .demo-7 .tree-host {
+        background: #fdfcff;
+      }
+      .demo-7 ul.tree-list {
+        position: relative;
+      }
+      .demo-7 ul.tree-children {
+        position: relative;
+        margin-inline-start: 9px;
+        padding-inline-start: 20px;
+        display: none;
+      }
+      .demo-7 li.tree-item.open > ul.tree-children {
+        display: block;
+      }
+      .demo-7 ul.tree-children::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 5px;
+        top: 0;
+        bottom: 14px;
+        width: 1.5px;
+        background: linear-gradient(var(--p-lavender), var(--p-sky));
+        opacity: 0.55;
+      }
+      .demo-7 li.tree-item {
+        position: relative;
+        padding-bottom: 2px;
+      }
+      .demo-7 .tree-row {
+        padding: 6px 4px;
+      }
+      .demo-7 .node-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        flex: none;
+        background: #fff;
+        border: 2px solid var(--p-lavender);
+        position: relative;
+        z-index: 1;
+      }
+      .demo-7 li.tree-item.open > .tree-row .node-dot {
+        background: var(--p-lavender);
+      }
+      .demo-7 .tree-toggle {
+        order: 2;
+      }
+      .demo-7 .node-dot {
+        order: 0;
+      }
+      .demo-7 .tree-label {
+        order: 1;
+      }
+
+      /* =========================================================
+     DEMO 8 — Compact dense sidebar
+  ========================================================= */
+      .demo-8 .tree-host {
+        background: #fff;
+        padding: 8px;
+      }
+      .demo-8 .tree-row {
+        padding: 4px 6px;
+        border-radius: 6px;
+      }
+      .demo-8 .tree-row:hover {
+        background: #f1f0f6;
+      }
+      .demo-8 .tree-label {
+        font-size: 12.5px;
+      }
+      .demo-8 ul.tree-children {
+        margin-inline-start: 14px;
+      }
+      .demo-8 .tree-toggle {
+        font-size: 9px;
+        color: var(--ink-faint);
+      }
+      .demo-8 li.tree-item.open > .tree-row {
+        background: #f1f0f6;
+      }
+      .demo-8 .tree-leaf-dot {
+        background: var(--ink-faint);
+        width: 4px;
+        height: 4px;
+      }
+
+      /* =========================================================
+     DEMO 9 — Special: chapter progress rings
+  ========================================================= */
+      .demo-9 .tree-host {
+        background: transparent;
+        padding: 0;
+      }
+      .demo-9 > .tree-host > ul.tree-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .demo-9 > .tree-host > ul.tree-list > li > .tree-row {
+        background: #fbfaff;
+        border-radius: 12px;
+        padding: 9px 12px;
+      }
+      .demo-9 .ring {
+        flex: none;
+      }
+      .demo-9 .tree-toggle {
+        order: 3;
+      }
+      .demo-9 ul.tree-children {
+        padding-inline-start: 20px;
+      }
+      .demo-9 li.tree-item li .tree-row {
+        padding: 5px 8px;
+      }
+
+      /* =========================================================
+     DEMO 10 — Special: bento chapter map
+  ========================================================= */
+      .demo-10 .tree-host {
+        background: transparent;
+        padding: 0;
+      }
+      .bento-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .bento-card {
+        border-radius: 14px;
+        padding: 12px 13px;
+        cursor: pointer;
+        background: var(--tint, var(--p-lavender-soft));
+        transition: box-shadow 0.15s ease;
+      }
+      .bento-card:hover {
+        box-shadow: 0 3px 10px rgba(40, 20, 80, 0.08);
+      }
+      .bento-card:nth-child(4n + 1) {
+        --tint: var(--p-lavender-soft);
+        --line-c: var(--p-lavender);
+      }
+      .bento-card:nth-child(4n + 2) {
+        --tint: var(--p-mint-soft);
+        --line-c: var(--p-mint);
+      }
+      .bento-card:nth-child(4n + 3) {
+        --tint: var(--p-peach-soft);
+        --line-c: var(--p-peach);
+      }
+      .bento-card:nth-child(4n + 4) {
+        --tint: var(--p-rose-soft);
+        --line-c: var(--p-rose);
+      }
+      .bento-card .b-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .bento-card .b-count {
+        font-size: 10.5px;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .bento-card ul.tree-children {
+        margin-top: 8px;
+        padding-inline-start: 2px;
+        border-inline-start: 2px solid var(--line-c);
+        padding-inline-start: 10px;
+      }
+      .bento-card .tree-row {
+        padding: 4px 2px;
+      }
+      .bento-card .tree-label {
+        font-size: 12px;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--ink-faint);
+        font-size: 12px;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-header">
+      <h1>۱۰ طراحی برای کامپوننت درخت فهرست مطالب</h1>
+      <p>
+        همه با دیتای موک یکسان (فصل‌های زیست‌شناسی). شش مدل اول ساده و پاستیلی هستن، چهار مدل آخر
+        (با نشان «خاص») ایده‌های متفاوت‌تر و جسورانه‌تر هستن.
+      </p>
+    </div>
+
+    <div class="grid">
+      <section class="demo-card demo-1">
+        <div class="demo-meta"><span class="demo-num">۰۱</span></div>
+        <h2>خطوط مینیمال</h2>
+        <p class="demo-desc">
+          خط راهنمای نازک، بدون پس‌زمینه اضافه، فقط رنگ لاواندر روی هاور و آیتم باز.
+        </p>
+        <div class="tree-host" id="host-1"></div>
+      </section>
+
+      <section class="demo-card demo-2">
+        <div class="demo-meta"><span class="demo-num">۰۲</span></div>
+        <h2>لایه‌های نرم رنگی</h2>
+        <p class="demo-desc">
+          هر سطح از عمق، پس‌زمینه‌ی پاستیل مخصوص به خودش رو داره (نعنایی → هلویی → آبی).
+        </p>
+        <div class="tree-host" id="host-2"></div>
+      </section>
+
+      <section class="demo-card demo-3">
+        <div class="demo-meta"><span class="demo-num">۰۳</span></div>
+        <h2>اکسپلورر نقطه‌چین</h2>
+        <p class="demo-desc">
+          حس فایل‌منیجر کلاسیک؛ خط راهنمای نقطه‌چین آبی و آیکون مربعی برای پوشه‌ها.
+        </p>
+        <div class="tree-host" id="host-3"></div>
+      </section>
+
+      <section class="demo-card demo-4">
+        <div class="demo-meta"><span class="demo-num">۰۴</span></div>
+        <h2>فهرست کتابی با شماره</h2>
+        <p class="demo-desc">
+          دقیقاً مثل فهرست مطالب یک کتاب درسی؛ شماره‌گذاری خودکار، نقطه‌چین و شماره صفحه.
+        </p>
+        <div class="tree-host" id="host-4"></div>
+      </section>
+
+      <section class="demo-card demo-5">
+        <div class="demo-meta"><span class="demo-num">۰۵</span></div>
+        <h2>نوار رنگی فصل‌ها</h2>
+        <p class="demo-desc">
+          هر فصل یک نوار رنگی پاستیل مخصوص خودش داره تا فصل‌ها سریع از هم تفکیک بشن.
+        </p>
+        <div class="tree-host" id="host-5"></div>
+      </section>
+
+      <section class="demo-card demo-8">
+        <div class="demo-meta"><span class="demo-num">۰۶</span></div>
+        <h2>سایدبار فشرده</h2>
+        <p class="demo-desc">
+          فونت کوچیک‌تر و فاصله‌ی کم؛ برای وقتی می‌خوای فهرست کنار محتوا و کم‌حجم باشه.
+        </p>
+        <div class="tree-host" id="host-8"></div>
+      </section>
+
+      <section class="demo-card demo-6 special">
+        <div class="demo-meta">
+          <span class="demo-num">۰۷</span><span class="badge-special">خاص</span>
+        </div>
+        <h2>مرورگر ستونی</h2>
+        <p class="demo-desc">
+          مثل Finder مک؛ هر انتخاب یک ستون جدید کنارش باز می‌کنه. برای مسیرهای عمیق خیلی جمع‌وجوره.
+        </p>
+        <div class="tree-host" id="host-6"></div>
+      </section>
+
+      <section class="demo-card demo-7 special">
+        <div class="demo-meta">
+          <span class="demo-num">۰۸</span><span class="badge-special">خاص</span>
+        </div>
+        <h2>تایم‌لاین عمودی</h2>
+        <p class="demo-desc">
+          خط عمودی گرادیانی با نقطه‌های دایره‌ای؛ حس مسیر پیشرفت و مرحله‌به‌مرحله می‌ده.
+        </p>
+        <div class="tree-host" id="host-7"></div>
+      </section>
+
+      <section class="demo-card demo-9 special">
+        <div class="demo-meta">
+          <span class="demo-num">۰۹</span><span class="badge-special">خاص</span>
+        </div>
+        <h2>حلقه‌های پیشرفت</h2>
+        <p class="demo-desc">
+          هر فصل یک رینگ پیشرفت پاستیلی کنارش داره؛ مناسب اپی مثل درس‌یار که پیشرفت دانش‌آموز مهمه.
+        </p>
+        <div class="tree-host" id="host-9"></div>
+      </section>
+
+      <section class="demo-card demo-10 special">
+        <div class="demo-meta">
+          <span class="demo-num">۱۰</span><span class="badge-special">خاص</span>
+        </div>
+        <h2>نقشه‌ی بنتو</h2>
+        <p class="demo-desc">
+          فصل‌ها به‌صورت کارت‌های بنتوی رنگی کنار هم چیده شدن؛ هر کارت با کلیک باز می‌شه.
+        </p>
+        <div class="tree-host" id="host-10"></div>
+      </section>
+    </div>
+
+    <footer>ده نسخه، یک دیتای موک — کافیه یکی رو انتخاب کنی تا روش کامل ادامه بدیم.</footer>
+
+    <script>
+      // ---------------------------------------------------------
+      // Shared mock data: nested book / chapter / section structure
+      // ---------------------------------------------------------
+      const mockData = [
+        {
+          title: "فصل ۱: زیست‌شناسی، دیروز، امروز، فردا",
+          children: [
+            { title: "گفتار ۱: زیست‌شناسی چیست؟" },
+            {
+              title: "گفتار ۲: زیست‌شناسی و آینده",
+              children: [{ title: "سلول‌های بنیادی" }, { title: "مهندسی ژنتیک" }],
+            },
+          ],
+        },
+        {
+          title: "فصل ۲: گوارش و جذب مواد",
+          children: [
+            { title: "گفتار ۱: یاخته و بافت‌های گوارشی" },
+            { title: "گفتار ۲: لوله گوارش" },
+            {
+              title: "گفتار ۳: جذب مواد و تنظیم دستگاه گوارش",
+              children: [{ title: "جذب در روده باریک" }, { title: "تنظیم عصبی و هورمونی" }],
+            },
+          ],
+        },
+        {
+          title: "فصل ۳: تبادلات گازی",
+          children: [
+            { title: "گفتار ۱: سطوح تبادل گازی" },
+            { title: "گفتار ۲: دستگاه تنفس در انسان" },
+          ],
+        },
+        {
+          title: "فصل ۴: گردش مواد در بدن",
+          children: [
+            { title: "گفتار ۱: قلب" },
+            {
+              title: "گفتار ۲: رگ‌ها و مسیر گردش خون",
+              children: [{ title: "رگ‌های خونی" }, { title: "مسیر گردش خون در بدن" }],
+            },
+          ],
+        },
+      ];
+
+      // deep clone helper so every demo gets an independent copy
+      const clone = (d) => JSON.parse(JSON.stringify(d));
+
+      // ---------------------------------------------------------
+      // Generic recursive tree builder (used by demos 1,2,3,5,7,8,9)
+      // ---------------------------------------------------------
+      function buildTree(items, opts = {}) {
+        const ul = document.createElement("ul");
+        ul.className = "tree-list";
+        items.forEach((item) => {
+          const li = document.createElement("li");
+          li.className = "tree-item";
+          const hasChildren = item.children && item.children.length;
+
+          const row = document.createElement("div");
+          row.className = "tree-row";
+
+          if (opts.extraRowContent) {
+            opts.extraRowContent(row, item, hasChildren);
+          }
+
+          if (hasChildren) {
+            const toggle = document.createElement("span");
+            toggle.className = "tree-toggle";
+            toggle.textContent = "\u25B8"; // ▸
+            row.appendChild(toggle);
+          } else if (!opts.noSpacer) {
+            const spacer = document.createElement("span");
+            spacer.className = opts.leafDot ? "tree-leaf-dot" : "tree-spacer";
+            row.appendChild(spacer);
+          }
+
+          const label = document.createElement("span");
+          label.className = "tree-label";
+          label.textContent = item.title;
+          row.appendChild(label);
+
+          li.appendChild(row);
+
+          if (hasChildren) {
+            const childUl = buildTree(item.children, opts);
+            childUl.classList.add("tree-children");
+            li.appendChild(childUl);
+            row.addEventListener("click", () => li.classList.toggle("open"));
+          }
+
+          ul.appendChild(li);
+        });
+        return ul;
+      }
+
+      // Demo 1 — minimal lines
+      document.getElementById("host-1").appendChild(buildTree(clone(mockData), { leafDot: true }));
+
+      // Demo 2 — soft nested layers
+      document.getElementById("host-2").appendChild(buildTree(clone(mockData), { leafDot: true }));
+
+      // Demo 3 — dotted connector explorer (custom icon instead of leaf dot)
+      document.getElementById("host-3").appendChild(
+        buildTree(clone(mockData), {
+          extraRowContent: (row, item, hasChildren) => {
+            const box = document.createElement("span");
+            box.className = "icon-box";
+            // icon precedes toggle in DOM order but toggle is appended after,
+            // so just insert icon first — CSS keeps default flex order
+            row.appendChild(box);
+          },
+        }),
+      );
+
+      // Demo 5 — colour-coded chapter bars
+      document.getElementById("host-5").appendChild(buildTree(clone(mockData)));
+
+      // Demo 8 — compact sidebar
+      document.getElementById("host-8").appendChild(buildTree(clone(mockData), { leafDot: true }));
+
+      // Demo 7 — vertical stepper (needs node-dot before label, toggle after)
+      document.getElementById("host-7").appendChild(
+        buildTree(clone(mockData), {
+          extraRowContent: (row, item, hasChildren) => {
+            const dot = document.createElement("span");
+            dot.className = "node-dot";
+            row.appendChild(dot);
+          },
+        }),
+      );
+
+      // Demo 9 — progress rings on top-level chapters only
+      (function buildDemo9() {
+        const data = clone(mockData);
+        const tree = buildTree(data, { leafDot: true });
+        const host = document.getElementById("host-9");
+        host.appendChild(tree);
+
+        const topLevelRows = tree.querySelectorAll(":scope > li > .tree-row");
+        const pastelRings = ["#c3b2ea", "#a9dcc9", "#f3c9a5", "#f0b7c8"];
+        topLevelRows.forEach((row, i) => {
+          const pct = [72, 45, 90, 30][i % 4];
+          const color = pastelRings[i % pastelRings.length];
+          const svgNS = "http://www.w3.org/2000/svg";
+          const size = 26,
+            stroke = 3,
+            r = (size - stroke) / 2;
+          const c = 2 * Math.PI * r;
+          const svg = document.createElementNS(svgNS, "svg");
+          svg.setAttribute("width", size);
+          svg.setAttribute("height", size);
+          svg.classList.add("ring");
+          svg.innerHTML = `
+        <circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="#efeef5" stroke-width="${stroke}"/>
+        <circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${color}" stroke-width="${stroke}"
+          stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - pct / 100)}"
+          transform="rotate(-90 ${size / 2} ${size / 2})"/>
+      `;
+          row.insertBefore(svg, row.firstChild);
+        });
+      })();
+
+      // ---------------------------------------------------------
+      // Demo 4 — printed outline with counters + dot leaders + page numbers
+      // ---------------------------------------------------------
+      (function buildDemo4() {
+        const host = document.getElementById("host-4");
+        let pageCounter = 4;
+        function build(items) {
+          const ul = document.createElement("ul");
+          ul.className = "tree-list";
+          items.forEach((item) => {
+            const li = document.createElement("li");
+            li.className = "tree-item";
+            const row = document.createElement("div");
+            row.className = "tree-row";
+
+            const num = document.createElement("span");
+            num.className = "num";
+            row.appendChild(num);
+
+            const label = document.createElement("span");
+            label.className = "tree-label";
+            const text = document.createElement("span");
+            text.textContent = item.title;
+            const leaders = document.createElement("span");
+            leaders.className = "leaders";
+            const pageNum = document.createElement("span");
+            pageNum.className = "page-num";
+            pageCounter += Math.floor(Math.random() * 4) + 2;
+            pageNum.textContent = pageCounter;
+
+            label.appendChild(text);
+            label.appendChild(leaders);
+            label.appendChild(pageNum);
+            row.appendChild(label);
+            li.appendChild(row);
+
+            if (item.children && item.children.length) {
+              const childUl = build(item.children);
+              childUl.classList.add("tree-children");
+              li.appendChild(childUl);
+            }
+            ul.appendChild(li);
+          });
+          return ul;
+        }
+        host.appendChild(build(clone(mockData)));
+      })();
+
+      // ---------------------------------------------------------
+      // Demo 6 — progressive column browser (Finder-style)
+      // ---------------------------------------------------------
+      (function buildDemo6() {
+        const data = clone(mockData);
+        const host = document.getElementById("host-6");
+        const wrap = document.createElement("div");
+        wrap.className = "col-browser";
+        host.appendChild(wrap);
+
+        function renderColumns(path) {
+          wrap.innerHTML = "";
+          let level = data;
+          const levels = [data];
+          for (const idx of path) {
+            level = level[idx].children || [];
+            levels.push(level);
+          }
+          levels.forEach((items, colIndex) => {
+            if (!items.length && colIndex > 0) return;
+            const col = document.createElement("div");
+            col.className = "col";
+            items.forEach((item, i) => {
+              const row = document.createElement("div");
+              const isActive = path[colIndex] === i;
+              row.className =
+                "col-item" + (isActive ? " active" : "") + (!item.children ? " leaf" : "");
+              const label = document.createElement("span");
+              label.textContent = item.title;
+              const arrow = document.createElement("span");
+              arrow.className = "arrow";
+              arrow.textContent = "\u25C0"; // ◀ (rtl-facing chevron)
+              row.appendChild(label);
+              row.appendChild(arrow);
+              row.addEventListener("click", () => {
+                const newPath = path.slice(0, colIndex);
+                newPath[colIndex] = i;
+                renderColumns(newPath);
+              });
+              col.appendChild(row);
+            });
+            wrap.appendChild(col);
+          });
+        }
+        renderColumns([0]);
+      })();
+
+      // ---------------------------------------------------------
+      // Demo 10 — bento chapter grid
+      // ---------------------------------------------------------
+      (function buildDemo10() {
+        const data = clone(mockData);
+        const host = document.getElementById("host-10");
+        const grid = document.createElement("div");
+        grid.className = "bento-grid";
+        host.appendChild(grid);
+
+        data.forEach((chapter) => {
+          const card = document.createElement("div");
+          card.className = "bento-card";
+
+          const title = document.createElement("div");
+          title.className = "b-title";
+          const t = document.createElement("span");
+          t.textContent = chapter.title;
+          const count = document.createElement("span");
+          count.className = "b-count";
+          count.textContent = (chapter.children ? chapter.children.length : 0) + " مبحث";
+          title.appendChild(t);
+          title.appendChild(count);
+          card.appendChild(title);
+
+          let childUl = null;
+          if (chapter.children && chapter.children.length) {
+            childUl = buildTree(chapter.children, { leafDot: true });
+            childUl.classList.add("tree-children");
+            childUl.style.display = "none";
+            card.appendChild(childUl);
+
+            title.addEventListener("click", () => {
+              childUl.style.display = childUl.style.display === "none" ? "block" : "none";
+            });
+          }
+          grid.appendChild(card);
+        });
+      })();
+    </script>
+  </body>
+</html>
