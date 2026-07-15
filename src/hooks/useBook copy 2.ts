@@ -5,7 +5,7 @@ import { convertToEnglishDigits as toEnDigits } from "../utils/convertToEnglishD
 import { useLocalStorage } from "./useLocalStorage";
 import type { Book } from "../data/booksData";
 
-export const useBookPagination = () => {
+export const useBook = () => {
   const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null);
 
   const bookPageKey = currentBook?.id
@@ -32,8 +32,8 @@ export const useBookPagination = () => {
   };
 
   const parseValidPage = (inputPage: string | number): number | null => {
-    const isNumeric = /^[0-9۰-۹]+$/.test(inputPage.toString());
-    if (!isNumeric) return null;
+    const isNumericString = /^[0-9۰-۹]+$/.test(inputPage.toString());
+    if (!isNumericString) return null;
     const pageNumber = Number(toEnDigits(inputPage));
     return isPageInRange(pageNumber) ? pageNumber : null;
   };
@@ -42,19 +42,20 @@ export const useBookPagination = () => {
     if (isPageInRange(page)) setCurrentPage(page);
   };
 
+  // commitPage
+
+  // const goToPage = (page: string | number) => {
+  //   const p = parseValidPage(page);
+  //   if (p != null) return setCurrentPage(p);
+  //   // if (isPageInRange(page)) setCurrentPage(page);
+  // };
+
   const goToPrevPage = () => goToPage(currentPage - 1);
+
   const goToNextPage = () => goToPage(currentPage + 1);
 
-  useEffect(() => {
-    const lastPageRead = getLocalData(bookPageKey, 1);
-    const page = parseValidPage(lastPageRead);
-    setCurrentPage(page ?? 1);
-    // goToPage(page ?? 1);
-    // goToPage(lastPageRead);
-  }, [currentBook]);
-
   const onSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    goToPage(+e.target.value);
+    goToPage(Number(e.target.value));
   };
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,29 +71,37 @@ export const useBookPagination = () => {
     const newPage = parseValidPage(pageInput);
     if (newPage === null) return showError();
     setPageInputValue(newPage);
-    goToPage(newPage);
+    setCurrentPage(newPage);
   };
 
   const onFocusPageNumber = useRef(currentPage);
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     onFocusPageNumber.current = currentPage;
     e.target.select();
   };
 
-  const handleBlur = () => {
+  const onBlur = () => {
     if (pageInput === "") {
-      const num = onFocusPageNumber.current;
-      setPageInputValue(num);
-      goToPage(num);
+      const previousValue = onFocusPageNumber.current;
+      setPageInputValue(previousValue);
+      setCurrentPage(previousValue); // maybe extra
       return;
     }
 
     const newPage = parseValidPage(pageInput);
     if (newPage === null) return setPageInputValue(currentPage);
     setPageInputValue(newPage);
-    goToPage(newPage);
+    setCurrentPage(newPage);
   };
+
+  // onBookChange
+  useEffect(() => {
+    const lastPageRead = getLocalData(bookPageKey, 1);
+    const page = parseValidPage(lastPageRead) ?? 1;
+    setPageInputValue(page);
+    setCurrentPage(page);
+  }, [currentBook]);
 
   return {
     currentBook,
@@ -103,10 +112,10 @@ export const useBookPagination = () => {
     goToPrevPage,
     goToNextPage,
 
-    handleInputRange: onSliderChange,
-    handleInputNumber: onInputChange,
-    handleFocus,
-    handleBlur,
-    handleKeyDown: onInputKeyDown,
+    onSliderChange,
+    onInputChange,
+    onFocus,
+    onBlur,
+    onInputKeyDown,
   };
 };
