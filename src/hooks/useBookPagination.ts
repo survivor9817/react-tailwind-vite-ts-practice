@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import { getLocalData } from "../utils/getLocalData";
 import { toFaNums } from "../utils/toFaNums";
 import { convertToEnglishDigits } from "../utils/convertToEnglishDigits";
 import { useBookContext } from "../components/BookProvider";
+import { getLocalData } from "../utils/getLocalData";
 
 export const useBookPagination = () => {
   const { currentBook, currentPage, setCurrentPage } = useBookContext();

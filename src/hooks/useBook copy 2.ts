@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { getLocalData } from "../utils/getLocalData";
 import { toFaNums as toFaDigits } from "../utils/toFaNums";
 import { convertToEnglishDigits as toEnDigits } from "../utils/convertToEnglishDigits";
 import { useLocalStorage } from "./useLocalStorage";
 import type { Book } from "../data/booksData";
+import { getLocalData } from "../utils/getLocalData";
 
 export const useBook = () => {
-  const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null);
+  const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null); // grade ro az currentBook dar miaarim na inke selectedGrade ro paas bedim paeen
 
   const bookPageKey = currentBook?.id
     ? `last-visited-page-${currentBook.id}`
@@ -96,6 +96,8 @@ export const useBook = () => {
   };
 
   // onBookChange
+  // potential extra rerenders
+  // useLocalState can cover it
   useEffect(() => {
     const lastPageRead = getLocalData(bookPageKey, 1);
     const page = parseValidPage(lastPageRead) ?? 1;
