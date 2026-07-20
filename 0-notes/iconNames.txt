@@ -1,0 +1,16 @@
+arrow_circle_right
+arrow_circle_left
+power_settings_circle
+cancel
+list
+menu_book
+exercise
+school
+menu
+timer
+draft_orders
+check_circle
+favorite
+stars
+error
+
