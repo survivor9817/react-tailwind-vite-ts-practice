@@ -4,7 +4,7 @@ import type { FilterOption } from "../data/quizFilterOptionsData";
 import { useBookContext } from "../components/BookProvider";
 
 export type QuizFiltersType = {
-  BookId: number | undefined;
+  BookId: string | undefined;
   Where: {
     value: string;
     label: string;

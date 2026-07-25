@@ -6,6 +6,7 @@ import type { Book } from "../data/booksData";
 import { getLocalData } from "../utils/getLocalData";
 
 export const useBook = () => {
+  // current book baayad state i baashe ke az baalaa be hook paas daade mishe.
   const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null); // grade ro az currentBook dar miaarim na inke selectedGrade ro paas bedim paeen
 
   const bookPageKey = currentBook?.id
@@ -70,10 +71,11 @@ export const useBook = () => {
     if (e.key !== "Enter") return;
     const newPage = parseValidPage(pageInput);
     if (newPage === null) return showError();
-    setPageInputValue(newPage);
+    setPageInputValue(newPage); // maybe extra
     setCurrentPage(newPage);
   };
 
+  // focus and blur
   const onFocusPageNumber = useRef(currentPage);
 
   const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -101,7 +103,7 @@ export const useBook = () => {
   useEffect(() => {
     const lastPageRead = getLocalData(bookPageKey, 1);
     const page = parseValidPage(lastPageRead) ?? 1;
-    setPageInputValue(page);
+    setPageInputValue(page); // maybe extra
     setCurrentPage(page);
   }, [currentBook]);
 
