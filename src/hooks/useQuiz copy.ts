@@ -3,37 +3,20 @@ import { useQuestionData } from "./useQuestionData";
 import { useQuizData } from "./useQuizData";
 import { useQuizFilters } from "./useQuizFilters";
 import useToggle from "./useToggle";
+import type { QuizSession } from "./useQuizSessionsData";
 
 export const useQuiz = () => {
   const { quizFilters, clearFilters, onChangeFilterSelect } = useQuizFilters();
   const { quiz, quizLoading, loadNewQuiz, loadExistingQuiz, setQuiz } = useQuizData();
-  const { question, questionLoading, loadQuestion, setQuestion } = useQuestionData();
+  const { question, questionLoading, questionError, loadQuestion, setQuestion } = useQuestionData();
   const startQuizLoading = quizLoading || questionLoading;
   const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const isOnFirstQuestion = currentQuestionIndex === 0;
-  const lastQuestionIndex = quiz ? quiz.questionIds.length - 1 : 0; // quiz.questionsCount
-  const isOnLastQuestion = currentQuestionIndex === lastQuestionIndex;
-  const [nextLoading, setNextLoading] = useState(false);
-  const [prevLoading, setPrevLoading] = useState(false);
+  const questionsCount = quiz ? quiz.questionIds.length - 1 : 0; // quiz.questionsCount
+  const isOnLastQuestion = currentQuestionIndex === questionsCount;
   const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
   const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
-
-  /**
-   * clearQuiz
-   * resetQuiz
-   * reviewQuiz
-   * onChangeFilterSelect
-   * startQuiz
-   * loadQuestion
-   * goToPrevQuestion
-   * goToNextQuestion
-   * openEndConfirm
-   * submitQuiz
-   * closeEndConfirm
-   * terminateQuiz
-   * closeResultsModal
-   */
 
   const clearQuiz = () => {
     setQuiz(null);
@@ -47,56 +30,48 @@ export const useQuiz = () => {
     setCurrentQuestionIndex(0);
   };
 
-  const startQuiz = async () => {
-    try {
-      const quiz = await loadNewQuiz(quizFilters);
-      await loadQuestion(quiz.questionIds[0], quiz.quizId);
-      showQuizView();
-    } catch (err) {
-      console.log(err);
-    }
+  const enterQuiz = async (quiz: QuizSession, startIndex = 0) => {
+    const { questionIds, quizId } = quiz;
+    await loadQuestion(questionIds[startIndex], quizId);
+    showQuizView();
   };
 
-  const reviewQuiz = async (quizId: string) => {
-    console.log("rev");
-    try {
-      const quiz = await loadExistingQuiz(quizId);
-      // khate baalaa ke error beshe ke hichi mipare toye kach vali khate paeen agar error
-      // beshe tooye darkhaaste baalaaee yani yek quiz saakhte shode. ino ye karish bokon.
-      await loadQuestion(quiz.questionIds[0], quiz.quizId /** zero or maybe last index? */);
-      showQuizView();
-    } catch (err) {
-      console.log(err);
-      setQuiz(null);
-      // or somehow rollback
-    }
+  const runQuiz = async (getQuiz: () => Promise<QuizSession>, startIndex = 0) => {
+    return getQuiz()
+      .then((quiz) => enterQuiz(quiz, startIndex))
+      .catch((err) => {
+        setQuiz(null);
+        console.log(err); // or any rollback strategy
+      });
   };
 
-  const goToQuestion = async (index: number) => {
-    if (!quiz || !quiz.questionIds.length) return; // mitooni toast bezaari ke erroro neshoone user bedi
-    if (Number.isInteger(index) && index >= 0 && index < quiz.questionIds.length) {
-      try {
-        await loadQuestion(quiz.questionIds[index], quiz.quizId);
-        setCurrentQuestionIndex(index);
-      } catch (err) {
-        console.log(err);
-      }
+  const startQuiz = () => {
+    return runQuiz(() => {
+      return loadNewQuiz(quizFilters);
+    });
+  };
+
+  const reviewQuiz = (quizId: string) => {
+    return runQuiz(() => {
+      return loadExistingQuiz(quizId);
+    });
+  };
+
+  const isInRange = (num: number, min: number, max: number) => {
+    return Number.isInteger(num) && num >= min && num <= max;
+  };
+
+  const goToQuestion = (index: number) => {
+    if (!quiz || !quiz.questionIds.length) return;
+    const min = 0;
+    const max = quiz.questionIds.length - 1; // or use questionCount
+    if (isInRange(index, min, max)) {
+      setCurrentQuestionIndex(index);
     }
   };
 
   const goToPrevQuestion = async () => {
-    if (isOnFirstQuestion) {
-      return;
-    }
-
-    setPrevLoading(true);
-    try {
-      await goToQuestion(currentQuestionIndex - 1);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setPrevLoading(false);
-    }
+    goToQuestion(currentQuestionIndex - 1);
   };
 
   const goToNextQuestion = async () => {
@@ -105,14 +80,7 @@ export const useQuiz = () => {
       return;
     }
 
-    setNextLoading(true);
-    try {
-      await goToQuestion(currentQuestionIndex + 1);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setNextLoading(false);
-    }
+    goToQuestion(currentQuestionIndex + 1);
   };
 
   const submitQuiz = () => {
@@ -135,14 +103,13 @@ export const useQuiz = () => {
     startQuiz,
     startQuizLoading,
     quiz,
-    lastQuestionIndex,
+    questionsCount,
     loadQuestion,
     question,
+    questionError,
     isOnFirstQuestion,
     isOnLastQuestion,
-    prevLoading,
     goToPrevQuestion,
-    nextLoading,
     goToNextQuestion,
     openEndConfirm,
     endConfirmModal,

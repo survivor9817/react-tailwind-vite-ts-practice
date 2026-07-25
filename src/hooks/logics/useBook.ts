@@ -114,7 +114,7 @@ export const useBook = () => {
     setCurrentPage(newPage);
   };
 
-  // onBookChange
+  // onBookChange // behtare bardaarimesh.
   // potential extra rerenders
   // useLocalState can cover it
   useEffect(() => {
