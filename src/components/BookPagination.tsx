@@ -24,8 +24,18 @@ const BookPagination = () => {
           className="flex justify-center items-center p-1 max-w-[86vw] sm:max-w-90 border-2
            border-black rounded-[48px] bg-white"
         >
-          <IconBtn i="arrow_circle_right" iconSize="48px" onClick={goToPrevPage} />
-          <IconBtn i="arrow_circle_left" iconSize="48px" onClick={goToNextPage} />
+          <IconBtn
+            i="arrow_circle_right"
+            iconSize="48px"
+            onClick={goToPrevPage}
+            isDisabled={!currentBook}
+          />
+          <IconBtn
+            i="arrow_circle_left"
+            iconSize="48px"
+            onClick={goToNextPage}
+            isDisabled={!currentBook}
+          />
 
           <input
             className="w-50 min-w-25 max-w-50 text-[rgba(225,163,193,1)] mx-1"
@@ -35,6 +45,7 @@ const BookPagination = () => {
             step="1"
             value={currentPage}
             onChange={handleInputRange}
+            disabled={!currentBook}
           />
 
           <input
@@ -47,6 +58,7 @@ const BookPagination = () => {
             onBlur={handleBlur}
             onKeyDown={handleKeyDown}
             ref={inputPageNumberRefEl}
+            disabled={!currentBook}
           />
         </div>
       )}

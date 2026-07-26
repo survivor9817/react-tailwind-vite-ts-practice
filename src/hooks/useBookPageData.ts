@@ -14,7 +14,7 @@ export const useBookPageData = () => {
 
   useEffect(() => {
     loadPageContent();
-  }, [loadPageContent]);
+  }, [loadPageContent, currentBook]);
 
   return { pageContent: data, isLoading, error, loadPageContent };
 };

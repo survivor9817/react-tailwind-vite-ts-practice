@@ -13,8 +13,8 @@ export const useQuiz = () => {
   const [isQuizStarted, , showQuizView, showFilterView] = useToggle(/** from local? */);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const isOnFirstQuestion = currentQuestionIndex === 0;
-  const questionsCount = quiz ? quiz.questionIds.length - 1 : 0; // quiz.questionsCount
-  const isOnLastQuestion = currentQuestionIndex === questionsCount;
+  const lastQuestionIndex = quiz ? quiz.questionIds.length - 1 : 0; // quiz.questionsCount
+  const isOnLastQuestion = currentQuestionIndex === lastQuestionIndex;
   const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
   const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
 
@@ -95,32 +95,62 @@ export const useQuiz = () => {
   };
 
   return {
-    reviewQuiz,
-    quizFilters,
-    onChangeFilterSelect,
-    isQuizStarted,
-    currentQuestionIndex,
-    startQuiz,
-    startQuizLoading,
-    quiz,
-    questionsCount,
-    loadQuestion,
-    question,
-    questionError,
-    isOnFirstQuestion,
-    isOnLastQuestion,
-    goToPrevQuestion,
-    goToNextQuestion,
-    openEndConfirm,
-    endConfirmModal,
-    submitQuiz,
-    closeEndConfirm,
-    resultsModal,
-    terminateQuiz,
-    closeResultsModal,
-
-    // fetch quiz data errors handles by toast not by ui conditional statements.
-    // questionIdsError,
-    // questionError,
+    filters: { quizFilters, clearFilters, onChangeFilterSelect },
+    quiz: {
+      isQuizStarted,
+      quiz,
+      startQuizLoading,
+      startQuiz,
+      reviewQuiz,
+      submitQuiz,
+      terminateQuiz,
+    },
+    question: { question, questionLoading, questionError },
+    navigation: {
+      currentQuestionIndex,
+      isOnFirstQuestion,
+      isOnLastQuestion,
+      goToQuestion,
+      goToPrevQuestion,
+      goToNextQuestion,
+    },
+    modals: {
+      endConfirmModal,
+      resultsModal,
+      closeEndConfirm,
+      openEndConfirm,
+      closeResultsModal,
+      openResultsModal,
+    },
   };
+
+  // return {
+  //   reviewQuiz,
+  //   quizFilters,
+  //   onChangeFilterSelect,
+  //   isQuizStarted,
+  //   currentQuestionIndex,
+  //   startQuiz,
+  //   startQuizLoading,
+  //   quiz,
+  //   questionsCount,
+  //   loadQuestion,
+  //   question,
+  //   questionError,
+  //   isOnFirstQuestion,
+  //   isOnLastQuestion,
+  //   goToPrevQuestion,
+  //   goToNextQuestion,
+  //   openEndConfirm,
+  //   endConfirmModal,
+  //   submitQuiz,
+  //   closeEndConfirm,
+  //   resultsModal,
+  //   terminateQuiz,
+  //   closeResultsModal,
+
+  //   // fetch quiz data errors handles by toast not by ui conditional statements.
+  //   // questionIdsError,
+  //   // questionError,
+  // };
 };

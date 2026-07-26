@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { toFaNums } from "../utils/toFaNums";
 import { convertToEnglishDigits } from "../utils/convertToEnglishDigits";
 import { useBookContext } from "../components/BookProvider";
-import { getLocalData } from "../utils/getLocalData";
 
 export const useBookPagination = () => {
   const { currentBook, currentPage, setCurrentPage } = useBookContext();
@@ -13,10 +12,10 @@ export const useBookPagination = () => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    if (!currentBook?.id) return;
-    goToPage(getLocalData(currentBook?.id, 1));
-  }, [currentBook]);
+  // useEffect(() => {
+  //   if (!currentBook?.id) return;
+  //   goToPage(getLocalData(currentBook?.id, 1));
+  // }, [currentBook]);
 
   const goToPrevPage = () => {
     if (!currentPage) return;

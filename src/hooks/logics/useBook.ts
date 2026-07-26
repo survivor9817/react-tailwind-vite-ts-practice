@@ -15,7 +15,10 @@ export const useBook = () => {
   const [pageInputError, setPageInputError] = useState(false);
   const onFocusPageNumber = useRef(currentPage);
 
-  const { set: autoHideError } = useTimeoutFn(() => setPageInputError(false), 300);
+  const { set: autoHideError } = useTimeoutFn(() => {
+    setPageInputError(false);
+  }, 300);
+
   const showInputError = () => {
     setPageInputError(true);
     autoHideError();

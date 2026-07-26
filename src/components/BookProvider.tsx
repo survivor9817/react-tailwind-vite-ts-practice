@@ -9,7 +9,7 @@ export type BookContextType = {
   currentBook: Book | null; // behtare faghat current book ro negahdaarim.
   setCurrentBook: (value: Book | null) => void;
   currentPage: number | null;
-  setCurrentPage: (value: number | null) => void;
+  setCurrentPage: (value: number) => void;
 };
 
 const grades = GRADES;
@@ -36,10 +36,9 @@ export const BookProvider = ({ children }: Props) => {
   const grades = GRADES;
   const [selectedGrade, setSelectedGrade] = useLocalStorage<Grade>("lastSelectedGrade", grades[0]);
   const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null);
-  const [currentPage, setCurrentPage] = useLocalStorage<number | null>(
-    JSON.stringify(currentBook?.id),
-    null,
-  );
+  const bookId = currentBook?.id;
+  const bookPageKey = bookId ? `last-visited-page-${bookId}` : "last-visited-page-temp";
+  const [currentPage, setCurrentPage] = useLocalStorage<number>(bookPageKey, 1);
 
   const value: BookContextType = {
     selectedGrade,
