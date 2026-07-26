@@ -1,26 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { toFaNums as toFaDigits, toFaNums } from "../utils/toFaNums";
-import { convertToEnglishDigits as toEnDigits } from "../utils/convertToEnglishDigits";
+import { toFaNums as toFaDigits } from "../../utils/toFaNums";
+import { convertToEnglishDigits as toEnDigits } from "../../utils/convertToEnglishDigits";
 import useTimeoutFn from "./useTimeoutFn";
-import { useBookContext } from "../components/BookProvider";
+import { useLocalStorage } from "../useLocalStorage";
+import type { Book } from "../../data/booksData";
 
-export const useBookPagination = () => {
-  const { currentBook, currentPage, setCurrentPage } = useBookContext();
-
-  const [pageInput, setPageInput] = useState(toFaNums(currentPage));
-
-  // #1
-  useEffect(() => {
-    setPageInput(toFaNums(currentPage));
-  }, [currentPage]);
-
-  // #2
-  // const [prevPage, setPrevPage] = useState(currentPage);
-  // if (currentPage !== prevPage) {
-  //   setPrevPage(currentPage);
-  //   setPageInput(toFaDigits(currentPage));
-  // }
-
+export const useBook = () => {
+  const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null);
+  const bookId = currentBook?.id;
+  const bookPageKey = bookId ? `last-visited-page-${bookId}` : "last-visited-page-temp";
+  const [currentPage, setCurrentPage] = useLocalStorage<number>(bookPageKey, 1);
+  const [pageInput, setPageInput] = useState(toFaDigits(currentPage));
   const [pageInputError, setPageInputError] = useState(false);
   const onFocusPageNumber = useRef(currentPage);
 
@@ -36,6 +26,18 @@ export const useBookPagination = () => {
   const setPageInputValue = (page: number) => {
     setPageInput(toFaDigits(page));
   };
+
+  // #1
+  useEffect(() => {
+    setPageInputValue(currentPage);
+  }, [currentPage]);
+
+  // #2
+  // const [prevPage, setPrevPage] = useState(currentPage);
+  // if (currentPage !== prevPage) {
+  //   setPrevPage(currentPage);
+  //   setPageInput(toFaDigits(currentPage));
+  // }
 
   const isPageInRange = (page: number, min: number, max: number) => {
     return Number.isInteger(page) && page >= min && page <= max;
@@ -101,7 +103,6 @@ export const useBookPagination = () => {
 
     setPageInputValue(newPage);
     setCurrentPage(newPage);
-    onFocusPageNumber.current = newPage;
   };
 
   const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -127,21 +128,11 @@ export const useBookPagination = () => {
     setCurrentPage(newPage);
   };
 
-  // onBookChange // behtare bardaarimesh.
-  // potential extra rerenders
-  // useLocalState can cover it
-  // useEffect(() => {
-  //   const bookId = currentBook?.id;
-  //   const bookPageKey = bookId ? `last-visited-page-${bookId}` : "last-visited-page-temp";
-  //   const lastPageRead = getLocalData(bookPageKey, 1);
-  //   const page = parseValidPage(lastPageRead) ?? 1;
-  //   setPageInputValue(page); // maybe extra
-  //   setCurrentPage(page);
-  // }, [currentBook]);
-
   return {
     currentBook,
+    setCurrentBook,
     currentPage,
+    setCurrentPage,
     pageInput,
     pageInputError,
 
@@ -155,23 +146,3 @@ export const useBookPagination = () => {
     onInputKeyDown,
   };
 };
-
-// useEffect(() => {
-//   if (!currentBook?.id) return;
-//   goToPage(getLocalData(currentBook?.id, 1));
-// }, [currentBook]);
-
-// return {
-//   currentBook,
-//   currentPage,
-//   // goToPage,
-//   goToPrevPage,
-//   goToNextPage,
-//   inputPageNumberRefEl,
-//   handleInputRange,
-//   handleInputNumber,
-//   onFocusPageNumber,
-//   handleFocus,
-//   handleBlur,
-//   handleKeyDown,
-// };

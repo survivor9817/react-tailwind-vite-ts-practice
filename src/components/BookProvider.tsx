@@ -8,19 +8,11 @@ export type BookContextType = {
   setSelectedGrade: (value: Grade) => void;
   currentBook: Book | null; // behtare faghat current book ro negahdaarim.
   setCurrentBook: (value: Book | null) => void;
-  currentPage: number | null;
+  currentPage: number;
   setCurrentPage: (value: number) => void;
 };
 
-const grades = GRADES;
-export const BookContext = createContext<BookContextType>({
-  selectedGrade: grades[0],
-  setSelectedGrade: () => {},
-  currentBook: null,
-  setCurrentBook: () => {},
-  currentPage: null,
-  setCurrentPage: () => {},
-});
+export const BookContext = createContext<BookContextType | undefined>(undefined);
 
 export const useBookContext = (): BookContextType => {
   const ctx = useContext(BookContext);

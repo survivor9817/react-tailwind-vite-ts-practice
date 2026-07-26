@@ -21,7 +21,9 @@ export const checkActive = (currentTitlePage: number, section: FehrestSection): 
 
 export const useFehrestItem = (currentTitlePage: number, section: FehrestSection) => {
   const { setCurrentPage } = useBookContext();
-  const handleClick = () => setCurrentPage(section.page);
+  const handleClick = () => {
+    setCurrentPage(section.page);
+  };
   const isActive = checkActive(currentTitlePage, section);
   return { isActive, handleClick };
 };

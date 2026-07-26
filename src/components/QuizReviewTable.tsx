@@ -28,7 +28,6 @@ const QuizReviewTable = ({ reviewQuiz, startQuizLoading }: Props) => {
   // useQuizReviewModal
   const [quizReviewModal, , openQuizReviewModal, closeQuizReviewModal] = useToggle();
   const [quizIdForReview, setQuizIdForReview] = useState<string>();
-  console.log(quizIdForReview);
 
   const onClickOnResultBtn = (quizId: string) => {
     setQuizIdForReview(quizId);

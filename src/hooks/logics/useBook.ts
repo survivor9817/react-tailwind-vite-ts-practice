@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { toFaNums as toFaDigits } from "../../utils/toFaNums";
 import { convertToEnglishDigits as toEnDigits } from "../../utils/convertToEnglishDigits";
-import { getLocalData } from "../../utils/getLocalData";
 import useTimeoutFn from "./useTimeoutFn";
 import { useLocalStorage } from "../useLocalStorage";
 import type { Book } from "../../data/booksData";
 
 export const useBook = () => {
   const [currentBook, setCurrentBook] = useLocalStorage<Book | null>("lastBookRead", null);
+
   const bookId = currentBook?.id;
   const bookPageKey = bookId ? `last-visited-page-${bookId}` : "last-visited-page-temp";
   const [currentPage, setCurrentPage] = useLocalStorage<number>(bookPageKey, 1);
+
   const [pageInput, setPageInput] = useState(toFaDigits(currentPage));
   const [pageInputError, setPageInputError] = useState(false);
+
   const onFocusPageNumber = useRef(currentPage);
 
   const { set: autoHideError } = useTimeoutFn(() => {
@@ -27,6 +29,18 @@ export const useBook = () => {
   const setPageInputValue = (page: number) => {
     setPageInput(toFaDigits(page));
   };
+
+  // #1
+  useEffect(() => {
+    setPageInputValue(currentPage);
+  }, [currentPage]);
+
+  // #2
+  // const [prevPage, setPrevPage] = useState(currentPage);
+  // if (currentPage !== prevPage) {
+  //   setPrevPage(currentPage);
+  //   setPageInput(toFaDigits(currentPage));
+  // }
 
   const isPageInRange = (page: number, min: number, max: number) => {
     return Number.isInteger(page) && page >= min && page <= max;
@@ -117,25 +131,15 @@ export const useBook = () => {
     setCurrentPage(newPage);
   };
 
-  // onBookChange // behtare bardaarimesh.
-  // potential extra rerenders
-  // useLocalState can cover it
-  useEffect(() => {
-    const bookId = currentBook?.id;
-    const bookPageKey = bookId ? `last-visited-page-${bookId}` : "last-visited-page-temp";
-    const lastPageRead = getLocalData(bookPageKey, 1);
-    const page = parseValidPage(lastPageRead) ?? 1;
-    setPageInputValue(page); // maybe extra
-    setCurrentPage(page);
-  }, [currentBook]);
-
   return {
     currentBook,
     setCurrentBook,
+
     currentPage,
     pageInput,
     pageInputError,
 
+    goToPage,
     goToPrevPage,
     goToNextPage,
 
@@ -145,4 +149,26 @@ export const useBook = () => {
     onBlur,
     onInputKeyDown,
   };
+
+  //   return {
+  //   book: {
+  //     currentBook,
+  //     setCurrentBook,
+  //   },
+  //   page: {
+  //     current: currentPage,
+  //     goToPage,
+  //     goToPrevPage,
+  //     goToNextPage,
+  //   },
+  //   pageInput: {
+  //     value: pageInput,
+  //     error: pageInputError,
+  //     onSliderChange,
+  //     onInputChange,
+  //     onFocus,
+  //     onBlur,
+  //     onInputKeyDown,
+  //   },
+  // };
 };

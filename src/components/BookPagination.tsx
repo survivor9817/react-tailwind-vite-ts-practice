@@ -7,16 +7,20 @@ const BookPagination = () => {
   const {
     currentBook,
     currentPage,
+    pageInput,
+    pageInputError,
+
     goToPrevPage,
     goToNextPage,
-    inputPageNumberRefEl,
-    handleInputRange,
-    handleInputNumber,
-    handleFocus,
-    handleBlur,
-    handleKeyDown,
+
+    onSliderChange,
+    onInputChange,
+    onFocus,
+    onBlur,
+    onInputKeyDown,
   } = useBookPagination();
 
+  const inputError = pageInputError ? "bg-[rgb(255,124,124)]" : "bg-auto";
   return (
     <>
       {currentPage && (
@@ -44,20 +48,19 @@ const BookPagination = () => {
             max={currentBook?.lastPage}
             step="1"
             value={currentPage}
-            onChange={handleInputRange}
+            onChange={onSliderChange}
             disabled={!currentBook}
           />
 
           <input
-            className="border-[3px] border-black rounded-3xl text-center p-0 h-11 w-11 text-[18px] appearance-none"
+            className={`border-[3px] border-black rounded-3xl text-center p-0 h-11 w-11 text-[18px] appearance-none ${inputError}`}
             type="text"
             inputMode="numeric"
-            onChange={handleInputNumber}
-            // value={getCurrentPageFa()}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onKeyDown={handleKeyDown}
-            ref={inputPageNumberRefEl}
+            onChange={onInputChange}
+            value={pageInput}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            onKeyDown={onInputKeyDown}
             disabled={!currentBook}
           />
         </div>
