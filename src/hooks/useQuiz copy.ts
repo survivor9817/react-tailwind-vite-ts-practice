@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuestionData } from "./useQuestionData";
 import { useQuizData } from "./useQuizData";
 import { useQuizFilters } from "./useQuizFilters";
@@ -17,6 +17,12 @@ export const useQuiz = () => {
   const isOnLastQuestion = currentQuestionIndex === lastQuestionIndex;
   const [endConfirmModal, , openEndConfirm, closeEndConfirm] = useToggle();
   const [resultsModal, , openResultsModal, closeResultsModal] = useToggle();
+  // alan be in chizi ke bayad ezafe konam ye use effecte ke baa har taghire index ye
+
+  useEffect(() => {
+    if (!quiz) return;
+    loadQuestion(quiz.questionIds[currentQuestionIndex], quiz.quizId);
+  }, [currentQuestionIndex, quiz]);
 
   const clearQuiz = () => {
     setQuiz(null);
@@ -27,10 +33,11 @@ export const useQuiz = () => {
     clearFilters();
     showFilterView();
     clearQuiz();
-    setCurrentQuestionIndex(0);
+    setCurrentQuestionIndex(0); // ino comment konam?
   };
 
   const enterQuiz = async (quiz: QuizSession, startIndex = 0) => {
+    // setCurrentQuestionIndex(startIndex); // bejaaye in? badesh use effect bezaaram ke harbaar ke index avaz shod refetch?
     const { questionIds, quizId } = quiz;
     await loadQuestion(questionIds[startIndex], quizId);
     showQuizView();
@@ -70,11 +77,11 @@ export const useQuiz = () => {
     }
   };
 
-  const goToPrevQuestion = async () => {
+  const goToPrevQuestion = () => {
     goToQuestion(currentQuestionIndex - 1);
   };
 
-  const goToNextQuestion = async () => {
+  const goToNextQuestion = () => {
     if (isOnLastQuestion) {
       openEndConfirm();
       return;

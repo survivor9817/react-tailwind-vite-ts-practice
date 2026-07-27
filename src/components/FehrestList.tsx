@@ -1,5 +1,5 @@
 import FehrestItem from "./FehrestItem";
-import { collectTitlePages, findTitlePage } from "../hooks/useFehrestItem";
+import { collectSectionPages, findSectionPage } from "../hooks/useFehrestItem";
 import { useBookContext } from "./BookProvider";
 import ErrorFallback from "./ErrorFallback";
 import { useFehrestListData } from "../hooks/useFehrestListData";
@@ -22,14 +22,18 @@ const FehrestList = () => {
 
   if (!currentFehrest) return <p className="text-center">فهرست موجود نیست.</p>;
 
-  const titlePages = collectTitlePages(currentFehrest);
-  const currentTitlePage = findTitlePage(currentPage, titlePages);
+  const titlePages = collectSectionPages(currentFehrest);
+  const currentSectionPage = findSectionPage(currentPage, titlePages);
 
   return (
     <>
       {currentFehrest &&
         currentFehrest.map((section) => (
-          <FehrestItem key={section.page} section={section} currentTitlePage={currentTitlePage} />
+          <FehrestItem
+            key={section.page}
+            section={section}
+            currentSectionPage={currentSectionPage}
+          />
         ))}
     </>
   );

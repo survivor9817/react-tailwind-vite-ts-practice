@@ -6,17 +6,24 @@ import { useBookContext } from "../components/BookProvider";
 // 27
 // => 25
 
-export const collectTitlePages = (fehrest: FehrestSection[]): number[] => {
-  return fehrest.flatMap((s) => [s.page, ...(s.sections ? collectTitlePages(s.sections) : [])]);
+export const collectSectionPages = (fehrest: FehrestSection[]): number[] => {
+  return fehrest.flatMap((s) => {
+    const subsectionPages = s.sections ? collectSectionPages(s.sections) : [];
+    return [s.page, ...subsectionPages];
+  });
 };
 
-export const findTitlePage = (target: number, titles: number[]): number => {
-  return titles.includes(target) ? target : Math.max(...titles.filter((p) => p < target));
+export const findSectionPage = (targetPage: number, sectionPages: number[]): number => {
+  const smallerNumbers = sectionPages.filter((p) => p <= targetPage);
+  const largestNumber = Math.max(...smallerNumbers);
+  return largestNumber;
 };
 
-export const checkActive = (currentTitlePage: number, section: FehrestSection): boolean => {
-  if (currentTitlePage === section.page) return true;
-  return !!section.sections?.some((subsection) => checkActive(currentTitlePage, subsection));
+export const checkActive = (currentSectionPage: number, section: FehrestSection): boolean => {
+  if (currentSectionPage === section.page) return true;
+  return !!section.sections?.some((subsection) => {
+    return checkActive(currentSectionPage, subsection);
+  });
 };
 
 export const useFehrestItem = (currentTitlePage: number, section: FehrestSection) => {

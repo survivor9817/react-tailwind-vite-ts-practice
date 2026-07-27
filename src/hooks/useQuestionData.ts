@@ -1,4 +1,3 @@
-// useQuizData.ts
 import { useCallback, useEffect } from "react";
 import type { QuestionType } from "../data/questionsData";
 import { useToast } from "../components/ToastProvider";

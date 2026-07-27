@@ -4,11 +4,11 @@ import type { FehrestSection } from "../data/fehrestsData";
 
 type Props = {
   section: FehrestSection;
-  currentTitlePage: number;
+  currentSectionPage: number;
 };
 
-const FehrestItem = ({ section, currentTitlePage }: Props) => {
-  const { isActive, handleClick } = useFehrestItem(currentTitlePage, section);
+const FehrestItem = ({ section, currentSectionPage }: Props) => {
+  const { isActive, handleClick } = useFehrestItem(currentSectionPage, section);
   const isExpanded = isActive ? "max-h-screen" : "max-h-0";
   const isHighlighted = isActive ? "bg-[#e1a3c1]" : "hover:bg-[#e1a3c175]";
 
@@ -18,7 +18,11 @@ const FehrestItem = ({ section, currentTitlePage }: Props) => {
     >
       {section.sections.map((section) => {
         return (
-          <FehrestItem key={section.title} section={section} currentTitlePage={currentTitlePage} />
+          <FehrestItem
+            key={section.title}
+            section={section}
+            currentSectionPage={currentSectionPage}
+          />
         );
       })}
     </ol>
